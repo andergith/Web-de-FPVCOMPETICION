@@ -1,269 +1,158 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPV-Drones | Web Oficial</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-    <!-- Chosen Palette: Red Racing (Red, Black, White) -->
-    <!-- Application Structure Plan: 
-         - Hero Section: Updated with Full-Screen Background Video (AirVuz) and YouTube Embed. Text colors inverted to White for contrast.
-         - Navigation: Sticky header.
-         - Rest of sections: Maintain the Red/Black/White high contrast theme.
-    -->
     
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-        }
-        h1, h2, h3, h4, .font-teko {
-            font-family: 'Teko', sans-serif;
-            text-transform: uppercase;
-        }
-        .accent-text {
-            color: #dc2626; /* red-600 */
-        }
-        .accent-bg {
-            background-color: #dc2626;
-        }
-        .accent-border {
-            border-color: #dc2626;
-        }
-        
-        /* Schematic Diagram Styling */
-        .component-box {
-            background: #ffffff;
-            border: 2px solid #171717; /* neutral-900 */
-            padding: 10px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: bold;
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
-            position: relative;
-            transition: all 0.2s ease;
-        }
-        .component-box:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #dc2626;
-            border-color: #dc2626;
-        }
-        .wire {
-            position: absolute;
-            background-color: #525252; /* neutral-600 */
-            z-index: 0;
-        }
-        
-        /* Chart Container Strict Styling */
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
+    <!-- Favicon con tu Logo -->
+    <link rel="icon" href="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO.jpg" type="image/jpeg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración Tailwind para Modo Oscuro -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#dc2626',
+                        dark: {
+                            bg: '#0f172a',    // Slate 900
+                            card: '#1e293b',  // Slate 800
+                            border: '#334155' // Slate 700
+                        }
+                    },
+                    fontFamily: {
+                        teko: ['Teko', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
             }
         }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #e5e5e5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #dc2626; /* red */
-            border-radius: 0px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #991b1b; /* dark red */
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Utility for sharp design */
-        .sharp-shadow {
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-        }
-        
-        /* Aspect Ratio for Video */
-        .aspect-w-16 {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-        }
-        .aspect-w-16 iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Background Video Styling */
-        .hero-video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            pointer-events: none; /* User can't interact with bg video */
-            overflow: hidden;
-        }
-        .hero-video-bg iframe {
-            width: 100vw;
-            height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
-            min-height: 100vh;
-            min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Iconos Phosphor (para el sol/luna del toggle) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="antialiased scroll-smooth">
+<body class="antialiased scroll-smooth bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b-2 border-neutral-100 z-50">
+    <nav class="fixed top-0 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="scrollToSection('hero')">
-                    <i class="fas fa-paper-plane accent-text text-2xl"></i>
-                    <span class="font-teko text-3xl tracking-wide text-black">FPV<span class="text-red-600">-</span>DRONES</span>
+                <!-- Logo & Brand -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="scrollToSection('hero')">
+                    <!-- Logo para modo día -->
+                    <img id="logo-light" src="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO.avif" alt="FPV Drones Logo" class="w-[2.675rem] h-[2.675rem] rounded-lg object-cover shadow-sm group-hover:rotate-6 transition-transform dark:hidden">
+                    <!-- Logo para modo noche -->
+                    <img id="logo-dark" src="imagenes/logo-fpv-competicion.png" alt="FPV Drones Logo Dark" class="w-[2.675rem] h-[2.675rem] rounded-lg object-cover shadow-sm group-hover:rotate-6 transition-transform hidden dark:block">
+                    
+                    <span class="font-teko text-3xl tracking-wide text-slate-900 dark:text-white">FPV<span class="text-red-600">-</span>DRONES</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <button onclick="scrollToSection('academia')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Academia</button>
-                    <button onclick="scrollToSection('equipo')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Equipo</button>
-                    <button onclick="scrollToSection('ofertas')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Ofertas</button>
-                    <button onclick="scrollToSection('builds')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Builds</button>
-                    <button onclick="scrollToSection('servicios')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Servicios</button>
-                    <button onclick="scrollToSection('blog')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Noticias</button>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <button onclick="scrollToSection('academia')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Academia</button>
+                    <button onclick="scrollToSection('equipo')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Equipo</button>
+                    <button onclick="scrollToSection('ofertas')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Ofertas</button>
+                    <button onclick="scrollToSection('builds')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Builds</button>
+                    <button onclick="scrollToSection('servicios')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Servicios</button>
+                    
+                    <!-- Dark Mode Toggle Switch (Desktop) -->
+                    <button id="theme-toggle-desktop" type="button" class="relative inline-flex items-center h-7 w-12 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 bg-yellow-200 dark:bg-slate-700 ml-4 hover:shadow-lg border-2 border-yellow-300 dark:border-red-600">
+                        <span class="sr-only">Cambiar modo oscuro</span>
+                        <span class="absolute left-1 text-yellow-600 text-xl opacity-100 dark:opacity-0 transition-opacity duration-300"><i class="fas fa-sun"></i></span>
+                        <span class="absolute right-1 text-blue-400 text-xl opacity-0 dark:opacity-100 transition-opacity duration-300"><i class="fas fa-moon"></i></span>
+                        <span class="toggle-circle pointer-events-none inline-block w-4 h-4 rounded-full bg-white shadow-md transform ring-0 transition-transform duration-300 ease-in-out translate-x-0 dark:translate-x-6"></span>
+                    </button>
                 </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-neutral-900 hover:text-red-600 focus:outline-none">
+
+                <!-- Mobile menu & Toggle -->
+                <div class="flex items-center md:hidden gap-4">
+                     <!-- Dark Mode Toggle Switch (Mobile) -->
+                     <button id="theme-toggle-mobile" type="button" class="relative inline-flex items-center h-6 w-11 rounded-full p-1 transition-colors duration-300 focus:outline-none bg-yellow-200 dark:bg-slate-700 hover:shadow-lg border-2 border-yellow-300 dark:border-red-600">
+                        <span class="absolute left-0.5 text-yellow-600 text-sm opacity-100 dark:opacity-0 transition-opacity duration-300"><i class="fas fa-sun"></i></span>
+                        <span class="absolute right-0.5 text-blue-400 text-sm opacity-0 dark:opacity-100 transition-opacity duration-300"><i class="fas fa-moon"></i></span>
+                        <span class="toggle-circle pointer-events-none inline-block w-4 h-4 rounded-full bg-white shadow-md transform ring-0 transition-transform duration-300 ease-in-out translate-x-0 dark:translate-x-5"></span>
+                    </button>
+
+                    <button id="mobile-menu-btn" class="text-slate-900 dark:text-white hover:text-red-600 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-neutral-100">
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-card border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#academia" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Academia</a>
-                <a href="#equipo" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Equipo</a>
-                <a href="#ofertas" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Ofertas</a>
-                <a href="#builds" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Builds</a>
-                <a href="#servicios" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Servicios</a>
+                <a href="#academia" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Academia</a>
+                <a href="#equipo" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Equipo</a>
+                <a href="#ofertas" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Ofertas</a>
+                <a href="#builds" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Builds</a>
+                <a href="#servicios" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Servicios</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pb-24 overflow-hidden bg-black">
-        <!-- Background Video -->
-        <div class="hero-video-bg">
-            <iframe 
-                src="https://www.airvuz.com/videoPlayerEmbed/5a5cdd5a40c0ba4f1a980e6d?autoplay=true&muted=true&loop=true" 
-                frameborder="0" 
-                allow="autoplay; fullscreen" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        
-        <!-- Overlay for contrast -->
-        <div class="absolute inset-0 bg-black/60 z-0"></div>
-        
+    <section id="hero" class="relative pt-24 pb-12 sm:pt-32 sm:pb-32 lg:pb-40 overflow-hidden hero-bg-image section-slant">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
-                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                    <div class="inline-flex items-center px-3 py-1 border border-red-500 bg-red-900/50 text-white text-xs font-bold uppercase tracking-widest mb-4 backdrop-blur-sm">
-                        <span class="w-2 h-2 bg-red-500 mr-2 animate-pulse rounded-full"></span>
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left fade-in">
+                    <div class="inline-flex items-center px-4 py-1.5 rounded-full border border-red-200 dark:border-red-900 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-widest mb-6 shadow-sm">
+                        <span class="flex h-2 w-2 relative mr-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                        </span>
                         Web Oficial
                     </div>
-                    <h1 class="text-6xl tracking-tighter font-extrabold text-white sm:text-7xl md:text-8xl font-teko leading-none drop-shadow-lg">
+                    <h1 class="text-6xl tracking-tight font-extrabold text-slate-900 dark:text-white sm:text-7xl md:text-8xl font-teko leading-none">
                         NO VUELES EL DRONE.<br>
-                        <span class="text-red-500">SÉ EL DRONE.</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-500">SÉ EL DRONE.</span>
                     </h1>
-                    <p class="mt-4 text-lg text-neutral-200 font-medium drop-shadow-md">
+                    <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                         La web oficial de <strong>@FPV-Drones</strong>. Aquí encontrarás lo que YouTube no me deja contarte: guías técnicas, diagramas de montaje y la realidad sin censura del mundo FPV.
                     </p>
                     <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
-                        <a href="https://youtube.com/@FPV-Drones" target="_blank" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg transition-all shadow-[4px_4px_0px_#fff] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#fff]">
+                        <a href="https://youtube.com/@FPV-Drones" target="_blank" class="flex items-center justify-center px-8 py-4 border border-transparent text-base font-bold text-white bg-red-600 rounded-lg hover:bg-red-700 md:text-lg transition-all shadow-lg hover:shadow-red-600/30 hover:-translate-y-1">
                             <i class="fab fa-youtube mr-2"></i> Ver último vídeo
                         </a>
-                        <button onclick="scrollToSection('academia')" class="flex items-center justify-center px-8 py-3 border-2 border-white text-base font-bold text-white bg-transparent hover:bg-white hover:text-black md:py-4 md:text-lg transition-all shadow-[4px_4px_0px_rgba(255,255,255,0.5)] hover:translate-y-[-2px]">
+                        <button onclick="scrollToSection('academia')" class="flex items-center justify-center px-8 py-4 border border-slate-200 dark:border-slate-700 text-base font-bold text-slate-700 dark:text-slate-200 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-lg hover:bg-white dark:hover:bg-slate-800 md:text-lg transition-all hover:shadow-md">
                             <i class="fas fa-graduation-cap mr-2"></i> Quiero aprender
                         </button>
                     </div>
                 </div>
                 
-                <!-- Video Embed Section (Right Column) - YouTube Showreel -->
-                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                    <div class="relative mx-auto w-full rounded-none shadow-[10px_10px_0px_#dc2626] lg:max-w-md overflow-hidden border-4 border-white bg-black">
-                        <!-- YouTube Video Embed -->
-                        <div class="aspect-w-16">
-                            <iframe 
-                                width="560" 
-                                height="315" 
-                                src="https://www.youtube.com/embed/rFbRHoMTAGk" 
-                                title="YouTube video player" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                referrerpolicy="strict-origin-when-cross-origin" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
+                <!-- Video Embed Section (Right Column) -->
+                <div class="mt-12 lg:mt-0 lg:col-span-6 fade-in" style="animation-delay: 0.2s;">
+                    <div class="relative mx-auto w-full max-w-lg aspect-w-16 shadow-2xl rounded-2xl border-4 border-white/50 dark:border-slate-700/50 bg-slate-900">
+                        <iframe 
+                            src="https://www.youtube.com/embed/vHc5jnxkuzg?si=4yl2Bu4hcAgZ9vpO"                             frameborder="0" 
+                            allow="autoplay; fullscreen" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Stats / Social Proof -->
-            <div class="mt-16 border-t-2 border-neutral-700/50 pt-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <h3 class="text-3xl font-teko text-white uppercase drop-shadow-md">Comunidad Piloto</h3>
-                        <p class="text-neutral-300 text-sm mb-4">Únete a la creciente comunidad de pilotos que vuelan en modo ACRO.</p>
-                        <div class="flex items-center space-x-8">
-                            <div>
-                                <span class="block text-4xl font-bold text-white font-teko">35K+</span>
-                                <span class="text-xs text-red-500 font-bold uppercase tracking-wide">Suscriptores</span>
-                            </div>
-                            <div>
-                                <span class="block text-4xl font-bold text-white font-teko">580+</span>
-                                <span class="text-xs text-red-500 font-bold uppercase tracking-wide">Vídeos</span>
-                            </div>
-                            <div>
-                                <span class="block text-4xl font-bold text-white font-teko">100%</span>
-                                <span class="text-xs text-red-500 font-bold uppercase tracking-wide">Adrenalina</span>
-                            </div>
+                    
+                    <!-- Stats Floating below video -->
+                    <div class="mt-8 grid grid-cols-3 gap-4 text-center bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-xl p-4 border border-white/50 dark:border-slate-700/50 shadow-sm">
+                        <div>
+                            <span class="block text-3xl font-bold text-slate-900 dark:text-white font-teko">35K+</span>
+                            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Suscriptores</span>
                         </div>
-                    </div>
-                    <!-- Chart Section -->
-                    <div class="w-full">
-                         <div class="chart-container">
-                            <canvas id="subscriberChart"></canvas>
+                        <div>
+                            <span class="block text-3xl font-bold text-slate-900 dark:text-white font-teko">580+</span>
+                            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Vídeos</span>
+                        </div>
+                        <div>
+                            <span class="block text-3xl font-bold text-slate-900 dark:text-white font-teko">100%</span>
+                            <span class="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Adrenalina</span>
                         </div>
                     </div>
                 </div>
@@ -272,102 +161,108 @@
     </section>
 
     <!-- Academia de Vuelo Section -->
-    <section id="academia" class="py-16 bg-neutral-50 relative border-t border-neutral-200">
+    <section id="academia" class="py-24 bg-topography relative section-slant bg-slate-50 dark:bg-dark-bg transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="text-red-600 font-bold tracking-widest uppercase text-xs border border-red-200 px-2 py-1 bg-white">Escuela de Pilotos</span>
-                <h2 class="text-5xl font-bold text-black font-teko mt-4">Academia de Vuelo</h2>
-                <p class="mt-4 text-neutral-600 max-w-2xl mx-auto font-medium">
-                    Del simulador a la realidad sin arruinarte en el intento. He organizado mis años de experiencia (y muchos aporrizajes) en esta ruta de aprendizaje estructurada.
+            <div class="text-center mb-16">
+                <span class="text-red-600 font-bold tracking-widest uppercase text-xs">Escuela de Pilotos</span>
+                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko mt-2">Academia de Vuelo</h2>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light text-lg">
+                    Del simulador a la realidad. He organizado mis años de experiencia en esta ruta de aprendizaje estructurada.
                 </p>
             </div>
 
             <!-- Tabs Navigation -->
-            <div class="flex justify-center mb-8 border-b-2 border-neutral-200">
-                <button class="tab-btn active px-6 py-3 font-teko text-2xl border-b-4 border-red-600 text-red-600 focus:outline-none transition-colors" onclick="switchTab('phase1', this)">Fase 1: Antes de Volar</button>
-                <button class="tab-btn px-6 py-3 font-teko text-2xl border-b-4 border-transparent text-neutral-400 hover:text-black focus:outline-none transition-colors" onclick="switchTab('phase2', this)">Fase 2: Simulador</button>
-                <button class="tab-btn px-6 py-3 font-teko text-2xl border-b-4 border-transparent text-neutral-400 hover:text-black focus:outline-none transition-colors" onclick="switchTab('phase3', this)">Fase 3: Taller</button>
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+                    <button class="tab-btn active px-6 py-2 rounded-lg font-teko text-xl text-white bg-slate-900 dark:bg-red-600 shadow-sm transition-all" onclick="switchTab('phase1', this)">Fase 1: Antes de Volar</button>
+                    <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all" onclick="switchTab('phase2', this)">Fase 2: Simulador</button>
+                    <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all" onclick="switchTab('phase3', this)">Fase 3: Taller</button>
+                </div>
             </div>
 
             <!-- Tab Contents -->
-            <div class="bg-white rounded-none p-8 shadow-sm border-2 border-neutral-100 min-h-[400px] relative overflow-hidden">
+            <div class="bg-white dark:bg-dark-card rounded-2xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 dark:border-slate-800 min-h-[400px] relative overflow-hidden transition-colors duration-300">
                 <!-- Content Phase 1 -->
-                <div id="phase1" class="tab-content fade-in grid md:grid-cols-2 gap-8 items-center">
+                <div id="phase1" class="tab-content fade-in grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <div class="inline-flex items-center justify-center p-3 bg-red-600 text-white mb-4 shadow-md">
-                            <i class="fas fa-exclamation-triangle text-2xl"></i>
+                        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600 dark:text-red-400 mb-6">
+                            <i class="fas fa-shield-alt text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold text-black mb-4 font-teko uppercase">Evita Multas y Accidentes</h3>
-                        <p class="text-neutral-600 mb-6">Lo sé, leer normas es aburrido, pero que te confisquen el drone es peor. Aquí tienes el resumen masticado de la normativa EASA.</p>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start"><i class="fas fa-check text-black font-bold mt-1 mr-2"></i> <span>Categoría Abierta (A1/A3)</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-black font-bold mt-1 mr-2"></i> <span>Registro de Operador Obligatorio</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-black font-bold mt-1 mr-2"></i> <span>Regla de los 120m de altura</span></li>
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 font-teko uppercase">Evita Multas y Accidentes</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">Lo sé, leer normas es aburrido, pero que te confisquen el drone es peor. Aquí tienes el resumen masticado de la normativa EASA.</p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center text-slate-700 dark:text-slate-300 font-medium"><i class="fas fa-check-circle text-green-500 mr-3"></i> Categoría Abierta (A1/A3)</li>
+                            <li class="flex items-center text-slate-700 dark:text-slate-300 font-medium"><i class="fas fa-check-circle text-green-500 mr-3"></i> Registro de Operador Obligatorio</li>
+                            <li class="flex items-center text-slate-700 dark:text-slate-300 font-medium"><i class="fas fa-check-circle text-green-500 mr-3"></i> Regla de los 120m de altura</li>
                         </ul>
-                        <button class="bg-black text-white px-6 py-3 font-bold hover:bg-neutral-800 transition border border-black shadow-[4px_4px_0px_#ccc]">
-                            <i class="fas fa-file-pdf mr-2 text-red-500"></i> Descargar Checklist Seguridad
+                        <button class="bg-slate-900 dark:bg-slate-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-800 dark:hover:bg-slate-600 transition flex items-center gap-2">
+                            <i class="fas fa-file-pdf text-red-400"></i> Descargar Checklist Seguridad
                         </button>
                     </div>
-                    <div class="bg-neutral-50 p-6 border-2 border-neutral-200">
-                        <div class="flex items-center justify-between mb-4">
-                            <h4 class="font-bold text-black uppercase">Estado Legal</h4>
-                            <span class="text-xs bg-black text-white px-2 py-1 font-bold uppercase">Activo</span>
-                        </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 p-8 rounded-xl border border-slate-200 dark:border-slate-700 relative transition-colors duration-300">
+                        <div class="absolute top-0 right-0 -mt-3 -mr-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-sm">Activo</div>
+                        <h4 class="font-bold text-slate-900 dark:text-white uppercase mb-6 border-b border-slate-200 dark:border-slate-700 pb-2">Requisitos Legales</h4>
                         <div class="space-y-4">
-                            <div class="bg-white p-3 border border-neutral-200">
-                                <span class="block text-xs text-red-600 font-bold uppercase">Requisito #1</span>
-                                <span class="font-medium text-black">Seguro de Responsabilidad Civil</span>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white dark:bg-slate-700 p-2 rounded shadow-sm"><i class="fas fa-file-contract text-slate-400 dark:text-slate-300"></i></div>
+                                <div>
+                                    <span class="block text-xs text-red-600 font-bold uppercase">Requisito #1</span>
+                                    <span class="font-medium text-slate-900 dark:text-slate-200">Seguro de Responsabilidad Civil</span>
+                                </div>
                             </div>
-                            <div class="bg-white p-3 border border-neutral-200">
-                                <span class="block text-xs text-red-600 font-bold uppercase">Requisito #2</span>
-                                <span class="font-medium text-black">Placa Identificativa Ignífuga</span>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white dark:bg-slate-700 p-2 rounded shadow-sm"><i class="fas fa-id-card text-slate-400 dark:text-slate-300"></i></div>
+                                <div>
+                                    <span class="block text-xs text-red-600 font-bold uppercase">Requisito #2</span>
+                                    <span class="font-medium text-slate-900 dark:text-slate-200">Placa Identificativa Ignífuga</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Content Phase 2 -->
-                <div id="phase2" class="tab-content hidden fade-in grid md:grid-cols-2 gap-8 items-center">
+                <div id="phase2" class="tab-content hidden fade-in grid md:grid-cols-2 gap-12 items-center">
                     <div class="order-2 md:order-1">
-                        <div class="bg-black p-2 shadow-[8px_8px_0px_#dc2626]">
-                            <div class="bg-neutral-900 h-48 flex items-center justify-center text-neutral-700">
-                                <i class="fas fa-gamepad text-7xl text-white"></i>
+                        <div class="bg-slate-900 dark:bg-slate-800 rounded-2xl p-2 shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-500">
+                            <div class="bg-slate-800 dark:bg-slate-900 h-64 rounded-xl flex items-center justify-center text-slate-600 border border-slate-700">
+                                <i class="fas fa-gamepad text-8xl opacity-50"></i>
                             </div>
                         </div>
                     </div>
                     <div class="order-1 md:order-2">
-                        <div class="inline-flex items-center justify-center p-3 bg-black text-white mb-4">
-                            <i class="fas fa-ghost text-2xl"></i>
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6">
+                            <i class="fas fa-gamepad text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold text-black mb-4 font-teko uppercase">Gana Dedos en el Simulador</h3>
-                        <p class="text-neutral-600 mb-6">Si no puedes hacerlo en el PC, no lo intentes en la calle. Recomiendo encarecidamente <strong>Velocidrone</strong> o <strong>Liftoff</strong>.</p>
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 font-teko uppercase">Gana Dedos en el Simulador</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-8">Si no puedes hacerlo en el PC, no lo intentes en la calle. Recomiendo encarecidamente <strong>Velocidrone</strong> o <strong>Liftoff</strong>.</p>
                         
-                        <div class="space-y-4 mb-6">
+                        <div class="space-y-6">
                             <div>
-                                <div class="flex justify-between text-sm font-bold text-black mb-1">
+                                <div class="flex justify-between text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
                                     <span>Vuelo Estabilizado (Angle)</span>
                                     <span>100%</span>
                                 </div>
-                                <div class="w-full bg-neutral-200 h-3">
-                                    <div class="bg-black h-3" style="width: 100%"></div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-slate-800 dark:bg-slate-400 h-2 rounded-full" style="width: 100%"></div>
                                 </div>
                             </div>
                             <div>
-                                <div class="flex justify-between text-sm font-bold text-black mb-1">
+                                <div class="flex justify-between text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
                                     <span>Modo Acro Básico</span>
                                     <span>45%</span>
                                 </div>
-                                <div class="w-full bg-neutral-200 h-3">
-                                    <div class="bg-red-600 h-3" style="width: 45%"></div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 45%"></div>
                                 </div>
                             </div>
                             <div>
-                                <div class="flex justify-between text-sm font-bold text-black mb-1">
+                                <div class="flex justify-between text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
                                     <span>Powerloops & Matty Flips</span>
                                     <span>10%</span>
                                 </div>
-                                <div class="w-full bg-neutral-200 h-3">
-                                    <div class="bg-red-800 h-3" style="width: 10%"></div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
+                                    <div class="bg-red-700 h-2 rounded-full" style="width: 10%"></div>
                                 </div>
                             </div>
                         </div>
@@ -375,33 +270,46 @@
                 </div>
 
                 <!-- Content Phase 3 -->
-                <div id="phase3" class="tab-content hidden fade-in grid md:grid-cols-2 gap-8 items-center">
+                <div id="phase3" class="tab-content hidden fade-in grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <div class="inline-flex items-center justify-center p-3 bg-neutral-800 text-white mb-4">
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6">
                             <i class="fas fa-microchip text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-bold text-black mb-4 font-teko uppercase">Domina la Bestia (Betaflight)</h3>
-                        <p class="text-neutral-600 mb-4">PIDs, Rates, Filtros... Betaflight puede ser una pesadilla. Aquí te explico cómo configurarlo.</p>
-                        <p class="text-black text-sm mb-6 bg-red-50 p-4 border-l-4 border-red-600 italic font-medium">
+                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 font-teko uppercase">Domina la Bestia (Betaflight)</h3>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6">PIDs, Rates, Filtros... Betaflight puede ser una pesadilla. Aquí te explico cómo configurarlo.</p>
+                        <blockquote class="border-l-4 border-purple-500 pl-4 italic text-slate-700 dark:text-slate-300 mb-8 bg-slate-50 dark:bg-slate-800 py-2 pr-2 rounded-r">
                             "Un drone bien tuneado vuela como si fuera sobre raíles."
-                        </p>
-                        <a href="#builds" class="text-red-600 font-bold hover:text-black uppercase tracking-wider text-sm border-b-2 border-red-600 pb-1">Ir a la sección de Builds <i class="fas fa-arrow-right ml-1"></i></a>
+                        </blockquote>
+                        <a href="#builds" class="text-red-600 dark:text-red-400 font-bold hover:text-slate-900 dark:hover:text-white uppercase tracking-wider text-sm flex items-center gap-2 group">
+                            Ir a la sección de Builds 
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
                     </div>
-                    <div class="bg-neutral-900 p-6 border-2 border-black shadow-[4px_4px_0px_#dc2626]">
-                        <h4 class="font-teko text-2xl mb-4 text-white">Betaflight Snippet: Rates Freestyle</h4>
-                        <div class="bg-black text-green-500 p-4 text-xs font-mono overflow-x-auto border border-neutral-700">
-                            set roll_rc_rate = 100<br>
-                            set pitch_rc_rate = 100<br>
-                            set yaw_rc_rate = 100<br>
-                            set roll_expo = 20<br>
-                            set pitch_expo = 20<br>
-                            set yaw_expo = 20<br>
-                            set roll_srate = 75<br>
-                            # Type 'save' to apply
+                    <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-700">
+                        <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center">
+                            <span class="text-xs text-slate-400 font-mono">betaflight-configurator</span>
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
                         </div>
-                        <button class="mt-3 text-xs text-white hover:text-red-500 flex items-center font-bold uppercase tracking-wider" onclick="copyCode(this)">
-                            <i class="fas fa-copy mr-1"></i> Copiar
-                        </button>
+                        <div class="p-6">
+                            <h4 class="font-teko text-xl mb-4 text-white">Snippet: Rates Freestyle</h4>
+                            <div class="font-mono text-xs text-green-400 mb-4 opacity-90">
+                                set roll_rc_rate = 100<br>
+                                set pitch_rc_rate = 100<br>
+                                set yaw_rc_rate = 100<br>
+                                set roll_expo = 20<br>
+                                set pitch_expo = 20<br>
+                                set yaw_expo = 20<br>
+                                set roll_srate = 75<br>
+                                # Type 'save' to apply
+                            </div>
+                            <button class="w-full bg-white/10 hover:bg-white/20 text-white text-xs py-2 rounded transition flex items-center justify-center gap-2" onclick="copyCode(this)">
+                                <i class="fas fa-copy"></i> Copiar Código
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -409,55 +317,55 @@
     </section>
 
     <!-- Equipo Necesario (Gear) Section -->
-    <section id="equipo" class="py-16 bg-white border-t border-neutral-200">
+    <section id="equipo" class="py-24 bg-white dark:bg-dark-bg transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
                 <div class="max-w-2xl">
                     <span class="text-red-600 font-bold tracking-widest uppercase text-xs">Hardware & Componentes</span>
-                    <h2 class="text-5xl font-bold text-black font-teko mt-2">El Hangar</h2>
-                    <p class="mt-4 text-neutral-600">No te gastes el sueldo en equipo que no necesitas. Esta es mi selección personal.</p>
+                    <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko mt-2">El Hangar</h2>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400 font-light">No te gastes el sueldo en equipo que no necesitas. Esta es mi selección personal.</p>
                 </div>
                 
-                <!-- Toggle Switch -->
-                <div class="mt-6 md:mt-0 bg-neutral-100 p-1 border border-neutral-300 inline-flex shadow-sm">
-                    <button id="btn-pro" onclick="toggleGear('pro')" class="px-6 py-2 text-sm font-bold transition-all bg-red-600 text-white shadow-sm border border-red-700 uppercase tracking-wide">Mi Setup (Pro)</button>
-                    <button id="btn-beginner" onclick="toggleGear('beginner')" class="px-6 py-2 text-sm font-bold text-neutral-600 hover:bg-white transition-all uppercase tracking-wide">Principiante</button>
+                <!-- Toggle Switch for Gear -->
+                <div class="mt-8 md:mt-0 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg inline-flex">
+                    <button id="btn-pro" onclick="toggleGear('pro')" class="px-6 py-2 text-sm font-bold rounded-md transition-all bg-red-600 text-white shadow-md">Mi Setup (Pro)</button>
+                    <button id="btn-beginner" onclick="toggleGear('beginner')" class="px-6 py-2 text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">Principiante</button>
                 </div>
             </div>
 
             <!-- Dynamic Gear Grid -->
-            <div id="gear-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div id="gear-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Content injected by JS -->
             </div>
         </div>
     </section>
 
     <!-- Ofertas Section -->
-    <section id="ofertas" class="py-16 bg-neutral-50 border-t border-neutral-200">
+    <section id="ofertas" class="py-24 bg-slate-50 dark:bg-dark-card relative section-slant bg-topography transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-5xl font-bold text-black font-teko">Rincón del Ahorro</h2>
-                <p class="text-neutral-600 mt-2">Códigos actualizados semanalmente. Si no funciona alguno, avísame.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Rincón del Ahorro</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2 font-light">Códigos actualizados semanalmente. Apoya el canal usando estos links.</p>
             </div>
 
             <!-- Search -->
-            <div class="max-w-md mx-auto mb-8 relative">
-                <input type="text" id="couponSearch" placeholder="Buscar tienda (ej. Banggood)..." class="w-full pl-10 pr-4 py-3 border-2 border-neutral-300 bg-white focus:border-red-600 focus:outline-none font-bold text-black placeholder-neutral-400">
-                <i class="fas fa-search absolute left-3 top-4 text-neutral-400"></i>
+            <div class="max-w-md mx-auto mb-10 relative">
+                <input type="text" id="couponSearch" placeholder="Buscar tienda (ej. Banggood)..." class="w-full pl-12 pr-4 py-4 border-0 rounded-xl bg-white dark:bg-slate-800 dark:text-white shadow-lg focus:ring-2 focus:ring-red-500 focus:outline-none font-medium text-slate-700 placeholder-slate-400 transition-colors">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
             </div>
 
             <!-- Table -->
-            <div class="overflow-x-auto shadow-sm border-2 border-neutral-200 bg-white">
+            <div class="overflow-hidden rounded-xl shadow-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 transition-colors duration-300">
                 <table class="min-w-full">
-                    <thead class="bg-black text-white">
+                    <thead class="bg-slate-900 dark:bg-black text-white">
                         <tr>
-                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Tienda</th>
-                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Producto/Cat.</th>
-                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-red-500">Descuento</th>
-                            <th class="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider">Código</th>
+                            <th class="px-6 py-5 text-left text-xs font-bold uppercase tracking-wider">Tienda</th>
+                            <th class="px-6 py-5 text-left text-xs font-bold uppercase tracking-wider">Producto/Cat.</th>
+                            <th class="px-6 py-5 text-left text-xs font-bold uppercase tracking-wider text-red-400">Descuento</th>
+                            <th class="px-6 py-5 text-right text-xs font-bold uppercase tracking-wider">Código</th>
                         </tr>
                     </thead>
-                    <tbody id="couponTableBody" class="divide-y divide-neutral-200">
+                    <tbody id="couponTableBody" class="divide-y divide-slate-100 dark:divide-slate-700">
                         <!-- Rows injected by JS -->
                     </tbody>
                 </table>
@@ -466,146 +374,160 @@
     </section>
 
     <!-- Builds Section (Schematic Viz) -->
-    <section id="builds" class="py-16 bg-black text-white border-t border-red-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12 border-l-4 border-red-600 pl-6">
-                <span class="text-red-600 font-bold tracking-widest uppercase text-sm">Proyecto del mes</span>
-                <h2 class="text-5xl font-bold text-white font-teko mt-2">Freestyle 5" - "The Bando Killer"</h2>
-                <p class="mt-4 text-neutral-400 max-w-2xl">
-                    Aquí tienes la documentación técnica del video. El diagrama de conexiones simplificado para que no quemes nada.
-                </p>
-                <div class="mt-6 flex space-x-4">
-                    <button class="bg-white hover:bg-neutral-200 text-black px-6 py-2 text-sm font-bold uppercase transition border border-transparent hover:border-red-600"><i class="fas fa-download mr-2 text-red-600"></i>BOM List</button>
-                    <button class="bg-transparent hover:bg-neutral-900 text-white border border-white px-6 py-2 text-sm font-bold uppercase transition"><i class="fas fa-code mr-2"></i>CLI Dump</button>
+    <section id="builds" class="py-24 bg-slate-900 text-white relative">
+        <!-- Background texture -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-16 flex flex-col md:flex-row justify-between items-end border-b border-slate-700 pb-8">
+                <div>
+                    <span class="text-red-500 font-bold tracking-widest uppercase text-sm">Proyecto del mes</span>
+                    <h2 class="text-6xl font-bold text-white font-teko mt-2">Freestyle 5"</h2>
+                    <p class="text-slate-400 text-xl font-teko">"The Bando Killer"</p>
+                </div>
+                <div class="mt-6 md:mt-0 flex space-x-4">
+                    <button class="bg-white text-slate-900 px-6 py-3 rounded text-sm font-bold uppercase transition hover:bg-slate-200"><i class="fas fa-download mr-2 text-red-600"></i>BOM List</button>
+                    <button class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded text-sm font-bold uppercase transition"><i class="fas fa-code mr-2"></i>CLI Dump</button>
                 </div>
             </div>
 
             <!-- Schematic Diagram Visualization (CSS Grid/Flex) -->
-            <div class="bg-neutral-900 p-8 border-2 border-neutral-800 relative overflow-hidden shadow-2xl">
-                <h3 class="text-neutral-500 text-sm uppercase tracking-[0.2em] mb-8 text-center border-b border-neutral-800 pb-2">Wiring Diagram Schematic</h3>
+            <div class="bg-slate-800/50 backdrop-blur-sm p-10 rounded-3xl border border-slate-700 relative overflow-hidden">
+                <h3 class="text-slate-500 text-xs uppercase tracking-[0.3em] mb-12 text-center">Wiring Diagram Schematic</h3>
                 
-                <div class="relative max-w-3xl mx-auto h-[400px] flex items-center justify-center">
+                <div class="relative max-w-4xl mx-auto h-[450px] flex items-center justify-center">
                     
                     <!-- Center: Flight Controller -->
-                    <div class="component-box w-48 h-48 bg-white text-black z-20 flex flex-col items-center justify-center border-4 border-red-600 shadow-[0_0_30px_rgba(220,38,38,0.2)]">
-                        <i class="fas fa-microchip text-4xl mb-2 text-black"></i>
+                    <div class="component-box w-56 h-56 bg-white dark:bg-slate-200 text-slate-900 z-20 flex flex-col items-center justify-center border-2 border-red-500 shadow-[0_0_50px_rgba(239,68,68,0.2)]">
+                        <i class="fas fa-microchip text-5xl mb-3 text-slate-800"></i>
                         <span class="font-teko text-3xl">Flight Controller</span>
-                        <span class="text-xs text-neutral-500 font-bold uppercase">SpeedyBee F405 V3</span>
+                        <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">SpeedyBee F405 V3</span>
+                        <!-- Connection Dots -->
+                        <div class="absolute -top-1 left-1/2 w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div class="absolute -bottom-1 left-1/2 w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div class="absolute top-1/2 -left-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div class="absolute top-1/2 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
                     </div>
 
                     <!-- Top: VTX -->
-                    <div class="component-box absolute top-0 w-32 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="Video Transmitter">
-                        <i class="fas fa-broadcast-tower mb-1"></i><br>DJI O3 Air Unit
+                    <div class="component-box absolute top-0 w-40 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Video Transmitter">
+                        <i class="fas fa-broadcast-tower mb-1 text-2xl"></i><br>
+                        <span class="text-sm font-bold">DJI O3 Air Unit</span>
                     </div>
                     <!-- Wire VTX to FC -->
-                    <div class="wire w-1 h-24 bg-neutral-600 absolute top-12 z-10" style="transform: translateY(20px);"></div>
+                    <svg class="absolute top-12 z-10 w-full h-full pointer-events-none" style="transform: translateY(20px);">
+                        <path d="M450 0 V120" stroke="#94a3b8" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+                    </svg>
 
                     <!-- Bottom: ESC -->
-                    <div class="component-box absolute bottom-0 w-40 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="Electronic Speed Controller">
-                        <i class="fas fa-bolt mb-1"></i><br>ESC 50A 4in1
+                    <div class="component-box absolute bottom-0 w-48 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Electronic Speed Controller">
+                        <i class="fas fa-bolt mb-1 text-2xl text-yellow-600"></i><br>
+                        <span class="text-sm font-bold">ESC 50A 4in1</span>
                     </div>
-                    <!-- Wire ESC to FC -->
-                    <div class="wire w-1 h-24 bg-red-600 absolute bottom-12 z-10" style="transform: translateY(-20px);"></div>
-
+                    
                     <!-- Left: RX -->
-                    <div class="component-box absolute left-0 w-24 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="Receiver">
-                        <i class="fas fa-satellite-dish mb-1"></i><br>ELRS RX
+                    <div class="component-box absolute left-0 w-32 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Receiver">
+                        <i class="fas fa-satellite-dish mb-1 text-2xl text-blue-600"></i><br>
+                        <span class="text-sm font-bold">ELRS RX</span>
                     </div>
-                    <!-- Wire RX to FC -->
-                    <div class="wire w-24 h-1 bg-green-600 absolute left-20 z-10" style="transform: translateX(20px);"></div>
 
-                    <!-- Right: Camera (if analog) or GPS -->
-                    <div class="component-box absolute right-0 w-24 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="GPS Module">
-                        <i class="fas fa-location-arrow mb-1"></i><br>GPS M10
+                    <!-- Right: GPS -->
+                    <div class="component-box absolute right-0 w-32 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="GPS Module">
+                        <i class="fas fa-location-arrow mb-1 text-2xl text-green-600"></i><br>
+                        <span class="text-sm font-bold">GPS M10</span>
                     </div>
-                    <!-- Wire GPS to FC -->
-                    <div class="wire w-24 h-1 bg-blue-600 absolute right-20 z-10" style="transform: translateX(-20px);"></div>
 
                 </div>
-                <p class="text-center text-xs text-neutral-500 mt-4 uppercase tracking-wider">*Este diagrama es una representación lógica. Revisa siempre el pinout oficial.</p>
+                <p class="text-center text-xs text-slate-500 mt-8 uppercase tracking-wider opacity-60">*Representación lógica simplificada.</p>
             </div>
         </div>
     </section>
 
     <!-- Servicios Section -->
-    <section id="servicios" class="py-16 bg-white border-t border-neutral-200">
+    <section id="servicios" class="py-24 bg-white dark:bg-dark-bg section-slant transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-5xl font-bold text-black font-teko">Servicios Profesionales</h2>
-                <p class="mt-4 text-neutral-600">Más allá de YouTube. Operativa profesional y consultoría.</p>
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Servicios Profesionales</h2>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 font-light">Más allá de YouTube. Operativa profesional y consultoría.</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="bg-white p-8 border-2 border-neutral-100 hover:border-black hover:shadow-[8px_8px_0px_#dc2626] transition duration-300">
-                    <div class="w-16 h-16 bg-black text-white rounded-none flex items-center justify-center mb-6">
+                <div class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition-colors shadow-lg shadow-slate-200 dark:shadow-none">
                         <i class="fas fa-video text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-teko font-bold text-black mb-2 uppercase">FPV Cinema</h3>
-                    <p class="text-neutral-600 text-sm leading-relaxed">Planos secuencia imposibles para videoclips, inmobiliaria y publicidad. Calidad hasta 5K.</p>
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">FPV Cinema</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Planos secuencia imposibles para videoclips, inmobiliaria y publicidad. Calidad hasta 5K con estabilización post-flow.</p>
                 </div>
                 <!-- Service 2 -->
-                <div class="bg-white p-8 border-2 border-neutral-100 hover:border-black hover:shadow-[8px_8px_0px_#dc2626] transition duration-300">
-                    <div class="w-16 h-16 bg-black text-white rounded-none flex items-center justify-center mb-6">
+                <div class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition-colors shadow-lg shadow-slate-200 dark:shadow-none">
                         <i class="fas fa-user-md text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-teko font-bold text-black mb-2 uppercase">Consultoría 1 a 1</h3>
-                    <p class="text-neutral-600 text-sm leading-relaxed">¿Atascado con un drone que no arma? Reserva 30 minutos y lo solucionamos por videollamada.</p>
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Consultoría 1 a 1</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">¿Atascado con un drone que no arma? Reserva 30 minutos y lo solucionamos por videollamada. Diagnóstico remoto.</p>
                 </div>
                 <!-- Service 3 -->
-                <div class="bg-white p-8 border-2 border-neutral-100 hover:border-black hover:shadow-[8px_8px_0px_#dc2626] transition duration-300">
-                    <div class="w-16 h-16 bg-black text-white rounded-none flex items-center justify-center mb-6">
+                <div class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition-colors shadow-lg shadow-slate-200 dark:shadow-none">
                         <i class="fas fa-tools text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-teko font-bold text-black mb-2 uppercase">Montaje a Medida</h3>
-                    <p class="text-neutral-600 text-sm leading-relaxed">Si soldar no es lo tuyo, dime qué necesitas y yo construyo, configuro y tuneo tu drone.</p>
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Montaje a Medida</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Si soldar no es lo tuyo, dime qué necesitas y yo construyo, configuro y tuneo tu drone listo para volar (BNF).</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Blog / News Section -->
-    <section id="blog" class="py-16 bg-neutral-100 border-t border-neutral-200">
+    <section id="blog" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-black font-teko mb-8 uppercase">Noticias y Salseo</h2>
-            <div class="grid md:grid-cols-3 gap-6">
+            <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko mb-10 uppercase">Noticias y Salseo</h2>
+            <div class="grid md:grid-cols-3 gap-8">
                 <!-- Article 1 -->
-                <div class="bg-white overflow-hidden shadow-sm hover:shadow-[8px_8px_0px_#000] transition cursor-pointer border-2 border-transparent hover:border-black group">
-                    <div class="h-48 bg-neutral-300 relative group-hover:bg-red-600 transition-colors">
-                        <div class="absolute inset-0 flex items-center justify-center text-neutral-500 group-hover:text-white">
-                            <i class="fas fa-image text-4xl"></i>
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                    <div class="h-56 bg-slate-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800 group-hover:scale-110 transition-transform duration-700"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 group-hover:text-white transition-colors z-10">
+                            <i class="fas fa-mountain text-5xl"></i>
                         </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-white bg-black px-2 py-1 uppercase">Crónica</span>
-                        <h3 class="text-xl font-bold text-black mt-3 font-teko uppercase group-hover:text-red-600 transition-colors">Crónica de un aporrizaje</h3>
-                        <p class="text-neutral-600 text-sm mt-2">Cómo perdí mi 5 pulgadas en la montaña y lo recuperé tras 3 horas.</p>
+                    <div class="p-8">
+                        <span class="text-[10px] font-bold text-white bg-red-600 px-3 py-1 rounded-full uppercase tracking-wide">Crónica</span>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-4 font-teko uppercase group-hover:text-red-600 transition-colors">Crónica de un aporrizaje</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">Cómo perdí mi 5 pulgadas en la montaña y lo recuperé tras 3 horas de búsqueda intensa.</p>
                     </div>
                 </div>
                 <!-- Article 2 -->
-                <div class="bg-white overflow-hidden shadow-sm hover:shadow-[8px_8px_0px_#000] transition cursor-pointer border-2 border-transparent hover:border-black group">
-                    <div class="h-48 bg-neutral-300 relative group-hover:bg-red-600 transition-colors">
-                        <div class="absolute inset-0 flex items-center justify-center text-neutral-500 group-hover:text-white">
-                            <i class="fas fa-image text-4xl"></i>
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                    <div class="h-56 bg-slate-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800 group-hover:scale-110 transition-transform duration-700"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 group-hover:text-white transition-colors z-10">
+                            <i class="fas fa-video text-5xl"></i>
                         </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-white bg-black px-2 py-1 uppercase">Review</span>
-                        <h3 class="text-xl font-bold text-black mt-3 font-teko uppercase group-hover:text-red-600 transition-colors">La Guerra Digital</h3>
-                        <p class="text-neutral-600 text-sm mt-2">DJI O4 vs Walksnail Moonlight. ¿Merece la pena el cambio?</p>
+                    <div class="p-8">
+                        <span class="text-[10px] font-bold text-white bg-blue-600 px-3 py-1 rounded-full uppercase tracking-wide">Review</span>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-4 font-teko uppercase group-hover:text-blue-600 transition-colors">La Guerra Digital</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">DJI O4 vs Walksnail Moonlight. ¿Merece la pena el cambio o es puro marketing?</p>
                     </div>
                 </div>
                  <!-- Article 3 -->
-                 <div class="bg-white overflow-hidden shadow-sm hover:shadow-[8px_8px_0px_#000] transition cursor-pointer border-2 border-transparent hover:border-black group">
-                    <div class="h-48 bg-neutral-300 relative group-hover:bg-red-600 transition-colors">
-                        <div class="absolute inset-0 flex items-center justify-center text-neutral-500 group-hover:text-white">
-                            <i class="fas fa-image text-4xl"></i>
+                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                    <div class="h-56 bg-slate-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-800 group-hover:scale-110 transition-transform duration-700"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 group-hover:text-white transition-colors z-10">
+                            <i class="fas fa-eye-slash text-5xl"></i>
                         </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <span class="text-xs font-bold text-white bg-black px-2 py-1 uppercase">Leak</span>
-                        <h3 class="text-xl font-bold text-black mt-3 font-teko uppercase group-hover:text-red-600 transition-colors">Filtraciones Mensuales</h3>
-                        <p class="text-neutral-600 text-sm mt-2">Lo que se viene para el próximo mes en motores y frames.</p>
+                    <div class="p-8">
+                        <span class="text-[10px] font-bold text-white bg-purple-600 px-3 py-1 rounded-full uppercase tracking-wide">Leak</span>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-4 font-teko uppercase group-hover:text-purple-600 transition-colors">Filtraciones Mensuales</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">Lo que se viene para el próximo mes en motores y frames. Spoilers dentro.</p>
                     </div>
                 </div>
             </div>
@@ -613,37 +535,80 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-neutral-400 py-12 border-t-4 border-red-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
+    <footer class="bg-slate-900 dark:bg-black text-slate-400 py-16 border-t-4 border-red-600 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: url('data:image/svg+xml,...');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12 relative z-10">
             <div class="col-span-1 md:col-span-2">
-                <span class="font-teko text-4xl tracking-wide text-white">FPV<span class="text-red-600">-</span>DRONES</span>
-                <p class="mt-4 text-sm max-w-xs text-neutral-500">Competición, Freestyle y Tutoriales sin censura. El lugar donde los pilotos aprenden a volar de verdad.</p>
-                <div class="mt-6 flex space-x-4">
-                    <a href="#" class="text-white hover:text-red-600 transition-colors"><i class="fab fa-youtube text-2xl"></i></a>
-                    <a href="#" class="text-white hover:text-red-600 transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
-                    <a href="#" class="text-white hover:text-red-600 transition-colors"><i class="fab fa-telegram text-2xl"></i></a>
+                <span class="font-teko text-5xl tracking-wide text-white">FPV<span class="text-red-600">-</span>DRONES</span>
+                <p class="mt-6 text-base max-w-sm text-slate-500 leading-relaxed">Competición, Freestyle y Tutoriales sin censura. El lugar donde los pilotos aprenden a volar de verdad, rompen cosas y las vuelven a arreglar.</p>
+                <div class="mt-8 flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors transform hover:scale-110"><i class="fab fa-youtube text-2xl"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors transform hover:scale-110"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors transform hover:scale-110"><i class="fab fa-telegram text-2xl"></i></a>
                 </div>
             </div>
             <div>
-                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4 border-b border-neutral-800 pb-2 inline-block">Legal</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-white transition-colors">Aviso Legal</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Política de Privacidad</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Cookies</a></li>
+                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-b border-slate-800 pb-2 inline-block">Legal</h4>
+                <ul class="space-y-3 text-sm font-medium">
+                    <li><a href="#" class="hover:text-red-500 transition-colors">Aviso Legal</a></li>
+                    <li><a href="#" class="hover:text-red-500 transition-colors">Política de Privacidad</a></li>
+                    <li><a href="#" class="hover:text-red-500 transition-colors">Cookies</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4 border-b border-neutral-800 pb-2 inline-block">Contacto</h4>
-                <ul class="space-y-2 text-sm">
-                    <li><i class="fas fa-envelope mr-2 text-red-600"></i> hola@fpv-drones.com</li>
-                    <li><i class="fas fa-map-marker-alt mr-2 text-red-600"></i> Madrid, España</li>
+                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-b border-slate-800 pb-2 inline-block">Contacto</h4>
+                <ul class="space-y-4 text-sm font-medium">
+                    <li class="flex items-center"><i class="fas fa-envelope mr-3 text-red-600"></i> hola@fpv-drones.com</li>
+                    <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3 text-red-600"></i> Madrid, España</li>
                 </ul>
             </div>
+        </div>
+        <div class="mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-600 uppercase tracking-widest">
+            &copy; 2024 FPV-Drones Official. All rights reserved.
         </div>
     </footer>
 
     <!-- Script Logic -->
     <script>
+        // --- DARK MODE LOGIC START ---
+        
+        // Elements
+        const toggleBtns = [document.getElementById('theme-toggle-desktop'), document.getElementById('theme-toggle-mobile')];
+        const html = document.documentElement;
+
+        // Function to apply theme
+        function applyTheme(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            }
+        }
+
+        // Initialize based on localStorage or OS preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            applyTheme(true);
+        } else {
+            applyTheme(false);
+        }
+
+        // Event Listeners for both toggles
+        toggleBtns.forEach(btn => {
+            if(btn) {
+                btn.addEventListener('click', () => {
+                    const isDark = html.classList.contains('dark');
+                    applyTheme(!isDark);
+                });
+            }
+        });
+
+        // --- DARK MODE LOGIC END ---
+
+
         // Data Store
         const gearData = {
             pro: [
@@ -672,13 +637,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             renderGear('pro'); // Default view
             renderCoupons(coupons);
-            initChart();
+            // initChart(); // Chart functionality removed/hidden in this version per design
             
             // Mobile Menu
-            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-                const menu = document.getElementById('mobile-menu');
-                menu.classList.toggle('hidden');
-            });
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            if(mobileBtn) {
+                mobileBtn.addEventListener('click', () => {
+                    const menu = document.getElementById('mobile-menu');
+                    menu.classList.toggle('hidden');
+                });
+            }
         });
 
         // Tabs Logic
@@ -688,14 +656,14 @@
             // Show selected
             document.getElementById(tabId).classList.remove('hidden');
             
-            // Reset buttons
+            // Reset buttons (remove active classes)
             document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('border-red-600', 'text-red-600');
-                el.classList.add('border-transparent', 'text-neutral-400');
+                el.classList.remove('bg-slate-900', 'text-white', 'shadow-sm', 'dark:bg-red-600');
+                el.classList.add('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
             });
-            // Active button
-            btn.classList.remove('border-transparent', 'text-neutral-400');
-            btn.classList.add('border-red-600', 'text-red-600');
+            // Activate button
+            btn.classList.remove('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
+            btn.classList.add('bg-slate-900', 'text-white', 'shadow-sm', 'dark:bg-red-600');
         }
 
         // Gear Toggle Logic
@@ -704,15 +672,15 @@
             const btnBeg = document.getElementById('btn-beginner');
             
             if(mode === 'pro') {
-                btnPro.classList.add('bg-red-600', 'text-white', 'border-red-700');
-                btnPro.classList.remove('text-neutral-600', 'hover:bg-white');
-                btnBeg.classList.remove('bg-red-600', 'text-white', 'border-red-700');
-                btnBeg.classList.add('text-neutral-600', 'hover:bg-white');
+                btnPro.classList.add('bg-red-600', 'text-white', 'shadow-md');
+                btnPro.classList.remove('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
+                btnBeg.classList.remove('bg-red-600', 'text-white', 'shadow-md');
+                btnBeg.classList.add('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
             } else {
-                btnBeg.classList.add('bg-red-600', 'text-white', 'border-red-700');
-                btnBeg.classList.remove('text-neutral-600', 'hover:bg-white');
-                btnPro.classList.remove('bg-red-600', 'text-white', 'border-red-700');
-                btnPro.classList.add('text-neutral-600', 'hover:bg-white');
+                btnBeg.classList.add('bg-red-600', 'text-white', 'shadow-md');
+                btnBeg.classList.remove('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
+                btnPro.classList.remove('bg-red-600', 'text-white', 'shadow-md');
+                btnPro.classList.add('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
             }
             renderGear(mode);
         }
@@ -723,15 +691,15 @@
             
             gearData[mode].forEach(item => {
                 const card = document.createElement('div');
-                card.className = "bg-white p-6 border-2 border-neutral-100 shadow-sm hover:shadow-[8px_8px_0px_#dc2626] hover:border-black transition flex flex-col items-center text-center fade-in group";
+                card.className = "bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center fade-in group";
                 card.innerHTML = `
-                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center text-white mb-4 group-hover:bg-red-600 transition-colors">
-                        <i class="fas ${item.icon} text-2xl"></i>
+                    <div class="w-20 h-20 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
+                        <i class="fas ${item.icon} text-3xl"></i>
                     </div>
-                    <h3 class="font-bold text-lg text-black font-teko text-2xl uppercase">${item.name}</h3>
-                    <span class="text-xs uppercase text-red-600 font-bold mb-2 tracking-wide">${item.type}</span>
-                    <p class="text-neutral-600 text-sm font-medium">${item.desc}</p>
-                    <button class="mt-4 text-xs font-bold text-black border-b-2 border-black hover:text-red-600 hover:border-red-600 uppercase tracking-wider">Ver en tienda</button>
+                    <h3 class="font-bold text-xl text-slate-900 dark:text-white font-teko uppercase tracking-wide">${item.name}</h3>
+                    <span class="text-[10px] uppercase text-red-500 font-bold mb-3 tracking-widest">${item.type}</span>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm font-light mb-6 leading-relaxed">${item.desc}</p>
+                    <button class="mt-auto text-xs font-bold text-slate-900 dark:text-slate-300 border-b-2 border-slate-200 dark:border-slate-600 hover:border-red-600 dark:hover:border-red-500 hover:text-red-600 dark:hover:text-red-500 uppercase tracking-widest transition-all pb-1">Ver en tienda</button>
                 `;
                 container.appendChild(card);
             });
@@ -744,13 +712,14 @@
             
             data.forEach(item => {
                 const row = document.createElement('tr');
+                row.className = "hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors";
                 row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-black uppercase">${item.store}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600 font-medium">${item.prod}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-bold text-lg">${item.discount}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <button class="text-white hover:text-white bg-black hover:bg-neutral-800 px-4 py-2 font-bold uppercase tracking-wide border border-transparent" onclick="copyCode(this, '${item.code}')">
-                            ${item.code} <i class="fas fa-copy ml-1"></i>
+                    <td class="px-6 py-5 whitespace-nowrap text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide">${item.store}</td>
+                    <td class="px-6 py-5 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-medium">${item.prod}</td>
+                    <td class="px-6 py-5 whitespace-nowrap text-sm text-red-500 font-bold text-lg">${item.discount}</td>
+                    <td class="px-6 py-5 whitespace-nowrap text-right text-sm font-medium">
+                        <button class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 bg-white dark:bg-slate-900 hover:bg-red-50 dark:hover:bg-slate-800 px-4 py-2 font-mono text-xs border border-slate-200 dark:border-slate-600 rounded-lg transition-all shadow-sm" onclick="copyCode(this, '${item.code}')">
+                            ${item.code} <i class="fas fa-copy ml-2"></i>
                         </button>
                     </td>
                 `;
@@ -767,17 +736,19 @@
 
         // Utils
         function copyCode(btn, code = null) {
-            // If code is not passed, try to find it in the previous sibling (for betaflight snippet)
             const textToCopy = code || btn.previousElementSibling.innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const original = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-                btn.classList.remove('bg-black');
-                btn.classList.add('bg-green-600');
+                const originalClasses = btn.className;
+                
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i> Copiado!';
+                // Preserve dark mode utility classes if re-rendering, but for simple toggle:
+                btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600');
+                btn.classList.add('bg-green-600', 'text-white', 'border-green-600');
+                
                 setTimeout(() => {
                     btn.innerHTML = original;
-                    btn.classList.remove('bg-green-600');
-                    btn.classList.add('bg-black');
+                    btn.className = originalClasses;
                 }, 2000);
             });
         }
@@ -785,73 +756,17 @@
         function scrollToSection(id) {
             const el = document.getElementById(id);
             if(el) {
-                el.scrollIntoView({ behavior: 'smooth' });
+                const offset = 80;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = el.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
             }
-        }
-
-        // Chart.js
-        function initChart() {
-            const ctx = document.getElementById('subscriberChart').getContext('2d');
-            
-            // Gradient fill - Update to be visible on black/dark backgrounds if needed, but the container is white/grey
-            // Actually, the stats section is still overlaying the hero video in the bottom part, 
-            // so we need to ensure the chart looks good on dark.
-            // Let's check where the chart is. It's inside the Hero section which now has a video BG + Overlay.
-            // So text is white. Chart lines should be bright.
-            
-            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(239, 68, 68, 0.8)'); // Red-500 brighter
-            gradient.addColorStop(1, 'rgba(239, 68, 68, 0.0)');
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                    datasets: [{
-                        label: 'Crecimiento de Suscriptores',
-                        data: [5000, 7200, 10500, 15000, 18200, 22000, 25500, 28000, 31000, 33500, 34800, 35000],
-                        borderColor: '#ef4444', // Red-500 brighter
-                        backgroundColor: gradient,
-                        borderWidth: 3,
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: '#ef4444',
-                        pointRadius: 4,
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: '#000',
-                            titleColor: '#fff',
-                            bodyColor: '#fff',
-                            borderColor: '#ef4444',
-                            borderWidth: 1,
-                            padding: 10,
-                            displayColors: false,
-                            callbacks: {
-                                label: function(context) {
-                                    return context.parsed.y + ' Subs';
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            grid: { color: 'rgba(255,255,255,0.1)' },
-                            ticks: { color: '#fff', font: { weight: 'bold' } }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: { color: '#fff', font: { weight: 'bold' } }
-                        }
-                    }
-                }
-            });
         }
     </script>
 </body>
