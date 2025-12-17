@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPV-Drones | Web Oficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Chosen Palette: Red Racing (Red, Black, White) -->
+    <!-- Application Structure Plan: 
+         - Hero Section: Updated with Full-Screen Background Video (AirVuz) and YouTube Embed. Text colors inverted to White for contrast.
+         - Navigation: Sticky header.
+         - Rest of sections: Maintain the Red/Black/White high contrast theme.
+    -->
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        h1, h2, h3, h4, .font-teko {
+            font-family: 'Teko', sans-serif;
+            text-transform: uppercase;
+        }
+        .accent-text {
+            color: #dc2626; /* red-600 */
+        }
+        .accent-bg {
+            background-color: #dc2626;
+        }
+        .accent-border {
+            border-color: #dc2626;
+        }
+        
+        /* Schematic Diagram Styling */
+        .component-box {
+            background: #ffffff;
+            border: 2px solid #171717; /* neutral-900 */
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .component-box:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #dc2626;
+            border-color: #dc2626;
+        }
+        .wire {
+            position: absolute;
+            background-color: #525252; /* neutral-600 */
+            z-index: 0;
+        }
+        
+        /* Chart Container Strict Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5e5e5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dc2626; /* red */
+            border-radius: 0px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #991b1b; /* dark red */
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Utility for sharp design */
+        .sharp-shadow {
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
+        
+        /* Aspect Ratio for Video */
+        .aspect-w-16 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+        }
+        .aspect-w-16 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Background Video Styling */
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            pointer-events: none; /* User can't interact with bg video */
+            overflow: hidden;
+        }
+        .hero-video-bg iframe {
+            width: 100vw;
+            height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+            min-height: 100vh;
+            min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="antialiased scroll-smooth">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b-2 border-neutral-100 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="scrollToSection('hero')">
+                    <i class="fas fa-paper-plane accent-text text-2xl"></i>
+                    <span class="font-teko text-3xl tracking-wide text-black">FPV<span class="text-red-600">-</span>DRONES</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('academia')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Academia</button>
+                    <button onclick="scrollToSection('equipo')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Equipo</button>
+                    <button onclick="scrollToSection('ofertas')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Ofertas</button>
+                    <button onclick="scrollToSection('builds')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Builds</button>
+                    <button onclick="scrollToSection('servicios')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Servicios</button>
+                    <button onclick="scrollToSection('blog')" class="text-neutral-600 hover:text-red-600 px-3 py-2 text-sm font-medium transition-colors uppercase tracking-wider">Noticias</button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-neutral-900 hover:text-red-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b-2 border-neutral-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#academia" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Academia</a>
+                <a href="#equipo" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Equipo</a>
+                <a href="#ofertas" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Ofertas</a>
+                <a href="#builds" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Builds</a>
+                <a href="#servicios" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-neutral-800 hover:text-red-600 hover:bg-neutral-50">Servicios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pb-24 overflow-hidden bg-black">
+        <!-- Background Video -->
+        <div class="hero-video-bg">
+            <iframe 
+                src="https://www.airvuz.com/videoPlayerEmbed/5a5cdd5a40c0ba4f1a980e6d?autoplay=true&muted=true&loop=true" 
+                frameborder="0" 
+                allow="autoplay; fullscreen" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <!-- Overlay for contrast -->
+        <div class="absolute inset-0 bg-black/60 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                    <div class="inline-flex items-center px-3 py-1 border border-red-500 bg-red-900/50 text-white text-xs font-bold uppercase tracking-widest mb-4 backdrop-blur-sm">
+                        <span class="w-2 h-2 bg-red-500 mr-2 animate-pulse rounded-full"></span>
+                        Web Oficial
+                    </div>
+                    <h1 class="text-6xl tracking-tighter font-extrabold text-white sm:text-7xl md:text-8xl font-teko leading-none drop-shadow-lg">
+                        NO VUELES EL DRONE.<br>
+                        <span class="text-red-500">SÉ EL DRONE.</span>
+                    </h1>
+                    <p class="mt-4 text-lg text-neutral-200 font-medium drop-shadow-md">
+                        La web oficial de <strong>@FPV-Drones</strong>. Aquí encontrarás lo que YouTube no me deja contarte: guías técnicas, diagramas de montaje y la realidad sin censura del mundo FPV.
+                    </p>
+                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 flex flex-col sm:flex-row gap-4">
+                        <a href="https://youtube.com/@FPV-Drones" target="_blank" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg transition-all shadow-[4px_4px_0px_#fff] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#fff]">
+                            <i class="fab fa-youtube mr-2"></i> Ver último vídeo
+                        </a>
+                        <button onclick="scrollToSection('academia')" class="flex items-center justify-center px-8 py-3 border-2 border-white text-base font-bold text-white bg-transparent hover:bg-white hover:text-black md:py-4 md:text-lg transition-all shadow-[4px_4px_0px_rgba(255,255,255,0.5)] hover:translate-y-[-2px]">
+                            <i class="fas fa-graduation-cap mr-2"></i> Quiero aprender
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Video Embed Section (Right Column) - YouTube Showreel -->
+                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+                    <div class="relative mx-auto w-full rounded-none shadow-[10px_10px_0px_#dc2626] lg:max-w-md overflow-hidden border-4 border-white bg-black">
+                        <!-- YouTube Video Embed -->
+                        <div class="aspect-w-16">
+                            <iframe 
+                                width="560" 
+                                height="315" 
+                                src="https://www.youtube.com/embed/rFbRHoMTAGk" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats / Social Proof -->
+            <div class="mt-16 border-t-2 border-neutral-700/50 pt-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-teko text-white uppercase drop-shadow-md">Comunidad Piloto</h3>
+                        <p class="text-neutral-300 text-sm mb-4">Únete a la creciente comunidad de pilotos que vuelan en modo ACRO.</p>
+                        <div class="flex items-center space-x-8">
+                            <div>
+                                <span class="block text-4xl font-bold text-white font-teko">35K+</span>
+                                <span class="text-xs text-red-500 font-bold uppercase tracking-wide">Suscriptores</span>
+                            </div>
+                            <div>
+                                <span class="block text-4xl font-bold text-white font-teko">580+</span>
+                                <span class="text-xs text-red-500 font-bold uppercase tracking-wide">Vídeos</span>
+                            </div>
+                            <div>
+                                <span class="block text-4xl font-bold text-white font-teko">100%</span>
+                                <span class="text-xs text-red-500 font-bold uppercase tracking-wide">Adrenalina</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chart Section -->
+                    <div class="w-full">
+                         <div class="chart-container">
+                            <canvas id="subscriberChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academia de Vuelo Section -->
+    <section id="academia" class="py-16 bg-neutral-50 relative border-t border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-red-600 font-bold tracking-widest uppercase text-xs border border-red-200 px-2 py-1 bg-white">Escuela de Pilotos</span>
+                <h2 class="text-5xl font-bold text-black font-teko mt-4">Academia de Vuelo</h2>
+                <p class="mt-4 text-neutral-600 max-w-2xl mx-auto font-medium">
+                    Del simulador a la realidad sin arruinarte en el intento. He organizado mis años de experiencia (y muchos aporrizajes) en esta ruta de aprendizaje estructurada.
+                </p>
+            </div>
+
+            <!-- Tabs Navigation -->
+            <div class="flex justify-center mb-8 border-b-2 border-neutral-200">
+                <button class="tab-btn active px-6 py-3 font-teko text-2xl border-b-4 border-red-600 text-red-600 focus:outline-none transition-colors" onclick="switchTab('phase1', this)">Fase 1: Antes de Volar</button>
+                <button class="tab-btn px-6 py-3 font-teko text-2xl border-b-4 border-transparent text-neutral-400 hover:text-black focus:outline-none transition-colors" onclick="switchTab('phase2', this)">Fase 2: Simulador</button>
+                <button class="tab-btn px-6 py-3 font-teko text-2xl border-b-4 border-transparent text-neutral-400 hover:text-black focus:outline-none transition-colors" onclick="switchTab('phase3', this)">Fase 3: Taller</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="bg-white rounded-none p-8 shadow-sm border-2 border-neutral-100 min-h-[400px] relative overflow-hidden">
+                <!-- Content Phase 1 -->
+                <div id="phase1" class="tab-content fade-in grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="inline-flex items-center justify-center p-3 bg-red-600 text-white mb-4 shadow-md">
+                            <i class="fas fa-exclamation-triangle text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-black mb-4 font-teko uppercase">Evita Multas y Accidentes</h3>
+                        <p class="text-neutral-600 mb-6">Lo sé, leer normas es aburrido, pero que te confisquen el drone es peor. Aquí tienes el resumen masticado de la normativa EASA.</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start"><i class="fas fa-check text-black font-bold mt-1 mr-2"></i> <span>Categoría Abierta (A1/A3)</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-black font-bold mt-1 mr-2"></i> <span>Registro de Operador Obligatorio</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-black font-bold mt-1 mr-2"></i> <span>Regla de los 120m de altura</span></li>
+                        </ul>
+                        <button class="bg-black text-white px-6 py-3 font-bold hover:bg-neutral-800 transition border border-black shadow-[4px_4px_0px_#ccc]">
+                            <i class="fas fa-file-pdf mr-2 text-red-500"></i> Descargar Checklist Seguridad
+                        </button>
+                    </div>
+                    <div class="bg-neutral-50 p-6 border-2 border-neutral-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-bold text-black uppercase">Estado Legal</h4>
+                            <span class="text-xs bg-black text-white px-2 py-1 font-bold uppercase">Activo</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white p-3 border border-neutral-200">
+                                <span class="block text-xs text-red-600 font-bold uppercase">Requisito #1</span>
+                                <span class="font-medium text-black">Seguro de Responsabilidad Civil</span>
+                            </div>
+                            <div class="bg-white p-3 border border-neutral-200">
+                                <span class="block text-xs text-red-600 font-bold uppercase">Requisito #2</span>
+                                <span class="font-medium text-black">Placa Identificativa Ignífuga</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Phase 2 -->
+                <div id="phase2" class="tab-content hidden fade-in grid md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <div class="bg-black p-2 shadow-[8px_8px_0px_#dc2626]">
+                            <div class="bg-neutral-900 h-48 flex items-center justify-center text-neutral-700">
+                                <i class="fas fa-gamepad text-7xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <div class="inline-flex items-center justify-center p-3 bg-black text-white mb-4">
+                            <i class="fas fa-ghost text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-black mb-4 font-teko uppercase">Gana Dedos en el Simulador</h3>
+                        <p class="text-neutral-600 mb-6">Si no puedes hacerlo en el PC, no lo intentes en la calle. Recomiendo encarecidamente <strong>Velocidrone</strong> o <strong>Liftoff</strong>.</p>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <div class="flex justify-between text-sm font-bold text-black mb-1">
+                                    <span>Vuelo Estabilizado (Angle)</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full bg-neutral-200 h-3">
+                                    <div class="bg-black h-3" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-bold text-black mb-1">
+                                    <span>Modo Acro Básico</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="w-full bg-neutral-200 h-3">
+                                    <div class="bg-red-600 h-3" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-bold text-black mb-1">
+                                    <span>Powerloops & Matty Flips</span>
+                                    <span>10%</span>
+                                </div>
+                                <div class="w-full bg-neutral-200 h-3">
+                                    <div class="bg-red-800 h-3" style="width: 10%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Phase 3 -->
+                <div id="phase3" class="tab-content hidden fade-in grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="inline-flex items-center justify-center p-3 bg-neutral-800 text-white mb-4">
+                            <i class="fas fa-microchip text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-black mb-4 font-teko uppercase">Domina la Bestia (Betaflight)</h3>
+                        <p class="text-neutral-600 mb-4">PIDs, Rates, Filtros... Betaflight puede ser una pesadilla. Aquí te explico cómo configurarlo.</p>
+                        <p class="text-black text-sm mb-6 bg-red-50 p-4 border-l-4 border-red-600 italic font-medium">
+                            "Un drone bien tuneado vuela como si fuera sobre raíles."
+                        </p>
+                        <a href="#builds" class="text-red-600 font-bold hover:text-black uppercase tracking-wider text-sm border-b-2 border-red-600 pb-1">Ir a la sección de Builds <i class="fas fa-arrow-right ml-1"></i></a>
+                    </div>
+                    <div class="bg-neutral-900 p-6 border-2 border-black shadow-[4px_4px_0px_#dc2626]">
+                        <h4 class="font-teko text-2xl mb-4 text-white">Betaflight Snippet: Rates Freestyle</h4>
+                        <div class="bg-black text-green-500 p-4 text-xs font-mono overflow-x-auto border border-neutral-700">
+                            set roll_rc_rate = 100<br>
+                            set pitch_rc_rate = 100<br>
+                            set yaw_rc_rate = 100<br>
+                            set roll_expo = 20<br>
+                            set pitch_expo = 20<br>
+                            set yaw_expo = 20<br>
+                            set roll_srate = 75<br>
+                            # Type 'save' to apply
+                        </div>
+                        <button class="mt-3 text-xs text-white hover:text-red-500 flex items-center font-bold uppercase tracking-wider" onclick="copyCode(this)">
+                            <i class="fas fa-copy mr-1"></i> Copiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo Necesario (Gear) Section -->
+    <section id="equipo" class="py-16 bg-white border-t border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="max-w-2xl">
+                    <span class="text-red-600 font-bold tracking-widest uppercase text-xs">Hardware & Componentes</span>
+                    <h2 class="text-5xl font-bold text-black font-teko mt-2">El Hangar</h2>
+                    <p class="mt-4 text-neutral-600">No te gastes el sueldo en equipo que no necesitas. Esta es mi selección personal.</p>
+                </div>
+                
+                <!-- Toggle Switch -->
+                <div class="mt-6 md:mt-0 bg-neutral-100 p-1 border border-neutral-300 inline-flex shadow-sm">
+                    <button id="btn-pro" onclick="toggleGear('pro')" class="px-6 py-2 text-sm font-bold transition-all bg-red-600 text-white shadow-sm border border-red-700 uppercase tracking-wide">Mi Setup (Pro)</button>
+                    <button id="btn-beginner" onclick="toggleGear('beginner')" class="px-6 py-2 text-sm font-bold text-neutral-600 hover:bg-white transition-all uppercase tracking-wide">Principiante</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Gear Grid -->
+            <div id="gear-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Ofertas Section -->
+    <section id="ofertas" class="py-16 bg-neutral-50 border-t border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-5xl font-bold text-black font-teko">Rincón del Ahorro</h2>
+                <p class="text-neutral-600 mt-2">Códigos actualizados semanalmente. Si no funciona alguno, avísame.</p>
+            </div>
+
+            <!-- Search -->
+            <div class="max-w-md mx-auto mb-8 relative">
+                <input type="text" id="couponSearch" placeholder="Buscar tienda (ej. Banggood)..." class="w-full pl-10 pr-4 py-3 border-2 border-neutral-300 bg-white focus:border-red-600 focus:outline-none font-bold text-black placeholder-neutral-400">
+                <i class="fas fa-search absolute left-3 top-4 text-neutral-400"></i>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto shadow-sm border-2 border-neutral-200 bg-white">
+                <table class="min-w-full">
+                    <thead class="bg-black text-white">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Tienda</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider">Producto/Cat.</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-red-500">Descuento</th>
+                            <th class="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider">Código</th>
+                        </tr>
+                    </thead>
+                    <tbody id="couponTableBody" class="divide-y divide-neutral-200">
+                        <!-- Rows injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Builds Section (Schematic Viz) -->
+    <section id="builds" class="py-16 bg-black text-white border-t border-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 border-l-4 border-red-600 pl-6">
+                <span class="text-red-600 font-bold tracking-widest uppercase text-sm">Proyecto del mes</span>
+                <h2 class="text-5xl font-bold text-white font-teko mt-2">Freestyle 5" - "The Bando Killer"</h2>
+                <p class="mt-4 text-neutral-400 max-w-2xl">
+                    Aquí tienes la documentación técnica del video. El diagrama de conexiones simplificado para que no quemes nada.
+                </p>
+                <div class="mt-6 flex space-x-4">
+                    <button class="bg-white hover:bg-neutral-200 text-black px-6 py-2 text-sm font-bold uppercase transition border border-transparent hover:border-red-600"><i class="fas fa-download mr-2 text-red-600"></i>BOM List</button>
+                    <button class="bg-transparent hover:bg-neutral-900 text-white border border-white px-6 py-2 text-sm font-bold uppercase transition"><i class="fas fa-code mr-2"></i>CLI Dump</button>
+                </div>
+            </div>
+
+            <!-- Schematic Diagram Visualization (CSS Grid/Flex) -->
+            <div class="bg-neutral-900 p-8 border-2 border-neutral-800 relative overflow-hidden shadow-2xl">
+                <h3 class="text-neutral-500 text-sm uppercase tracking-[0.2em] mb-8 text-center border-b border-neutral-800 pb-2">Wiring Diagram Schematic</h3>
+                
+                <div class="relative max-w-3xl mx-auto h-[400px] flex items-center justify-center">
+                    
+                    <!-- Center: Flight Controller -->
+                    <div class="component-box w-48 h-48 bg-white text-black z-20 flex flex-col items-center justify-center border-4 border-red-600 shadow-[0_0_30px_rgba(220,38,38,0.2)]">
+                        <i class="fas fa-microchip text-4xl mb-2 text-black"></i>
+                        <span class="font-teko text-3xl">Flight Controller</span>
+                        <span class="text-xs text-neutral-500 font-bold uppercase">SpeedyBee F405 V3</span>
+                    </div>
+
+                    <!-- Top: VTX -->
+                    <div class="component-box absolute top-0 w-32 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="Video Transmitter">
+                        <i class="fas fa-broadcast-tower mb-1"></i><br>DJI O3 Air Unit
+                    </div>
+                    <!-- Wire VTX to FC -->
+                    <div class="wire w-1 h-24 bg-neutral-600 absolute top-12 z-10" style="transform: translateY(20px);"></div>
+
+                    <!-- Bottom: ESC -->
+                    <div class="component-box absolute bottom-0 w-40 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="Electronic Speed Controller">
+                        <i class="fas fa-bolt mb-1"></i><br>ESC 50A 4in1
+                    </div>
+                    <!-- Wire ESC to FC -->
+                    <div class="wire w-1 h-24 bg-red-600 absolute bottom-12 z-10" style="transform: translateY(-20px);"></div>
+
+                    <!-- Left: RX -->
+                    <div class="component-box absolute left-0 w-24 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="Receiver">
+                        <i class="fas fa-satellite-dish mb-1"></i><br>ELRS RX
+                    </div>
+                    <!-- Wire RX to FC -->
+                    <div class="wire w-24 h-1 bg-green-600 absolute left-20 z-10" style="transform: translateX(20px);"></div>
+
+                    <!-- Right: Camera (if analog) or GPS -->
+                    <div class="component-box absolute right-0 w-24 bg-neutral-200 text-black z-20 hover:bg-white cursor-pointer" title="GPS Module">
+                        <i class="fas fa-location-arrow mb-1"></i><br>GPS M10
+                    </div>
+                    <!-- Wire GPS to FC -->
+                    <div class="wire w-24 h-1 bg-blue-600 absolute right-20 z-10" style="transform: translateX(-20px);"></div>
+
+                </div>
+                <p class="text-center text-xs text-neutral-500 mt-4 uppercase tracking-wider">*Este diagrama es una representación lógica. Revisa siempre el pinout oficial.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-16 bg-white border-t border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-black font-teko">Servicios Profesionales</h2>
+                <p class="mt-4 text-neutral-600">Más allá de YouTube. Operativa profesional y consultoría.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 border-2 border-neutral-100 hover:border-black hover:shadow-[8px_8px_0px_#dc2626] transition duration-300">
+                    <div class="w-16 h-16 bg-black text-white rounded-none flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-teko font-bold text-black mb-2 uppercase">FPV Cinema</h3>
+                    <p class="text-neutral-600 text-sm leading-relaxed">Planos secuencia imposibles para videoclips, inmobiliaria y publicidad. Calidad hasta 5K.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-8 border-2 border-neutral-100 hover:border-black hover:shadow-[8px_8px_0px_#dc2626] transition duration-300">
+                    <div class="w-16 h-16 bg-black text-white rounded-none flex items-center justify-center mb-6">
+                        <i class="fas fa-user-md text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-teko font-bold text-black mb-2 uppercase">Consultoría 1 a 1</h3>
+                    <p class="text-neutral-600 text-sm leading-relaxed">¿Atascado con un drone que no arma? Reserva 30 minutos y lo solucionamos por videollamada.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-8 border-2 border-neutral-100 hover:border-black hover:shadow-[8px_8px_0px_#dc2626] transition duration-300">
+                    <div class="w-16 h-16 bg-black text-white rounded-none flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-teko font-bold text-black mb-2 uppercase">Montaje a Medida</h3>
+                    <p class="text-neutral-600 text-sm leading-relaxed">Si soldar no es lo tuyo, dime qué necesitas y yo construyo, configuro y tuneo tu drone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / News Section -->
+    <section id="blog" class="py-16 bg-neutral-100 border-t border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-black font-teko mb-8 uppercase">Noticias y Salseo</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Article 1 -->
+                <div class="bg-white overflow-hidden shadow-sm hover:shadow-[8px_8px_0px_#000] transition cursor-pointer border-2 border-transparent hover:border-black group">
+                    <div class="h-48 bg-neutral-300 relative group-hover:bg-red-600 transition-colors">
+                        <div class="absolute inset-0 flex items-center justify-center text-neutral-500 group-hover:text-white">
+                            <i class="fas fa-image text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-white bg-black px-2 py-1 uppercase">Crónica</span>
+                        <h3 class="text-xl font-bold text-black mt-3 font-teko uppercase group-hover:text-red-600 transition-colors">Crónica de un aporrizaje</h3>
+                        <p class="text-neutral-600 text-sm mt-2">Cómo perdí mi 5 pulgadas en la montaña y lo recuperé tras 3 horas.</p>
+                    </div>
+                </div>
+                <!-- Article 2 -->
+                <div class="bg-white overflow-hidden shadow-sm hover:shadow-[8px_8px_0px_#000] transition cursor-pointer border-2 border-transparent hover:border-black group">
+                    <div class="h-48 bg-neutral-300 relative group-hover:bg-red-600 transition-colors">
+                        <div class="absolute inset-0 flex items-center justify-center text-neutral-500 group-hover:text-white">
+                            <i class="fas fa-image text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-white bg-black px-2 py-1 uppercase">Review</span>
+                        <h3 class="text-xl font-bold text-black mt-3 font-teko uppercase group-hover:text-red-600 transition-colors">La Guerra Digital</h3>
+                        <p class="text-neutral-600 text-sm mt-2">DJI O4 vs Walksnail Moonlight. ¿Merece la pena el cambio?</p>
+                    </div>
+                </div>
+                 <!-- Article 3 -->
+                 <div class="bg-white overflow-hidden shadow-sm hover:shadow-[8px_8px_0px_#000] transition cursor-pointer border-2 border-transparent hover:border-black group">
+                    <div class="h-48 bg-neutral-300 relative group-hover:bg-red-600 transition-colors">
+                        <div class="absolute inset-0 flex items-center justify-center text-neutral-500 group-hover:text-white">
+                            <i class="fas fa-image text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-white bg-black px-2 py-1 uppercase">Leak</span>
+                        <h3 class="text-xl font-bold text-black mt-3 font-teko uppercase group-hover:text-red-600 transition-colors">Filtraciones Mensuales</h3>
+                        <p class="text-neutral-600 text-sm mt-2">Lo que se viene para el próximo mes en motores y frames.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-neutral-400 py-12 border-t-4 border-red-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <span class="font-teko text-4xl tracking-wide text-white">FPV<span class="text-red-600">-</span>DRONES</span>
+                <p class="mt-4 text-sm max-w-xs text-neutral-500">Competición, Freestyle y Tutoriales sin censura. El lugar donde los pilotos aprenden a volar de verdad.</p>
+                <div class="mt-6 flex space-x-4">
+                    <a href="#" class="text-white hover:text-red-600 transition-colors"><i class="fab fa-youtube text-2xl"></i></a>
+                    <a href="#" class="text-white hover:text-red-600 transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="#" class="text-white hover:text-red-600 transition-colors"><i class="fab fa-telegram text-2xl"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4 border-b border-neutral-800 pb-2 inline-block">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-white transition-colors">Aviso Legal</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Política de Privacidad</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Cookies</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4 border-b border-neutral-800 pb-2 inline-block">Contacto</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><i class="fas fa-envelope mr-2 text-red-600"></i> hola@fpv-drones.com</li>
+                    <li><i class="fas fa-map-marker-alt mr-2 text-red-600"></i> Madrid, España</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        // Data Store
+        const gearData = {
+            pro: [
+                { name: "DJI Goggles 2", type: "Gafas", desc: "Digital HD, OLED, baja latencia.", icon: "fa-vr-cardboard" },
+                { name: "Radiomaster Boxer", type: "Emisora", desc: "ELRS 2.4GHz interno. 1W potencia.", icon: "fa-gamepad" },
+                { name: "AOS 5 V5", type: "Drone", desc: "Frame anti-vibraciones, Motores 2207.", icon: "fa-paper-plane" },
+                { name: "Torvol Pitstop", type: "Mochila", desc: "La mochila estándar de la industria.", icon: "fa-suitcase" }
+            ],
+            beginner: [
+                { name: "Emax Tinyhawk III", type: "Kit RTF", desc: "Todo en uno. Indestructible.", icon: "fa-box-open" },
+                { name: "Radiomaster Pocket", type: "Emisora", desc: "Económica, pequeña y ELRS.", icon: "fa-gamepad" },
+                { name: "Skyzone Cobra X", type: "Gafas", desc: "Las mejores analógicas tipo Box.", icon: "fa-vr-cardboard" },
+                { name: "Velocidrone", type: "Software", desc: "El simulador para aprender.", icon: "fa-desktop" }
+            ]
+        };
+
+        const coupons = [
+            { store: "Banggood", prod: "Todo RC", discount: "10%", code: "FPVDRONES10" },
+            { store: "IhaRace", prod: "Motores", discount: "5%", code: "ALEX5" },
+            { store: "BetaFPV", prod: "Pavo Pico", discount: "15%", code: "PAVO15" },
+            { store: "HGLRC", prod: "Stacks", discount: "8%", code: "HGLRC8" },
+            { store: "Gemfan", prod: "Hélices", discount: "20%", code: "PROP20" }
+        ];
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGear('pro'); // Default view
+            renderCoupons(coupons);
+            initChart();
+            
+            // Mobile Menu
+            document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                const menu = document.getElementById('mobile-menu');
+                menu.classList.toggle('hidden');
+            });
+        });
+
+        // Tabs Logic
+        function switchTab(tabId, btn) {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Show selected
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Reset buttons
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('border-red-600', 'text-red-600');
+                el.classList.add('border-transparent', 'text-neutral-400');
+            });
+            // Active button
+            btn.classList.remove('border-transparent', 'text-neutral-400');
+            btn.classList.add('border-red-600', 'text-red-600');
+        }
+
+        // Gear Toggle Logic
+        function toggleGear(mode) {
+            const btnPro = document.getElementById('btn-pro');
+            const btnBeg = document.getElementById('btn-beginner');
+            
+            if(mode === 'pro') {
+                btnPro.classList.add('bg-red-600', 'text-white', 'border-red-700');
+                btnPro.classList.remove('text-neutral-600', 'hover:bg-white');
+                btnBeg.classList.remove('bg-red-600', 'text-white', 'border-red-700');
+                btnBeg.classList.add('text-neutral-600', 'hover:bg-white');
+            } else {
+                btnBeg.classList.add('bg-red-600', 'text-white', 'border-red-700');
+                btnBeg.classList.remove('text-neutral-600', 'hover:bg-white');
+                btnPro.classList.remove('bg-red-600', 'text-white', 'border-red-700');
+                btnPro.classList.add('text-neutral-600', 'hover:bg-white');
+            }
+            renderGear(mode);
+        }
+
+        function renderGear(mode) {
+            const container = document.getElementById('gear-grid');
+            container.innerHTML = '';
+            
+            gearData[mode].forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 border-2 border-neutral-100 shadow-sm hover:shadow-[8px_8px_0px_#dc2626] hover:border-black transition flex flex-col items-center text-center fade-in group";
+                card.innerHTML = `
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center text-white mb-4 group-hover:bg-red-600 transition-colors">
+                        <i class="fas ${item.icon} text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-black font-teko text-2xl uppercase">${item.name}</h3>
+                    <span class="text-xs uppercase text-red-600 font-bold mb-2 tracking-wide">${item.type}</span>
+                    <p class="text-neutral-600 text-sm font-medium">${item.desc}</p>
+                    <button class="mt-4 text-xs font-bold text-black border-b-2 border-black hover:text-red-600 hover:border-red-600 uppercase tracking-wider">Ver en tienda</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Coupons Logic
+        function renderCoupons(data) {
+            const tbody = document.getElementById('couponTableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-black uppercase">${item.store}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-neutral-600 font-medium">${item.prod}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 font-bold text-lg">${item.discount}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <button class="text-white hover:text-white bg-black hover:bg-neutral-800 px-4 py-2 font-bold uppercase tracking-wide border border-transparent" onclick="copyCode(this, '${item.code}')">
+                            ${item.code} <i class="fas fa-copy ml-1"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Search Filter
+        document.getElementById('couponSearch').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = coupons.filter(c => c.store.toLowerCase().includes(term));
+            renderCoupons(filtered);
+        });
+
+        // Utils
+        function copyCode(btn, code = null) {
+            // If code is not passed, try to find it in the previous sibling (for betaflight snippet)
+            const textToCopy = code || btn.previousElementSibling.innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                btn.classList.remove('bg-black');
+                btn.classList.add('bg-green-600');
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.remove('bg-green-600');
+                    btn.classList.add('bg-black');
+                }, 2000);
+            });
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Chart.js
+        function initChart() {
+            const ctx = document.getElementById('subscriberChart').getContext('2d');
+            
+            // Gradient fill - Update to be visible on black/dark backgrounds if needed, but the container is white/grey
+            // Actually, the stats section is still overlaying the hero video in the bottom part, 
+            // so we need to ensure the chart looks good on dark.
+            // Let's check where the chart is. It's inside the Hero section which now has a video BG + Overlay.
+            // So text is white. Chart lines should be bright.
+            
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(239, 68, 68, 0.8)'); // Red-500 brighter
+            gradient.addColorStop(1, 'rgba(239, 68, 68, 0.0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [{
+                        label: 'Crecimiento de Suscriptores',
+                        data: [5000, 7200, 10500, 15000, 18200, 22000, 25500, 28000, 31000, 33500, 34800, 35000],
+                        borderColor: '#ef4444', // Red-500 brighter
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#ef4444',
+                        pointRadius: 4,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#000',
+                            titleColor: '#fff',
+                            bodyColor: '#fff',
+                            borderColor: '#ef4444',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + ' Subs';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { color: '#fff', font: { weight: 'bold' } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#fff', font: { weight: 'bold' } }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
