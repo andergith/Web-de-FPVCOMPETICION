@@ -1,18 +1,29 @@
+/* =========================================
+   ESTILOS GLOBALES Y TIPOGRAFÍA
+   ========================================= */
+
 body {
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    /* Transition colors for smooth theme switch */
+    overflow-x: hidden; /* Evita scroll horizontal no deseado */
+    
+    /* Configuración de transiciones suaves para el cambio de Tema (Día/Noche) */
+    /* Se animan propiedades específicas para optimizar el rendimiento */
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* Curva de aceleración estándar */
     transition-duration: 300ms;
 }
 
+/* Aplicar fuente Teko (estilo técnico/impacto) a todos los encabezados */
 h1, h2, h3, h4, .font-teko {
     font-family: 'Teko', sans-serif;
     text-transform: uppercase;
 }
 
-/* Dynamic Section Separators (Skew) */
+/* =========================================
+   SEPARADORES DE SECCIÓN (DISEÑO)
+   ========================================= */
+
+/* Divisores inclinados usando transformaciones */
 .skew-divider {
     position: absolute;
     bottom: 0;
@@ -23,10 +34,12 @@ h1, h2, h3, h4, .font-teko {
     transform: rotate(180deg);
 }
 
+/* Clase para crear el corte diagonal al final de las secciones */
 .section-slant {
     position: relative;
     z-index: 10;
 }
+/* Pseudo-elemento que crea visualmente el corte inclinado */
 .section-slant::after {
     content: '';
     position: absolute;
@@ -34,52 +47,64 @@ h1, h2, h3, h4, .font-teko {
     bottom: -50px; 
     width: 100%;
     height: 100px;
-    background: none;
-    transform: skewY(-2deg);
+    background: none; /* Hereda o es transparente */
+    transform: skewY(-2deg); /* La inclinación mágica de -2 grados */
     transform-origin: bottom left;
-    z-index: -1;
+    z-index: -1; /* Se coloca detrás del contenido */
 }
 
-/* Minimalist Background Patterns */
+/* Patrón de topografía (placeholder para fondo complejo) */
 .bg-topography {
     background: none;
 }
 
-/* Parallax Hero Background: subtle pattern */
+/* =========================================
+   FONDOS Y PATRONES (HERO)
+   ========================================= */
+
+/* Fondo con patrón de puntos sutil para la sección Hero */
+/* Usamos !important para asegurar que sobrescriba a las clases de utilidad de Tailwind si hay conflicto */
 .hero-bg-image {
     background-color: rgba(255, 255, 255, 0.08) !important;
-    /* stronger dots so user sees the pattern */
+    /* Crea un patrón de puntos usando gradiente radial repetido */
     background-image: radial-gradient(circle at 12px 12px, rgba(0,0,0,0.06) 1px, transparent 1px) !important;
     background-size: 20px 20px !important;
     border-radius: inherit;
 }
 
+/* Variación del patrón para Modo Oscuro */
 .dark .hero-bg-image {
     background-color: rgba(15, 23, 42, 0.6) !important;
     background-image: radial-gradient(circle at 12px 12px, rgba(255,255,255,0.08) 1px, transparent 1px) !important;
     background-size: 20px 20px !important;
 }
 
-/* Schematic Diagram Styling */
+/* =========================================
+   COMPONENTES ESPECÍFICOS
+   ========================================= */
+
+/* Estilos para las cajas del diagrama esquemático */
 .component-box {
-    /* Default Light Mode styles handle in HTML with Tailwind, these are specific structure */
+    /* Padding y bordes base */
     padding: 15px;
     border-radius: 12px;
     text-align: center;
     font-weight: 600;
     position: relative;
+    /* Transición suave al hacer hover */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
 }
+/* Efecto de elevación al pasar el ratón */
 .component-box:hover {
     transform: translateY(-5px);
-    border-color: #dc2626;
+    border-color: #dc2626; /* Rojo primario */
 }
 
-/* Aspect Ratio for Video */
+/* Contenedor responsivo para videos (Mantiene proporción 16:9) */
 .aspect-w-16 {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%; /* 16:9 ratio (9 / 16 = 0.5625) */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -92,23 +117,39 @@ h1, h2, h3, h4, .font-teko {
     height: 100%;
 }
 
+/* =========================================
+   ANIMACIONES
+   ========================================= */
+
 .fade-in {
     animation: fadeIn 0.6s ease-out forwards;
 }
+
+/* Animación de entrada: aparece desde abajo y gana opacidad */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Scrollbar styling */
+/* =========================================
+   PERSONALIZACIÓN DE SCROLLBAR (WEBKIT)
+   ========================================= */
+
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 .dark ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
 .dark ::-webkit-scrollbar-thumb { background: transparent; }
+/* El scrollbar es invisible por defecto hasta hover (estilo minimalista) */
 ::-webkit-scrollbar-thumb:hover { background: transparent; }
 
-/* Override Tailwind bg utilities by matching body with utility classes */
+/* =========================================
+   OVERRIDES DE TAILWIND (FONDO GENERAL)
+   ========================================= */
+
+/* Fondo complejo para el BODY en modo claro.
+   Combina un color base con múltiples gradientes lineales para crear una textura sutil.
+*/
 body.bg-slate-50, body[class*="bg-slate-50"], html:not(.dark) body {
     background-color: #f5f5f7 !important;
     background-image: linear-gradient(135deg, rgba(0,0,0,0.03) 25%, transparent 25%),
@@ -120,6 +161,9 @@ body.bg-slate-50, body[class*="bg-slate-50"], html:not(.dark) body {
     background-blend-mode: overlay;
 }
 
+/* Fondo complejo para el BODY en modo oscuro.
+   Ajusta la opacidad de los gradientes para que sean visibles sobre fondo negro.
+*/
 html.dark body, body[class*="dark:bg-dark-bg"], body[class*="dark\:bg-dark-bg"] {
     background-color: #05060a !important;
     background-image: linear-gradient(135deg, rgba(255,255,255,0.03) 25%, transparent 25%),

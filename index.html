@@ -4,42 +4,360 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPV-Drones | Web Oficial</title>
+    <meta name="description" content="Web oficial de FPV-Drones. Tutoriales, guías de montaje, competición y las mejores ofertas del mundo FPV.">
     
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fpv-drones.es/">
+    <meta property="og:title" content="FPV-Drones | No vueles el drone, SÉ el drone">
+    <meta property="og:description" content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
+    <meta property="og:image" content="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://fpv-drones.es/">
+    <meta property="twitter:title" content="FPV-Drones | Web Oficial">
+    <meta property="twitter:description" content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
+    <meta property="twitter:image" content="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO.jpg">
+    
+    <!-- Structured Data (SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "FPV-Drones",
+      "url": "https://fpv-drones.es/",
+      "author": {
+        "@type": "Person",
+        "name": "Alex"
+      },
+      "description": "La comunidad definitiva de drones FPV en español.",
+      "sameAs": [
+        "https://youtube.com/@FPV-Drones",
+        "https://instagram.com/fpvcompeticion",
+        "https://tiktok.com/@fpvdrones"
+      ]
+    }
+    </script>
+
     <!-- Favicon con tu Logo -->
-    <link rel="icon" href="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO.jpg" type="image/jpeg">
+    <link rel="icon" href="imagenes/logo-fpv-competicion.png" type="image/png">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Configuración Tailwind para Modo Oscuro -->
+    <!-- 1. CONFIGURACIÓN TAILWIND (ANTES DE CARGAR LA LIBRERÍA) -->
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#dc2626',
-                        dark: {
-                            bg: '#0f172a',    // Slate 900
-                            card: '#1e293b',  // Slate 800
-                            border: '#334155' // Slate 700
+        tailwind = {
+            config: {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#dc2626',
+                            dark: {
+                                bg: '#0f172a',    // Slate 900
+                                card: '#1e293b',  // Slate 800
+                                border: '#334155' // Slate 700
+                            }
+                        },
+                        fontFamily: {
+                            teko: ['Teko', 'sans-serif'],
+                            inter: ['Inter', 'sans-serif'],
                         }
-                    },
-                    fontFamily: {
-                        teko: ['Teko', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     
+    <!-- 2. CARGA DE LIBRERÍA TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- Iconos Phosphor (para el sol/luna del toggle) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- ESTILOS CSS INTEGRADOS -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            /* Transition colors for smooth theme switch */
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        h1, h2, h3, h4, .font-teko {
+            font-family: 'Teko', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Dynamic Section Separators (Skew) */
+        .skew-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .section-slant {
+            position: relative;
+            z-index: 10;
+        }
+        .section-slant::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -50px; 
+            width: 100%;
+            height: 100px;
+            background: none;
+            transform: skewY(-2deg);
+            transform-origin: bottom left;
+            z-index: -1;
+        }
+
+        /* Minimalist Background Patterns */
+        .bg-topography {
+            background: none;
+        }
+
+        /* Parallax Hero Background: subtle pattern */
+        .hero-bg-image {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            /* stronger dots so user sees the pattern */
+            background-image: radial-gradient(circle at 12px 12px, rgba(0,0,0,0.06) 1px, transparent 1px) !important;
+            background-size: 20px 20px !important;
+            border-radius: inherit;
+        }
+
+        .dark .hero-bg-image {
+            background-color: rgba(15, 23, 42, 0.6) !important;
+            background-image: radial-gradient(circle at 12px 12px, rgba(255,255,255,0.08) 1px, transparent 1px) !important;
+            background-size: 20px 20px !important;
+        }
+
+        /* Schematic Diagram Styling */
+        .component-box {
+            /* Default Light Mode styles handle in HTML with Tailwind, these are specific structure */
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+        .component-box:hover {
+            transform: translateY(-5px);
+            border-color: #dc2626;
+        }
+
+        /* Wire Flow Animation */
+        .flow-line {
+            stroke-dasharray: 10;
+            animation: flow 1s linear infinite;
+        }
+        @keyframes flow {
+            from { stroke-dashoffset: 20; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Aspect Ratio for Video */
+        .aspect-w-16 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .aspect-w-16 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        .dark ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: transparent; }
+        ::-webkit-scrollbar-thumb:hover { background: transparent; }
+
+        /* Override Tailwind bg utilities by matching body with utility classes */
+        /* Eliminamos conflicto asegurando que solo aplique uno u otro */
+        html:not(.dark) body {
+            background-color: #f5f5f7 !important;
+            background-image: linear-gradient(135deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+                              linear-gradient(225deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+                              linear-gradient(315deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+                              linear-gradient(45deg, rgba(0,0,0,0.03) 25%, transparent 25%);
+            background-size: 48px 48px;
+            background-position: 0 0, 0 24px, 24px -24px, 24px 0px;
+            background-blend-mode: overlay;
+            color: #0f172a;
+        }
+
+        html.dark body {
+            background-color: #0f172a !important;
+            background-image: linear-gradient(135deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+                              linear-gradient(225deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+                              linear-gradient(315deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+                              linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%);
+            background-size: 48px 48px;
+            background-position: 0 0, 0 24px, 24px -24px, 24px 0px;
+            color: #e2e8f0;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Toast Notifications */
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            min-width: 250px;
+            background-color: #1e293b;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            border-left: 4px solid #dc2626;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: slideIn 0.3s ease-out;
+            transition: all 0.3s ease;
+        }
+        .toast.success { border-left-color: #22c55e; }
+        .toast.error { border-left-color: #ef4444; }
+        .toast.info { border-left-color: #3b82f6; }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Scroll Top Button */
+        #scroll-top-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 49;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        #scroll-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        /* Cookie Banner */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #0f172a;
+            border-top: 1px solid #334155;
+            padding: 1.5rem;
+            z-index: 10000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #cookie-banner.show {
+            transform: translateY(0);
+        }
+
+        /* Blog Read Modal Content */
+        .prose p {
+            margin-bottom: 1.2em;
+            line-height: 1.7;
+        }
+
+        /* Mobile Coupon Table Optimization */
+        @media (max-width: 768px) {
+            #couponTableBody tr {
+                display: flex;
+                flex-direction: column;
+                background-color: rgba(255,255,255,0.05);
+                margin-bottom: 1rem;
+                border-radius: 0.5rem;
+                padding: 1rem;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            #couponTableBody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.5rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            #couponTableBody td:last-child {
+                border-bottom: none;
+                margin-top: 0.5rem;
+            }
+            #couponTableBody td:nth-of-type(1)::before { content: "Tienda:"; font-weight: bold; margin-right: 0.5rem; }
+            #couponTableBody td:nth-of-type(2)::before { content: "Producto:"; font-weight: bold; margin-right: 0.5rem; }
+            #couponTableBody td:nth-of-type(3)::before { content: "Descuento:"; font-weight: bold; margin-right: 0.5rem; }
+            #couponTableBody td:nth-of-type(4)::before { content: "Código:"; font-weight: bold; margin-right: 0.5rem; }
+            
+            thead { display: none; }
+        }
+
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.1) 37%, rgba(255,255,255,0.05) 63%);
+            background-size: 400% 100%;
+            animation: skeleton-loading 1.4s ease infinite;
+        }
+        .light .skeleton {
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 37%, #f1f5f9 63%);
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 100% 50%; }
+            100% { background-position: 0 50%; }
+        }
+    </style>
 </head>
 <body class="antialiased scroll-smooth bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
 
@@ -50,21 +368,44 @@
                 <!-- Logo & Brand -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="scrollToSection('hero')">
                     <!-- Logo para modo día -->
-                    <img id="logo-light" src="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO.avif" alt="FPV Drones Logo" class="w-[2.675rem] h-[2.675rem] rounded-lg object-cover shadow-sm group-hover:rotate-6 transition-transform dark:hidden">
+                    <img id="logo-light" src="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO.avif" alt="FPV Drones Logo" class="w-[2.675rem] h-[2.675rem] rounded-lg object-cover shadow-sm group-hover:rotate-6 transition-transform dark:hidden" onerror="this.style.display='none'; this.nextElementSibling.nextElementSibling.style.marginLeft='0'">
                     <!-- Logo para modo noche -->
-                    <img id="logo-dark" src="imagenes/logo-fpv-competicion.png" alt="FPV Drones Logo Dark" class="w-[2.675rem] h-[2.675rem] rounded-lg object-cover shadow-sm group-hover:rotate-6 transition-transform hidden dark:block">
+                    <img id="logo-dark" src="imagenes/logo-fpv-competicion.png" alt="FPV Drones Logo Dark" class="w-[2.675rem] h-[2.675rem] rounded-lg object-cover shadow-sm group-hover:rotate-6 transition-transform hidden dark:block" onerror="this.style.display='none'">
                     
                     <span class="font-teko text-3xl tracking-wide text-slate-900 dark:text-white">FPV<span class="text-red-600">-</span>DRONES</span>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-4">
                     <button onclick="scrollToSection('academia')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Academia</button>
                     <button onclick="scrollToSection('equipo')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Equipo</button>
                     <button onclick="scrollToSection('ofertas')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Ofertas</button>
                     <button onclick="scrollToSection('builds')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Builds</button>
                     <button onclick="scrollToSection('servicios')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Servicios</button>
+                    <button onclick="scrollToSection('blog')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-500 px-3 py-2 text-sm font-bold transition-colors uppercase tracking-wider">Blog</button>
                     
+                    <!-- Vertical Divider -->
+                    <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+
+                    <!-- Social Icons (Desktop) -->
+                    <div class="flex items-center gap-3">
+                        <a href="https://youtube.com/@FPV-Drones" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-500 transition-colors" title="YouTube">
+                            <i class="fab fa-youtube text-lg"></i>
+                        </a>
+                        <a href="https://tiktok.com/@fpvdrones" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white transition-colors" title="TikTok">
+                            <i class="fab fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://instagram.com/fpvcompeticion" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-pink-600 dark:hover:text-pink-500 transition-colors" title="Instagram">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://t.me/grupodronesgeneral" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors" title="Grupo Telegram">
+                            <i class="fas fa-users text-lg"></i>
+                        </a>
+                        <a href="https://t.me/droneofertas" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-500 transition-colors" title="Canal Ofertas">
+                            <i class="fas fa-tags text-lg"></i>
+                        </a>
+                    </div>
+
                     <!-- Dark Mode Toggle Switch (Desktop) -->
                     <button id="theme-toggle-desktop" type="button" class="relative inline-flex items-center h-7 w-12 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 bg-yellow-200 dark:bg-slate-700 ml-4 hover:shadow-lg border-2 border-yellow-300 dark:border-red-600">
                         <span class="sr-only">Cambiar modo oscuro</span>
@@ -97,6 +438,16 @@
                 <a href="#ofertas" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Ofertas</a>
                 <a href="#builds" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Builds</a>
                 <a href="#servicios" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Servicios</a>
+                <a href="#blog" class="block px-3 py-2 rounded-md text-base font-bold uppercase text-slate-800 dark:text-slate-200 hover:text-red-600 hover:bg-slate-50 dark:hover:bg-slate-700">Blog</a>
+                
+                <!-- Social Icons (Mobile) -->
+                <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800 flex justify-around items-center px-4">
+                    <a href="https://youtube.com/@FPV-Drones" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-red-600" title="YouTube"><i class="fab fa-youtube text-xl"></i></a>
+                    <a href="https://tiktok.com/@fpvdrones" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-black dark:hover:text-white" title="TikTok"><i class="fab fa-tiktok text-xl"></i></a>
+                    <a href="https://instagram.com/fpvcompeticion" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-pink-600" title="Instagram"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="https://t.me/grupodronesgeneral" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-blue-500" title="Grupo Telegram"><i class="fas fa-users text-xl"></i></a>
+                    <a href="https://t.me/droneofertas" target="_blank" class="text-slate-500 dark:text-slate-400 hover:text-green-600" title="Canal Ofertas"><i class="fas fa-tags text-xl"></i></a>
+                </div>
             </div>
         </div>
     </nav>
@@ -133,10 +484,14 @@
                 <!-- Video Embed Section (Right Column) -->
                 <div class="mt-12 lg:mt-0 lg:col-span-6 fade-in" style="animation-delay: 0.2s;">
                     <div class="relative mx-auto w-full max-w-lg aspect-w-16 shadow-2xl rounded-2xl border-4 border-white/50 dark:border-slate-700/50 bg-slate-900">
+                        <!-- Lazy loaded iframe -->
                         <iframe 
-                            src="https://www.youtube.com/embed/vHc5jnxkuzg?si=4yl2Bu4hcAgZ9vpO"                             frameborder="0" 
+                            id="latest-video-frame"
+                            src="https://www.youtube.com/embed/vHc5jnxkuzg?si=4yl2Bu4hcAgZ9vpO" 
+                            frameborder="0" 
                             allow="autoplay; fullscreen" 
-                            allowfullscreen>
+                            allowfullscreen
+                            loading="lazy">
                         </iframe>
                     </div>
                     
@@ -161,7 +516,7 @@
     </section>
 
     <!-- Academia de Vuelo Section -->
-    <section id="academia" class="py-24 bg-topography relative section-slant bg-slate-50 dark:bg-dark-bg transition-colors duration-300">
+    <section id="academia" class="py-24 bg-topography relative section-slant bg-slate-50 dark:bg-dark-bg transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-red-600 font-bold tracking-widest uppercase text-xs">Escuela de Pilotos</span>
@@ -317,7 +672,7 @@
     </section>
 
     <!-- Equipo Necesario (Gear) Section -->
-    <section id="equipo" class="py-24 bg-white dark:bg-dark-bg transition-colors duration-300">
+    <section id="equipo" class="py-24 bg-white dark:bg-dark-bg transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16">
                 <div class="max-w-2xl">
@@ -341,11 +696,16 @@
     </section>
 
     <!-- Ofertas Section -->
-    <section id="ofertas" class="py-24 bg-slate-50 dark:bg-dark-card relative section-slant bg-topography transition-colors duration-300">
+    <section id="ofertas" class="py-24 bg-slate-50 dark:bg-dark-card relative section-slant bg-topography transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Rincón del Ahorro</h2>
                 <p class="text-slate-600 dark:text-slate-400 mt-2 font-light">Códigos actualizados semanalmente. Apoya el canal usando estos links.</p>
+                
+                <!-- Botón Canal Ofertas -->
+                <a href="https://t.me/droneofertas" target="_blank" class="inline-flex items-center mt-6 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full transition-all shadow-lg hover:shadow-blue-500/40 hover:-translate-y-1">
+                    <i class="fab fa-telegram-plane mr-2 text-xl"></i> Unirse al Canal de Ofertas
+                </a>
             </div>
 
             <!-- Search -->
@@ -355,7 +715,7 @@
             </div>
 
             <!-- Table -->
-            <div class="overflow-hidden rounded-xl shadow-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 transition-colors duration-300">
+            <div class="overflow-hidden rounded-xl shadow-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 transition-colors duration-300 overflow-x-auto">
                 <table class="min-w-full">
                     <thead class="bg-slate-900 dark:bg-black text-white">
                         <tr>
@@ -374,7 +734,7 @@
     </section>
 
     <!-- Builds Section (Schematic Viz) -->
-    <section id="builds" class="py-24 bg-slate-900 text-white relative">
+    <section id="builds" class="py-24 bg-slate-900 text-white relative reveal">
         <!-- Background texture -->
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
         
@@ -395,44 +755,59 @@
             <div class="bg-slate-800/50 backdrop-blur-sm p-10 rounded-3xl border border-slate-700 relative overflow-hidden">
                 <h3 class="text-slate-500 text-xs uppercase tracking-[0.3em] mb-12 text-center">Wiring Diagram Schematic</h3>
                 
-                <div class="relative max-w-4xl mx-auto h-[450px] flex items-center justify-center">
+                <div class="relative max-w-4xl mx-auto h-[500px] flex items-center justify-center">
                     
-                    <!-- Center: Flight Controller -->
-                    <div class="component-box w-56 h-56 bg-white dark:bg-slate-200 text-slate-900 z-20 flex flex-col items-center justify-center border-2 border-red-500 shadow-[0_0_50px_rgba(239,68,68,0.2)]">
-                        <i class="fas fa-microchip text-5xl mb-3 text-slate-800"></i>
-                        <span class="font-teko text-3xl">Flight Controller</span>
-                        <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">SpeedyBee F405 V3</span>
-                        <!-- Connection Dots -->
-                        <div class="absolute -top-1 left-1/2 w-2 h-2 bg-red-500 rounded-full"></div>
-                        <div class="absolute -bottom-1 left-1/2 w-2 h-2 bg-red-500 rounded-full"></div>
-                        <div class="absolute top-1/2 -left-1 w-2 h-2 bg-red-500 rounded-full"></div>
-                        <div class="absolute top-1/2 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
-                    </div>
-
-                    <!-- Top: VTX -->
-                    <div class="component-box absolute top-0 w-40 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Video Transmitter">
-                        <i class="fas fa-broadcast-tower mb-1 text-2xl"></i><br>
-                        <span class="text-sm font-bold">DJI O3 Air Unit</span>
-                    </div>
-                    <!-- Wire VTX to FC -->
-                    <svg class="absolute top-12 z-10 w-full h-full pointer-events-none" style="transform: translateY(20px);">
-                        <path d="M450 0 V120" stroke="#94a3b8" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+                    <!-- WIRING SVG OVERLAY -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none z-10">
+                        <!-- VTX (Top) to FC - Purple Flow -->
+                        <line x1="50%" y1="18%" x2="50%" y2="35%" class="flow-line" stroke="#d8b4fe" stroke-width="3" stroke-dasharray="8,8" />
+                        
+                        <!-- ESC (Bottom) to FC - Yellow Flow -->
+                        <line x1="50%" y1="82%" x2="50%" y2="65%" class="flow-line" stroke="#fcd34d" stroke-width="3" stroke-dasharray="8,8" />
+                        
+                        <!-- RX (Left) to FC - Blue Flow -->
+                        <line x1="20%" y1="50%" x2="38%" y2="50%" class="flow-line" stroke="#60a5fa" stroke-width="3" stroke-dasharray="8,8" />
+                        
+                        <!-- GPS (Right) to FC - Green Flow -->
+                        <line x1="80%" y1="50%" x2="62%" y2="50%" class="flow-line" stroke="#4ade80" stroke-width="3" stroke-dasharray="8,8" />
                     </svg>
 
-                    <!-- Bottom: ESC -->
-                    <div class="component-box absolute bottom-0 w-48 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Electronic Speed Controller">
+                    <!-- Center: Flight Controller -->
+                    <div class="component-box w-40 h-40 sm:w-56 sm:h-56 bg-white dark:bg-slate-200 text-slate-900 z-20 flex flex-col items-center justify-center border-2 border-red-500 shadow-[0_0_50px_rgba(239,68,68,0.2)]">
+                        <i class="fas fa-microchip text-4xl sm:text-5xl mb-3 text-slate-800"></i>
+                        <span class="font-teko text-2xl sm:text-3xl">Flight Controller</span>
+                        <span class="text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">SpeedyBee F405 V3</span>
+                        <!-- Connection Dots -->
+                        <div class="absolute -top-1 left-1/2 w-3 h-3 bg-red-500 rounded-full -translate-x-1/2 border-2 border-white"></div>
+                        <div class="absolute -bottom-1 left-1/2 w-3 h-3 bg-yellow-500 rounded-full -translate-x-1/2 border-2 border-white"></div>
+                        <div class="absolute top-1/2 -left-1 w-3 h-3 bg-blue-500 rounded-full -translate-y-1/2 border-2 border-white"></div>
+                        <div class="absolute top-1/2 -right-1 w-3 h-3 bg-green-500 rounded-full -translate-y-1/2 border-2 border-white"></div>
+                    </div>
+
+                    <!-- Top: VTX (Centered) -->
+                    <div class="component-box absolute top-0 left-1/2 -translate-x-1/2 w-32 sm:w-40 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Video Transmitter">
+                        <i class="fas fa-broadcast-tower mb-1 text-2xl"></i><br>
+                        <span class="text-sm font-bold">DJI O3 Air Unit</span>
+                        <div class="absolute -bottom-1 left-1/2 w-2 h-2 bg-purple-400 rounded-full -translate-x-1/2"></div>
+                    </div>
+
+                    <!-- Bottom: ESC (Centered) -->
+                    <div class="component-box absolute bottom-0 left-1/2 -translate-x-1/2 w-32 sm:w-48 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Electronic Speed Controller">
+                         <div class="absolute -top-1 left-1/2 w-2 h-2 bg-yellow-400 rounded-full -translate-x-1/2"></div>
                         <i class="fas fa-bolt mb-1 text-2xl text-yellow-600"></i><br>
                         <span class="text-sm font-bold">ESC 50A 4in1</span>
                     </div>
                     
-                    <!-- Left: RX -->
-                    <div class="component-box absolute left-0 w-32 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Receiver">
+                    <!-- Left: RX (Centered Vertically) -->
+                    <div class="component-box absolute left-0 top-1/2 -translate-y-1/2 w-24 sm:w-32 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="Receiver">
                         <i class="fas fa-satellite-dish mb-1 text-2xl text-blue-600"></i><br>
                         <span class="text-sm font-bold">ELRS RX</span>
+                        <div class="absolute top-1/2 -right-1 w-2 h-2 bg-blue-400 rounded-full -translate-y-1/2"></div>
                     </div>
 
-                    <!-- Right: GPS -->
-                    <div class="component-box absolute right-0 w-32 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="GPS Module">
+                    <!-- Right: GPS (Centered Vertically) -->
+                    <div class="component-box absolute right-0 top-1/2 -translate-y-1/2 w-24 sm:w-32 bg-slate-200 hover:bg-white text-slate-900 z-20 cursor-pointer" title="GPS Module">
+                        <div class="absolute top-1/2 -left-1 w-2 h-2 bg-green-400 rounded-full -translate-y-1/2"></div>
                         <i class="fas fa-location-arrow mb-1 text-2xl text-green-600"></i><br>
                         <span class="text-sm font-bold">GPS M10</span>
                     </div>
@@ -443,8 +818,49 @@
         </div>
     </section>
 
+    <!-- Herramientas Section (New Calculator) -->
+    <section id="herramientas" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300 reveal">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko text-center mb-10 uppercase">Herramientas de Vuelo</h2>
+            
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700">
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-teko mb-6 border-b border-slate-200 dark:border-slate-700 pb-2">
+                    <i class="fas fa-calculator mr-2 text-red-600"></i> Calculadora de Tiempo de Vuelo
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Capacidad Batería (mAh)</label>
+                            <input type="number" id="calc-mah" value="1300" class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Estilo de Vuelo</label>
+                            <select id="calc-style" class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                                <option value="cinematic">Cinemático (Cruising)</option>
+                                <option value="freestyle">Freestyle (Mixto)</option>
+                                <option value="racing">Carreras (Full Throttle)</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateFlightTime()" class="w-full bg-slate-900 dark:bg-red-600 hover:bg-slate-700 dark:hover:bg-red-700 text-white font-bold py-3 rounded-lg shadow-md transition-all transform hover:-translate-y-1">
+                            Calcular
+                        </button>
+                    </div>
+                    
+                    <div class="flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-900 rounded-xl p-6 text-center border border-slate-200 dark:border-slate-700">
+                        <span class="text-sm text-slate-500 uppercase tracking-widest font-bold">Tiempo Estimado</span>
+                        <div class="text-6xl font-teko font-bold text-slate-900 dark:text-white my-2">
+                            <span id="calc-result">0:00</span> <span class="text-2xl text-slate-400">min</span>
+                        </div>
+                        <p class="text-xs text-slate-400 px-4">*Estimación basada en consumo promedio de un 5 pulgadas estándar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Servicios Section -->
-    <section id="servicios" class="py-24 bg-white dark:bg-dark-bg section-slant transition-colors duration-300">
+    <section id="servicios" class="py-24 bg-white dark:bg-dark-bg section-slant transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Servicios Profesionales</h2>
@@ -480,64 +896,282 @@
         </div>
     </section>
 
-    <!-- Blog / News Section -->
-    <section id="blog" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300">
+    <!-- Blog / News Section (DYNAMIC) -->
+    <section id="blog" class="py-24 bg-white dark:bg-dark-bg relative transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko mb-10 uppercase">Noticias y Salseo</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <div class="h-56 bg-slate-300 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-slate-800 group-hover:scale-110 transition-transform duration-700"></div>
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 group-hover:text-white transition-colors z-10">
-                            <i class="fas fa-mountain text-5xl"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-[10px] font-bold text-white bg-red-600 px-3 py-1 rounded-full uppercase tracking-wide">Crónica</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-4 font-teko uppercase group-hover:text-red-600 transition-colors">Crónica de un aporrizaje</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">Cómo perdí mi 5 pulgadas en la montaña y lo recuperé tras 3 horas de búsqueda intensa.</p>
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko uppercase">Noticias y Salseo</h2>
+                
+                <!-- Search & Filter Controls -->
+                <div class="max-w-xl mx-auto mb-8 relative">
+                    <input type="text" id="blogSearch" placeholder="Buscar artículo..." class="w-full pl-10 pr-4 py-2 rounded-full border border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                </div>
+
+                <!-- Blog Category Filters -->
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="filterPosts('all')" class="blog-filter-btn px-4 py-1.5 rounded-full text-sm font-bold border border-slate-300 dark:border-slate-600 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900 transition-all active-filter" data-filter="all">Todas</button>
+                    <button onclick="filterPosts('Crónica')" class="blog-filter-btn px-4 py-1.5 rounded-full text-sm font-bold border border-slate-300 dark:border-slate-600 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all" data-filter="Crónica">Crónicas</button>
+                    <button onclick="filterPosts('Review')" class="blog-filter-btn px-4 py-1.5 rounded-full text-sm font-bold border border-slate-300 dark:border-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all" data-filter="Review">Reviews</button>
+                    <button onclick="filterPosts('Tutorial')" class="blog-filter-btn px-4 py-1.5 rounded-full text-sm font-bold border border-slate-300 dark:border-slate-600 hover:bg-green-600 hover:text-white hover:border-green-600 transition-all" data-filter="Tutorial">Tutoriales</button>
+                    <button onclick="filterPosts('Leak')" class="blog-filter-btn px-4 py-1.5 rounded-full text-sm font-bold border border-slate-300 dark:border-slate-600 hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all" data-filter="Leak">Leaks</button>
+                </div>
+            </div>
+            
+            <!-- Loading State (Skeleton) -->
+            <div id="blog-loading" class="grid md:grid-cols-3 gap-8">
+                <!-- Skeleton Card 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md h-96 flex flex-col">
+                    <div class="h-56 skeleton w-full"></div>
+                    <div class="p-8 flex flex-col grow">
+                         <div class="h-4 skeleton w-20 rounded mb-4"></div>
+                         <div class="h-6 skeleton w-3/4 rounded mb-2"></div>
+                         <div class="h-4 skeleton w-full rounded mt-4"></div>
+                         <div class="h-4 skeleton w-full rounded mt-2"></div>
                     </div>
                 </div>
-                <!-- Article 2 -->
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <div class="h-56 bg-slate-300 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-slate-800 group-hover:scale-110 transition-transform duration-700"></div>
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 group-hover:text-white transition-colors z-10">
-                            <i class="fas fa-video text-5xl"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    </div>
-                    <div class="p-8">
-                        <span class="text-[10px] font-bold text-white bg-blue-600 px-3 py-1 rounded-full uppercase tracking-wide">Review</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-4 font-teko uppercase group-hover:text-blue-600 transition-colors">La Guerra Digital</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">DJI O4 vs Walksnail Moonlight. ¿Merece la pena el cambio o es puro marketing?</p>
+                <!-- Skeleton Card 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md h-96 flex flex-col hidden md:flex">
+                    <div class="h-56 skeleton w-full"></div>
+                    <div class="p-8 flex flex-col grow">
+                         <div class="h-4 skeleton w-20 rounded mb-4"></div>
+                         <div class="h-6 skeleton w-3/4 rounded mb-2"></div>
+                         <div class="h-4 skeleton w-full rounded mt-4"></div>
+                         <div class="h-4 skeleton w-full rounded mt-2"></div>
                     </div>
                 </div>
-                 <!-- Article 3 -->
-                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                    <div class="h-56 bg-slate-300 relative overflow-hidden">
-                        <div class="absolute inset-0 bg-slate-800 group-hover:scale-110 transition-transform duration-700"></div>
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-600 group-hover:text-white transition-colors z-10">
-                            <i class="fas fa-eye-slash text-5xl"></i>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <!-- Skeleton Card 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md h-96 flex flex-col hidden md:flex">
+                    <div class="h-56 skeleton w-full"></div>
+                    <div class="p-8 flex flex-col grow">
+                         <div class="h-4 skeleton w-20 rounded mb-4"></div>
+                         <div class="h-6 skeleton w-3/4 rounded mb-2"></div>
+                         <div class="h-4 skeleton w-full rounded mt-4"></div>
+                         <div class="h-4 skeleton w-full rounded mt-2"></div>
                     </div>
-                    <div class="p-8">
-                        <span class="text-[10px] font-bold text-white bg-purple-600 px-3 py-1 rounded-full uppercase tracking-wide">Leak</span>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-4 font-teko uppercase group-hover:text-purple-600 transition-colors">Filtraciones Mensuales</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">Lo que se viene para el próximo mes en motores y frames. Spoilers dentro.</p>
+                </div>
+            </div>
+
+            <!-- Blog Container (Dynamic) -->
+            <div id="blog-posts-container" class="grid md:grid-cols-3 gap-8 hidden">
+                <!-- Posts will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section (New Feature) -->
+    <section class="py-20 bg-slate-900 dark:bg-black border-t border-slate-800 reveal">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-teko font-bold text-white mb-4 uppercase">¿Quieres volar mejor?</h2>
+            <p class="text-slate-400 mb-8">Únete a la newsletter. Sin spam, solo trucos de Betaflight, ofertas flash y actualizaciones del canal.</p>
+            <form class="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto" onsubmit="event.preventDefault(); showToast('¡Gracias por suscribirte!', 'success');">
+                <input type="email" placeholder="Tu email aquí..." class="px-5 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-red-600 flex-grow" required>
+                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all hover:scale-105">Suscribirme</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section (New) -->
+    <section id="faq" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300 reveal">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko text-center mb-10 uppercase">Preguntas Frecuentes</h2>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                    <button class="flex items-center justify-between w-full p-4 bg-white dark:bg-slate-800 text-left font-bold text-slate-900 dark:text-white focus:outline-none" onclick="toggleFaq(this)">
+                        <span>¿Necesito licencia para volar un drone FPV?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm border-t border-slate-200 dark:border-slate-700">
+                        Sí, para la mayoría de drones FPV (excepto juguetes de <250g en interiores) necesitas registrarte como operador en AESA, tener seguro de responsabilidad civil y, dependiendo de la categoría, aprobar el examen A1/A3.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                    <button class="flex items-center justify-between w-full p-4 bg-white dark:bg-slate-800 text-left font-bold text-slate-900 dark:text-white focus:outline-none" onclick="toggleFaq(this)">
+                        <span>¿Cuánto cuesta empezar en esto?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm border-t border-slate-200 dark:border-slate-700">
+                        Puedes empezar con un simulador y una emisora por unos 80-100€. Un kit de inicio analógico completo ronda los 300€, mientras que un equipo digital de gama media puede subir a los 800-1000€.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                    <button class="flex items-center justify-between w-full p-4 bg-white dark:bg-slate-800 text-left font-bold text-slate-900 dark:text-white focus:outline-none" onclick="toggleFaq(this)">
+                        <span>¿Digital o Analógico?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm border-t border-slate-200 dark:border-slate-700">
+                        Si el presupuesto lo permite, Digital (DJI O3, Walksnail, HDZero) es el futuro: mejor imagen y penetración. Analógico sigue siendo rey en latencia ultra-baja para carreras y es más económico para empezar.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- READ POST MODAL -->
+    <div id="read-modal" class="fixed inset-0 z-[60] hidden modal-overlay overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen p-0 sm:p-4">
+            <div class="bg-white dark:bg-slate-900 w-full sm:max-w-3xl sm:rounded-2xl shadow-2xl relative flex flex-col max-h-screen sm:max-h-[90vh]">
+                <!-- Close Button -->
+                <button onclick="closeReadModal()" class="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-sm transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <!-- Image Header -->
+                <div class="h-64 sm:h-80 w-full relative shrink-0">
+                    <img id="read-post-image" src="" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span id="read-post-category" class="text-xs font-bold text-white bg-red-600 px-3 py-1 rounded-full uppercase tracking-wide shadow-sm mb-3 inline-block">Categoría</span>
+                        <h2 id="read-post-title" class="text-3xl sm:text-4xl font-bold text-white font-teko leading-none">Título del Post</h2>
+                        <div class="flex items-center gap-4 mt-2 text-slate-300 text-sm">
+                            <span><i class="far fa-calendar mr-2"></i> <span id="read-post-date">Fecha</span></span>
+                            <span><i class="fas fa-user mr-2"></i> <span id="read-post-author">Admin</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Body -->
+                <div class="p-6 sm:p-10 overflow-y-auto custom-scrollbar">
+                    <div id="read-post-content" class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
+                        <!-- Content goes here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin & Login Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-[100] hidden modal-overlay overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="inline-block align-bottom bg-white dark:bg-slate-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full border border-slate-200 dark:border-slate-700">
+                
+                <!-- Modal Header -->
+                <div class="bg-slate-900 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
+                    <h3 class="text-lg leading-6 font-bold text-white font-teko uppercase tracking-wide" id="modal-title">
+                        <i class="fas fa-pen-nib mr-2 text-red-500"></i> <span id="modal-title-text">Login Editor</span>
+                    </h3>
+                    <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- LOGIN FORM (Shown if NOT logged in) -->
+                <div id="login-section" class="px-6 py-6">
+                    <form id="login-form" class="space-y-4">
+                        <p class="text-sm text-slate-500 mb-4">Acceso restringido para editores.</p>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">Email</label>
+                            <input type="email" id="login-email" required class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-3 py-2 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">Contraseña</label>
+                            <input type="password" id="login-password" required class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-3 py-2 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg shadow-lg transition-all">
+                                Entrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- EDITOR FORM (Shown if logged in) -->
+                <div id="editor-section" class="px-6 py-6 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="text-sm text-green-500 font-bold"><i class="fas fa-check-circle"></i> Modo Editor Activo</p>
+                        <button onclick="logout()" class="text-xs text-red-500 hover:underline">Cerrar Sesión</button>
+                    </div>
+                    
+                    <form id="post-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">Título</label>
+                            <input type="text" id="post-title" required class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-3 py-2 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+                        
+                        <!-- NEW AUTHOR FIELD -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">Autor</label>
+                            <input type="text" id="post-author" placeholder="Ej: Alex" class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-3 py-2 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">Categoría</label>
+                            <select id="post-category" class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-3 py-2 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none">
+                                <option value="Crónica">Crónica</option>
+                                <option value="Review">Review</option>
+                                <option value="Leak">Leak</option>
+                                <option value="Tutorial">Tutorial</option>
+                            </select>
+                        </div>
+                        <!-- PASTE IMAGE SECTION -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">Imagen Destacada</label>
+                            <!-- Drop Zone -->
+                            <div id="drop-zone" class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-6 text-center cursor-pointer hover:border-red-500 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all relative group" onclick="document.getElementById('file-input').click()">
+                                <input type="file" id="file-input" class="hidden" accept="image/*">
+                                
+                                <div id="upload-placeholder" class="pointer-events-none">
+                                    <i class="fas fa-cloud-upload-alt text-3xl text-slate-400 mb-2 group-hover:text-red-500 transition-colors"></i>
+                                    <p class="text-sm text-slate-500 dark:text-slate-400">
+                                        Click para subir o <strong class="text-slate-800 dark:text-white">Pega (Ctrl+V)</strong> aquí
+                                    </p>
+                                </div>
+                                
+                                <img id="image-preview" class="hidden w-full h-48 object-cover rounded shadow-sm">
+                                
+                                <button type="button" id="remove-image" class="hidden absolute top-2 right-2 bg-red-600 text-white rounded-full w-6 h-6 items-center justify-center text-xs shadow-md hover:scale-110 transition-transform" onclick="event.stopPropagation(); removeImage();">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <!-- Hidden input store Base64 -->
+                            <input type="hidden" id="post-image-base64">
+                        </div>
+                        <!-- END PASTE IMAGE -->
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1">Contenido / Resumen</label>
+                            <textarea id="post-content" required rows="4" class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-3 py-2 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none"></textarea>
+                        </div>
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg shadow-lg transition-all transform hover:-translate-y-1">
+                                Publicar Noticia
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Scroll Top Button -->
+    <button id="scroll-top-btn" onclick="scrollToTop()" class="bg-red-600 hover:bg-red-700 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="flex flex-col md:flex-row items-center justify-between gap-4 shadow-2xl border-t border-slate-700">
+        <div class="text-slate-300 text-sm">
+            <strong class="text-white">Uso de Cookies:</strong> Utilizamos cookies propias y de terceros para mejorar tu experiencia y fines analíticos. 
+            <a href="#" class="text-red-500 hover:underline ml-1">Política de Cookies</a>.
+        </div>
+        <div class="flex gap-3">
+            <button onclick="acceptCookies()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition-all text-sm whitespace-nowrap">
+                Aceptar
+            </button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-slate-900 dark:bg-black text-slate-400 py-16 border-t-4 border-red-600 relative overflow-hidden">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: url('data:image/svg+xml,...');"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12 relative z-10">
             <div class="col-span-1 md:col-span-2">
@@ -561,212 +1195,614 @@
                 <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-b border-slate-800 pb-2 inline-block">Contacto</h4>
                 <ul class="space-y-4 text-sm font-medium">
                     <li class="flex items-center"><i class="fas fa-envelope mr-3 text-red-600"></i> hola@fpv-drones.com</li>
-                    <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3 text-red-600"></i> Madrid, España</li>
+                    <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3 text-red-600"></i> Gipuzkoa, España</li>
                 </ul>
             </div>
         </div>
-        <div class="mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-600 uppercase tracking-widest">
-            &copy; 2024 FPV-Drones Official. All rights reserved.
+        <div class="mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-600 uppercase tracking-widest flex flex-col md:flex-row justify-center items-center gap-4">
+            <span>&copy; 2026 FPV-Drones Official. All rights reserved.</span>
+            <!-- Admin Trigger Button -->
+            <button onclick="toggleAdminPanel()" class="text-slate-700 hover:text-white transition-colors" title="Acceso Editor">
+                <i class="fas fa-lock"></i>
+            </button>
         </div>
     </footer>
 
     <!-- Script Logic -->
-    <script>
-        // --- DARK MODE LOGIC START ---
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, updateDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ======================================================
+        // CONFIGURACIÓN DE FIREBASE (PRODUCCIÓN)
+        // ======================================================
         
-        // Elements
-        const toggleBtns = [document.getElementById('theme-toggle-desktop'), document.getElementById('theme-toggle-mobile')];
-        const html = document.documentElement;
-
-        // Function to apply theme
-        function applyTheme(isDark) {
-            if (isDark) {
-                html.classList.add('dark');
-                localStorage.theme = 'dark';
-            } else {
-                html.classList.remove('dark');
-                localStorage.theme = 'light';
-            }
+        let firebaseConfig;
+        let appId = 'default-app-id';
+        
+        if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
+             if (typeof __firebase_config !== 'undefined') {
+                 firebaseConfig = JSON.parse(__firebase_config);
+                 appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+             }
+        } 
+        
+        if (!firebaseConfig) {
+            firebaseConfig = {
+                apiKey: "AIzaSyDnaFkYwdNNInlwDcQT7Kjg2qZ2w08YOMU",
+                authDomain: "web-fpv-competicion.firebaseapp.com",
+                projectId: "web-fpv-competicion",
+                storageBucket: "web-fpv-competicion.firebasestorage.app",
+                messagingSenderId: "736830142498",
+                appId: "1:736830142498:web:4e967f2e50db6f3771f27b",
+                measurementId: "G-XPCYH06SS7"
+            };
         }
 
-        // Initialize based on localStorage or OS preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            applyTheme(true);
-        } else {
-            applyTheme(false);
-        }
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        let currentUser = null;
+        let editingPostId = null;
+        let postsCache = {};
+        let allPosts = []; // Store for filtering
 
-        // Event Listeners for both toggles
-        toggleBtns.forEach(btn => {
-            if(btn) {
-                btn.addEventListener('click', () => {
-                    const isDark = html.classList.contains('dark');
-                    applyTheme(!isDark);
-                });
-            }
+        // --- AUTH & STATE LOGIC ---
+        
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            updateAdminUI();
+            subscribeToPosts(); // Re-fetch to show/hide delete buttons
         });
 
-        // --- DARK MODE LOGIC END ---
+        function updateAdminUI() {
+            const loginSection = document.getElementById('login-section');
+            const editorSection = document.getElementById('editor-section');
+            const modalTitle = document.getElementById('modal-title-text');
 
+            if (currentUser) {
+                loginSection.classList.add('hidden');
+                editorSection.classList.remove('hidden');
+                modalTitle.innerText = "Editor de Blog";
+            } else {
+                loginSection.classList.remove('hidden');
+                editorSection.classList.add('hidden');
+                modalTitle.innerText = "Login Editor";
+            }
+        }
 
-        // Data Store
-        const gearData = {
-            pro: [
-                { name: "DJI Goggles 2", type: "Gafas", desc: "Digital HD, OLED, baja latencia.", icon: "fa-vr-cardboard" },
-                { name: "Radiomaster Boxer", type: "Emisora", desc: "ELRS 2.4GHz interno. 1W potencia.", icon: "fa-gamepad" },
-                { name: "AOS 5 V5", type: "Drone", desc: "Frame anti-vibraciones, Motores 2207.", icon: "fa-paper-plane" },
-                { name: "Torvol Pitstop", type: "Mochila", desc: "La mochila estándar de la industria.", icon: "fa-suitcase" }
-            ],
-            beginner: [
-                { name: "Emax Tinyhawk III", type: "Kit RTF", desc: "Todo en uno. Indestructible.", icon: "fa-box-open" },
-                { name: "Radiomaster Pocket", type: "Emisora", desc: "Económica, pequeña y ELRS.", icon: "fa-gamepad" },
-                { name: "Skyzone Cobra X", type: "Gafas", desc: "Las mejores analógicas tipo Box.", icon: "fa-vr-cardboard" },
-                { name: "Velocidrone", type: "Software", desc: "El simulador para aprender.", icon: "fa-desktop" }
-            ]
+        // --- BLOG LOGIC ---
+
+        const subscribeToPosts = () => {
+            const loading = document.getElementById('blog-loading');
+            
+            const collectionPath = (typeof __app_id !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')))
+                ? collection(db, 'artifacts', appId, 'public', 'data', 'blog_posts')
+                : collection(db, 'blog_posts');
+
+            const q = query(collectionPath); 
+
+            onSnapshot(q, (snapshot) => {
+                loading.style.display = 'none';
+                
+                if (snapshot.empty) {
+                    document.getElementById('blog-posts-container').innerHTML = '<p class="col-span-3 text-center text-slate-500">No hay noticias publicadas aún.</p>';
+                    return;
+                }
+
+                // Client-side sorting & caching
+                allPosts = [];
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    allPosts.push({ id: doc.id, ...data });
+                    postsCache[doc.id] = data; // Cache for editing
+                });
+                allPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+                // Initial Render (All posts)
+                renderPosts(allPosts);
+
+            }, (error) => {
+                console.error("Error fetching posts:", error);
+            });
         };
 
-        const coupons = [
-            { store: "Banggood", prod: "Todo RC", discount: "10%", code: "FPVDRONES10" },
-            { store: "IhaRace", prod: "Motores", discount: "5%", code: "ALEX5" },
-            { store: "BetaFPV", prod: "Pavo Pico", discount: "15%", code: "PAVO15" },
-            { store: "HGLRC", prod: "Stacks", discount: "8%", code: "HGLRC8" },
-            { store: "Gemfan", prod: "Hélices", discount: "20%", code: "PROP20" }
-        ];
+        // Render Posts Function (Separated for filtering)
+        window.renderPosts = (posts) => {
+            const postsContainer = document.getElementById('blog-posts-container');
+            postsContainer.classList.remove('hidden');
+            postsContainer.innerHTML = '';
 
-        // Initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            renderGear('pro'); // Default view
-            renderCoupons(coupons);
-            // initChart(); // Chart functionality removed/hidden in this version per design
-            
-            // Mobile Menu
-            const mobileBtn = document.getElementById('mobile-menu-btn');
-            if(mobileBtn) {
-                mobileBtn.addEventListener('click', () => {
-                    const menu = document.getElementById('mobile-menu');
-                    menu.classList.toggle('hidden');
-                });
-            }
-        });
-
-        // Tabs Logic
-        function switchTab(tabId, btn) {
-            // Hide all content
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            // Show selected
-            document.getElementById(tabId).classList.remove('hidden');
-            
-            // Reset buttons (remove active classes)
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('bg-slate-900', 'text-white', 'shadow-sm', 'dark:bg-red-600');
-                el.classList.add('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
+            posts.forEach((post) => {
+                const card = createPostCard(post.id, post);
+                postsContainer.appendChild(card);
             });
-            // Activate button
-            btn.classList.remove('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
-            btn.classList.add('bg-slate-900', 'text-white', 'shadow-sm', 'dark:bg-red-600');
-        }
+        };
 
-        // Gear Toggle Logic
-        function toggleGear(mode) {
-            const btnPro = document.getElementById('btn-pro');
-            const btnBeg = document.getElementById('btn-beginner');
-            
-            if(mode === 'pro') {
-                btnPro.classList.add('bg-red-600', 'text-white', 'shadow-md');
-                btnPro.classList.remove('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
-                btnBeg.classList.remove('bg-red-600', 'text-white', 'shadow-md');
-                btnBeg.classList.add('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
-            } else {
-                btnBeg.classList.add('bg-red-600', 'text-white', 'shadow-md');
-                btnBeg.classList.remove('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
-                btnPro.classList.remove('bg-red-600', 'text-white', 'shadow-md');
-                btnPro.classList.add('text-slate-500', 'hover:text-slate-900', 'dark:text-slate-400', 'dark:hover:text-white');
-            }
-            renderGear(mode);
-        }
-
-        function renderGear(mode) {
-            const container = document.getElementById('gear-grid');
-            container.innerHTML = '';
-            
-            gearData[mode].forEach(item => {
-                const card = document.createElement('div');
-                card.className = "bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center text-center fade-in group";
-                card.innerHTML = `
-                    <div class="w-20 h-20 bg-slate-50 dark:bg-slate-700 rounded-full flex items-center justify-center text-slate-700 dark:text-slate-300 mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors duration-300">
-                        <i class="fas ${item.icon} text-3xl"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900 dark:text-white font-teko uppercase tracking-wide">${item.name}</h3>
-                    <span class="text-[10px] uppercase text-red-500 font-bold mb-3 tracking-widest">${item.type}</span>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm font-light mb-6 leading-relaxed">${item.desc}</p>
-                    <button class="mt-auto text-xs font-bold text-slate-900 dark:text-slate-300 border-b-2 border-slate-200 dark:border-slate-600 hover:border-red-600 dark:hover:border-red-500 hover:text-red-600 dark:hover:text-red-500 uppercase tracking-widest transition-all pb-1">Ver en tienda</button>
-                `;
-                container.appendChild(card);
+        // Filter Function
+        window.filterPosts = (category) => {
+            document.querySelectorAll('.blog-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
+                    btn.classList.remove('text-slate-900', 'dark:text-white');
+                } else {
+                    btn.classList.remove('bg-slate-900', 'text-white', 'dark:bg-white', 'dark:text-slate-900');
+                }
             });
-        }
 
-        // Coupons Logic
-        function renderCoupons(data) {
-            const tbody = document.getElementById('couponTableBody');
-            tbody.innerHTML = '';
+            // If we have a search term active, filter that too
+            const searchTerm = document.getElementById('blogSearch').value.toLowerCase();
+
+            let filtered = allPosts;
+
+            // Apply category filter
+            if (category !== 'all') {
+                filtered = filtered.filter(p => p.category === category);
+            }
+
+            // Apply search filter
+            if (searchTerm) {
+                filtered = filtered.filter(p => 
+                    p.title.toLowerCase().includes(searchTerm) || 
+                    p.content.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            renderPosts(filtered);
+        };
+
+        const createPostCard = (id, post) => {
+            const div = document.createElement('div');
+            div.className = "bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group relative h-full flex flex-col";
+            div.onclick = (e) => {
+                if(e.target.closest('button')) return;
+                openReadModal(id);
+            };
             
-            data.forEach(item => {
-                const row = document.createElement('tr');
-                row.className = "hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors";
-                row.innerHTML = `
-                    <td class="px-6 py-5 whitespace-nowrap text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide">${item.store}</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-medium">${item.prod}</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-sm text-red-500 font-bold text-lg">${item.discount}</td>
-                    <td class="px-6 py-5 whitespace-nowrap text-right text-sm font-medium">
-                        <button class="text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400 bg-white dark:bg-slate-900 hover:bg-red-50 dark:hover:bg-slate-800 px-4 py-2 font-mono text-xs border border-slate-200 dark:border-slate-600 rounded-lg transition-all shadow-sm" onclick="copyCode(this, '${item.code}')">
-                            ${item.code} <i class="fas fa-copy ml-2"></i>
+            let tagColor = 'bg-slate-600';
+            let hoverColor = 'group-hover:text-slate-600';
+            
+            if(post.category === 'Crónica') { tagColor = 'bg-red-600'; hoverColor = 'group-hover:text-red-600'; }
+            if(post.category === 'Review') { tagColor = 'bg-blue-600'; hoverColor = 'group-hover:text-blue-600'; }
+            if(post.category === 'Leak') { tagColor = 'bg-purple-600'; hoverColor = 'group-hover:text-purple-600'; }
+            if(post.category === 'Tutorial') { tagColor = 'bg-green-600'; hoverColor = 'group-hover:text-green-600'; }
+
+            // Handle Base64 or URL
+            const imageSrc = post.image || 'https://via.placeholder.com/400x300/1e293b/ffffff?text=FPV+Drones';
+            const previewText = post.content.length > 120 ? post.content.substring(0, 120) + '...' : post.content;
+
+            div.innerHTML = `
+                <div class="h-56 bg-slate-300 relative overflow-hidden shrink-0">
+                    <img src="${imageSrc}" alt="${post.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/400x300/1e293b/ffffff?text=No+Image'" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    
+                    ${currentUser ? `
+                    <div class="absolute top-2 right-2 flex gap-2 z-20">
+                        <button onclick="window.editPost('${id}'); event.stopPropagation();" class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform" title="Editar Noticia">
+                            <i class="fas fa-pencil-alt"></i>
                         </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
+                        <button onclick="window.deletePost('${id}'); event.stopPropagation();" class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform" title="Borrar Noticia">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="p-8 flex flex-col grow">
+                    <div>
+                        <span class="text-[10px] font-bold text-white ${tagColor} px-3 py-1 rounded-full uppercase tracking-wide shadow-sm">${post.category}</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-4 font-teko uppercase ${hoverColor} transition-colors">${post.title}</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed line-clamp-3">${previewText}</p>
+                    <div class="mt-auto pt-4 flex items-center text-xs text-slate-400 font-bold uppercase tracking-widest">
+                        <span>Leer más <i class="fas fa-arrow-right ml-1"></i></span>
+                    </div>
+                </div>
+            `;
+            return div;
+        };
+
+        // --- READ MODAL LOGIC ---
+        window.openReadModal = (id) => {
+            const post = postsCache[id];
+            if (!post) return;
+
+            document.getElementById('read-post-title').innerText = post.title;
+            document.getElementById('read-post-category').innerText = post.category;
+            const catBadge = document.getElementById('read-post-category');
+            catBadge.className = `text-xs font-bold text-white px-3 py-1 rounded-full uppercase tracking-wide shadow-sm mb-3 inline-block`;
+            if(post.category === 'Crónica') catBadge.classList.add('bg-red-600');
+            else if(post.category === 'Review') catBadge.classList.add('bg-blue-600');
+            else if(post.category === 'Leak') catBadge.classList.add('bg-purple-600');
+            else if(post.category === 'Tutorial') catBadge.classList.add('bg-green-600');
+            else catBadge.classList.add('bg-slate-600');
+
+            document.getElementById('read-post-image').src = post.image || 'https://via.placeholder.com/800x400';
+            
+            const date = new Date(post.createdAt);
+            document.getElementById('read-post-date').innerText = date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+            document.getElementById('read-post-author').innerText = post.author || 'Admin';
+
+            const formattedContent = post.content.split('\n').map(para => para.trim()).filter(para => para).map(para => `<p>${para}</p>`).join('');
+            document.getElementById('read-post-content').innerHTML = formattedContent;
+
+            document.getElementById('read-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        };
+
+        window.closeReadModal = () => {
+            document.getElementById('read-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto'; 
+        };
+
+        // --- GLOBAL ADMIN FUNCTIONS ---
+        
+        window.toggleAdminPanel = () => {
+            const modal = document.getElementById('admin-modal');
+            if (modal.classList.contains('hidden')) {
+                resetFormState();
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+                resetFormState();
+            }
+        };
+
+        window.logout = async () => {
+            try {
+                await signOut(auth);
+                showToast("Sesión cerrada correctamente", "info");
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
+        // --- IMAGE HANDLING (PASTE & DROP) ---
+        
+        window.removeImage = () => {
+            document.getElementById('file-input').value = '';
+            document.getElementById('post-image-base64').value = '';
+            document.getElementById('image-preview').src = '';
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('upload-placeholder').classList.remove('hidden');
+            document.getElementById('remove-image').classList.add('hidden');
+        }
+
+        // Helper: Compress and Convert to Base64
+        const compressImage = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 800; // Resize to max 800px width
+                        const scaleSize = MAX_WIDTH / img.width;
+                        canvas.width = MAX_WIDTH;
+                        canvas.height = img.height * scaleSize;
+
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        
+                        // Compress to JPEG 0.7 quality
+                        const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                        resolve(dataUrl);
+                    }
+                };
+                reader.onerror = error => reject(error);
             });
         }
 
-        // Search Filter
-        document.getElementById('couponSearch').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = coupons.filter(c => c.store.toLowerCase().includes(term));
-            renderCoupons(filtered);
+        const handleFileSelection = async (file) => {
+            if (file) {
+                try {
+                    const base64 = await compressImage(file);
+                    document.getElementById('post-image-base64').value = base64;
+                    document.getElementById('image-preview').src = base64;
+                    document.getElementById('image-preview').classList.remove('hidden');
+                    document.getElementById('upload-placeholder').classList.add('hidden');
+                    document.getElementById('remove-image').classList.remove('hidden');
+                } catch (e) {
+                    console.error("Error processing image", e);
+                    alert("Error al procesar la imagen.");
+                }
+            }
+        }
+
+        // Input Change Listener
+        document.getElementById('file-input').addEventListener('change', (e) => {
+            handleFileSelection(e.target.files[0]);
         });
 
-        // Utils
-        function copyCode(btn, code = null) {
-            const textToCopy = code || btn.previousElementSibling.innerText;
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const original = btn.innerHTML;
-                const originalClasses = btn.className;
-                
-                btn.innerHTML = '<i class="fas fa-check mr-2"></i> Copiado!';
-                // Preserve dark mode utility classes if re-rendering, but for simple toggle:
-                btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600');
-                btn.classList.add('bg-green-600', 'text-white', 'border-green-600');
-                
-                setTimeout(() => {
-                    btn.innerHTML = original;
-                    btn.className = originalClasses;
-                }, 2000);
-            });
+        // Paste Listener (Global on Modal)
+        document.addEventListener('paste', (e) => {
+            // Only if modal is open
+            if(document.getElementById('admin-modal').classList.contains('hidden')) return;
+
+            const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+            for (let index in items) {
+                const item = items[index];
+                if (item.kind === 'file') {
+                    const blob = item.getAsFile();
+                    handleFileSelection(blob);
+                }
+            }
+        });
+
+        // Drag & Drop
+        const dropZone = document.getElementById('drop-zone');
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-red-500');
+        });
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-red-500');
+        });
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-red-500');
+            if (e.dataTransfer.files.length) {
+                handleFileSelection(e.dataTransfer.files[0]);
+            }
+        });
+
+        // --- END IMAGE HANDLING ---
+
+        window.editPost = (id) => {
+            const post = postsCache[id];
+            if (!post) return;
+
+            document.getElementById('post-title').value = post.title;
+            document.getElementById('post-author').value = post.author || ''; // Populate Author
+            document.getElementById('post-category').value = post.category;
+            document.getElementById('post-content').value = post.content;
+            
+            // Handle image load
+            if (post.image) {
+                document.getElementById('post-image-base64').value = post.image;
+                document.getElementById('image-preview').src = post.image;
+                document.getElementById('image-preview').classList.remove('hidden');
+                document.getElementById('upload-placeholder').classList.add('hidden');
+                document.getElementById('remove-image').classList.remove('hidden');
+            } else {
+                removeImage();
+            }
+            
+            editingPostId = id;
+            
+            if(currentUser) {
+                document.getElementById('modal-title-text').innerText = "Editar Noticia";
+                const btn = document.querySelector('#post-form button[type="submit"]');
+                if(btn) btn.innerText = "Actualizar Noticia";
+                document.getElementById('admin-modal').classList.remove('hidden');
+            }
         }
 
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 80;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
+        function resetFormState() {
+            document.getElementById('post-form').reset();
+            removeImage(); // Reset image field
+            editingPostId = null;
+            if (currentUser) {
+                document.getElementById('modal-title-text').innerText = "Editor de Blog";
+                const btn = document.querySelector('#post-form button[type="submit"]');
+                if(btn) btn.innerText = "Publicar Noticia";
             }
+        }
+
+        window.deletePost = async (id) => {
+            if(confirm('¿Estás seguro de que quieres borrar esta noticia?')) {
+                try {
+                    const collectionPath = (typeof __app_id !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')))
+                        ? collection(db, 'artifacts', appId, 'public', 'data', 'blog_posts')
+                        : collection(db, 'blog_posts');
+                        
+                    await deleteDoc(doc(collectionPath, id));
+                    showToast("Noticia borrada", "success");
+                } catch (e) {
+                    showToast('Error al borrar: ' + e.message, "error");
+                }
+            }
+        };
+
+        // LOGIN SUBMIT
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            const btn = e.target.querySelector('button');
+            
+            btn.innerText = 'Verificando...';
+            btn.disabled = true;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+                e.target.reset();
+                showToast("¡Bienvenido, Editor!", "success");
+            } catch (error) {
+                console.error(error);
+                showToast('Error de acceso: ' + error.message, "error");
+            } finally {
+                btn.innerText = 'Entrar';
+                btn.disabled = false;
+            }
+        });
+
+        // POST SUBMIT (CREATE OR UPDATE)
+        document.getElementById('post-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = editingPostId ? 'Actualizando...' : 'Publicando...';
+
+            try {
+                const postData = {
+                    title: document.getElementById('post-title').value,
+                    author: document.getElementById('post-author').value, // Save Author
+                    category: document.getElementById('post-category').value,
+                    image: document.getElementById('post-image-base64').value, // Use Base64
+                    content: document.getElementById('post-content').value,
+                    createdAt: new Date().toISOString()
+                };
+
+                const collectionPath = (typeof __app_id !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')))
+                    ? collection(db, 'artifacts', appId, 'public', 'data', 'blog_posts')
+                    : collection(db, 'blog_posts');
+
+                if (editingPostId) {
+                    await updateDoc(doc(collectionPath, editingPostId), postData);
+                    showToast('¡Noticia actualizada correctamente!', "success");
+                } else {
+                    await addDoc(collectionPath, postData);
+                    showToast('¡Noticia publicada correctamente!', "success");
+                }
+                
+                resetFormState();
+                window.toggleAdminPanel();
+                
+            } catch (error) {
+                console.error("Error saving post:", error);
+                showToast('Error: Imagen demasiado grande o fallo de red.', "error");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            }
+        });
+
+        // Search Filter for Blog
+        document.getElementById('blogSearch').addEventListener('input', (e) => {
+            // Re-apply current category filter + search text
+            const activeBtn = document.querySelector('.blog-filter-btn.bg-slate-900') || document.querySelector('.blog-filter-btn.dark\\:bg-white');
+            const category = activeBtn ? activeBtn.dataset.filter : 'all';
+            filterPosts(category);
+        });
+
+        // Scroll Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            });
+
+            const hiddenElements = document.querySelectorAll('.reveal');
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+
+        // FAQ Toggle Logic
+        window.toggleFaq = (button) => {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        };
+
+        // --- FLIGHT TIME CALCULATOR LOGIC ---
+        window.calculateFlightTime = () => {
+            const mah = parseFloat(document.getElementById('calc-mah').value) || 0;
+            const style = document.getElementById('calc-style').value;
+            const resultEl = document.getElementById('calc-result');
+
+            if (mah <= 0) {
+                resultEl.innerText = "0:00";
+                return;
+            }
+
+            // Approximate consumption factors (mAh per minute) for a standard 5" quad
+            // These are rough estimates for simulation
+            let consumptionRate = 0; // mAh/min
+
+            switch (style) {
+                case 'cinematic': // Cruising ~ 15-20A avg? No, simpler: 1300mah lasts ~6-8 min
+                    consumptionRate = 1300 / 7; // ~185 mah/min
+                    break;
+                case 'freestyle': // Mixed ~ 1300mah lasts ~3-5 min
+                    consumptionRate = 1300 / 4; // ~325 mah/min
+                    break;
+                case 'racing': // Full throttle ~ 1300mah lasts ~2-3 min
+                    consumptionRate = 1300 / 2.5; // ~520 mah/min
+                    break;
+                default:
+                    consumptionRate = 300;
+            }
+
+            // Calculate raw minutes (using 80% of capacity rule usually, but let's be simpler)
+            // Let's assume we use 100% for simple math, or better, 80% usable capacity
+            const usableCapacity = mah * 0.8;
+            const totalMinutes = usableCapacity / consumptionRate;
+
+            const mins = Math.floor(totalMinutes);
+            const secs = Math.floor((totalMinutes - mins) * 60);
+
+            // Format mm:ss
+            const formattedSecs = secs < 10 ? `0${secs}` : secs;
+            resultEl.innerText = `${mins}:${formattedSecs}`;
+            
+            // Subtle animation effect
+            resultEl.style.transform = "scale(1.1)";
+            setTimeout(() => resultEl.style.transform = "scale(1)", 200);
+        };
+
+    </script>
+    
+    <!-- Standard script for non-module logic fallback/overlap if needed, keeping copyCode robust -->
+    <script>
+        // Separate script block for non-module critical functions to ensure global scope availability
+        function copyCode(btn, code = null) {
+            const textToCopy = code || (btn.previousElementSibling ? btn.previousElementSibling.innerText : '');
+            if (!textToCopy) return;
+
+            // Robust copy method
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            
+            // Avoid scrolling to bottom
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            textArea.style.opacity = "0";
+
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if(successful) {
+                    if (window.showToast) window.showToast("Copiado al portapapeles", "success");
+                    
+                    const originalHTML = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check mr-2"></i> Copiado!';
+                    // Optional styling change
+                    const originalClasses = btn.className;
+                    btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600');
+                    btn.classList.add('bg-green-600', 'text-white', 'border-green-600');
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalHTML;
+                        btn.className = originalClasses;
+                    }, 2000);
+                } else {
+                     if (window.showToast) window.showToast("No se pudo copiar", "error");
+                }
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
         }
     </script>
 </body>
