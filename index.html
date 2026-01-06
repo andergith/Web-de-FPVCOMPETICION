@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FPV-Drones | Web Oficial</title>
-    <meta name="description" content="Web oficial de FPV-Drones. Tutoriales, guías de montaje, competición y las mejores ofertas del mundo FPV.">
+    <title>FPV COMPETICION | Web Oficial del Canal</title>
+    <meta name="description" content="Web oficial del canal FPV COMPETICION - DRONES. Tutoriales de montaje, reviews honestas, simuladores y la mejor comunidad de FPV en español.">
     <!-- Meta robots para control legal -->
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fpv-drones.es/">
-    <meta property="og:title" content="FPV-Drones | No vueles el drone, SÉ el drone">
+    <meta property="og:title" content="FPV COMPETICION | No vueles el drone, SÉ el drone">
     <meta property="og:description" content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
     <!-- Usar ruta absoluta recomendada para OG images -->
     <meta property="og:image" content="https://fpv-drones.es/imagenes/social-share.jpg">
@@ -19,7 +19,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fpv-drones.es/">
-    <meta property="twitter:title" content="FPV-Drones | Web Oficial">
+    <meta property="twitter:title" content="FPV COMPETICION | Web Oficial">
     <meta property="twitter:description" content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
     
     <!-- Structured Data (SEO) -->
@@ -27,13 +27,13 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "FPV-Drones",
+      "name": "FPV COMPETICION",
       "url": "https://fpv-drones.es/",
       "author": {
         "@type": "Person",
         "name": "Alex"
       },
-      "description": "La comunidad definitiva de drones FPV en español.",
+      "description": "La web oficial del canal de YouTube FPV COMPETICION - DRONES.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://fpv-drones.es/?s={search_term_string}",
@@ -92,6 +92,18 @@
         h1, h2, h3, h4, .font-teko {
             font-family: 'Teko', sans-serif;
             text-transform: uppercase;
+        }
+
+        /* Reading Progress Bar */
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            z-index: 100;
+            transition: width 0.1s ease-out;
         }
 
         /* Privacy Facade for YouTube (GDPR) */
@@ -214,6 +226,15 @@
         }
         #cookie-banner.show { transform: translateY(0); }
         
+        /* Toggle Switch CSS for Settings */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #dc2626;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #dc2626;
+        }
+        
         /* Mobile Table */
         @media (max-width: 768px) {
             #couponTableBody tr { display: flex; flex-direction: column; background-color: rgba(255,255,255,0.05); margin-bottom: 1rem; border-radius: 0.5rem; padding: 1rem; border: 1px solid rgba(255,255,255,0.1); }
@@ -231,13 +252,16 @@
 </head>
 <body class="antialiased scroll-smooth bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
 
+    <!-- NEW: Reading Progress Bar -->
+    <div id="reading-progress"></div>
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-white/80 dark:bg-dark-bg/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="scrollToSection('hero')">
-                    <span class="font-teko text-3xl tracking-wide text-slate-900 dark:text-white">FPV<span class="text-red-600">-</span>DRONES</span>
+                    <span class="font-teko text-3xl tracking-wide text-slate-900 dark:text-white">FPV <span class="text-red-600">COMPETICION</span></span>
                 </div>
                 
                 <!-- Desktop Menu -->
@@ -246,6 +270,7 @@
                     <button onclick="scrollToSection('equipo')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Equipo</button>
                     <button onclick="scrollToSection('ofertas')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Ofertas</button>
                     <button onclick="scrollToSection('builds')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Builds</button>
+                    <button onclick="scrollToSection('videos-destacados')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Canal</button>
                     <button onclick="scrollToSection('servicios')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Servicios</button>
                     <button onclick="scrollToSection('blog')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Blog</button>
                     
@@ -253,13 +278,13 @@
 
                     <!-- Social -->
                     <div class="flex items-center gap-3">
-                        <a href="#" class="text-slate-500 hover:text-red-600"><i class="fab fa-youtube text-lg"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-pink-600"><i class="fab fa-instagram text-lg"></i></a>
-                        <a href="#" class="text-slate-500 hover:text-blue-500"><i class="fab fa-telegram text-lg"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-red-600" aria-label="YouTube"><i class="fab fa-youtube text-lg"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-pink-600" aria-label="Instagram"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="text-slate-500 hover:text-blue-500" aria-label="Telegram"><i class="fab fa-telegram text-lg"></i></a>
                     </div>
 
                     <!-- Dark Mode -->
-                    <button id="theme-toggle-desktop" class="p-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-yellow-400 transition-colors">
+                    <button id="theme-toggle-desktop" aria-label="Cambiar tema" class="p-2 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-yellow-400 transition-colors">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:inline"></i>
                     </button>
@@ -267,11 +292,11 @@
 
                 <!-- Mobile Toggle -->
                 <div class="flex items-center md:hidden gap-4">
-                     <button id="theme-toggle-mobile" class="text-slate-800 dark:text-yellow-400">
+                     <button id="theme-toggle-mobile" aria-label="Cambiar tema móvil" class="text-slate-800 dark:text-yellow-400">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:inline"></i>
                     </button>
-                    <button id="mobile-menu-btn" class="text-slate-900 dark:text-white hover:text-red-600">
+                    <button id="mobile-menu-btn" aria-label="Menú móvil" class="text-slate-900 dark:text-white hover:text-red-600">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -284,6 +309,7 @@
                 <a href="#equipo" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Equipo</a>
                 <a href="#ofertas" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Ofertas</a>
                 <a href="#builds" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Builds</a>
+                <a href="#videos-destacados" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Canal</a>
                 <a href="#servicios" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Servicios</a>
                 <a href="#blog" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Blog</a>
             </div>
@@ -300,18 +326,18 @@
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                         </span>
-                        Web Oficial
+                        Canal Oficial
                     </div>
                     <h1 class="text-6xl tracking-tight font-extrabold text-slate-900 dark:text-white sm:text-7xl md:text-8xl font-teko leading-none">
                         NO VUELES EL DRONE.<br>
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-500">SÉ EL DRONE.</span>
                     </h1>
                     <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                        La web oficial de <strong>@FPV-Drones</strong>. Guías técnicas, diagramas de montaje y la realidad sin censura del mundo FPV.
+                        La extensión web del canal <strong>FPV COMPETICION - DRONES</strong>. Guías técnicas, diagramas de montaje y la realidad sin censura del mundo FPV.
                     </p>
                     <div class="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
                         <a href="https://youtube.com/@FPV-Drones" target="_blank" class="flex items-center justify-center px-8 py-4 border border-transparent font-bold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-all hover:-translate-y-1 shadow-lg">
-                            <i class="fab fa-youtube mr-2"></i> Ver canal
+                            <i class="fab fa-youtube mr-2"></i> Ir al Canal
                         </a>
                         <button onclick="scrollToSection('academia')" class="flex items-center justify-center px-8 py-4 border border-slate-200 dark:border-slate-700 font-bold text-slate-700 dark:text-slate-200 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-all">
                             <i class="fas fa-graduation-cap mr-2"></i> Aprender
@@ -351,7 +377,7 @@
         </div>
     </section>
 
-    <!-- Academia de Vuelo Section (Restored Interactive Tabs) -->
+    <!-- Academia de Vuelo Section -->
     <section id="academia" class="py-24 bg-slate-50 dark:bg-dark-bg relative section-slant reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -489,7 +515,7 @@
         </div>
     </section>
 
-    <!-- Equipo Necesario (Restored Toggle Logic) -->
+    <!-- Equipo Necesario -->
     <section id="equipo" class="py-24 bg-white dark:bg-dark-bg transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -597,7 +623,7 @@
         </div>
     </section>
 
-    <!-- Herramientas Section (Restored Calculator) -->
+    <!-- Herramientas Section -->
     <section id="herramientas" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300 reveal">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko text-center mb-10 uppercase">Herramientas de Vuelo</h2>
@@ -635,34 +661,71 @@
         </div>
     </section>
 
-    <!-- Servicios Section (Restored) -->
-    <section id="servicios" class="py-24 bg-white dark:bg-dark-bg section-slant transition-colors duration-300 reveal">
+    <!-- NEW: Featured Videos Section (Replaces Services) -->
+    <section id="videos-destacados" class="py-24 bg-white dark:bg-dark-bg section-slant transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Servicios Profesionales</h2>
-                <p class="mt-4 text-slate-600 dark:text-slate-400 font-light">Más allá de YouTube. Operativa profesional y consultoría.</p>
+                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Lo Mejor del Canal</h2>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 font-light">Selección de las listas de reproducción más populares para que no te pierdas nada.</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition-colors shadow-lg">
+                <!-- Video Category 1 -->
+                <a href="https://www.youtube.com/@FPV-Drones/playlists?view=50&sort=dd&shelf_id=3" target="_blank" class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-center">
+                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-full flex items-center justify-center mb-6 mx-auto group-hover:bg-red-600 transition-colors shadow-lg">
+                        <i class="fas fa-book-open text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Tutoriales desde Cero</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">La guía definitiva para empezar en FPV sin estrellarte (demasiado) el primer día.</p>
+                    <span class="mt-auto text-red-600 font-bold uppercase text-xs tracking-widest">Ver Lista <i class="fas fa-arrow-right ml-1"></i></span>
+                </a>
+                <!-- Video Category 2 -->
+                <a href="https://www.youtube.com/@FPV-Drones/videos" target="_blank" class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-center">
+                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-full flex items-center justify-center mb-6 mx-auto group-hover:bg-red-600 transition-colors shadow-lg">
+                        <i class="fas fa-microscope text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Reviews Honestas</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Analizo lo último del mercado. Si es basura, te lo digo. Si es oro, también.</p>
+                    <span class="mt-auto text-red-600 font-bold uppercase text-xs tracking-widest">Ver Reviews <i class="fas fa-arrow-right ml-1"></i></span>
+                </a>
+                <!-- Video Category 3 -->
+                <a href="https://www.youtube.com/@FPV-Drones/shorts" target="_blank" class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-center">
+                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-full flex items-center justify-center mb-6 mx-auto group-hover:bg-red-600 transition-colors shadow-lg">
+                        <i class="fas fa-flag-checkered text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Vlogs y Competición</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Vente conmigo a las carreras y eventos. Pura adrenalina y backstage.</p>
+                    <span class="mt-auto text-red-600 font-bold uppercase text-xs tracking-widest">Ver Vlogs <i class="fas fa-arrow-right ml-1"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section (Grabación FPV) -->
+    <section id="servicios" class="min-h-[30vh] flex flex-col justify-center py-12 bg-slate-50 dark:bg-dark-card section-slant transition-colors duration-300 reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="text-center mb-8">
+                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Servicios Profesionales</h2>
+                <p class="mt-2 text-slate-600 dark:text-slate-400 font-light">Producción audiovisual de alto nivel.</p>
+            </div>
+            <div class="max-w-md mx-auto">
+                <div class="group bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-center relative overflow-hidden">
+                    <!-- Decoración sutil -->
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-600"></div>
+                    
+                    <div class="w-16 h-16 bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white rounded-full flex items-center justify-center mb-4 mx-auto group-hover:bg-red-600 group-hover:text-white transition-colors duration-300 shadow-md">
                         <i class="fas fa-video text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">FPV Cinema</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Planos secuencia imposibles para videoclips, inmobiliaria y publicidad. Calidad hasta 5K.</p>
-                </div>
-                <div class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition-colors shadow-lg">
-                        <i class="fas fa-user-md text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Consultoría 1 a 1</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">¿Atascado con un drone que no arma? Reserva 30 minutos y lo solucionamos por videollamada.</p>
-                </div>
-                <div class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition-colors shadow-lg">
-                        <i class="fas fa-tools text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Montaje a Medida</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Si soldar no es lo tuyo, dime qué necesitas y yo construyo, configuro y tuneo tu drone listo para volar.</p>
+                    
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-2 uppercase">Grabación FPV</h3>
+                    
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                        Planos cinemáticos imposibles para videoclips, inmobiliaria y publicidad. Calidad 5K estabilizada.
+                    </p>
+                    
+                    <button onclick="openContactModal('Grabación FPV')" class="mt-auto w-full bg-slate-900 dark:bg-red-600 text-white font-bold py-3 rounded-xl hover:bg-slate-800 dark:hover:bg-red-700 transition shadow-lg flex items-center justify-center gap-2 text-sm">
+                        <span>Pedir Presupuesto</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -685,7 +748,7 @@
         </div>
     </section>
 
-    <!-- Newsletter Section (Restored) -->
+    <!-- Newsletter Section -->
     <section class="py-20 bg-slate-900 dark:bg-black border-t border-slate-800 reveal">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl font-teko font-bold text-white mb-4 uppercase">¿Quieres volar mejor?</h2>
@@ -697,7 +760,7 @@
         </div>
     </section>
 
-    <!-- FAQ Section (Restored) -->
+    <!-- FAQ Section -->
     <section id="faq" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300 reveal">
         <div class="max-w-3xl mx-auto px-4">
             <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko text-center mb-10 uppercase">Preguntas Frecuentes</h2>
@@ -733,32 +796,107 @@
         </div>
     </section>
 
-    <!-- Cookie Banner (RGPD Compliant) -->
-    <div id="cookie-banner" class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-2xl border-t border-slate-700">
-        <div class="text-slate-300 text-sm flex-1">
-            <strong class="text-white">Privacidad y Cookies:</strong> 
-            Usamos cookies propias y de terceros (Google, YouTube) para analítica y mostrar contenido multimedia. 
-            Puedes aceptarlas todas, rechazarlas o configurarlas. 
-            Más info en nuestra <a href="#" onclick="openLegalModal('cookies')" class="text-red-500 hover:underline">Política de Cookies</a>.
+    <!-- NEW: Contact Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-lg max-w-md w-full p-6 relative border border-slate-700 shadow-2xl">
+            <button onclick="document.getElementById('contact-modal').classList.add('hidden')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+            <h3 class="text-2xl font-teko text-slate-900 dark:text-white mb-2">Contactar</h3>
+            <p class="text-sm text-slate-500 mb-6">Estás interesado en: <strong id="contact-subject" class="text-red-500">Servicio</strong></p>
+            
+            <form onsubmit="event.preventDefault(); showToast('Mensaje enviado. Te responderé pronto.', 'success'); document.getElementById('contact-modal').classList.add('hidden');" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Tu Email</label>
+                    <input type="email" required class="w-full p-3 rounded bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:border-red-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Mensaje</label>
+                    <textarea rows="4" required class="w-full p-3 rounded bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:border-red-500 outline-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-red-600 text-white py-3 rounded font-bold hover:bg-red-700 transition shadow-lg">Enviar Solicitud</button>
+            </form>
         </div>
-        <div class="flex flex-wrap gap-2 w-full md:w-auto">
-             <button onclick="handleCookies('reject')" class="flex-1 md:flex-none px-4 py-2 border border-slate-500 text-slate-300 rounded hover:bg-slate-800 transition text-sm">
+    </div>
+
+    <!-- Cookie Banner Advanced (RGPD Compliant) -->
+    <div id="cookie-banner" class="flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_-4px_20px_rgba(0,0,0,0.5)] border-t border-slate-700 p-6">
+        <div class="text-slate-300 text-sm flex-1">
+            <h4 class="text-white font-bold mb-2">🍪 Configuración de Privacidad</h4>
+            <p class="leading-relaxed">
+                Utilizamos cookies propias y de terceros para fines analíticos y para mostrarte contenido personalizado (como vídeos de YouTube). 
+                Puedes aceptar todas las cookies, rechazarlas o configurarlas a tu gusto. 
+                Consulta nuestra <a href="#" onclick="openLegalModal('cookies')" class="text-red-500 hover:underline font-bold">Política de Cookies</a> para más detalles.
+            </p>
+        </div>
+        <div class="flex flex-wrap gap-3 w-full md:w-auto justify-end">
+             <button onclick="cookieManager.openSettings()" class="px-4 py-2 border border-slate-500 text-slate-300 rounded-lg hover:bg-slate-800 transition text-sm font-medium">
+                Configurar
+            </button>
+             <button onclick="cookieManager.rejectAll()" class="px-4 py-2 border border-red-900 text-red-400 rounded-lg hover:bg-red-900/20 transition text-sm font-medium">
                 Rechazar
             </button>
-            <button onclick="handleCookies('accept')" class="flex-1 md:flex-none bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition text-sm">
+            <button onclick="cookieManager.acceptAll()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition text-sm shadow-lg shadow-red-600/20">
                 Aceptar Todo
             </button>
         </div>
     </div>
 
-    <!-- Modales Legales (Placeholder) -->
+    <!-- Cookie Settings Modal -->
+    <div id="cookie-settings-modal" class="fixed inset-0 z-[101] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
+            <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-teko mb-4">Configuración de Cookies</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Gestiona tus preferencias de consentimiento. Las cookies técnicas son obligatorias para el funcionamiento de la web.</p>
+            
+            <div class="space-y-4 mb-8">
+                <!-- Technical -->
+                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                    <div>
+                        <span class="font-bold text-slate-900 dark:text-white block">Técnicas (Necesarias)</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400">Sesión, carrito, preferencias.</span>
+                    </div>
+                    <input type="checkbox" checked disabled class="w-5 h-5 text-red-600 rounded bg-slate-200 border-slate-400 cursor-not-allowed opacity-50">
+                </div>
+                <!-- Analytics -->
+                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                    <div>
+                        <span class="font-bold text-slate-900 dark:text-white block">Analíticas</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400">Google Analytics, estadísticas anónimas.</span>
+                    </div>
+                    <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                        <input type="checkbox" name="toggle" id="toggle-analytics" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                        <label for="toggle-analytics" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                    </div>
+                </div>
+                <!-- Marketing -->
+                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+                    <div>
+                        <span class="font-bold text-slate-900 dark:text-white block">Marketing / Terceros</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400">YouTube Embeds, Redes Sociales.</span>
+                    </div>
+                    <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                        <input type="checkbox" name="toggle" id="toggle-marketing" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                        <label for="toggle-marketing" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-3">
+                <button onclick="document.getElementById('cookie-settings-modal').classList.add('hidden')" class="px-4 py-2 text-slate-500 hover:text-slate-800 dark:hover:text-white transition">Cancelar</button>
+                <button onclick="cookieManager.saveSettings()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition">Guardar Preferencias</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modales Legales (Detailed) -->
     <div id="legal-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
-            <button onclick="document.getElementById('legal-modal').classList.add('hidden')" class="absolute top-4 right-4 text-slate-500 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
-            <h2 id="legal-title" class="text-2xl font-bold font-teko dark:text-white mb-4">Texto Legal</h2>
-            <div id="legal-content" class="prose dark:prose-invert text-sm text-slate-600 dark:text-slate-300">
-                <p>Aquí iría el texto legal completo obligatorio según la LSSI-CE y el RGPD.</p>
-                <p>Responsable: [Nombre/Razón Social] <br> NIF: [Tu NIF] <br> Dirección: [Tu Dirección]</p>
+        <div class="bg-white dark:bg-slate-800 rounded-xl max-w-3xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl">
+            <!-- Sticky Header -->
+            <div class="sticky top-0 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 p-6 flex justify-between items-center z-10">
+                <h2 id="legal-title" class="text-3xl font-bold font-teko dark:text-white"></h2>
+                <button onclick="document.getElementById('legal-modal').classList.add('hidden')" class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            
+            <div id="legal-content" class="p-8 prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                <!-- Content injected via JS -->
             </div>
         </div>
     </div>
@@ -822,8 +960,8 @@
     <footer class="bg-slate-900 dark:bg-black text-slate-400 py-12 border-t-4 border-red-600">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
             <div class="col-span-1 md:col-span-2">
-                <span class="font-teko text-4xl text-white">FPV<span class="text-red-600">-</span>DRONES</span>
-                <p class="mt-4 text-sm max-w-xs">Competición, Freestyle y Tutoriales. Vuela seguro, vuela legal.</p>
+                <span class="font-teko text-4xl text-white">FPV <span class="text-red-600">COMPETICION</span></span>
+                <p class="mt-4 text-sm max-w-xs">Tutoriales, reviews, montajes y la mejor comunidad de FPV en español.</p>
             </div>
             <div>
                 <h4 class="text-white font-bold uppercase text-sm mb-4">Legal (Obligatorio)</h4>
@@ -967,24 +1105,55 @@
         document.getElementById('login-form').addEventListener('submit', window.login);
         document.getElementById('post-form').addEventListener('submit', window.createPost);
         
-        // Image Processing (Compression is vital for Firestore Base64)
+        // Image Processing and Upload Logic
         document.getElementById('file-input').addEventListener('change', (e) => {
             const file = e.target.files[0];
             if(file) {
+                // Use FileReader to preview and Canvas to resize
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     const img = new Image();
                     img.src = event.target.result;
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
-                        // Aggressive resize for Firestore limit (keep under 500kb usually)
-                        const MAX_WIDTH = 600; 
+                        // Aggressive resize for Web optimization
+                        const MAX_WIDTH = 800; 
                         const scaleSize = MAX_WIDTH / img.width;
                         canvas.width = MAX_WIDTH;
                         canvas.height = img.height * scaleSize;
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        document.getElementById('post-image-base64').value = canvas.toDataURL('image/jpeg', 0.6);
+                        
+                        // Convert to Blob for upload
+                        canvas.toBlob(async (blob) => {
+                            const formData = new FormData();
+                            formData.append('image', blob, 'image.jpg');
+                            
+                            // Show loading state (optional UI enhancement)
+                            showToast('Subiendo imagen...', 'info');
+
+                            try {
+                                const response = await fetch('upload.php', { method: 'POST', body: formData });
+                                
+                                if(response.ok) {
+                                    const data = await response.json();
+                                    if(data.success && data.url) {
+                                        // Save URL to hidden input for Firestore
+                                        document.getElementById('post-image-base64').value = data.url;
+                                        showToast('Imagen subida correctamente', 'success');
+                                    } else {
+                                        throw new Error(data.error || 'Error en servidor');
+                                    }
+                                } else {
+                                    throw new Error('Script de subida no encontrado (404)');
+                                }
+                            } catch (e) {
+                                console.warn("Upload failed:", e);
+                                // Fallback: Use Base64 for Firestore if upload fails (e.g. locally)
+                                showToast('Aviso: Usando almacenamiento local (Base64)', 'info');
+                                document.getElementById('post-image-base64').value = canvas.toDataURL('image/jpeg', 0.6);
+                            }
+                        }, 'image/jpeg', 0.7);
                     }
                 };
                 reader.readAsDataURL(file);
@@ -1006,40 +1175,91 @@
 
     </script>
 
-    <!-- UI Logic (Non-Module) -->
+    <!-- UI Logic & Cookie Management (Advanced) -->
     <script>
-        // --- COOKIE & PRIVACY LOGIC (CRITICAL FOR GDPR) ---
-        function checkCookies() {
-            const consent = localStorage.getItem('cookieConsent');
-            if (!consent) {
-                setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1000);
-            }
-        }
-
-        function handleCookies(action) {
-            localStorage.setItem('cookieConsent', action);
-            document.getElementById('cookie-banner').classList.remove('show');
-            if(action === 'accept') {
-                showToast('Has aceptado las cookies', 'success');
-                // Aquí cargarías scripts de analítica (Google Analytics)
-            }
-        }
-        
-        // Facade Pattern for YouTube (Privacy by default)
-        function loadYoutubeVideo(element) {
-            const consent = localStorage.getItem('cookieConsent');
-            if(consent !== 'accept') {
-                if(confirm("Para ver el vídeo, debes aceptar que YouTube instale cookies en tu navegador. ¿Aceptar?")) {
-                    handleCookies('accept');
+        // --- ADVANCED COOKIE MANAGER (GDPR/LSSI-CE) ---
+        const cookieManager = {
+            consent: null,
+            
+            init: function() {
+                const stored = localStorage.getItem('fpv_cookie_consent');
+                if (stored) {
+                    this.consent = JSON.parse(stored);
+                    this.applySettings();
                 } else {
-                    return; // Stop if not accepted
+                    setTimeout(() => document.getElementById('cookie-banner').classList.add('show'), 1000);
+                }
+            },
+
+            acceptAll: function() {
+                this.consent = { technical: true, analytics: true, marketing: true };
+                this.saveAndApply();
+                showToast('Has aceptado todas las cookies', 'success');
+            },
+
+            rejectAll: function() {
+                this.consent = { technical: true, analytics: false, marketing: false };
+                this.saveAndApply();
+                showToast('Has rechazado las cookies no esenciales', 'info');
+            },
+
+            openSettings: function() {
+                // Pre-fill toggle states based on current consent or defaults
+                const current = this.consent || { analytics: false, marketing: false };
+                document.getElementById('toggle-analytics').checked = current.analytics;
+                document.getElementById('toggle-marketing').checked = current.marketing;
+                document.getElementById('cookie-settings-modal').classList.remove('hidden');
+            },
+
+            saveSettings: function() {
+                this.consent = {
+                    technical: true,
+                    analytics: document.getElementById('toggle-analytics').checked,
+                    marketing: document.getElementById('toggle-marketing').checked
+                };
+                this.saveAndApply();
+                document.getElementById('cookie-settings-modal').classList.add('hidden');
+                showToast('Preferencias guardadas', 'success');
+            },
+
+            saveAndApply: function() {
+                localStorage.setItem('fpv_cookie_consent', JSON.stringify(this.consent));
+                document.getElementById('cookie-banner').classList.remove('show');
+                this.applySettings();
+            },
+
+            applySettings: function() {
+                // Here we would conditionally load scripts
+                if (this.consent.analytics) {
+                    console.log('Cargando Google Analytics...');
+                    // loadScript('https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y');
+                }
+                if (this.consent.marketing) {
+                    console.log('Habilitando Embeds de terceros...');
+                    // Unblock iframes or other marketing scripts
+                }
+            },
+            
+            checkConsent: function(category) {
+                return this.consent && this.consent[category];
+            }
+        };
+
+        // --- FACADE PATTERN (PRIVACY FRIENDLY YOUTUBE) ---
+        function loadYoutubeVideo(element) {
+            // Check Marketing consent first
+            if (!cookieManager.checkConsent('marketing')) {
+                if(confirm("Para ver el vídeo, necesitas activar las cookies de Marketing/Terceros. ¿Deseas activarlas ahora?")) {
+                    cookieManager.consent = cookieManager.consent || { technical: true };
+                    cookieManager.consent.marketing = true;
+                    cookieManager.saveAndApply();
+                } else {
+                    return; // Stop if consent refused
                 }
             }
             
-            // Get ID from attribute (default or updated by fetch)
+            // If consent is OK, load video
             const videoId = element.getAttribute('data-video-id') || 'vHc5jnxkuzg';
-            
-            // Load Iframe from No-Cookie domain
             const iframe = document.createElement('iframe');
             iframe.setAttribute('src', `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`);
             iframe.setAttribute('frameborder', '0');
@@ -1064,9 +1284,7 @@
                     
                     const placeholder = document.getElementById('video-placeholder');
                     if (placeholder && latestVideoId) {
-                        // Update Data Attribute for click handler
                         placeholder.setAttribute('data-video-id', latestVideoId);
-                        // Update Background Image
                         placeholder.style.backgroundImage = `url('${thumb}')`;
                     }
                 }
@@ -1090,19 +1308,53 @@
             });
         });
 
-        // --- LEGAL MODALS ---
+        // --- LEGAL MODALS CONTENT (DETAILED TEXT) ---
         function openLegalModal(type) {
-            const titles = {
-                'legal': 'Aviso Legal',
-                'privacy': 'Política de Privacidad',
-                'cookies': 'Política de Cookies'
-            };
-            document.getElementById('legal-title').innerText = titles[type];
-            // Aquí deberías inyectar el texto real según el tipo
-            document.getElementById('legal-modal').classList.remove('hidden');
+            const modal = document.getElementById('legal-modal');
+            const titleEl = document.getElementById('legal-title');
+            const contentEl = document.getElementById('legal-content');
+            
+            modal.classList.remove('hidden');
+
+            if (type === 'cookies') {
+                titleEl.innerText = 'Política de Cookies';
+                contentEl.innerHTML = `
+                    <h3 class="text-xl font-bold mb-2">¿Qué son las cookies?</h3>
+                    <p class="mb-4">Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario.</p>
+                    
+                    <h3 class="text-xl font-bold mb-2">Tipos de cookies que utilizamos</h3>
+                    <ul class="list-disc pl-5 mb-4 space-y-2">
+                        <li><strong>Cookies Técnicas (Necesarias):</strong> Son aquellas que permiten al usuario la navegación a través de una página web y la utilización de las diferentes opciones o servicios que en ella existan (ej. controlar el tráfico, identificar la sesión, acceder a partes de acceso restringido como el editor).</li>
+                        <li><strong>Cookies de Análisis:</strong> Son aquellas que nos permiten cuantificar el número de usuarios y así realizar la medición y análisis estadístico de la utilización que hacen los usuarios del servicio ofertado. Para ello se analiza su navegación en nuestra página web con el fin de mejorar la oferta de productos o servicios que le ofrecemos (Google Analytics).</li>
+                        <li><strong>Cookies de Marketing / Terceros:</strong> Son aquellas utilizadas por complementos externos de contenido (como YouTube o Google Maps) para que el usuario pueda visualizar contenidos multimedia. Estas cookies son gestionadas por terceros y pueden rastrear su comportamiento.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-bold mb-2">Gestión de cookies</h3>
+                    <p class="mb-4">Puede usted permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador instalado en su ordenador o mediante nuestro panel de configuración.</p>
+                `;
+            } else if (type === 'privacy') {
+                titleEl.innerText = 'Política de Privacidad';
+                contentEl.innerHTML = `
+                    <p class="mb-4">En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), le informamos que sus datos personales serán tratados por <strong>[Tu Nombre/Empresa]</strong> con la finalidad de gestionar su solicitud o suscripción.</p>
+                    <p class="mb-4"><strong>Responsable:</strong> Alex FPV<br><strong>Finalidad:</strong> Gestión de usuarios y comunicaciones.<br><strong>Legitimación:</strong> Consentimiento del interesado.<br><strong>Derechos:</strong> Acceder, rectificar y suprimir los datos, así como otros derechos, como se explica en la información adicional.</p>
+                `;
+            } else {
+                titleEl.innerText = 'Aviso Legal';
+                contentEl.innerHTML = `
+                    <p class="mb-4">En cumplimiento del artículo 10 de la Ley 34/2002, de  11 de julio, de Servicios de la Sociedad de la Información y Comercio Electrónico (LSSICE), a continuación se exponen los datos identificativos de la empresa.</p>
+                    <p><strong>Titular:</strong> Alex FPV<br><strong>Domicilio:</strong> Gipuzkoa, España<br><strong>Email:</strong> hola@fpv-drones.com</p>
+                    <p class="mt-4">Este sitio web utiliza enlaces de afiliados. Esto significa que si hace clic en un enlace y realiza una compra, podemos recibir una pequeña comisión sin coste adicional para usted.</p>
+                `;
+            }
         }
 
-        // --- TABS LOGIC (RESTORED) ---
+        // --- NEW: CONTACT MODAL ---
+        function openContactModal(subject) {
+            document.getElementById('contact-subject').innerText = subject;
+            document.getElementById('contact-modal').classList.remove('hidden');
+        }
+
+        // --- TABS LOGIC ---
         function switchTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(tabId).classList.remove('hidden');
@@ -1114,7 +1366,7 @@
             btn.classList.add('bg-slate-900', 'text-white', 'shadow-sm', 'dark:bg-red-600');
         }
 
-        // --- GEAR LOGIC (RESTORED) ---
+        // --- GEAR LOGIC ---
         const gearData = {
             pro: [
                 { name: "DJI Goggles 2", type: "Gafas", desc: "Digital HD, OLED, baja latencia.", icon: "fa-vr-cardboard" },
@@ -1169,7 +1421,7 @@
             }
         }
 
-        // --- FLIGHT TIME CALCULATOR (RESTORED) ---
+        // --- FLIGHT TIME CALCULATOR ---
         function calculateFlightTime() {
             const mah = parseFloat(document.getElementById('calc-mah').value) || 0;
             const style = document.getElementById('calc-style').value;
@@ -1199,7 +1451,7 @@
             setTimeout(() => resultEl.style.transform = "scale(1)", 200);
         }
 
-        // --- FAQ TOGGLE (RESTORED) ---
+        // --- FAQ TOGGLE ---
         function toggleFaq(button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
@@ -1248,7 +1500,19 @@
             document.getElementById(id).scrollIntoView({behavior: 'smooth'});
         }
 
-        // Scroll Reveal
+        // Scroll Progress & Reveal
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress').style.width = scrolled + "%";
+            
+            // Scroll top button
+            const btn = document.getElementById('scroll-top-btn');
+            if (winScroll > 300) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) entry.target.classList.add('active');
@@ -1257,9 +1521,9 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Init
-        checkCookies();
-        toggleGear('pro'); // Initialize gear
-        updateLatestVideo(); // Auto-update video facade
+        cookieManager.init(); // Initialize advanced cookie manager
+        toggleGear('pro'); 
+        updateLatestVideo(); 
     </script>
 </body>
 </html>
