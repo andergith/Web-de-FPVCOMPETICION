@@ -267,6 +267,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-4">
                     <button onclick="scrollToSection('academia')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Academia</button>
+                    <button onclick="scrollToSection('el-drone')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">El Drone</button>
                     <button onclick="scrollToSection('equipo')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Equipo</button>
                     <button onclick="scrollToSection('ofertas')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Ofertas</button>
                     <button onclick="scrollToSection('builds')" class="text-slate-600 dark:text-slate-300 hover:text-red-600 px-3 py-2 text-sm font-bold uppercase">Builds</button>
@@ -302,16 +303,17 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Panel -->
+        <!-- Mobile Panel (Improved: Auto-Close) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-card border-b border-slate-100 dark:border-slate-800">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#academia" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Academia</a>
-                <a href="#equipo" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Equipo</a>
-                <a href="#ofertas" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Ofertas</a>
-                <a href="#builds" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Builds</a>
-                <a href="#videos-destacados" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Canal</a>
-                <a href="#servicios" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Servicios</a>
-                <a href="#blog" class="block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200">Blog</a>
+                <a href="#academia" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Academia</a>
+                <a href="#el-drone" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">El Drone</a>
+                <a href="#equipo" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Equipo</a>
+                <a href="#ofertas" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Ofertas</a>
+                <a href="#builds" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Builds</a>
+                <a href="#videos-destacados" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Canal</a>
+                <a href="#servicios" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Servicios</a>
+                <a href="#blog" class="mobile-link block px-3 py-2 rounded-md font-bold uppercase text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Blog</a>
             </div>
         </div>
     </nav>
@@ -377,140 +379,200 @@
         </div>
     </section>
 
-    <!-- Academia de Vuelo Section -->
-    <section id="academia" class="py-24 bg-slate-50 dark:bg-dark-bg relative section-slant reveal">
+    <!-- NEW SECTION: EL DRONE -->
+    <section id="el-drone" class="py-24 bg-white dark:bg-dark-bg section-slant relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-red-600 font-bold tracking-widest uppercase text-xs">Escuela de Pilotos</span>
-                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko mt-2">Academia de Vuelo</h2>
-                <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-light text-lg">
-                    Del simulador a la realidad. He organizado mis años de experiencia en esta ruta de aprendizaje estructurada.
+                <span class="text-red-600 font-bold tracking-widest uppercase text-xs">El corazón del hobby</span>
+                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko mt-2">El Drone</h2>
+                <p class="mt-4 text-slate-600 dark:text-slate-400 max-w-3xl mx-auto font-light text-lg">
+                    El drone va a ser la parte central del hobby, y por lo tanto se merece un lugar especial en esta web. 
+                    Los hay de muchos tipos, según para qué quieras utilizarlos.
                 </p>
             </div>
 
-            <!-- Tabs Navigation -->
-            <div class="flex justify-center mb-12">
-                <div class="inline-flex bg-slate-200 dark:bg-slate-800 p-1 rounded-xl">
-                    <button class="tab-btn active px-6 py-2 rounded-lg font-teko text-xl text-white bg-slate-900 dark:bg-red-600 shadow-sm transition-all" onclick="switchTab('phase1', this)">Fase 1: Antes de Volar</button>
-                    <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all" onclick="switchTab('phase2', this)">Fase 2: Simulador</button>
-                    <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all" onclick="switchTab('phase3', this)">Fase 3: Taller</button>
-                </div>
-            </div>
-
-            <!-- Tab Contents -->
-            <div class="bg-white dark:bg-dark-card rounded-2xl p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 dark:border-slate-800 min-h-[400px] relative overflow-hidden transition-colors duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <!-- Content Phase 1 -->
-                <div id="phase1" class="tab-content fade-in grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600 dark:text-red-400 mb-6">
-                            <i class="fas fa-shield-alt text-2xl"></i>
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 font-teko uppercase">Evita Multas y Accidentes</h3>
-                        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">Lo sé, leer normas es aburrido, pero que te confisquen el drone es peor. Aquí tienes el resumen masticado de la normativa EASA.</p>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-center text-slate-700 dark:text-slate-300 font-medium"><i class="fas fa-check-circle text-green-500 mr-3"></i> Categoría Abierta (A1/A3)</li>
-                            <li class="flex items-center text-slate-700 dark:text-slate-300 font-medium"><i class="fas fa-check-circle text-green-500 mr-3"></i> Registro de Operador Obligatorio</li>
-                            <li class="flex items-center text-slate-700 dark:text-slate-300 font-medium"><i class="fas fa-check-circle text-green-500 mr-3"></i> Regla de los 120m de altura</li>
-                        </ul>
-                    </div>
-                    <div class="bg-slate-50 dark:bg-slate-800 p-8 rounded-xl border border-slate-200 dark:border-slate-700 relative">
-                        <div class="absolute top-0 right-0 -mt-3 -mr-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-sm">Activo</div>
-                        <h4 class="font-bold text-slate-900 dark:text-white uppercase mb-6 border-b border-slate-200 dark:border-slate-700 pb-2">Requisitos Legales</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-4">
-                                <div class="bg-white dark:bg-slate-700 p-2 rounded shadow-sm"><i class="fas fa-file-contract text-slate-400 dark:text-slate-300"></i></div>
-                                <div>
-                                    <span class="block text-xs text-red-600 font-bold uppercase">Requisito #1</span>
-                                    <span class="font-medium text-slate-900 dark:text-slate-200">Seguro de Responsabilidad Civil</span>
+                <!-- Tinywhoop Card -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-1 hover:bg-gradient-to-br hover:from-red-500/20 hover:to-transparent transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-red-500 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="h-full bg-white/50 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-8 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-3xl font-teko font-bold text-slate-900 dark:text-white">Tinywhoops y Toothpicks</h3>
+                                <div class="flex gap-2 mt-2 flex-wrap">
+                                    <span class="px-2 py-1 bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400 text-[10px] font-bold uppercase rounded tracking-wider">Sub-250g</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Interior</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Indestructible</span>
                                 </div>
                             </div>
-                            <div class="flex items-start gap-4">
-                                <div class="bg-white dark:bg-slate-700 p-2 rounded shadow-sm"><i class="fas fa-id-card text-slate-400 dark:text-slate-300"></i></div>
-                                <div>
-                                    <span class="block text-xs text-red-600 font-bold uppercase">Requisito #2</span>
-                                    <span class="font-medium text-slate-900 dark:text-slate-200">Placa Identificativa Ignífuga</span>
-                                </div>
+                            <div class="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center text-red-600 dark:text-red-400">
+                                <i class="fas fa-microchip text-2xl"></i>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Content Phase 2 -->
-                <div id="phase2" class="tab-content hidden fade-in grid md:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 md:order-1">
-                        <div class="bg-slate-900 dark:bg-slate-800 rounded-2xl p-2 shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-500">
-                            <div class="bg-slate-800 dark:bg-slate-900 h-64 rounded-xl flex items-center justify-center text-slate-600 border border-slate-700">
-                                <i class="fas fa-gamepad text-8xl opacity-50"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-1 md:order-2">
-                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6">
-                            <i class="fas fa-gamepad text-2xl"></i>
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 font-teko uppercase">Gana Dedos en el Simulador</h3>
-                        <p class="text-slate-600 dark:text-slate-400 mb-8">Recomiendo encarecidamente <strong>Velocidrone</strong> o <strong>Liftoff</strong>.</p>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed flex-grow">
+                            Son los más pequeños (20g-80g) pero corren como el diablo. Tienen toda la electrónica en un AIO. Ideales para novatos por ser baratos, seguros y volables en cualquier sitio.
+                        </p>
                         
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
-                                    <span>Vuelo Estabilizado (Angle)</span>
-                                    <span>100%</span>
-                                </div>
-                                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
-                                    <div class="bg-slate-800 dark:bg-slate-400 h-2 rounded-full" style="width: 100%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
-                                    <span>Modo Acro Básico</span>
-                                    <span>45%</span>
-                                </div>
-                                <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
-                                    <div class="bg-red-500 h-2 rounded-full" style="width: 45%"></div>
-                                </div>
-                            </div>
+                        <!-- Embedded YouTube Playlist -->
+                        <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 bg-black">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/videoseries?si=eck6678Hx6oFtoW-&amp;list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
 
-                <!-- Content Phase 3 -->
-                <div id="phase3" class="tab-content hidden fade-in grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6">
-                            <i class="fas fa-microchip text-2xl"></i>
+                <!-- Cinewhoops Card -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-1 hover:bg-gradient-to-br hover:from-blue-500/20 hover:to-transparent transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="h-full bg-white/50 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-8 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-3xl font-teko font-bold text-slate-900 dark:text-white">Cinewhoops</h3>
+                                <div class="flex gap-2 mt-2 flex-wrap">
+                                    <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase rounded tracking-wider">Cinemático</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Seguro</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Estable</span>
+                                </div>
+                            </div>
+                            <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">
+                                <i class="fas fa-film text-2xl"></i>
+                            </div>
                         </div>
-                        <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 font-teko uppercase">Domina la Bestia (Betaflight)</h3>
-                        <p class="text-slate-600 dark:text-slate-400 mb-6">PIDs, Rates, Filtros... Betaflight puede ser una pesadilla. Aquí te explico cómo configurarlo.</p>
-                        <a href="#builds" class="text-red-600 dark:text-red-400 font-bold hover:text-slate-900 dark:hover:text-white uppercase tracking-wider text-sm flex items-center gap-2 group">
-                            Ir a la sección de Builds <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed flex-grow">
+                            Fusión de "Cinematic" y "Whoop". Más grandes (2.5"-3.5") y con ductos. Diseñados para grabar tomas fluidas y estables cerca de personas o en interiores complejos.
+                        </p>
+                        <a href="https://www.youtube.com/playlist?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW" target="_blank" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-center transition-colors text-sm uppercase tracking-wide">
+                            <i class="fab fa-youtube mr-2"></i> Ver los mejores
                         </a>
                     </div>
-                    <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-700">
-                        <div class="bg-slate-800 px-4 py-2 border-b border-slate-700 flex justify-between items-center">
-                            <span class="text-xs text-slate-400 font-mono">betaflight-configurator</span>
-                            <div class="flex gap-1.5">
-                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                </div>
+
+                <!-- Freestyle Card -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-1 hover:bg-gradient-to-br hover:from-purple-500/20 hover:to-transparent transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-purple-500 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="h-full bg-white/50 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-8 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-3xl font-teko font-bold text-slate-900 dark:text-white">Freestyle 5"</h3>
+                                <div class="flex gap-2 mt-2 flex-wrap">
+                                    <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 text-[10px] font-bold uppercase rounded tracking-wider">Acrobacias</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Potencia</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Robusto</span>
+                                </div>
+                            </div>
+                            <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center text-purple-600 dark:text-purple-400">
+                                <i class="fas fa-wind text-2xl"></i>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <h4 class="font-teko text-xl mb-4 text-white">Snippet: Rates Freestyle</h4>
-                            <div class="font-mono text-xs text-green-400 mb-4 opacity-90">
-                                set roll_rc_rate = 100<br>
-                                set pitch_rc_rate = 100<br>
-                                set yaw_rc_rate = 100<br>
-                                set roll_expo = 20<br>
-                                # Type 'save' to apply
+                        <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed flex-grow">
+                            La modalidad reina. Potencia bruta y libertad total. Suelen ser de 5 pulgadas, carbono muy resistente para aguantar impactos contra hormigón en edificios abandonados (Bando).
+                        </p>
+                        <a href="https://www.youtube.com/@FPV-Drones/search?query=freestyle" target="_blank" class="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-center transition-colors text-sm uppercase tracking-wide">
+                            <i class="fab fa-youtube mr-2"></i> Ver vídeos Freestyle
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Racing Card -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-1 hover:bg-gradient-to-br hover:from-yellow-500/20 hover:to-transparent transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-yellow-500 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="h-full bg-white/50 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-8 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-3xl font-teko font-bold text-slate-900 dark:text-white">Racing</h3>
+                                <div class="flex gap-2 mt-2 flex-wrap">
+                                    <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/50 text-yellow-600 dark:text-yellow-400 text-[10px] font-bold uppercase rounded tracking-wider">Velocidad</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Ligero</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Competición</span>
+                                </div>
                             </div>
-                            <button class="w-full bg-white/10 hover:bg-white/20 text-white text-xs py-2 rounded transition flex items-center justify-center gap-2" onclick="navigator.clipboard.writeText('set roll_rc_rate = 100\nset pitch_rc_rate = 100'); showToast('Copiado', 'success')">
-                                <i class="fas fa-copy"></i> Copiar Código
+                            <div class="w-14 h-14 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center text-yellow-600 dark:text-yellow-400">
+                                <i class="fas fa-flag-checkered text-2xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed flex-grow">
+                            Velocidad pura y precisión milimétrica. Diseñados para ser lo más aerodinámicos y ligeros posible. Aquí cada gramo cuenta para arañar décimas al cronómetro.
+                        </p>
+                        <a href="https://www.youtube.com/@FPV-Drones/search?query=carreras" target="_blank" class="w-full py-3 bg-yellow-500 hover:bg-yellow-600 text-white font-bold rounded-lg text-center transition-colors text-sm uppercase tracking-wide">
+                            <i class="fab fa-youtube mr-2"></i> Ver vídeos Carreras
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Long Range Card -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-1 hover:bg-gradient-to-br hover:from-green-500/20 hover:to-transparent transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-green-500 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="h-full bg-white/50 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-8 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-3xl font-teko font-bold text-slate-900 dark:text-white">Long Range</h3>
+                                <div class="flex gap-2 mt-2 flex-wrap">
+                                    <span class="px-2 py-1 bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 text-[10px] font-bold uppercase rounded tracking-wider">Distancia</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">GPS</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Eficiencia</span>
+                                </div>
+                            </div>
+                            <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 dark:text-green-400">
+                                <i class="fas fa-mountain text-2xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed flex-grow">
+                            Para llegar donde nadie llega. Montañas, surf y eficiencia. Equipados con GPS y sistemas de radio de largo alcance para vuelos épicos de larga duración.
+                        </p>
+                        <a href="https://www.youtube.com/playlist?list=PL_AS-7inzwYoivEE7-pRVFvY4OMohKiMs" target="_blank" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg text-center transition-colors text-sm uppercase tracking-wide">
+                            <i class="fab fa-youtube mr-2"></i> Ver Long Range
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DJI Card -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-1 hover:bg-gradient-to-br hover:from-blue-400/20 hover:to-transparent transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-blue-400 hover:shadow-2xl hover:-translate-y-1">
+                    <div class="h-full bg-white/50 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-8 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-3xl font-teko font-bold text-slate-900 dark:text-white">DJI</h3>
+                                <div class="flex gap-2 mt-2 flex-wrap">
+                                    <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-500 dark:text-blue-300 text-[10px] font-bold uppercase rounded tracking-wider">Digital HD</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Plug&Play</span>
+                                    <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">Fácil</span>
+                                </div>
+                            </div>
+                            <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-500 dark:text-blue-300">
+                                <i class="fas fa-robot text-2xl"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6 text-sm leading-relaxed flex-grow">
+                            La opción digital todo-en-uno con calidad de imagen superior. Ideales para empezar con un sistema integrado, sensores y modos de vuelo asistidos.
+                        </p>
+                        <a href="https://www.youtube.com/@FPV-Drones/search?query=dji" target="_blank" class="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg text-center transition-colors text-sm uppercase tracking-wide">
+                            <i class="fab fa-youtube mr-2"></i> Ver vídeos DJI
+                        </a>
+                    </div>
+                </div>
+                
+                 <!-- Stabilized Drones Card -->
+                <div class="group relative bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-1 hover:bg-gradient-to-br hover:from-cyan-500/20 hover:to-transparent transition-all duration-300 border border-slate-200 dark:border-slate-700 hover:border-cyan-500 hover:shadow-2xl hover:-translate-y-1 md:col-span-2 lg:col-span-2">
+                    <div class="h-full bg-white/50 dark:bg-slate-900/80 backdrop-blur-sm rounded-xl p-8 flex flex-col md:flex-row items-center gap-8">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-14 h-14 bg-cyan-100 dark:bg-cyan-900/30 rounded-full flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0">
+                                    <i class="fas fa-camera text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-3xl font-teko font-bold text-slate-900 dark:text-white">Drones Estabilizados</h3>
+                                    <div class="flex gap-2 mt-1">
+                                        <span class="px-2 py-1 bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 dark:text-cyan-400 text-[10px] font-bold uppercase rounded tracking-wider">Fotografía</span>
+                                        <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-bold uppercase rounded tracking-wider">GPS</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                Los reyes de la fotografía aérea tradicional (Mavic, Air, Mini). Vuelo asistido por GPS, sensores anticolisión y gimbals de 3 ejes. Perfectos para trabajos tranquilos y alta calidad de imagen cinemática sin acrobacias.
+                            </p>
+                        </div>
+                        <div class="w-full md:w-auto flex-shrink-0">
+                            <button class="w-full md:w-auto px-8 py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-400 cursor-not-allowed font-bold rounded-xl flex items-center justify-center gap-2">
+                                <i class="fas fa-lock"></i> Próximamente
                             </button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -625,38 +687,71 @@
 
     <!-- Herramientas Section -->
     <section id="herramientas" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300 reveal">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko text-center mb-10 uppercase">Herramientas de Vuelo</h2>
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700">
-                <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-teko mb-6 border-b border-slate-200 dark:border-slate-700 pb-2">
-                    <i class="fas fa-calculator mr-2 text-red-600"></i> Calculadora de Tiempo de Vuelo
-                </h3>
-                <div class="grid md:grid-cols-2 gap-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko text-center mb-10 uppercase">Centro de Mando</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Calculadora 1: Tiempo de Vuelo -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700 hover:border-red-500 transition-colors group">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-teko mb-6 border-b border-slate-200 dark:border-slate-700 pb-2 flex items-center gap-2">
+                        <i class="fas fa-stopwatch text-red-600 group-hover:scale-110 transition-transform"></i> Tiempo de Vuelo
+                    </h3>
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Capacidad Batería (mAh)</label>
-                            <input type="number" id="calc-mah" value="1300" class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                            <label class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">Capacidad Batería (mAh)</label>
+                            <input type="number" id="calc-mah" value="1300" class="w-full rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none font-mono">
                         </div>
                         <div>
-                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Estilo de Vuelo</label>
-                            <select id="calc-style" class="w-full rounded-md border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                            <label class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">Estilo de Vuelo</label>
+                            <select id="calc-style" class="w-full rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-red-500 outline-none">
                                 <option value="cinematic">Cinemático (Cruising)</option>
                                 <option value="freestyle">Freestyle (Mixto)</option>
                                 <option value="racing">Carreras (Full Throttle)</option>
                             </select>
                         </div>
-                        <button onclick="calculateFlightTime()" class="w-full bg-slate-900 dark:bg-red-600 hover:bg-slate-700 dark:hover:bg-red-700 text-white font-bold py-3 rounded-lg shadow-md transition-all transform hover:-translate-y-1">
-                            Calcular
-                        </button>
-                    </div>
-                    <div class="flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-900 rounded-xl p-6 text-center border border-slate-200 dark:border-slate-700">
-                        <span class="text-sm text-slate-500 uppercase tracking-widest font-bold">Tiempo Estimado</span>
-                        <div class="text-6xl font-teko font-bold text-slate-900 dark:text-white my-2">
-                            <span id="calc-result">0:00</span> <span class="text-2xl text-slate-400">min</span>
+                        <div class="pt-4 flex items-center justify-between">
+                            <button onclick="calculateFlightTime()" class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-2 px-6 rounded-lg hover:opacity-90 transition shadow-lg">Calcular</button>
+                            <div class="text-right">
+                                <span class="block text-xs text-slate-400 uppercase tracking-widest">Estimado</span>
+                                <span id="calc-result" class="text-4xl font-teko font-bold text-red-600">0:00</span> <span class="text-sm text-slate-500">min</span>
+                            </div>
                         </div>
-                        <p class="text-xs text-slate-400 px-4">*Estimación basada en consumo promedio de un 5 pulgadas.</p>
                     </div>
                 </div>
+
+                <!-- Calculadora 2: Carga LiPo (NUEVA) -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-colors group">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-teko mb-6 border-b border-slate-200 dark:border-slate-700 pb-2 flex items-center gap-2">
+                        <i class="fas fa-bolt text-blue-500 group-hover:scale-110 transition-transform"></i> Carga Segura (Parallel)
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">mAh (una batería)</label>
+                            <input type="number" id="lipo-mah" value="1300" class="w-full rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">Cantidad</label>
+                            <input type="number" id="lipo-count" value="4" min="1" max="6" class="w-full rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none font-mono">
+                        </div>
+                    </div>
+                    <div>
+                         <label class="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">Velocidad Carga (C)</label>
+                         <select id="lipo-c" class="w-full rounded-lg border border-slate-300 dark:border-slate-600 px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none mb-4">
+                            <option value="1">1C (Recomendado / Seguro)</option>
+                            <option value="2">2C (Rápido)</option>
+                            <option value="3">3C (Prisa / Riesgo)</option>
+                        </select>
+                    </div>
+                    <div class="pt-2 flex items-center justify-between border-t border-slate-200 dark:border-slate-700 mt-2">
+                        <button onclick="calculateLipoCharge()" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition shadow-lg">Calcular</button>
+                        <div class="text-right mt-2">
+                            <span class="block text-xs text-slate-400 uppercase tracking-widest">Configura tu cargador a:</span>
+                            <span id="lipo-result" class="text-4xl font-teko font-bold text-blue-500">0.0</span> <span class="text-xl font-bold text-slate-900 dark:text-white">Amps</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -665,10 +760,11 @@
     <section id="videos-destacados" class="py-24 bg-white dark:bg-dark-bg section-slant transition-colors duration-300 reveal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Lo Mejor del Canal</h2>
+                <h2 class="text-5xl font-bold text-slate-900 dark:text-white font-teko">Lo Último del Canal</h2>
                 <p class="mt-4 text-slate-600 dark:text-slate-400 font-light">Selección de las listas de reproducción más populares para que no te pierdas nada.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
+            <!-- Updated Grid to 4 columns -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Video Category 1 -->
                 <a href="https://www.youtube.com/@FPV-Drones/playlists?view=50&sort=dd&shelf_id=3" target="_blank" class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-center">
                     <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-full flex items-center justify-center mb-6 mx-auto group-hover:bg-red-600 transition-colors shadow-lg">
@@ -688,6 +784,15 @@
                     <span class="mt-auto text-red-600 font-bold uppercase text-xs tracking-widest">Ver Reviews <i class="fas fa-arrow-right ml-1"></i></span>
                 </a>
                 <!-- Video Category 3 -->
+                <a href="https://www.youtube.com/watch?v=srODYbR5d28&list=PL_AS-7inzwYo1BD9xB0UAS0bzfrErU96q" target="_blank" class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-center">
+                    <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-full flex items-center justify-center mb-6 mx-auto group-hover:bg-red-600 transition-colors shadow-lg">
+                        <i class="fas fa-screwdriver-wrench text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-3 uppercase">Taller y Montajes</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Aprende a construir y reparar. Guías paso a paso de montaje, soldadura y configuración.</p>
+                    <span class="mt-auto text-red-600 font-bold uppercase text-xs tracking-widest">Ver Builds <i class="fas fa-arrow-right ml-1"></i></span>
+                </a>
+                <!-- Video Category 4 -->
                 <a href="https://www.youtube.com/@FPV-Drones/shorts" target="_blank" class="group bg-white dark:bg-dark-card p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col text-center">
                     <div class="w-16 h-16 bg-slate-900 dark:bg-slate-700 text-white rounded-full flex items-center justify-center mb-6 mx-auto group-hover:bg-red-600 transition-colors shadow-lg">
                         <i class="fas fa-flag-checkered text-2xl"></i>
@@ -748,18 +853,6 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="py-20 bg-slate-900 dark:bg-black border-t border-slate-800 reveal">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-teko font-bold text-white mb-4 uppercase">¿Quieres volar mejor?</h2>
-            <p class="text-slate-400 mb-8">Únete a la newsletter. Sin spam, solo trucos de Betaflight, ofertas flash y actualizaciones del canal.</p>
-            <form class="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto" onsubmit="event.preventDefault(); showToast('¡Gracias por suscribirte!', 'success');">
-                <input type="email" placeholder="Tu email aquí..." class="px-5 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:outline-none focus:border-red-600 flex-grow" required>
-                <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all hover:scale-105">Suscribirme</button>
-            </form>
-        </div>
-    </section>
-
     <!-- FAQ Section -->
     <section id="faq" class="py-24 bg-slate-50 dark:bg-dark-card relative transition-colors duration-300 reveal">
         <div class="max-w-3xl mx-auto px-4">
@@ -814,6 +907,100 @@
                 </div>
                 <button type="submit" class="w-full bg-red-600 text-white py-3 rounded font-bold hover:bg-red-700 transition shadow-lg">Enviar Solicitud</button>
             </form>
+        </div>
+    </div>
+
+    <!-- Admin Modal (Rich Editor Restored) -->
+    <div id="admin-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-lg max-w-lg w-full p-0 relative border border-slate-200 dark:border-slate-700 shadow-2xl overflow-hidden">
+            
+            <!-- Header -->
+            <div class="bg-slate-900 px-6 py-4 flex justify-between items-center border-b border-slate-700">
+                <h3 class="text-xl font-teko text-white tracking-wide uppercase" id="modal-title-text">
+                    <i class="fas fa-pen-nib mr-2 text-red-500"></i> Editor de Blog
+                </h3>
+                <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Login Section -->
+            <div id="login-section" class="p-8">
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Acceso restringido para administradores del canal.</p>
+                <form id="login-form" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Email</label>
+                        <input type="email" id="login-email" class="w-full p-3 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Contraseña</label>
+                        <input type="password" id="login-password" class="w-full p-3 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-red-500 outline-none transition-all">
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-red-600/30 transition-all transform hover:-translate-y-1">Entrar</button>
+                </form>
+            </div>
+
+            <!-- Editor Section -->
+            <div id="editor-section" class="hidden p-8 max-h-[80vh] overflow-y-auto custom-scrollbar">
+                <div class="flex justify-between items-center mb-6 border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <span class="text-xs font-bold text-green-500 uppercase tracking-widest"><i class="fas fa-circle text-[8px] mr-1"></i> Sesión Activa</span>
+                    <button onclick="logout()" class="text-xs text-red-500 hover:text-red-700 font-bold uppercase underline decoration-2">Cerrar Sesión</button>
+                </div>
+                
+                <form id="post-form" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Título</label>
+                        <input type="text" id="post-title" placeholder="Ej: Review DJI Avata 2..." class="w-full p-3 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:border-red-500 outline-none transition-all" required>
+                    </div>
+                    
+                    <!-- NUEVO CAMPO AUTOR -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Autor</label>
+                        <input type="text" id="post-author" placeholder="Ej: Alex" class="w-full p-3 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:border-red-500 outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Categoría</label>
+                        <select id="post-category" class="w-full p-3 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:border-red-500 outline-none transition-all">
+                            <option value="Crónica">Crónica</option>
+                            <option value="Review">Review</option>
+                            <option value="Leak">Leak</option>
+                            <option value="Tutorial">Tutorial</option>
+                        </select>
+                    </div>
+
+                    <!-- DROP ZONE RESTAURADA -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Imagen Destacada</label>
+                        <div id="drop-zone" class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl p-6 text-center cursor-pointer hover:border-red-500 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-all relative group" onclick="document.getElementById('file-input').click()">
+                            <input type="file" id="file-input" class="hidden" accept="image/*">
+                            
+                            <div id="upload-placeholder" class="pointer-events-none">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-slate-400 mb-3 group-hover:text-red-500 transition-colors"></i>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                                    Click para subir o <strong class="text-slate-900 dark:text-white">Pega (Ctrl+V)</strong> aquí
+                                </p>
+                                <p class="text-xs text-slate-400 mt-1">Soporta JPG, PNG, WEBP</p>
+                            </div>
+                            
+                            <img id="image-preview" class="hidden w-full h-48 object-cover rounded-lg shadow-sm">
+                            
+                            <button type="button" id="remove-image" class="hidden absolute top-2 right-2 bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm shadow-md hover:scale-110 transition-transform z-10" onclick="event.stopPropagation(); removeImage();">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" id="post-image-base64">
+                    </div>
+                    <!-- FIN DROP ZONE -->
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Contenido</label>
+                        <textarea id="post-content" rows="6" placeholder="Escribe aquí tu artículo..." class="w-full p-3 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-300 dark:border-slate-600 focus:border-red-500 outline-none transition-all resize-none" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3 rounded-lg hover:opacity-90 transition-opacity shadow-lg">Publicar Noticia</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -905,50 +1092,36 @@
     <div id="read-modal" class="fixed inset-0 z-[60] hidden modal-overlay overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen p-0 sm:p-4">
             <div class="bg-white dark:bg-slate-900 w-full sm:max-w-3xl sm:rounded-2xl shadow-2xl relative flex flex-col max-h-screen sm:max-h-[90vh]">
-                <button onclick="closeReadModal()" class="absolute top-4 right-4 z-10 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-sm"><i class="fas fa-times"></i></button>
+                <button onclick="closeReadModal()" class="absolute top-4 right-4 z-10 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-red-600 transition-colors"><i class="fas fa-times"></i></button>
                 <div class="h-64 w-full relative shrink-0">
                     <img id="read-post-image" src="" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-90"></div>
                     <div class="absolute bottom-6 left-6 right-6">
-                        <h2 id="read-post-title" class="text-3xl font-bold text-white font-teko"></h2>
+                        <span id="read-post-category-badge" class="text-xs font-bold text-white px-2 py-1 rounded bg-red-600 mb-2 inline-block shadow-sm"></span>
+                        <h2 id="read-post-title" class="text-3xl sm:text-4xl font-bold text-white font-teko leading-tight shadow-sm"></h2>
+                        <p id="read-post-meta" class="text-sm text-slate-200 mt-2 font-medium flex items-center gap-2">
+                            <i class="far fa-user-circle"></i> <span id="read-post-author"></span>
+                            <span class="opacity-50">•</span>
+                            <i class="far fa-calendar-alt"></i> <span id="read-post-date"></span>
+                        </p>
                     </div>
                 </div>
-                <div class="p-8 overflow-y-auto">
-                    <div id="read-post-content" class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300"></div>
+                <div class="p-8 overflow-y-auto custom-scrollbar">
+                    <div id="read-post-content" class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-lg"></div>
+                    
+                    <!-- NEW: Share Buttons -->
+                    <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
+                        <h4 class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">Compartir este artículo</h4>
+                        <div class="flex gap-4">
+                            <a href="#" id="share-whatsapp" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg text-center transition flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-xl"></i> WhatsApp
+                            </a>
+                            <a href="#" id="share-twitter" target="_blank" class="flex-1 bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 rounded-lg text-center transition flex items-center justify-center gap-2">
+                                <i class="fab fa-twitter text-xl"></i> Twitter
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin Modal -->
-    <div id="admin-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-lg max-w-md w-full p-6 relative border border-slate-700">
-            <button onclick="toggleAdminPanel()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
-            
-            <!-- Login -->
-            <div id="login-section">
-                <h3 class="text-xl font-teko text-white mb-4">Acceso Editor</h3>
-                <form id="login-form" class="space-y-4">
-                    <input type="email" id="login-email" placeholder="Email" class="w-full p-2 rounded bg-slate-700 text-white border border-slate-600">
-                    <input type="password" id="login-password" placeholder="Contraseña" class="w-full p-2 rounded bg-slate-700 text-white border border-slate-600">
-                    <button type="submit" class="w-full bg-red-600 text-white py-2 rounded font-bold hover:bg-red-700">Entrar</button>
-                </form>
-            </div>
-
-            <!-- Editor -->
-            <div id="editor-section" class="hidden">
-                <div class="flex justify-between mb-4">
-                    <h3 class="text-xl font-teko text-white">Editar Noticia</h3>
-                    <button onclick="logout()" class="text-xs text-red-400">Salir</button>
-                </div>
-                <form id="post-form" class="space-y-4">
-                    <input type="text" id="post-title" placeholder="Título" class="w-full p-2 rounded bg-slate-700 text-white border border-slate-600" required>
-                    <input type="text" id="post-category" placeholder="Categoría (Review, Tutorial...)" class="w-full p-2 rounded bg-slate-700 text-white border border-slate-600" required>
-                    <input type="file" id="file-input" accept="image/*" class="w-full text-slate-400 text-sm">
-                    <input type="hidden" id="post-image-base64">
-                    <textarea id="post-content" rows="4" placeholder="Contenido..." class="w-full p-2 rounded bg-slate-700 text-white border border-slate-600" required></textarea>
-                    <button type="submit" class="w-full bg-green-600 text-white py-2 rounded font-bold hover:bg-green-700">Publicar</button>
-                </form>
             </div>
         </div>
     </div>
@@ -985,7 +1158,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, updateDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // FIREBASE CONFIG (Reemplazar con tus datos reales en producción)
         let firebaseConfig;
@@ -1013,6 +1186,8 @@
         const db = getFirestore(app);
 
         let currentUser = null;
+        let postsCache = {};
+        let editingPostId = null;
 
         // AUTH & ADMIN UI
         onAuthStateChanged(auth, (user) => {
@@ -1031,6 +1206,8 @@
                 editSec.classList.add('hidden');
                 adminControls.classList.add('hidden');
             }
+            // Trigger render to update buttons
+            renderBlogPosts();
         });
 
         // BLOG LOGIC
@@ -1041,24 +1218,47 @@
         const q = query(collectionPath); 
 
         onSnapshot(q, (snapshot) => {
+            postsCache = {};
+            snapshot.forEach(doc => {
+                postsCache[doc.id] = doc.data();
+            });
+            renderBlogPosts();
+        });
+
+        function renderBlogPosts() {
             const container = document.getElementById('blog-posts-container');
             container.innerHTML = '';
             
-            if (snapshot.empty) {
+            const posts = Object.entries(postsCache).map(([id, data]) => ({id, ...data}));
+            
+            if (posts.length === 0) {
                 container.innerHTML = '<p class="text-center col-span-3">No hay noticias.</p>';
                 return;
             }
 
-            snapshot.forEach(doc => {
-                const post = doc.data();
+            // Sort by date (newest first)
+            posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            posts.forEach(post => {
                 const div = document.createElement('div');
-                div.className = "bg-white dark:bg-dark-card rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition group cursor-pointer h-full flex flex-col";
-                div.onclick = () => openReadModal(post);
+                div.className = "bg-white dark:bg-dark-card rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition group cursor-pointer h-full flex flex-col relative";
+                div.onclick = (e) => {
+                    // Prevent opening modal if clicking admin buttons
+                    if(e.target.closest('.admin-btn')) return;
+                    openReadModal(post);
+                };
 
                 div.innerHTML = `
                     <div class="h-48 bg-slate-200 overflow-hidden relative">
                          <img src="${post.image || 'https://via.placeholder.com/400'}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                          <span class="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow">${post.category || 'News'}</span>
+                         
+                         ${currentUser ? `
+                         <div class="absolute top-2 right-2 flex gap-2 z-10">
+                            <button onclick="window.editPost('${post.id}')" class="admin-btn bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition"><i class="fas fa-edit"></i></button>
+                            <button onclick="window.deletePost('${post.id}')" class="admin-btn bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:bg-red-700 transition"><i class="fas fa-trash"></i></button>
+                         </div>
+                         ` : ''}
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="font-teko text-2xl dark:text-white leading-none mb-2">${post.title}</h3>
@@ -1067,7 +1267,7 @@
                 `;
                 container.appendChild(div);
             });
-        });
+        }
 
         // ACTIONS
         window.login = async (e) => {
@@ -1085,96 +1285,252 @@
 
         window.createPost = async (e) => {
             e.preventDefault();
+            
+            const postData = {
+                title: document.getElementById('post-title').value,
+                author: document.getElementById('post-author').value || 'Alex', // Valor por defecto
+                category: document.getElementById('post-category').value,
+                content: document.getElementById('post-content').value,
+                image: document.getElementById('post-image-base64').value,
+                createdAt: new Date().toISOString()
+            };
+
             try {
-                await addDoc(collectionPath, {
-                    title: document.getElementById('post-title').value,
-                    category: document.getElementById('post-category').value,
-                    content: document.getElementById('post-content').value,
-                    image: document.getElementById('post-image-base64').value,
-                    createdAt: new Date().toISOString()
-                });
-                showToast("Noticia publicada", 'success');
+                if (editingPostId) {
+                    await updateDoc(doc(collectionPath, editingPostId), postData);
+                    showToast("Noticia actualizada", 'success');
+                } else {
+                    await addDoc(collectionPath, postData);
+                    showToast("Noticia publicada", 'success');
+                }
+                
+                // Clean form
                 document.getElementById('post-form').reset();
+                removeImage(); 
+                editingPostId = null;
+                document.querySelector('#post-form button[type="submit"]').innerText = "Publicar Noticia";
                 toggleAdminPanel();
             } catch(e) {
                 showToast("Error: " + e.message, 'error');
             }
         }
 
+        window.editPost = (id) => {
+            const post = postsCache[id];
+            if (!post) return;
+
+            document.getElementById('post-title').value = post.title;
+            document.getElementById('post-author').value = post.author || '';
+            document.getElementById('post-category').value = post.category;
+            document.getElementById('post-content').value = post.content;
+            document.getElementById('post-image-base64').value = post.image;
+            
+            if (post.image) {
+                document.getElementById('image-preview').src = post.image;
+                document.getElementById('image-preview').classList.remove('hidden');
+                document.getElementById('upload-placeholder').classList.add('hidden');
+                document.getElementById('remove-image').classList.remove('hidden');
+            } else {
+                removeImage();
+            }
+
+            editingPostId = id;
+            document.querySelector('#post-form button[type="submit"]').innerText = "Actualizar Noticia";
+            
+            // Open modal if closed
+            const modal = document.getElementById('admin-modal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+            }
+        };
+
+        window.deletePost = async (id) => {
+            if (confirm("¿Seguro que quieres borrar este post?")) {
+                try {
+                    await deleteDoc(doc(collectionPath, id));
+                    showToast("Post eliminado", "success");
+                } catch (e) {
+                    showToast("Error al eliminar: " + e.message, "error");
+                }
+            }
+        };
+
         // Event Listeners for Forms
         document.getElementById('login-form').addEventListener('submit', window.login);
         document.getElementById('post-form').addEventListener('submit', window.createPost);
         
-        // Image Processing and Upload Logic
-        document.getElementById('file-input').addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if(file) {
-                // Use FileReader to preview and Canvas to resize
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.src = event.target.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        // Aggressive resize for Web optimization
-                        const MAX_WIDTH = 800; 
-                        const scaleSize = MAX_WIDTH / img.width;
-                        canvas.width = MAX_WIDTH;
-                        canvas.height = img.height * scaleSize;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        
-                        // Convert to Blob for upload
-                        canvas.toBlob(async (blob) => {
-                            const formData = new FormData();
-                            formData.append('image', blob, 'image.jpg');
-                            
-                            // Show loading state (optional UI enhancement)
-                            showToast('Subiendo imagen...', 'info');
+        // --- IMAGE HANDLING SYSTEM (DROP, PASTE, SELECT) ---
+        
+        const handleFileUpload = (file) => {
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                showToast('Solo se permiten imágenes', 'error');
+                return;
+            }
 
-                            try {
-                                const response = await fetch('upload.php', { method: 'POST', body: formData });
-                                
-                                if(response.ok) {
-                                    const data = await response.json();
-                                    if(data.success && data.url) {
-                                        // Save URL to hidden input for Firestore
-                                        document.getElementById('post-image-base64').value = data.url;
-                                        showToast('Imagen subida correctamente', 'success');
-                                    } else {
-                                        throw new Error(data.error || 'Error en servidor');
-                                    }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 800; 
+                    const scaleSize = MAX_WIDTH / img.width;
+                    canvas.width = MAX_WIDTH;
+                    canvas.height = img.height * scaleSize;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    const previewUrl = canvas.toDataURL('image/jpeg', 0.7);
+                    document.getElementById('image-preview').src = previewUrl;
+                    document.getElementById('image-preview').classList.remove('hidden');
+                    document.getElementById('upload-placeholder').classList.add('hidden');
+                    document.getElementById('remove-image').classList.remove('hidden');
+
+                    canvas.toBlob(async (blob) => {
+                        const formData = new FormData();
+                        formData.append('image', blob, 'image.jpg');
+                        
+                        showToast('Subiendo imagen...', 'info');
+
+                        try {
+                            const response = await fetch('upload.php', { method: 'POST', body: formData });
+                            
+                            if(response.ok) {
+                                const data = await response.json();
+                                if(data.success && data.url) {
+                                    document.getElementById('post-image-base64').value = data.url;
+                                    showToast('Imagen subida correctamente', 'success');
                                 } else {
-                                    throw new Error('Script de subida no encontrado (404)');
+                                    throw new Error(data.error || 'Error en servidor');
                                 }
-                            } catch (e) {
-                                console.warn("Upload failed:", e);
-                                // Fallback: Use Base64 for Firestore if upload fails (e.g. locally)
-                                showToast('Aviso: Usando almacenamiento local (Base64)', 'info');
-                                document.getElementById('post-image-base64').value = canvas.toDataURL('image/jpeg', 0.6);
+                            } else {
+                                throw new Error('Script upload.php no encontrado');
                             }
-                        }, 'image/jpeg', 0.7);
-                    }
-                };
-                reader.readAsDataURL(file);
+                        } catch (e) {
+                            console.warn("Upload failed, falling back to base64", e);
+                            document.getElementById('post-image-base64').value = previewUrl;
+                            showToast('Aviso: Guardando en modo local (Base64)', 'info');
+                        }
+                    }, 'image/jpeg', 0.7);
+                }
+            };
+            reader.readAsDataURL(file);
+        };
+
+        // 1. Input Change Listener
+        document.getElementById('file-input').addEventListener('change', (e) => {
+            handleFileUpload(e.target.files[0]);
+        });
+
+        // 2. Drag & Drop Listeners
+        const dropZone = document.getElementById('drop-zone');
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-red-500', 'bg-slate-100', 'dark:bg-slate-700');
+        });
+        
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-red-500', 'bg-slate-100', 'dark:bg-slate-700');
+        });
+        
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-red-500', 'bg-slate-100', 'dark:bg-slate-700');
+            if (e.dataTransfer.files.length) {
+                handleFileUpload(e.dataTransfer.files[0]);
             }
         });
+
+        // 3. Paste Listener (Ctrl+V)
+        document.addEventListener('paste', (e) => {
+            if(document.getElementById('admin-modal').classList.contains('hidden')) return;
+
+            const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+            for (let index in items) {
+                const item = items[index];
+                if (item.kind === 'file' && item.type.startsWith('image/')) {
+                    const blob = item.getAsFile();
+                    handleFileUpload(blob);
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // Utils for Image UI
+        window.removeImage = () => {
+            document.getElementById('file-input').value = '';
+            document.getElementById('post-image-base64').value = '';
+            document.getElementById('image-preview').src = '';
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('upload-placeholder').classList.remove('hidden');
+            document.getElementById('remove-image').classList.add('hidden');
+        }
         
         // Expose functions global
         window.toggleAdminPanel = () => {
              const modal = document.getElementById('admin-modal');
              modal.classList.toggle('hidden');
+             
+             // Reset form when opening to create new
+             if (!modal.classList.contains('hidden') && !editingPostId) {
+                 // Logic for opening new entry handled by reset below
+             }
+             if (modal.classList.contains('hidden')) {
+                 // Reset on close
+                 editingPostId = null;
+                 document.getElementById('post-form').reset();
+                 removeImage();
+                 document.querySelector('#post-form button[type="submit"]').innerText = "Publicar Noticia";
+             }
         }
+        
         window.openReadModal = (post) => {
             document.getElementById('read-post-title').innerText = post.title;
             document.getElementById('read-post-image').src = post.image;
-            document.getElementById('read-post-content').innerText = post.content;
+            document.getElementById('read-post-category-badge').innerText = post.category;
+            
+            // Autor y Fecha
+            document.getElementById('read-post-author').innerText = post.author || 'Alex';
+            const date = new Date(post.createdAt);
+            document.getElementById('read-post-date').innerText = date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+            // Set Share Links
+            const currentUrl = window.location.href.split('#')[0] + '#blog'; // Simple hash link fallback
+            const text = encodeURIComponent(`Hecha un vistazo a este artículo: ${post.title}`);
+            document.getElementById('share-whatsapp').href = `https://wa.me/?text=${text} ${currentUrl}`;
+            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${text}&url=${currentUrl}`;
+
+            // 1. Escapar HTML para seguridad (evita inyección de scripts maliciosos)
+            let safeContent = post.content
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+            // 2. Convertir URLs (http/https) en enlaces clicables
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            safeContent = safeContent.replace(urlRegex, function(url) {
+                return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-500 font-bold underline break-all">${url}</a>`;
+            });
+
+            // 3. Respetar los saltos de línea (párrafos)
+            // Divide por saltos de línea y envuelve en etiquetas <p>
+            const formattedContent = safeContent.split('\n').map(line => 
+                line.trim() ? `<p class="mb-4 text-slate-700 dark:text-slate-300">${line}</p>` : ''
+            ).join('');
+
+            // Usar innerHTML en lugar de innerText para renderizar el HTML generado
+            document.getElementById('read-post-content').innerHTML = formattedContent;
             document.getElementById('read-modal').classList.remove('hidden');
         }
         window.closeReadModal = () => document.getElementById('read-modal').classList.add('hidden');
 
     </script>
-
+    
     <!-- UI Logic & Cookie Management (Advanced) -->
     <script>
         // --- ADVANCED COOKIE MANAGER (GDPR/LSSI-CE) ---
@@ -1451,6 +1807,27 @@
             setTimeout(() => resultEl.style.transform = "scale(1)", 200);
         }
 
+        // --- NEW: LIPO CHARGE CALCULATOR ---
+        function calculateLipoCharge() {
+            const mah = parseFloat(document.getElementById('lipo-mah').value) || 0;
+            const count = parseFloat(document.getElementById('lipo-count').value) || 1;
+            const cRating = parseFloat(document.getElementById('lipo-c').value) || 1;
+            const resultEl = document.getElementById('lipo-result');
+
+            // Formula: (mAh * quantity) / 1000 * C
+            // Ejemplo: (1300 * 4) / 1000 * 1C = 5.2 Amps
+            
+            const totalMah = mah * count;
+            const amps = (totalMah / 1000) * cRating;
+            
+            // Round to 1 decimal place
+            resultEl.innerText = amps.toFixed(1);
+            
+            // Simple animation
+            resultEl.style.transform = "scale(1.2)";
+            setTimeout(() => resultEl.style.transform = "scale(1)", 200);
+        }
+
         // --- FAQ TOGGLE ---
         function toggleFaq(button) {
             const content = button.nextElementSibling;
@@ -1519,11 +1896,26 @@
             });
         });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        // Auto Close Mobile Menu
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
 
         // Init
         cookieManager.init(); // Initialize advanced cookie manager
         toggleGear('pro'); 
         updateLatestVideo(); 
+        
+        // Init calcs with defaults
+        calculateFlightTime();
+        calculateLipoCharge();
     </script>
 </body>
 </html>
