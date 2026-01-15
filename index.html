@@ -123,7 +123,7 @@
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
 
         /* Modals */
-        .modal-overlay { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); }
+        .modal-overlay { background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); }
 
         /* Toast */
         #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
@@ -176,6 +176,17 @@
         }
         
         @keyframes flow { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
+
+        /* Card Hover Effects */
+        .dashboard-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(220, 38, 38, 0.3);
+            border-color: #ef4444;
+        }
     </style>
 </head>
 <body class="antialiased scroll-smooth bg-slate-50 text-slate-900 dark:bg-dark-bg dark:text-slate-200 transition-colors duration-300">
@@ -192,15 +203,11 @@
                 
                 <!-- Desktop Menu (Ordenado) -->
                 <div class="hidden md:flex items-center space-x-2 lg:space-x-4 overflow-x-auto">
-                    <button onclick="scrollToSection('antes-de-volar')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Antes de Volar</button>
+                    <!-- Menú simplificado ya que ahora tenemos las tarjetas -->
                     <button onclick="scrollToSection('el-drone')" class="nav-link text-sm font-bold uppercase hover:text-red-600">El Drone</button>
-                    <button onclick="scrollToSection('equipo')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Equipo FPV</button>
-                    <button onclick="scrollToSection('ofertas')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Ofertas</button>
-                    <button onclick="scrollToSection('guias')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Guías Montaje</button>
-                    <button onclick="scrollToSection('foros')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Foros Telegram</button>
+                    <button onclick="scrollToSection('herramientas')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Herramientas</button>
                     <button onclick="scrollToSection('videos-destacados')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Canal</button>
-                    <button onclick="scrollToSection('blog')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Blog Noticias</button>
-                    <button onclick="scrollToSection('servicios')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Servicios</button>
+                    <button onclick="scrollToSection('blog')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Noticias</button>
                     
                     <div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
                     <button id="theme-toggle-desktop" class="p-2 text-slate-800 dark:text-yellow-400"><i class="fas fa-sun"></i></button>
@@ -217,15 +224,10 @@
         <!-- Mobile Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-card border-b border-slate-100 dark:border-slate-800">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
-                <a href="#antes-de-volar" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Antes de Volar</a>
                 <a href="#el-drone" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">El Drone</a>
-                <a href="#equipo" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Equipo FPV</a>
-                <a href="#ofertas" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Ofertas</a>
-                <a href="#guias" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Guías Montaje</a>
-                <a href="#foros" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Foros Telegram</a>
+                <a href="#herramientas" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Herramientas</a>
                 <a href="#videos-destacados" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Canal</a>
-                <a href="#blog" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Blog Noticias</a>
-                <a href="#servicios" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Servicios</a>
+                <a href="#blog" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Noticias</a>
             </div>
         </div>
     </nav>
@@ -266,152 +268,47 @@
         </div>
     </section>
 
-    <!-- SECTION: ANTES DE VOLAR (Ex Academia) -->
-    <section id="antes-de-volar" class="py-12 bg-slate-50 dark:bg-dark-bg section-slant relative z-20">
+    <!-- SECTION: DASHBOARD RESUMEN (Nueva Sección 4 Columnas) -->
+    <section id="dashboard-resumen" class="py-12 bg-slate-100 dark:bg-slate-900/50 -mt-10 relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-bold text-slate-900 dark:text-white font-teko">Antes de Volar</h2>
-                <p class="mt-2 text-slate-600 dark:text-slate-400">Paso a paso: Normativa, Simulador y Primer Vuelo.</p>
-            </div>
-            
-            <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700 min-h-[300px] tab-container">
-                <!-- Tabs -->
-                <div class="flex justify-center mb-8">
-                    <div class="inline-flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
-                        <button class="tab-btn active px-6 py-2 rounded-lg font-teko text-xl text-white bg-slate-900 dark:bg-red-600 shadow-sm" onclick="switchTab('phase1', this)">Legalidad</button>
-                        <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400" onclick="switchTab('phase2', this)">Simulador</button>
-                        <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400" onclick="switchTab('phase3', this)">Betaflight</button>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                
+                <!-- Card 1: Antes de Volar -->
+                <div onclick="openSectionModal('modal-antes-de-volar')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 mb-4">
+                        <i class="fas fa-book-reader text-2xl"></i>
                     </div>
+                    <h3 class="font-teko text-2xl font-bold dark:text-white">Antes de Volar</h3>
+                    <p class="text-xs text-slate-500 mt-2">Legalidad, Simuladores y primeros pasos.</p>
                 </div>
-                <!-- Content -->
-                <div>
-                    <div id="phase1" class="tab-content fade-in">
-                        <div class="space-y-6 text-left">
-                            
-                            <!-- Introducción -->
-                            <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800 flex gap-4 items-start">
-                                <i class="fas fa-info-circle text-blue-500 text-xl mt-1"></i>
-                                <div>
-                                    <p class="text-sm text-slate-700 dark:text-slate-300">
-                                        <strong>¡Ojo!</strong> Incluso si tu drone pesa <strong>menos de 250g</strong>, al tener una cámara que registra datos del entorno (el vídeo) deja de considerarse juguete y pasa a ser <strong>aeronave</strong> a ojos de la ley.
-                                    </p>
-                                </div>
-                            </div>
 
-                            <p class="text-slate-600 dark:text-slate-400 text-sm">
-                                Básicamente: regístrate si tienes cámara, revisa el mapa de Enaire y respeta alturas/distancias. Más info en <a href="https://www.seguridadaerea.gob.es/es/ambitos/drones/tienes-un-uas-dron" target="_blank" class="text-red-500 hover:underline">AESA</a>.
-                            </p>
-
-                            <!-- Grid de Puntos -->
-                            <div class="grid md:grid-cols-2 gap-4">
-                                
-                                <!-- 1. Sentido Común -->
-                                <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                    <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">1</span> Sentido Común</h4>
-                                    <p class="text-xs text-slate-500">Aunque vueles en el campo legalmente, piensa si molestas o asustas a animales. Evita conflictos innecesarios.</p>
-                                </div>
-
-                                <!-- 2. Cumple la Ley -->
-                                <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                    <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">2</span> Registro Operador</h4>
-                                    <p class="text-xs text-slate-500 mb-2">Registro obligatorio y gratuito en <a href="https://sede.seguridadaerea.gob.es/sede-aesa/catalogo-de-procedimientos/registro-de-operadores-de-uas" target="_blank" class="text-blue-500 hover:underline">AESA</a>.</p>
-                                    <ul class="text-xs text-slate-500 list-disc list-inside">
-                                        <li>Pega el Nº de Operador visible en el drone.</li>
-                                        <li>Recomendado: Poner tu teléfono por si se pierde.</li>
-                                    </ul>
-                                </div>
-
-                                <!-- 3. Dónde Volar -->
-                                <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm md:col-span-2">
-                                    <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">3</span> ¿Dónde volar?</h4>
-                                    <div class="grid sm:grid-cols-2 gap-4">
-                                        <div class="text-xs text-slate-500">
-                                            <p class="mb-1"><strong class="text-red-500">PROHIBIDO:</strong> Zonas urbanas, aglomeraciones, playas con gente, aeropuertos, helipuertos, zonas militares y espacios protegidos.</p>
-                                            <a href="https://drones.enaire.es/" target="_blank" class="text-blue-500 font-bold hover:underline"><i class="fas fa-map"></i> Consultar Mapa ENAIRE</a>
-                                        </div>
-                                        <div class="text-xs text-slate-500 bg-slate-50 dark:bg-slate-800 p-2 rounded">
-                                            <strong>Consejo Pro:</strong> Vuela en espacios abiertos, sin árboles ni cables. Mejor sobre hierba (amortigua caídas). Si haces FPV, lleva siempre un <strong>observador</strong>.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 4. Cómo volar -->
-                                <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                    <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">4</span> Reglas de Vuelo</h4>
-                                    <ul class="text-xs text-slate-500 space-y-1">
-                                        <li class="flex items-center"><i class="fas fa-eye text-slate-400 mr-2"></i> Siempre dentro del alcance visual (VLOS).</li>
-                                        <li class="flex items-center"><i class="fas fa-arrow-up text-slate-400 mr-2"></i> Altura máx: <strong>120 metros</strong>.</li>
-                                        <li class="flex items-center"><i class="fas fa-ruler-horizontal text-slate-400 mr-2"></i> Distancia máx: <strong>500 metros</strong>.</li>
-                                    </ul>
-                                </div>
-
-                                <!-- 5. Potencias -->
-                                <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                    <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">5</span> Potencias (CE)</h4>
-                                    <div class="overflow-x-auto">
-                                        <table class="w-full text-xs text-slate-500">
-                                            <tr class="border-b dark:border-slate-700">
-                                                <td class="py-1 font-bold">5.8 GHz (Vídeo)</td>
-                                                <td class="py-1 text-right text-red-500 font-bold">&lt;25 mW</td>
-                                            </tr>
-                                            <tr class="border-b dark:border-slate-700">
-                                                <td class="py-1 font-bold">2.4 GHz (Control)</td>
-                                                <td class="py-1 text-right text-red-500 font-bold">&lt;100 mW</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="py-1 font-bold">868/915 MHz</td>
-                                                <td class="py-1 text-right">Requiere licencia</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <!-- 6. Privacidad y Seguro -->
-                                <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm md:col-span-2">
-                                    <div class="flex flex-col sm:flex-row gap-6">
-                                        <div class="flex-1">
-                                            <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">6</span> Privacidad (LOPD)</h4>
-                                            <p class="text-xs text-slate-500">No grabes a personas reconocibles sin consentimiento ni invadas la privacidad de viviendas.</p>
-                                        </div>
-                                        <div class="flex-1 border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 pt-4 sm:pt-0 sm:pl-6">
-                                            <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">7</span> Seguro RC</h4>
-                                            <p class="text-xs text-slate-500 mb-2">Muy recomendable aunque sea recreativo.</p>
-                                            <div class="flex gap-2">
-                                                <a href="https://www.coverdrone.com/es/" target="_blank" class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition">Coverdrone</a>
-                                                <a href="https://www.air-assurances.es/" target="_blank" class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition">Air Assurances</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 7. Sanciones -->
-                                <div class="md:col-span-2 bg-red-50 dark:bg-red-900/20 p-4 rounded-xl border border-red-100 dark:border-red-900/50 text-center">
-                                    <p class="text-sm text-red-800 dark:text-red-300 font-bold">
-                                        <i class="fas fa-exclamation-triangle mr-2"></i> Las multas no son una broma. Vuela seguro y legal.
-                                    </p>
-                                </div>
-
-                            </div>
-                            
-                            <!-- Botón para ver texto completo -->
-                            <button onclick="document.getElementById('full-legal-modal').classList.remove('hidden')" class="w-full mt-6 bg-slate-800 dark:bg-slate-700 text-white p-4 rounded-xl font-bold hover:bg-slate-700 dark:hover:bg-slate-600 transition shadow-lg flex items-center justify-center gap-2">
-                                <i class="fas fa-file-alt"></i> Leer Documento Legal Completo
-                            </button>
-                        </div>
+                <!-- Card 2: Equipo FPV -->
+                <div onclick="openSectionModal('modal-equipo')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4">
+                        <i class="fas fa-box-open text-2xl"></i>
                     </div>
-                    <div id="phase2" class="tab-content hidden fade-in">
-                        <div class="grid md:grid-cols-3 gap-4 text-center">
-                            <a href="https://www.velocidrone.com/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Velocidrone (Pro)</a>
-                            <a href="https://store.steampowered.com/app/410340/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Liftoff (Balance)</a>
-                            <a href="https://store.steampowered.com/app/1682970/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Uncrashed (Graficos)</a>
-                        </div>
-                    </div>
-                    <div id="phase3" class="tab-content hidden fade-in">
-                        <div class="bg-slate-900 p-4 rounded-lg text-green-400 font-mono text-xs overflow-x-auto shadow-inner">
-                            set roll_rc_rate = 100<br>save
-                        </div>
-                    </div>
+                    <h3 class="font-teko text-2xl font-bold dark:text-white">Equipo FPV</h3>
+                    <p class="text-xs text-slate-500 mt-2">Gafas, Emisoras y Ofertas destacadas.</p>
                 </div>
+
+                <!-- Card 3: Guías de Montaje -->
+                <div onclick="openSectionModal('modal-guias')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4">
+                        <i class="fas fa-tools text-2xl"></i>
+                    </div>
+                    <h3 class="font-teko text-2xl font-bold dark:text-white">Guías Montaje</h3>
+                    <p class="text-xs text-slate-500 mt-2">Esquemas, wiring y configuraciones.</p>
+                </div>
+
+                <!-- Card 4: Foros -->
+                <div onclick="openSectionModal('modal-foros')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
+                    <div class="w-14 h-14 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-600 mb-4">
+                        <i class="fab fa-telegram text-3xl pl-1"></i>
+                    </div>
+                    <h3 class="font-teko text-2xl font-bold dark:text-white">Comunidad</h3>
+                    <p class="text-xs text-slate-500 mt-2">Grupos de ayuda y compra/venta.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -478,173 +375,6 @@
         </div>
     </section>
 
-    <!-- SECTION: EQUIPO FPV (Ex Hangar) & OFERTAS -->
-    <section id="equipo" class="py-12 bg-slate-50 dark:bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Equipo -->
-            <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-bold dark:text-white font-teko">Equipo FPV</h2>
-                    <div class="flex bg-white dark:bg-slate-900 p-1 rounded-lg shadow-sm">
-                        <button id="btn-gear-pro" onclick="toggleGear('pro')" class="px-3 py-1 text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white rounded transition">Pro</button>
-                        <button id="btn-gear-beginner" onclick="toggleGear('beginner')" class="px-3 py-1 text-xs font-bold text-slate-500 hover:text-slate-900 transition">Inicio</button>
-                    </div>
-                </div>
-                <div id="gear-grid" class="grid grid-cols-2 gap-4"></div>
-            </div>
-             <!-- Ofertas -->
-            <div id="ofertas" class="bg-slate-50 dark:bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-bold dark:text-white font-teko">Ofertas</h2>
-                    <i class="fas fa-tags text-red-500 text-2xl"></i>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-xs text-left text-slate-500 dark:text-slate-400">
-                        <tbody id="couponTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN GUÍAS DE MONTAJE (Restaurada) -->
-    <section id="guias" class="py-24 bg-slate-900 text-white relative overflow-hidden">
-        
-        <!-- Fondo Técnico con efectos de luz -->
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900 to-black z-0"></div>
-        <div class="absolute inset-0 tech-grid-bg opacity-30 z-0 pointer-events-none"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Cabecera de la sección -->
-            <div class="mb-12 flex flex-col md:flex-row justify-between items-end border-b border-slate-700/50 pb-8">
-                <div>
-                    <div class="inline-flex items-center gap-2 mb-2">
-                        <span class="flex h-2 w-2 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                        </span>
-                        <span class="text-red-500 font-bold tracking-widest uppercase text-xs">Proyecto del mes</span>
-                    </div>
-                    <h2 class="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 font-teko mt-0">Freestyle 5"</h2>
-                    <p class="text-slate-400 text-xl font-teko tracking-wide">Configuración: "The Bando Killer"</p>
-                </div>
-                <div class="mt-6 md:mt-0 flex gap-3">
-                    <button class="bg-white hover:bg-slate-200 text-slate-900 px-6 py-3 rounded-lg text-sm font-bold uppercase transition flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                        <i class="fas fa-file-invoice text-red-600"></i> Lista Piezas
-                    </button>
-                    <button class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 hover:border-slate-500 px-6 py-3 rounded-lg text-sm font-bold uppercase transition flex items-center gap-2">
-                        <i class="fas fa-terminal text-green-400"></i> CLI Dump
-                    </button>
-                </div>
-            </div>
-
-            <!-- Visualización del Esquema (Diagrama) -->
-            <div class="bg-slate-900/60 backdrop-blur-md rounded-3xl border border-slate-700/50 relative overflow-hidden shadow-2xl">
-                <!-- Barra superior del diagrama tipo "Ventana CAD" -->
-                <div class="absolute top-0 left-0 w-full px-6 py-4 flex justify-between items-center border-b border-slate-700/30 bg-slate-900/40 z-30">
-                    <span class="text-xs font-mono text-slate-500">SCHEMATIC_VIEW_V2.0</span>
-                    <div class="flex gap-2">
-                        <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
-                        <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
-                        <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
-                    </div>
-                </div>
-
-                <!-- Canvas del Diagrama -->
-                <div class="relative w-full md:h-[700px] flex flex-col items-center justify-center p-6 py-16 md:p-0 gap-8 md:gap-0 mt-8">
-                    
-                    <!-- SVG WIRING (Conexiones) -->
-                    <!-- Solo visible en Desktop, ajustado para que las líneas vayan de centro a centro y las cajas tapen los extremos -->
-                    <svg class="hidden md:block absolute inset-0 z-0 w-full h-full pointer-events-none" viewBox="0 0 900 700" preserveAspectRatio="none">
-                        <!-- Top (VTX) CenterX=450, CenterY=126 -> FC CenterY=350 -->
-                        <path class="flow-line neon-line text-cyan-400" d="M450 126 L 450 350" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="6,4" stroke-linecap="round" />
-                        
-                        <!-- Bottom (ESC) CenterX=450, CenterY=595 -> FC CenterY=350 -->
-                        <path class="flow-line neon-line text-yellow-400" d="M450 595 L 450 350" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="8,4" stroke-linecap="round" />
-                        
-                        <!-- Left (RX) CenterX=135, CenterY=350 -> FC CenterX=450 -->
-                        <path class="flow-line neon-line text-blue-500" d="M135 350 L 450 350" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="4,4" stroke-linecap="round" />
-                        
-                        <!-- Right (GPS) CenterX=765, CenterY=350 -> FC CenterX=450 -->
-                        <path class="flow-line neon-line text-green-500" d="M765 350 L 450 350" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="4,4" stroke-linecap="round" />
-                    </svg>
-                    
-                    <!-- CONECTORES MÓVIL (Línea simple vertical para pantallas pequeñas) -->
-                    <div class="md:hidden absolute left-1/2 top-20 bottom-20 w-0.5 bg-slate-700/50 -translate-x-1/2 z-0"></div>
-
-                    <!-- 1. Top: VTX (Video Transmitter) -->
-                    <!-- Posición absoluta en Desktop (top 18%), relativa en Móvil -->
-                    <div class="relative md:absolute md:top-[18%] md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
-                        <div class="neon-box bg-slate-800 w-64 p-4 rounded-xl text-center cursor-pointer hover:border-cyan-400 group relative">
-                            <div class="text-cyan-400 mb-2"><i class="fas fa-video text-3xl group-hover:scale-110 transition-transform"></i></div>
-                            <span class="text-lg font-bold text-white block font-teko tracking-wide">DJI O3 Air Unit</span>
-                            <span class="text-[10px] text-slate-400 uppercase tracking-wider bg-slate-900/50 px-2 py-0.5 rounded">Video HD System</span>
-                        </div>
-                    </div>
-
-                    <!-- 2. Center: Flight Controller (The Brain) -->
-                    <div class="relative md:absolute md:left-1/2 md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
-                        <div class="neon-box bg-slate-900 w-72 h-52 rounded-xl flex flex-col items-center justify-center relative border-slate-500 hover:border-red-500 group">
-                            <!-- Efecto glow detrás -->
-                            <div class="absolute inset-0 bg-red-500/10 blur-2xl rounded-xl -z-10 group-hover:bg-red-500/20 transition-all opacity-0 group-hover:opacity-100"></div>
-                            
-                            <i class="fas fa-microchip text-6xl mb-3 text-white group-hover:text-red-500 transition-colors duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
-                            <span class="font-teko text-4xl text-white tracking-wide">Flight Controller</span>
-                            <span class="text-xs text-slate-400 font-mono border border-slate-600 bg-slate-800 px-3 py-1 rounded mt-2">SpeedyBee F405 V3</span>
-                            
-                            <!-- Puntos de conexión visuales (Solo Desktop) -->
-                            <div class="hidden md:block absolute -top-1.5 left-1/2 w-4 h-1.5 bg-cyan-400 rounded-full transform -translate-x-1/2 shadow-[0_0_8px_cyan]"></div>
-                            <div class="hidden md:block absolute -bottom-1.5 left-1/2 w-10 h-1.5 bg-yellow-400 rounded-full transform -translate-x-1/2 shadow-[0_0_8px_yellow]"></div>
-                            <div class="hidden md:block absolute top-1/2 -left-1.5 w-1.5 h-4 bg-blue-500 rounded-full transform -translate-y-1/2 shadow-[0_0_8px_blue]"></div>
-                            <div class="hidden md:block absolute top-1/2 -right-1.5 w-1.5 h-4 bg-green-500 rounded-full transform -translate-y-1/2 shadow-[0_0_8px_green]"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- 3. Bottom: ESC -->
-                    <div class="relative md:absolute md:top-[85%] md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
-                        <div class="neon-box bg-slate-800 w-64 p-4 rounded-xl text-center cursor-pointer hover:border-yellow-400 group relative">
-                            <div class="text-yellow-400 mb-2"><i class="fas fa-bolt text-3xl group-hover:scale-110 transition-transform"></i></div>
-                            <span class="text-lg font-bold text-white block font-teko tracking-wide">ESC 55A 4-in-1</span>
-                            <span class="text-[10px] text-slate-400 uppercase tracking-wider bg-slate-900/50 px-2 py-0.5 rounded">Power (6S LiPo)</span>
-                        </div>
-                    </div>
-                    
-                    <!-- 4. Periféricos (RX y GPS) -->
-                    <div class="flex flex-wrap md:contents gap-4 w-full justify-center relative">
-                        <!-- Left: RX -->
-                        <div class="relative md:absolute md:left-[15%] md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
-                            <div class="neon-box bg-slate-800 w-40 p-4 rounded-xl text-center cursor-pointer hover:border-blue-500 group">
-                                <div class="text-blue-500 mb-2"><i class="fas fa-wifi text-3xl group-hover:scale-110 transition-transform"></i></div>
-                                <span class="text-lg font-bold text-white block font-teko">ELRS RX</span>
-                                <span class="text-[10px] text-slate-400 uppercase tracking-wider">2.4GHz</span>
-                            </div>
-                        </div>
-
-                        <!-- Right: GPS -->
-                        <div class="relative md:absolute md:left-[85%] md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
-                            <div class="neon-box bg-slate-800 w-40 p-4 rounded-xl text-center cursor-pointer hover:border-green-500 group">
-                                <div class="text-green-500 mb-2"><i class="fas fa-satellite text-3xl group-hover:scale-110 transition-transform"></i></div>
-                                <span class="text-lg font-bold text-white block font-teko">GPS M10</span>
-                                <span class="text-[10px] text-slate-400 uppercase tracking-wider">Rescate</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- Pie de diagrama -->
-                <div class="text-center pb-6 md:absolute md:bottom-4 md:left-0 md:w-full z-30 pointer-events-none">
-                    <p class="text-[10px] font-mono text-slate-500 uppercase tracking-[0.3em]">
-                        System Status: <span class="text-green-400 animate-pulse">ONLINE</span> • 
-                        Voltage: <span class="text-yellow-400">25.2V</span> • 
-                        Satellites: <span class="text-blue-400">12</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SECTION: HERRAMIENTAS (After Guides) -->
     <section id="herramientas" class="py-12 bg-slate-50 dark:bg-dark-card relative">
         <div class="max-w-6xl mx-auto px-4">
@@ -670,27 +400,6 @@
                     <button onclick="calculateLipoCharge()" class="w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-lg">Calcular</button>
                     <div class="text-right mt-2"><span id="lipo-result" class="text-4xl font-teko font-bold text-blue-500">0.0</span> Amps</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION: FOROS TELEGRAM (New) -->
-    <section id="foros" class="py-12 bg-slate-100 dark:bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-8 text-slate-900 dark:text-white font-teko"><i class="fab fa-telegram text-telegram mr-2"></i> Foros</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition">
-                    <div class="w-12 h-12 bg-telegram/10 rounded-full flex items-center justify-center text-telegram text-2xl"><i class="fas fa-comments"></i></div>
-                    <div><h3 class="font-bold dark:text-white">General</h3><p class="text-xs text-slate-500">Chat diario</p></div>
-                </a>
-                <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 text-2xl"><i class="fas fa-shopping-cart"></i></div>
-                    <div><h3 class="font-bold dark:text-white">Compra/Venta</h3><p class="text-xs text-slate-500">Mercadillo</p></div>
-                </a>
-                <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition">
-                    <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-orange-600 text-2xl"><i class="fas fa-tools"></i></div>
-                    <div><h3 class="font-bold dark:text-white">Taller</h3><p class="text-xs text-slate-500">Ayuda técnica</p></div>
-                </a>
             </div>
         </div>
     </section>
@@ -740,15 +449,385 @@
                         <span>¿Necesito licencia?</span>
                         <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
                     </button>
-                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm">Sí, registro en AESA.</div>
+                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm">Sí, registro en AESA como operador es obligatorio incluso para drones de menos de 250g si tienen cámara.</div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                    <button class="flex items-center justify-between w-full p-4 bg-white dark:bg-slate-800 text-left font-bold text-slate-900 dark:text-white focus:outline-none" onclick="toggleFaq(this)">
+                        <span>¿Qué compro para empezar?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm">
+                        Lo mejor es empezar solo con una emisora (mando) barata como la Radiomaster Pocket y echarle horas al simulador (Velocidrone o Liftoff) antes de gastar dinero en el drone.
+                    </div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                    <button class="flex items-center justify-between w-full p-4 bg-white dark:bg-slate-800 text-left font-bold text-slate-900 dark:text-white focus:outline-none" onclick="toggleFaq(this)">
+                        <span>¿Analógico o Digital?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm">
+                        <strong>Digital (DJI/Walksnail):</strong> Calidad de imagen increíble, experiencia inmersiva, pero más caro. <br>
+                        <strong>Analógico:</strong> Imagen con interferencias ("niebla"), pero muy barato, ligero y latencia ultra baja. Ideal para empezar con presupuesto ajustado.
+                    </div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                    <button class="flex items-center justify-between w-full p-4 bg-white dark:bg-slate-800 text-left font-bold text-slate-900 dark:text-white focus:outline-none" onclick="toggleFaq(this)">
+                        <span>¿Cuánto cuesta un equipo completo?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-4 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-sm">
+                        Un kit de iniciación (Tinywhoop RTF) ronda los 200-300€. Un equipo profesional de 5 pulgadas con sistema digital y gafas buenas puede irse a los 1000€-1500€ fácilmente.
+                    </div>
                 </div>
             </div>
          </div>
     </section>
 
-    <!-- Modals -->
+    <!-- LARGE MODALS PARA LAS SECCIONES -->
+    
+    <!-- MODAL 1: ANTES DE VOLAR -->
+    <div id="modal-antes-de-volar" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-slate-50 dark:bg-slate-900 w-full max-w-6xl h-[90vh] rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700">
+            <!-- Header -->
+            <div class="p-6 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-3xl font-bold font-teko dark:text-white">Antes de Volar</h2>
+                <button onclick="closeSectionModal('modal-antes-de-volar')" class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <!-- Scrollable Content -->
+            <div class="overflow-y-auto p-6 md:p-10">
+                <!-- Contenido Original de la sección -->
+                <div class="text-center mb-10">
+                    <p class="mt-2 text-slate-600 dark:text-slate-400">Paso a paso: Normativa, Simulador y Primer Vuelo.</p>
+                </div>
+                
+                <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700 min-h-[300px] tab-container">
+                    <!-- Tabs -->
+                    <div class="flex justify-center mb-8">
+                        <div class="inline-flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+                            <button class="tab-btn active px-6 py-2 rounded-lg font-teko text-xl text-white bg-slate-900 dark:bg-red-600 shadow-sm" onclick="switchTab('phase1', this)">Legalidad</button>
+                            <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400" onclick="switchTab('phase2', this)">Simulador</button>
+                            <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-500 dark:text-slate-400" onclick="switchTab('phase3', this)">Betaflight</button>
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div>
+                        <div id="phase1" class="tab-content fade-in">
+                            <div class="space-y-6 text-left">
+                                <!-- Introducción -->
+                                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800 flex gap-4 items-start">
+                                    <i class="fas fa-info-circle text-blue-500 text-xl mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-slate-700 dark:text-slate-300">
+                                            <strong>¡Ojo!</strong> Incluso si tu drone pesa <strong>menos de 250g</strong>, al tener una cámara que registra datos del entorno (el vídeo) deja de considerarse juguete y pasa a ser <strong>aeronave</strong> a ojos de la ley.
+                                        </p>
+                                    </div>
+                                </div>
+    
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">
+                                    Básicamente: regístrate si tienes cámara, revisa el mapa de Enaire y respeta alturas/distancias. Más info en <a href="https://www.seguridadaerea.gob.es/es/ambitos/drones/tienes-un-uas-dron" target="_blank" class="text-red-500 hover:underline">AESA</a>.
+                                </p>
+    
+                                <!-- Grid de Puntos -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    
+                                    <!-- 1. Sentido Común -->
+                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">1</span> Sentido Común</h4>
+                                        <p class="text-xs text-slate-500">Aunque vueles en el campo legalmente, piensa si molestas o asustas a animales. Evita conflictos innecesarios.</p>
+                                    </div>
+    
+                                    <!-- 2. Cumple la Ley -->
+                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">2</span> Registro Operador</h4>
+                                        <p class="text-xs text-slate-500 mb-2">Registro obligatorio y gratuito en <a href="https://sede.seguridadaerea.gob.es/sede-aesa/catalogo-de-procedimientos/registro-de-operadores-de-uas" target="_blank" class="text-blue-500 hover:underline">AESA</a>.</p>
+                                        <ul class="text-xs text-slate-500 list-disc list-inside">
+                                            <li>Pega el Nº de Operador visible en el drone.</li>
+                                            <li>Recomendado: Poner tu teléfono por si se pierde.</li>
+                                        </ul>
+                                    </div>
+    
+                                    <!-- 3. Dónde Volar -->
+                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm md:col-span-2">
+                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">3</span> ¿Dónde volar?</h4>
+                                        <div class="grid sm:grid-cols-2 gap-4">
+                                            <div class="text-xs text-slate-500">
+                                                <p class="mb-1"><strong class="text-red-500">PROHIBIDO:</strong> Zonas urbanas, aglomeraciones, playas con gente, aeropuertos, helipuertos, zonas militares y espacios protegidos.</p>
+                                                <a href="https://drones.enaire.es/" target="_blank" class="text-blue-500 font-bold hover:underline"><i class="fas fa-map"></i> Consultar Mapa ENAIRE</a>
+                                            </div>
+                                            <div class="text-xs text-slate-500 bg-slate-50 dark:bg-slate-800 p-2 rounded">
+                                                <strong>Consejo Pro:</strong> Vuela en espacios abiertos, sin árboles ni cables. Mejor sobre hierba (amortigua caídas). Si haces FPV, lleva siempre un <strong>observador</strong>.
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <!-- 4. Cómo volar -->
+                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">4</span> Reglas de Vuelo</h4>
+                                        <ul class="text-xs text-slate-500 space-y-1">
+                                            <li class="flex items-center"><i class="fas fa-eye text-slate-400 mr-2"></i> Siempre dentro del alcance visual (VLOS).</li>
+                                            <li class="flex items-center"><i class="fas fa-arrow-up text-slate-400 mr-2"></i> Altura máx: <strong>120 metros</strong>.</li>
+                                            <li class="flex items-center"><i class="fas fa-ruler-horizontal text-slate-400 mr-2"></i> Distancia máx: <strong>500 metros</strong>.</li>
+                                        </ul>
+                                    </div>
+    
+                                    <!-- 5. Potencias -->
+                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">5</span> Potencias (CE)</h4>
+                                        <div class="overflow-x-auto">
+                                            <table class="w-full text-xs text-slate-500">
+                                                <tr class="border-b dark:border-slate-700">
+                                                    <td class="py-1 font-bold">5.8 GHz (Vídeo)</td>
+                                                    <td class="py-1 text-right text-red-500 font-bold">&lt;25 mW</td>
+                                                </tr>
+                                                <tr class="border-b dark:border-slate-700">
+                                                    <td class="py-1 font-bold">2.4 GHz (Control)</td>
+                                                    <td class="py-1 text-right text-red-500 font-bold">&lt;100 mW</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="py-1 font-bold">868/915 MHz</td>
+                                                    <td class="py-1 text-right">Requiere licencia</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+    
+                                    <!-- 6. Privacidad y Seguro -->
+                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm md:col-span-2">
+                                        <div class="flex flex-col sm:flex-row gap-6">
+                                            <div class="flex-1">
+                                                <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">6</span> Privacidad (LOPD)</h4>
+                                                <p class="text-xs text-slate-500">No grabes a personas reconocibles sin consentimiento ni invadas la privacidad de viviendas.</p>
+                                            </div>
+                                            <div class="flex-1 border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 pt-4 sm:pt-0 sm:pl-6">
+                                                <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">7</span> Seguro RC</h4>
+                                                <p class="text-xs text-slate-500 mb-2">Muy recomendable aunque sea recreativo.</p>
+                                                <div class="flex gap-2">
+                                                    <a href="https://www.coverdrone.com/es/" target="_blank" class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition">Coverdrone</a>
+                                                    <a href="https://www.air-assurances.es/" target="_blank" class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition">Air Assurances</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <!-- 7. Sanciones -->
+                                    <div class="md:col-span-2 bg-red-50 dark:bg-red-900/20 p-4 rounded-xl border border-red-100 dark:border-red-900/50 text-center">
+                                        <p class="text-sm text-red-800 dark:text-red-300 font-bold">
+                                            <i class="fas fa-exclamation-triangle mr-2"></i> Las multas no son una broma. Vuela seguro y legal.
+                                        </p>
+                                    </div>
+    
+                                </div>
+                                
+                                <!-- Botón para ver texto completo -->
+                                <button onclick="document.getElementById('full-legal-modal').classList.remove('hidden')" class="w-full mt-6 bg-slate-800 dark:bg-slate-700 text-white p-4 rounded-xl font-bold hover:bg-slate-700 dark:hover:bg-slate-600 transition shadow-lg flex items-center justify-center gap-2">
+                                    <i class="fas fa-file-alt"></i> Leer Documento Legal Completo
+                                </button>
+                            </div>
+                        </div>
+                        <div id="phase2" class="tab-content hidden fade-in">
+                            <div class="grid md:grid-cols-3 gap-4 text-center">
+                                <a href="https://www.velocidrone.com/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Velocidrone (Pro)</a>
+                                <a href="https://store.steampowered.com/app/410340/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Liftoff (Balance)</a>
+                                <a href="https://store.steampowered.com/app/1682970/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Uncrashed (Graficos)</a>
+                            </div>
+                        </div>
+                        <div id="phase3" class="tab-content hidden fade-in">
+                            <div class="bg-slate-900 p-4 rounded-lg text-green-400 font-mono text-xs overflow-x-auto shadow-inner">
+                                set roll_rc_rate = 100<br>save
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: EQUIPO FPV -->
+    <div id="modal-equipo" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-slate-50 dark:bg-slate-900 w-full max-w-6xl h-[90vh] rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700">
+             <!-- Header -->
+             <div class="p-6 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-3xl font-bold font-teko dark:text-white">Equipo FPV & Ofertas</h2>
+                <button onclick="closeSectionModal('modal-equipo')" class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <!-- Scrollable Content -->
+            <div class="overflow-y-auto p-6 md:p-10">
+                <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Equipo -->
+                    <div class="bg-white dark:bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-3xl font-bold dark:text-white font-teko">Equipo Recomendado</h2>
+                            <div class="flex bg-white dark:bg-slate-900 p-1 rounded-lg shadow-sm">
+                                <button id="btn-gear-pro" onclick="toggleGear('pro')" class="px-3 py-1 text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white rounded transition">Pro</button>
+                                <button id="btn-gear-beginner" onclick="toggleGear('beginner')" class="px-3 py-1 text-xs font-bold text-slate-500 hover:text-slate-900 transition">Inicio</button>
+                            </div>
+                        </div>
+                        <div id="gear-grid" class="grid grid-cols-2 gap-4"></div>
+                    </div>
+                     <!-- Ofertas -->
+                    <div id="ofertas-modal-content" class="bg-slate-50 dark:bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-100 dark:border-slate-800">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-3xl font-bold dark:text-white font-teko">Cupones y Ofertas</h2>
+                            <i class="fas fa-tags text-red-500 text-2xl"></i>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left text-slate-500 dark:text-slate-400">
+                                <tbody id="couponTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: GUÍAS MONTAJE -->
+    <div id="modal-guias" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-slate-900 w-full max-w-7xl h-[95vh] rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-700">
+            <!-- Header (Absolute para superponerse) -->
+            <button onclick="closeSectionModal('modal-guias')" class="absolute top-6 right-6 z-50 text-white hover:text-red-500 bg-black/50 p-2 rounded-full transition"><i class="fas fa-times text-2xl"></i></button>
+            
+            <!-- Content (Sección Completa) -->
+            <div class="overflow-y-auto h-full">
+                <section class="py-12 md:py-24 bg-slate-900 text-white relative overflow-hidden min-h-full">
+                    <!-- Fondo Técnico -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900 to-black z-0"></div>
+                    <div class="absolute inset-0 tech-grid-bg opacity-30 z-0 pointer-events-none"></div>
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+                    
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <!-- Cabecera -->
+                        <div class="mb-12 flex flex-col md:flex-row justify-between items-end border-b border-slate-700/50 pb-8">
+                            <div>
+                                <div class="inline-flex items-center gap-2 mb-2">
+                                    <span class="flex h-2 w-2 relative">
+                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                    </span>
+                                    <span class="text-red-500 font-bold tracking-widest uppercase text-xs">Proyecto del mes</span>
+                                </div>
+                                <h2 class="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 font-teko mt-0">Freestyle 5"</h2>
+                                <p class="text-slate-400 text-xl font-teko tracking-wide">Configuración: "The Bando Killer"</p>
+                            </div>
+                            <div class="mt-6 md:mt-0 flex gap-3">
+                                <button class="bg-white hover:bg-slate-200 text-slate-900 px-6 py-3 rounded-lg text-sm font-bold uppercase transition flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                                    <i class="fas fa-file-invoice text-red-600"></i> Lista Piezas
+                                </button>
+                                <button class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 hover:border-slate-500 px-6 py-3 rounded-lg text-sm font-bold uppercase transition flex items-center gap-2">
+                                    <i class="fas fa-terminal text-green-400"></i> CLI Dump
+                                </button>
+                            </div>
+                        </div>
+            
+                        <!-- Diagrama -->
+                        <div class="bg-slate-900/60 backdrop-blur-md rounded-3xl border border-slate-700/50 relative overflow-hidden shadow-2xl">
+                            <!-- Barra superior -->
+                            <div class="absolute top-0 left-0 w-full px-6 py-4 flex justify-between items-center border-b border-slate-700/30 bg-slate-900/40 z-30">
+                                <span class="text-xs font-mono text-slate-500">SCHEMATIC_VIEW_V2.0</span>
+                                <div class="flex gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+                                    <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                                    <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+                                </div>
+                            </div>
+            
+                            <!-- Canvas -->
+                            <div class="relative w-full md:h-[700px] flex flex-col items-center justify-center p-6 py-16 md:p-0 gap-8 md:gap-0 mt-8">
+                                <svg class="hidden md:block absolute inset-0 z-0 w-full h-full pointer-events-none" viewBox="0 0 900 700" preserveAspectRatio="none">
+                                    <path class="flow-line neon-line text-cyan-400" d="M450 126 L 450 350" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="6,4" stroke-linecap="round" />
+                                    <path class="flow-line neon-line text-yellow-400" d="M450 595 L 450 350" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="8,4" stroke-linecap="round" />
+                                    <path class="flow-line neon-line text-blue-500" d="M135 350 L 450 350" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="4,4" stroke-linecap="round" />
+                                    <path class="flow-line neon-line text-green-500" d="M765 350 L 450 350" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="4,4" stroke-linecap="round" />
+                                </svg>
+                                
+                                <div class="md:hidden absolute left-1/2 top-20 bottom-20 w-0.5 bg-slate-700/50 -translate-x-1/2 z-0"></div>
+            
+                                <!-- Components -->
+                                <div class="relative md:absolute md:top-[18%] md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
+                                    <div class="neon-box bg-slate-800 w-64 p-4 rounded-xl text-center cursor-pointer hover:border-cyan-400 group relative">
+                                        <div class="text-cyan-400 mb-2"><i class="fas fa-video text-3xl group-hover:scale-110 transition-transform"></i></div>
+                                        <span class="text-lg font-bold text-white block font-teko tracking-wide">DJI O3 Air Unit</span>
+                                        <span class="text-[10px] text-slate-400 uppercase tracking-wider bg-slate-900/50 px-2 py-0.5 rounded">Video HD System</span>
+                                    </div>
+                                </div>
+            
+                                <div class="relative md:absolute md:left-1/2 md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
+                                    <div class="neon-box bg-slate-900 w-72 h-52 rounded-xl flex flex-col items-center justify-center relative border-slate-500 hover:border-red-500 group">
+                                        <div class="absolute inset-0 bg-red-500/10 blur-2xl rounded-xl -z-10 group-hover:bg-red-500/20 transition-all opacity-0 group-hover:opacity-100"></div>
+                                        <i class="fas fa-microchip text-6xl mb-3 text-white group-hover:text-red-500 transition-colors duration-300 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"></i>
+                                        <span class="font-teko text-4xl text-white tracking-wide">Flight Controller</span>
+                                        <span class="text-xs text-slate-400 font-mono border border-slate-600 bg-slate-800 px-3 py-1 rounded mt-2">SpeedyBee F405 V3</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="relative md:absolute md:top-[85%] md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
+                                    <div class="neon-box bg-slate-800 w-64 p-4 rounded-xl text-center cursor-pointer hover:border-yellow-400 group relative">
+                                        <div class="text-yellow-400 mb-2"><i class="fas fa-bolt text-3xl group-hover:scale-110 transition-transform"></i></div>
+                                        <span class="text-lg font-bold text-white block font-teko tracking-wide">ESC 55A 4-in-1</span>
+                                        <span class="text-[10px] text-slate-400 uppercase tracking-wider bg-slate-900/50 px-2 py-0.5 rounded">Power (6S LiPo)</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-wrap md:contents gap-4 w-full justify-center relative">
+                                    <div class="relative md:absolute md:left-[15%] md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
+                                        <div class="neon-box bg-slate-800 w-40 p-4 rounded-xl text-center cursor-pointer hover:border-blue-500 group">
+                                            <div class="text-blue-500 mb-2"><i class="fas fa-wifi text-3xl group-hover:scale-110 transition-transform"></i></div>
+                                            <span class="text-lg font-bold text-white block font-teko">ELRS RX</span>
+                                            <span class="text-[10px] text-slate-400 uppercase tracking-wider">2.4GHz</span>
+                                        </div>
+                                    </div>
+            
+                                    <div class="relative md:absolute md:left-[85%] md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-20">
+                                        <div class="neon-box bg-slate-800 w-40 p-4 rounded-xl text-center cursor-pointer hover:border-green-500 group">
+                                            <div class="text-green-500 mb-2"><i class="fas fa-satellite text-3xl group-hover:scale-110 transition-transform"></i></div>
+                                            <span class="text-lg font-bold text-white block font-teko">GPS M10</span>
+                                            <span class="text-[10px] text-slate-400 uppercase tracking-wider">Rescate</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: FOROS -->
+    <div id="modal-foros" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-slate-50 dark:bg-slate-900 w-full max-w-4xl rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700">
+             <!-- Header -->
+             <div class="p-6 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <h2 class="text-3xl font-bold font-teko dark:text-white"><i class="fab fa-telegram text-telegram mr-2"></i> Foros Telegram</h2>
+                <button onclick="closeSectionModal('modal-foros')" class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <!-- Content -->
+            <div class="p-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 dark:border-slate-700">
+                        <div class="w-12 h-12 bg-telegram/10 rounded-full flex items-center justify-center text-telegram text-2xl"><i class="fas fa-comments"></i></div>
+                        <div><h3 class="font-bold dark:text-white">General</h3><p class="text-xs text-slate-500">Chat diario</p></div>
+                    </a>
+                    <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 dark:border-slate-700">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 text-2xl"><i class="fas fa-shopping-cart"></i></div>
+                        <div><h3 class="font-bold dark:text-white">Compra/Venta</h3><p class="text-xs text-slate-500">Mercadillo</p></div>
+                    </a>
+                    <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 dark:border-slate-700">
+                        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-orange-600 text-2xl"><i class="fas fa-tools"></i></div>
+                        <div><h3 class="font-bold dark:text-white">Taller</h3><p class="text-xs text-slate-500">Ayuda técnica</p></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals Standard (Legal y Contacto) -->
     <!-- Modal Texto Legal Completo -->
-    <div id="full-legal-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+    <div id="full-legal-modal" class="fixed inset-0 z-[110] hidden modal-overlay flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-900 rounded-xl max-w-4xl w-full max-h-[85vh] relative border border-slate-200 dark:border-slate-700 shadow-2xl flex flex-col">
             <!-- Header -->
             <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-800/50 rounded-t-xl">
@@ -759,9 +838,7 @@
             <!-- Content Scrollable -->
             <div class="p-8 overflow-y-auto prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
                 <p class="lead">Incluso si tu drone pesa menos de 250g, al tener una cámara que registra datos del entorno (el vídeo) deja de considerarse juguete y pasa a ser aeronave a ojos de la ley.</p>
-                
                 <p>Básicamente, tienes que regístrate si tu dron tiene cámara, hay que revisar siempre el mapa de Enaire antes de volar y no superar las alturas y distancias máximas legales. Evita personas y zonas prohibidas, y respeta la privacidad.</p>
-                
                 <p>Aunque te recomiendo que visites la página de AESA dedicada a este punto para una mayor información (<a href="https://www.seguridadaerea.gob.es/es/ambitos/drones/tienes-un-uas-dron" target="_blank" class="text-blue-500 hover:underline">Web AESA</a>), estas son algunas pautas que tienes que tener en cuenta para evitar problemas cuando salgas a volar:</p>
 
                 <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">1. Ten un poco de sentido común</h4>
@@ -778,67 +855,22 @@
                     <li>Está prohibido volar cerca de <strong>aeropuertos</strong>, <strong>helipuertos</strong>, <strong>instalaciones militares</strong>, <strong>infraestructuras críticas</strong> y en muchos <strong>espacios naturales protegidos</strong>.</li>
                 </ul>
                 <p class="mt-2">Para saber si una zona es apta, hay que consultar siempre el mapa oficial de <strong>ENAIRE Drones</strong>: <a href="https://drones.enaire.es/" target="_blank" class="text-blue-500 hover:underline">drones.enaire.es</a>. Tienes una aplicación para IOS o Android de Enaire Drones gratuita.</p>
-                <p><strong>Además, te recomiendo:</strong></p>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li>Que vueles en un espacio abierto las primeras veces. A poder ser sin árboles donde pueda colgarse tu drone, sin cables que vayas a golpear y sin personas que puedas asustar.</li>
-                    <li>Lo mejor es en un prado, con hierba mullidita para que el drone no se dañe al caerse (porque se va a caer fijo).</li>
-                    <li>Evita la lluvia, viento y condiciones de baja visibilidad.</li>
-                    <li>Y si vas a hacer FPV lleva un compañero para que haga las funciones de observador.</li>
-                </ul>
 
                 <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">4. Cómo volar</h4>
-                <p>A parte de lo ya comentado, estos son los conceptos básicos, aunque te recomiendo que visites la web de AESA para poder informarte más a fondo:</p>
                 <ul class="list-disc pl-5 space-y-1">
                     <li>El dron debe mantenerse <strong>siempre dentro del alcance visual</strong> del piloto.</li>
                     <li>La <strong>altura máxima</strong> que puedes pillar es de <strong>120 metros</strong> sobre el terreno.</li>
                     <li>La <strong>distancia máxima</strong> a la que te puedes alejar en categoría abierta es de <strong>500m</strong> o hasta que el observador vaya a perder de vista el drone (lo primero que suceda).</li>
                 </ul>
 
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">5. Recuerda las potencias máximas de emisión</h4>
-                <p>Cumple la ley en cuanto a potencias máximas de emisión de los sistemas FPV y emisora de radio:</p>
-                
+                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">5. Potencias y Bandas</h4>
                 <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-lg my-4">
-                    <strong class="block mb-2 text-slate-900 dark:text-white">Bandas Comunes y Potencias (Normativa CE/España):</strong>
                     <ul class="space-y-4">
-                        <li>
-                            <span class="font-bold text-blue-600 dark:text-blue-400">5.8 GHz (Vídeo Analógico y Digital - VTX):</span>
-                            <ul class="list-disc pl-5 mt-1 text-sm">
-                                <li><strong>&lt;25 mW (14 dBm):</strong> Es el estándar más seguro y común para cumplir con la normativa europea (CE) en España, especialmente en carreras o zonas urbanas, permitiendo operar sin licencia de radioaficionado.</li>
-                                <li><strong>Equipos DJI:</strong> Algunos (como DJI FPV, Avata) están limitados a &lt;14 dBm (25 mW) en 5.8GHz en modo CE.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="font-bold text-blue-600 dark:text-blue-400">5.1 GHz (Se ha incorporado para vídeo digital en los últimos modelos):</span>
-                            <ul class="list-disc pl-5 mt-1 text-sm">
-                                <li><strong>Potencia Máxima (PIRE):</strong> Puede tener límites similares o incluso más bajos, a menudo alrededor de ≤ 23 dBm o menos en CE, a veces reservada para uso interior.</li>
-                                <li><strong>Uso:</strong> Menos frecuente en drones FPV comerciales que 2.4/5.8 GHz, pero algunos sistemas como el Ocusync 4 de DJI y el Antigravity lo usan.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="font-bold text-blue-600 dark:text-blue-400">2.4 GHz (Control/Vídeo - VTX/RX):</span>
-                            <ul class="list-disc pl-5 mt-1 text-sm">
-                                <li><strong>&lt;20 dBm (100 mW):</strong> Para sistemas de control y vídeo digital (como el control remoto de DJI), la potencia permitida bajo CE es menor que en FCC, alrededor de 100mW.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="font-bold text-blue-600 dark:text-blue-400">Bandas de Control (ELRS, Crossfire, Ghost - 868 MHz/915 MHz):</span>
-                            <p class="mt-1 text-sm">Estas son bandas de control remoto y no de vídeo. Aquí se permiten potencias mucho más altas, pero <strong>requieren licencia de radioaficionado</strong> para superar los 100-200mW (20-23 dBm), pudiendo llegar a 1W o más (30 dBm) con licencia.</p>
-                        </li>
+                        <li><span class="font-bold text-blue-600 dark:text-blue-400">5.8 GHz:</span> &lt;25 mW (14 dBm). Estándar CE.</li>
+                        <li><span class="font-bold text-blue-600 dark:text-blue-400">2.4 GHz (Control):</span> &lt;100 mW (20 dBm).</li>
+                        <li><span class="font-bold text-blue-600 dark:text-blue-400">868/915 MHz:</span> Requiere licencia para alta potencia.</li>
                     </ul>
                 </div>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">6. Personas y privacidad</h4>
-                <p>Llevas una cámara que seguramente está grabando, por lo que hay que cumplir con la LOPD. Básicamente no se pueden grabar personas reconocibles sin su consentimiento. Tienes que que respetar viviendas, propiedades privadas y espacios íntimos. Se pueden sobrevolar terrenos privados, pero siempre salvaguardando la intimidad de sus propietarios.</p>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">7. Seguro</h4>
-                <p>Para uso recreativo no siempre es obligatorio (no con menos de 250g), pero <strong>es muy recomendable</strong> tener un seguro de responsabilidad civil. Hay algunos muy baratos, pero que pueden cubrirte si tuvieses un problema o incluso si te lo requiere la autoridad:</p>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li><a href="https://www.coverdrone.com/es/" target="_blank" class="text-blue-500 hover:underline">Coverdrone</a></li>
-                    <li><a href="https://www.air-assurances.es/" target="_blank" class="text-blue-500 hover:underline">Air Assurances</a></li>
-                </ul>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">8. Sanciones</h4>
-                <p>Las multas pueden ir desde importes bajos hasta <strong>cantidades elevadas</strong>, dependiendo de la gravedad de la infracción. No te la juegues, las multas no son una broma.</p>
             </div>
             
             <!-- Footer Modal -->
@@ -1120,6 +1152,9 @@
         };
         
         window.closeReadModal = () => document.getElementById('read-modal').classList.add('hidden');
+        
+        window.openSectionModal = (id) => document.getElementById(id).classList.remove('hidden');
+        window.closeSectionModal = (id) => document.getElementById(id).classList.add('hidden');
     </script>
     
     <script>
