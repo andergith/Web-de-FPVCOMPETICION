@@ -203,9 +203,14 @@
                 
                 <!-- Desktop Menu (Ordenado) -->
                 <div class="hidden md:flex items-center space-x-2 lg:space-x-4 overflow-x-auto">
-                    <!-- Menú simplificado ya que ahora tenemos las tarjetas -->
+                    <!-- Menú con Acciones de Modal -->
+                    <button onclick="openSectionModal('modal-antes-de-volar')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Antes de Volar</button>
+                    <button onclick="openSectionModal('modal-equipo')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Equipo FPV</button>
+                    <button onclick="openSectionModal('modal-guias')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Guías Montaje</button>
+                    <button onclick="openSectionModal('modal-foros')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Foros</button>
+                    
+                    <!-- Enlaces de Scroll -->
                     <button onclick="scrollToSection('el-drone')" class="nav-link text-sm font-bold uppercase hover:text-red-600">El Drone</button>
-                    <button onclick="scrollToSection('herramientas')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Herramientas</button>
                     <button onclick="scrollToSection('videos-destacados')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Canal</button>
                     <button onclick="scrollToSection('blog')" class="nav-link text-sm font-bold uppercase hover:text-red-600">Noticias</button>
                     
@@ -224,8 +229,11 @@
         <!-- Mobile Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-dark-card border-b border-slate-100 dark:border-slate-800">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <button onclick="openSectionModal('modal-antes-de-volar')" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Antes de Volar</button>
+                <button onclick="openSectionModal('modal-equipo')" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Equipo FPV</button>
+                <button onclick="openSectionModal('modal-guias')" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Guías Montaje</button>
+                <button onclick="openSectionModal('modal-foros')" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Foros</button>
                 <a href="#el-drone" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">El Drone</a>
-                <a href="#herramientas" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Herramientas</a>
                 <a href="#videos-destacados" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Canal</a>
                 <a href="#blog" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">Noticias</a>
             </div>
@@ -268,12 +276,11 @@
         </div>
     </section>
 
-    <!-- SECTION: DASHBOARD RESUMEN (Nueva Sección 4 Columnas) -->
+    <!-- SECTION: DASHBOARD RESUMEN -->
     <section id="dashboard-resumen" class="py-12 bg-slate-100 dark:bg-slate-900/50 -mt-10 relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                
-                <!-- Card 1: Antes de Volar -->
+                <!-- Card 1 -->
                 <div onclick="openSectionModal('modal-antes-de-volar')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
                     <div class="w-14 h-14 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 mb-4">
                         <i class="fas fa-book-reader text-2xl"></i>
@@ -281,8 +288,7 @@
                     <h3 class="font-teko text-2xl font-bold dark:text-white">Antes de Volar</h3>
                     <p class="text-xs text-slate-500 mt-2">Legalidad, Simuladores y primeros pasos.</p>
                 </div>
-
-                <!-- Card 2: Equipo FPV -->
+                <!-- Card 2 -->
                 <div onclick="openSectionModal('modal-equipo')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
                     <div class="w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4">
                         <i class="fas fa-box-open text-2xl"></i>
@@ -290,8 +296,7 @@
                     <h3 class="font-teko text-2xl font-bold dark:text-white">Equipo FPV</h3>
                     <p class="text-xs text-slate-500 mt-2">Gafas, Emisoras y Ofertas destacadas.</p>
                 </div>
-
-                <!-- Card 3: Guías de Montaje -->
+                <!-- Card 3 -->
                 <div onclick="openSectionModal('modal-guias')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
                     <div class="w-14 h-14 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4">
                         <i class="fas fa-tools text-2xl"></i>
@@ -299,8 +304,7 @@
                     <h3 class="font-teko text-2xl font-bold dark:text-white">Guías Montaje</h3>
                     <p class="text-xs text-slate-500 mt-2">Esquemas, wiring y configuraciones.</p>
                 </div>
-
-                <!-- Card 4: Foros -->
+                <!-- Card 4 -->
                 <div onclick="openSectionModal('modal-foros')" class="dashboard-card bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-col items-center text-center">
                     <div class="w-14 h-14 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-600 mb-4">
                         <i class="fab fa-telegram text-3xl pl-1"></i>
@@ -308,7 +312,6 @@
                     <h3 class="font-teko text-2xl font-bold dark:text-white">Comunidad</h3>
                     <p class="text-xs text-slate-500 mt-2">Grupos de ayuda y compra/venta.</p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -426,7 +429,7 @@
         </div>
     </section>
 
-    <!-- SECTION: SERVICIOS (Last before FAQ/Footer) -->
+    <!-- SECTION: SERVICIOS -->
     <section id="servicios" class="py-12 bg-slate-100 dark:bg-dark-card border-t border-slate-200 dark:border-slate-800">
         <div class="max-w-md mx-auto text-center px-4">
             <h2 class="text-3xl font-bold dark:text-white font-teko mb-4">Servicios Profesionales</h2>
@@ -498,11 +501,6 @@
             </div>
             <!-- Scrollable Content -->
             <div class="overflow-y-auto p-6 md:p-10">
-                <!-- Contenido Original de la sección -->
-                <div class="text-center mb-10">
-                    <p class="mt-2 text-slate-600 dark:text-slate-400">Paso a paso: Normativa, Simulador y Primer Vuelo.</p>
-                </div>
-                
                 <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700 min-h-[300px] tab-container">
                     <!-- Tabs -->
                     <div class="flex justify-center mb-8">
@@ -514,129 +512,184 @@
                     </div>
                     <!-- Content -->
                     <div>
+                        <!-- FASE 1: LEGALIDAD (Contenido Actualizado del Cliente) -->
                         <div id="phase1" class="tab-content fade-in">
-                            <div class="space-y-6 text-left">
-                                <!-- Introducción -->
-                                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800 flex gap-4 items-start">
-                                    <i class="fas fa-info-circle text-blue-500 text-xl mt-1"></i>
-                                    <div>
-                                        <p class="text-sm text-slate-700 dark:text-slate-300">
-                                            <strong>¡Ojo!</strong> Incluso si tu drone pesa <strong>menos de 250g</strong>, al tener una cámara que registra datos del entorno (el vídeo) deja de considerarse juguete y pasa a ser <strong>aeronave</strong> a ojos de la ley.
-                                        </p>
-                                    </div>
-                                </div>
-    
-                                <p class="text-slate-600 dark:text-slate-400 text-sm">
-                                    Básicamente: regístrate si tienes cámara, revisa el mapa de Enaire y respeta alturas/distancias. Más info en <a href="https://www.seguridadaerea.gob.es/es/ambitos/drones/tienes-un-uas-dron" target="_blank" class="text-red-500 hover:underline">AESA</a>.
-                                </p>
-    
-                                <!-- Grid de Puntos -->
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    
-                                    <!-- 1. Sentido Común -->
-                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">1</span> Sentido Común</h4>
-                                        <p class="text-xs text-slate-500">Aunque vueles en el campo legalmente, piensa si molestas o asustas a animales. Evita conflictos innecesarios.</p>
-                                    </div>
-    
-                                    <!-- 2. Cumple la Ley -->
-                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">2</span> Registro Operador</h4>
-                                        <p class="text-xs text-slate-500 mb-2">Registro obligatorio y gratuito en <a href="https://sede.seguridadaerea.gob.es/sede-aesa/catalogo-de-procedimientos/registro-de-operadores-de-uas" target="_blank" class="text-blue-500 hover:underline">AESA</a>.</p>
-                                        <ul class="text-xs text-slate-500 list-disc list-inside">
-                                            <li>Pega el Nº de Operador visible en el drone.</li>
-                                            <li>Recomendado: Poner tu teléfono por si se pierde.</li>
-                                        </ul>
-                                    </div>
-    
-                                    <!-- 3. Dónde Volar -->
-                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm md:col-span-2">
-                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">3</span> ¿Dónde volar?</h4>
-                                        <div class="grid sm:grid-cols-2 gap-4">
-                                            <div class="text-xs text-slate-500">
-                                                <p class="mb-1"><strong class="text-red-500">PROHIBIDO:</strong> Zonas urbanas, aglomeraciones, playas con gente, aeropuertos, helipuertos, zonas militares y espacios protegidos.</p>
-                                                <a href="https://drones.enaire.es/" target="_blank" class="text-blue-500 font-bold hover:underline"><i class="fas fa-map"></i> Consultar Mapa ENAIRE</a>
-                                            </div>
-                                            <div class="text-xs text-slate-500 bg-slate-50 dark:bg-slate-800 p-2 rounded">
-                                                <strong>Consejo Pro:</strong> Vuela en espacios abiertos, sin árboles ni cables. Mejor sobre hierba (amortigua caídas). Si haces FPV, lleva siempre un <strong>observador</strong>.
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <!-- 4. Cómo volar -->
-                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">4</span> Reglas de Vuelo</h4>
-                                        <ul class="text-xs text-slate-500 space-y-1">
-                                            <li class="flex items-center"><i class="fas fa-eye text-slate-400 mr-2"></i> Siempre dentro del alcance visual (VLOS).</li>
-                                            <li class="flex items-center"><i class="fas fa-arrow-up text-slate-400 mr-2"></i> Altura máx: <strong>120 metros</strong>.</li>
-                                            <li class="flex items-center"><i class="fas fa-ruler-horizontal text-slate-400 mr-2"></i> Distancia máx: <strong>500 metros</strong>.</li>
-                                        </ul>
-                                    </div>
-    
-                                    <!-- 5. Potencias -->
-                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                        <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">5</span> Potencias (CE)</h4>
-                                        <div class="overflow-x-auto">
-                                            <table class="w-full text-xs text-slate-500">
-                                                <tr class="border-b dark:border-slate-700">
-                                                    <td class="py-1 font-bold">5.8 GHz (Vídeo)</td>
-                                                    <td class="py-1 text-right text-red-500 font-bold">&lt;25 mW</td>
-                                                </tr>
-                                                <tr class="border-b dark:border-slate-700">
-                                                    <td class="py-1 font-bold">2.4 GHz (Control)</td>
-                                                    <td class="py-1 text-right text-red-500 font-bold">&lt;100 mW</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="py-1 font-bold">868/915 MHz</td>
-                                                    <td class="py-1 text-right">Requiere licencia</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-    
-                                    <!-- 6. Privacidad y Seguro -->
-                                    <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm md:col-span-2">
-                                        <div class="flex flex-col sm:flex-row gap-6">
-                                            <div class="flex-1">
-                                                <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">6</span> Privacidad (LOPD)</h4>
-                                                <p class="text-xs text-slate-500">No grabes a personas reconocibles sin consentimiento ni invadas la privacidad de viviendas.</p>
-                                            </div>
-                                            <div class="flex-1 border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-700 pt-4 sm:pt-0 sm:pl-6">
-                                                <h4 class="font-bold dark:text-white font-teko text-xl mb-2 flex items-center"><span class="bg-red-100 dark:bg-red-900 text-red-600 px-2 rounded mr-2 text-sm">7</span> Seguro RC</h4>
-                                                <p class="text-xs text-slate-500 mb-2">Muy recomendable aunque sea recreativo.</p>
-                                                <div class="flex gap-2">
-                                                    <a href="https://www.coverdrone.com/es/" target="_blank" class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition">Coverdrone</a>
-                                                    <a href="https://www.air-assurances.es/" target="_blank" class="text-[10px] bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition">Air Assurances</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-    
-                                    <!-- 7. Sanciones -->
-                                    <div class="md:col-span-2 bg-red-50 dark:bg-red-900/20 p-4 rounded-xl border border-red-100 dark:border-red-900/50 text-center">
-                                        <p class="text-sm text-red-800 dark:text-red-300 font-bold">
-                                            <i class="fas fa-exclamation-triangle mr-2"></i> Las multas no son una broma. Vuela seguro y legal.
-                                        </p>
-                                    </div>
-    
-                                </div>
+                            <div class="space-y-6 text-left text-sm text-slate-600 dark:text-slate-300">
                                 
-                                <!-- Botón para ver texto completo -->
-                                <button onclick="document.getElementById('full-legal-modal').classList.remove('hidden')" class="w-full mt-6 bg-slate-800 dark:bg-slate-700 text-white p-4 rounded-xl font-bold hover:bg-slate-700 dark:hover:bg-slate-600 transition shadow-lg flex items-center justify-center gap-2">
-                                    <i class="fas fa-file-alt"></i> Leer Documento Legal Completo
-                                </button>
+                                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800">
+                                    <p class="mb-2"><strong>¡Ojo!</strong> Incluso si tu drone pesa <strong>menos de 250g</strong>, al tener una cámara que registra datos del entorno (el vídeo) deja de considerarse juguete y pasa a ser <strong>aeronave</strong> a ojos de la ley.</p>
+                                    <p>Básicamente: regístrate si tienes cámara, revisa el mapa de Enaire y respeta alturas/distancias. Más info en <a href="https://www.seguridadaerea.gob.es/es/ambitos/drones/tienes-un-uas-dron" target="_blank" class="text-blue-500 hover:underline">AESA</a>.</p>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-2">1. Sentido Común</h4>
+                                        <p>Aunque vueles legalmente, plantéate si molestas o asustas a animales. Evita conflictos innecesarios.</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-2">2. Registro Operador</h4>
+                                        <p>Obligatorio en <a href="https://sede.seguridadaerea.gob.es/" target="_blank" class="text-blue-500 hover:underline">AESA</a>. Pega tu número de operador visible en el drone.</p>
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-2">3. ¿Dónde Volar?</h4>
+                                        <p><strong>PROHIBIDO:</strong> Aglomeraciones, playas con gente, aeropuertos, helipuertos, zonas militares y protegidas.</p>
+                                        <p><strong>Zonas Urbanas:</strong> Posible solo en algunos casos <u>previa notificación al Ministerio del Interior</u>.</p>
+                                        <p class="mt-2"><a href="https://drones.enaire.es/" target="_blank" class="text-blue-500 hover:underline font-bold">Consultar Mapa ENAIRE</a>, mapa oficial donde se indican las restricciones de cada zona.</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-2">4. Reglas de Vuelo</h4>
+                                        <ul class="list-disc pl-5 space-y-1">
+                                            <li>Siempre a la vista (VLOS) o con observador.</li>
+                                            <li>Altura máx: <strong>120m</strong> (menos en CTR/noche).</li>
+                                            <li>Distancia máx: <strong>500m</strong>.</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 dark:text-white mb-2">5. Potencias (CE)</h4>
+                                        <ul class="space-y-1 text-xs">
+                                            <li><strong>5.8 GHz:</strong> &lt;25 mW (Estándar FPV).</li>
+                                            <li><strong>5.1 GHz:</strong> Usado en nuevos sistemas digitales (O4).</li>
+                                            <li><strong>2.4 GHz:</strong> &lt;100 mW.</li>
+                                            <li><strong>868 MHz:</strong> Permitido en EU (Control largo alcance).</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Categoría Abierta Info -->
+                                <div class="bg-slate-100 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 mt-4">
+                                    <h4 class="font-bold text-slate-900 dark:text-white mb-3">Categoría Abierta (Drones > 250g)</h4>
+                                    <div class="grid sm:grid-cols-3 gap-4 text-xs">
+                                        <div class="p-2 bg-white dark:bg-slate-800 rounded shadow-sm">
+                                            <strong class="block text-red-500 mb-1">A1 (&lt;900g)</strong>
+                                            Sobrevuelo disperso. Curso+Examen.
+                                        </div>
+                                        <div class="p-2 bg-white dark:bg-slate-800 rounded shadow-sm">
+                                            <strong class="block text-red-500 mb-1">A2 (&lt;4kg)</strong>
+                                            Cerca de personas (30m/5m). Examen teórico extra.
+                                        </div>
+                                        <div class="p-2 bg-white dark:bg-slate-800 rounded shadow-sm">
+                                            <strong class="block text-red-500 mb-1">A3 (&lt;25kg)</strong>
+                                            Lejos de todo (150m). Curso+Examen.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded text-center text-red-600 dark:text-red-400 font-bold text-xs mt-6">
+                                    ¡Ojo con las multas! Son reales y cuantiosas. Vuela legal.
+                                </div>
+
+                                <!-- Texto Legal Completo (Pegado directamente) -->
+                                <div class="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700 prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                                    <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white mb-4">Información Detallada</h3>
+                                    
+                                    <p>Aunque te recomiendo que visites la página de AESA dedicada a este punto para una mayor información (<a href="https://www.seguridadaerea.gob.es/es/ambitos/drones/tienes-un-uas-dron" target="_blank" class="text-red-500 hover:underline">Web AESA</a>), estas son algunas pautas detalladas que tienes que tener en cuenta:</p>
+
+                                    <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2 text-lg">1. Ten un poco de sentido común</h4>
+                                    <p>Incluso si vas a volar un pequeño dron en el campo donde no tengas ningún problema legal para hacerlo, plantéate si vas a molestar a alguien o puedes asustar a algún animal. Puedes tener todo el derecho del mundo a volar, pero es mejor no crear conflictos innecesarios y problemas.</p>
+
+                                    <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2 text-lg">2. Cumple la ley</h4>
+                                    <p>Dado que tu drone lleva cámara, tienes que registrarte como operador en AESA (Agencia Estatal de Seguridad Aérea). Este registro es gratuito y se hace online en la siguiente dirección: <a href="https://sede.seguridadaerea.gob.es/" target="_blank" class="text-blue-500 hover:underline">Sede Electrónica AESA</a></p>
+                                    <p>Tienes que poner de forma visible el <strong>número de operador</strong> que se te asigne en el dron. Puedes ponerlo en una etiqueta, pegatina o escrito/grabado directamente en el dron (no hace falta que sea ignífugo). Te recomiendo indicar también tu número de teléfono (si pierdes el dron igual alguien te lo devuelve, no sería el primer caso).</p>
+
+                                    <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2 text-lg">3. Analiza dónde vas a volar</h4>
+                                    <p>Cuidado, aunque tu drone te parezca casi de juguete y muy pequeño, no puedes volar en cualquier sitio. Tanto por tu bien como por el de los demás:</p>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>No se puede volar sobre <strong>zonas urbanas</strong> (salvo notificación al Ministerio del Interior), <strong>aglomeraciones de personas</strong>, <strong>playas concurridas</strong> ni cerca de gente sin cumplir requisitos adicionales.</li>
+                                        <li>Está prohibido volar cerca de <strong>aeropuertos</strong>, <strong>helipuertos</strong>, <strong>instalaciones militares</strong>, <strong>infraestructuras críticas</strong> y en muchos <strong>espacios naturales protegidos</strong>.</li>
+                                    </ul>
+                                    <p class="mt-2">Para saber si una zona es apta, hay que consultar siempre el mapa oficial de <strong>ENAIRE Drones</strong>: <a href="https://drones.enaire.es/" target="_blank" class="text-blue-500 hover:underline">drones.enaire.es</a>. Tienes una aplicación para IOS o Android de Enaire Drones gratuita.</p>
+
+                                    <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2 text-lg">4. Cómo volar</h4>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>El dron debe mantenerse <strong>siempre dentro del alcance visual</strong> del piloto (VLOS).</li>
+                                        <li>La <strong>altura máxima</strong> que puedes pillar es de <strong>120 metros</strong> sobre el terreno (o menos si estás en zona CTR o de noche según restricciones).</li>
+                                        <li>La <strong>distancia máxima</strong> a la que te puedes alejar en categoría abierta es de <strong>500m</strong> o hasta que el observador vaya a perder de vista el drone (lo primero que suceda).</li>
+                                    </ul>
+
+                                    <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2 text-lg">5. Recuerda las potencias máximas</h4>
+                                    <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-lg my-4 border border-slate-200 dark:border-slate-700">
+                                        <ul class="space-y-2">
+                                            <li><strong class="text-blue-600 dark:text-blue-400">5.8 GHz (Vídeo):</strong> &lt;25 mW (14 dBm). Estándar en Europa.</li>
+                                            <li><strong class="text-blue-600 dark:text-blue-400">2.4 GHz (Control/Vídeo):</strong> &lt;100 mW (20 dBm).</li>
+                                            <li><strong class="text-blue-600 dark:text-blue-400">868 MHz (Control Largo Alcance):</strong> Permitido en la UE sin necesidad de permiso especial en las bandas libres (hasta ciertas potencias como 25mW, para más potencia se aplican otras normativas de radioaficionado).</li>
+                                            <li><strong class="text-blue-600 dark:text-blue-400">5.1 GHz:</strong> Usado en sistemas modernos digitales.</li>
+                                        </ul>
+                                    </div>
+
+                                    <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2 text-lg">6. Personas y privacidad</h4>
+                                    <p>Llevas una cámara que seguramente está grabando, por lo que hay que cumplir con la LOPD. Básicamente no se pueden grabar personas reconocibles sin su consentimiento. Tienes que que respetar viviendas, propiedades privadas y espacios íntimos.</p>
+
+                                    <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2 text-lg">7. Seguro</h4>
+                                    <p>Para uso recreativo no siempre es obligatorio (no con menos de 250g), pero <strong>es muy recomendable</strong> tener un seguro de responsabilidad civil. Hay algunos muy baratos que pueden cubrirte ante imprevistos:</p>
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li><a href="https://www.coverdrone.com/es/" target="_blank" class="text-blue-500 hover:underline">Coverdrone</a></li>
+                                        <li><a href="https://www.air-assurances.es/" target="_blank" class="text-blue-500 hover:underline">Air Assurances</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- FASE 2: SIMULADOR (Actualizado) -->
                         <div id="phase2" class="tab-content hidden fade-in">
-                            <div class="grid md:grid-cols-3 gap-4 text-center">
-                                <a href="https://www.velocidrone.com/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Velocidrone (Pro)</a>
-                                <a href="https://store.steampowered.com/app/410340/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Liftoff (Balance)</a>
-                                <a href="https://store.steampowered.com/app/1682970/" target="_blank" class="block p-6 border rounded-xl hover:border-blue-500 dark:border-slate-600 dark:text-white">Uncrashed (Graficos)</a>
+                            <div class="space-y-8">
+                                <!-- Destacado TRYP -->
+                                <div class="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-700">
+                                    <div class="w-full relative pt-[56.25%] bg-black">
+                                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/3eNxmMHUEL8?si=C9X9VNmHC1B_s93t" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center gap-3 mb-2">
+                                            <h3 class="text-2xl font-bold text-white font-teko">TRYP FPV</h3>
+                                            <span class="bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded uppercase">Recomendado</span>
+                                        </div>
+                                        <p class="text-slate-300 text-sm">El simulador más completo, con mapas muy abiertos y posibilidad de hacer tipos muy diferentes de vuelos.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Grid Otros -->
+                                <div class="grid md:grid-cols-3 gap-6">
+                                    <!-- Velocidrone -->
+                                    <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg">
+                                        <div class="h-32 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                                            <span class="font-teko text-4xl text-slate-400">VELOCIDRONE</span>
+                                        </div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold dark:text-white">Velocidrone</h4>
+                                            <p class="text-xs text-slate-500 mt-1">El rey de la competición. Físicas puras para ganar carreras.</p>
+                                        </div>
+                                    </div>
+                                    <!-- Liftoff -->
+                                    <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg">
+                                        <div class="h-32 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                                            <span class="font-teko text-4xl text-slate-400">LIFTOFF</span>
+                                        </div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold dark:text-white">Liftoff</h4>
+                                            <p class="text-xs text-slate-500 mt-1">Equilibrio perfecto. Gran comunidad y taller de personalización.</p>
+                                        </div>
+                                    </div>
+                                    <!-- Uncrashed -->
+                                    <div class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg">
+                                        <div class="h-32 bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+                                            <span class="font-teko text-4xl text-slate-400">UNCRASHED</span>
+                                        </div>
+                                        <div class="p-4">
+                                            <h4 class="font-bold dark:text-white">Uncrashed</h4>
+                                            <p class="text-xs text-slate-500 mt-1">Gráficos increíbles para persecuciones y vuelos cinemáticos.</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- FASE 3: BETAFLIGHT (Video) -->
                         <div id="phase3" class="tab-content hidden fade-in">
-                            <div class="bg-slate-900 p-4 rounded-lg text-green-400 font-mono text-xs overflow-x-auto shadow-inner">
-                                set roll_rc_rate = 100<br>save
+                            <div class="max-w-3xl mx-auto text-center">
+                                <h3 class="text-2xl font-bold dark:text-white mb-4 font-teko">Configuración Básica</h3>
+                                <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-2xl border border-slate-700 mb-4">
+                                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/59GEcl9umBE?si=apxZqxFpGiKGNnZn" frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                                <p class="text-slate-500 text-sm">Tutorial completo de configuración inicial para tu primer vuelo.</p>
                             </div>
                         </div>
                     </div>
@@ -808,11 +861,11 @@
             <!-- Content -->
             <div class="p-10">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 dark:border-slate-700">
+                    <a href="https://t.me/s/grupodronesgeneral" target="_blank" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 dark:border-slate-700">
                         <div class="w-12 h-12 bg-telegram/10 rounded-full flex items-center justify-center text-telegram text-2xl"><i class="fas fa-comments"></i></div>
                         <div><h3 class="font-bold dark:text-white">General</h3><p class="text-xs text-slate-500">Chat diario</p></div>
                     </a>
-                    <a href="#" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 dark:border-slate-700">
+                    <a href="https://t.me/s/droneofertas" target="_blank" class="bg-white dark:bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 dark:border-slate-700">
                         <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 text-2xl"><i class="fas fa-shopping-cart"></i></div>
                         <div><h3 class="font-bold dark:text-white">Compra/Venta</h3><p class="text-xs text-slate-500">Mercadillo</p></div>
                     </a>
@@ -825,61 +878,7 @@
         </div>
     </div>
 
-    <!-- Modals Standard (Legal y Contacto) -->
-    <!-- Modal Texto Legal Completo -->
-    <div id="full-legal-modal" class="fixed inset-0 z-[110] hidden modal-overlay flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-xl max-w-4xl w-full max-h-[85vh] relative border border-slate-200 dark:border-slate-700 shadow-2xl flex flex-col">
-            <!-- Header -->
-            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-800/50 rounded-t-xl">
-                <h3 class="text-2xl font-teko font-bold text-slate-900 dark:text-white">Guía Legal Completa</h3>
-                <button onclick="document.getElementById('full-legal-modal').classList.add('hidden')" class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
-            </div>
-            
-            <!-- Content Scrollable -->
-            <div class="p-8 overflow-y-auto prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed">
-                <p class="lead">Incluso si tu drone pesa menos de 250g, al tener una cámara que registra datos del entorno (el vídeo) deja de considerarse juguete y pasa a ser aeronave a ojos de la ley.</p>
-                <p>Básicamente, tienes que regístrate si tu dron tiene cámara, hay que revisar siempre el mapa de Enaire antes de volar y no superar las alturas y distancias máximas legales. Evita personas y zonas prohibidas, y respeta la privacidad.</p>
-                <p>Aunque te recomiendo que visites la página de AESA dedicada a este punto para una mayor información (<a href="https://www.seguridadaerea.gob.es/es/ambitos/drones/tienes-un-uas-dron" target="_blank" class="text-blue-500 hover:underline">Web AESA</a>), estas son algunas pautas que tienes que tener en cuenta para evitar problemas cuando salgas a volar:</p>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">1. Ten un poco de sentido común</h4>
-                <p>Incluso si vas a volar un pequeño dron en el campo donde no tengas ningún problema legal para hacerlo, plantéate si vas a molestar a alguien o puedes asustar a algún animal. Puedes tener todo el derecho del mundo a volar, pero es mejor no crear conflictos innecesarios y problemas.</p>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">2. Cumple la ley</h4>
-                <p>Dado que tu drone lleva cámara, tienes que registrarte como operador en AESA (Agencia Estatal de Seguridad Aérea). Este registro es gratuito y se hace online en la siguiente dirección: <a href="https://sede.seguridadaerea.gob.es/sede-aesa/catalogo-de-procedimientos/registro-de-operadores-de-uas" target="_blank" class="text-blue-500 hover:underline">Sede Electrónica AESA</a></p>
-                <p>Tienes que poner de forma visible el <strong>número de operador</strong> que se te asigne en el dron. Puedes ponerlo en una etiqueta, pegatina o escrito/grabado directamente en el dron (no hace falta que sea ignifugo). Te recomiendo indicar también tu número de teléfono (si pierdes el dron igual alguien te lo devuelve, no sería el primer caso).</p>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">3. Analiza dónde vas a volar</h4>
-                <p>Cuidado, aunque tu drone te parezca casi de juguete y muy pequeño, no puedes volar en cualquier sitio. Tanto por tu bien como por el de los demás:</p>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li>No se puede volar sobre <strong>zonas urbanas</strong>, <strong>aglomeraciones de personas</strong>, <strong>playas concurridas</strong> ni cerca de gente sin cumplir requisitos adicionales como por ejemplo notificar al Ministerio del Interior el vuelo con 5 días de antelación.</li>
-                    <li>Está prohibido volar cerca de <strong>aeropuertos</strong>, <strong>helipuertos</strong>, <strong>instalaciones militares</strong>, <strong>infraestructuras críticas</strong> y en muchos <strong>espacios naturales protegidos</strong>.</li>
-                </ul>
-                <p class="mt-2">Para saber si una zona es apta, hay que consultar siempre el mapa oficial de <strong>ENAIRE Drones</strong>: <a href="https://drones.enaire.es/" target="_blank" class="text-blue-500 hover:underline">drones.enaire.es</a>. Tienes una aplicación para IOS o Android de Enaire Drones gratuita.</p>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">4. Cómo volar</h4>
-                <ul class="list-disc pl-5 space-y-1">
-                    <li>El dron debe mantenerse <strong>siempre dentro del alcance visual</strong> del piloto.</li>
-                    <li>La <strong>altura máxima</strong> que puedes pillar es de <strong>120 metros</strong> sobre el terreno.</li>
-                    <li>La <strong>distancia máxima</strong> a la que te puedes alejar en categoría abierta es de <strong>500m</strong> o hasta que el observador vaya a perder de vista el drone (lo primero que suceda).</li>
-                </ul>
-
-                <h4 class="font-bold text-slate-900 dark:text-white mt-6 mb-2">5. Potencias y Bandas</h4>
-                <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-lg my-4">
-                    <ul class="space-y-4">
-                        <li><span class="font-bold text-blue-600 dark:text-blue-400">5.8 GHz:</span> &lt;25 mW (14 dBm). Estándar CE.</li>
-                        <li><span class="font-bold text-blue-600 dark:text-blue-400">2.4 GHz (Control):</span> &lt;100 mW (20 dBm).</li>
-                        <li><span class="font-bold text-blue-600 dark:text-blue-400">868/915 MHz:</span> Requiere licencia para alta potencia.</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Footer Modal -->
-            <div class="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 rounded-b-xl text-center">
-                <button onclick="document.getElementById('full-legal-modal').classList.add('hidden')" class="px-6 py-2 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition">Entendido</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- Modals Standard (Contacto) -->
     <div id="contact-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-800 rounded-lg max-w-md w-full p-6 relative border border-slate-700 shadow-2xl">
             <button onclick="document.getElementById('contact-modal').classList.add('hidden')" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
@@ -1378,6 +1377,9 @@
                 document.body.removeChild(textArea);
             };
         });
+        
+        window.openSectionModal = (id) => document.getElementById(id).classList.remove('hidden');
+        window.closeSectionModal = (id) => document.getElementById(id).classList.add('hidden');
     </script>
 </body>
 </html>
