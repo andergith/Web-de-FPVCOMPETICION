@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -38,14 +38,16 @@
     <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
-
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         primary: '#dc2626',
-                        'dark-bg': '#0f172a',
-                        'dark-card': '#1e293b',
-                        'dark-border': '#334155',
+                         {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155'
+                        },
                         telegram: '#229ED9'
                     },
                     fontFamily: {
@@ -327,12 +329,14 @@
     </style>
 </head>
 
-<body class="antialiased scroll-smooth bg-dark-bg text-slate-200 transition-colors duration-300">
+<body
+    class="antialiased scroll-smooth bg-slate-50 text-slate-900 bg-dark-bg text-slate-200 transition-colors duration-300">
 
     <div id="reading-progress"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-slate-800 z-50">
+    <nav
+        class="fixed top-0 w-full bg-white/80 bg-dark-bg/80 backdrop-blur-lg border-b border-slate-200 border-slate-800 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="scrollToSection('hero')">
@@ -364,7 +368,7 @@
                     <button onclick="scrollToSection('blog')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Noticias</button>
 
-                    <div class="h-6 w-px bg-slate-700 mx-2"></div>
+                    <div class="h-6 w-px bg-slate-200 bg-slate-700 mx-2"></div>
                 </div>
 
                 <!-- Mobile Toggle -->
@@ -376,7 +380,8 @@
         </div>
 
         <!-- Mobile Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-b border-slate-800">
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-dark-card border-b border-slate-800">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
                 <button onclick="openSectionModal('modal-antes-de-volar')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Antes de
@@ -402,7 +407,7 @@
             <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left fade-in">
                     <div
-                        class="inline-flex items-center px-4 py-1.5 rounded-full border border-red-900 bg-slate-800/80 backdrop-blur-sm text-red-400 text-xs font-bold uppercase tracking-widest mb-6 shadow-sm">
+                        class="inline-flex items-center px-4 py-1.5 rounded-full border border-red-200 border-red-900 bg-white/80 bg-slate-800/80 backdrop-blur-sm text-red-600 text-red-400 text-xs font-bold uppercase tracking-widest mb-6 shadow-sm">
                         <span class="flex h-2 w-2 relative mr-2">
                             <span
                                 class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -452,7 +457,7 @@
                 <div onclick="openSectionModal('modal-antes-de-volar')"
                     class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
                     <div
-                        class="w-14 h-14 rounded-full bg-red-900/30 flex items-center justify-center text-red-600 mb-4">
+                        class="w-14 h-14 rounded-full bg-red-100 bg-red-900/30 flex items-center justify-center text-red-600 mb-4">
                         <i class="fas fa-book-reader text-2xl"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Antes de Volar</h3>
@@ -462,7 +467,7 @@
                 <div onclick="openSectionModal('modal-equipo')"
                     class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
                     <div
-                        class="w-14 h-14 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4">
+                        class="w-14 h-14 rounded-full bg-blue-100 bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4">
                         <i class="fas fa-box-open text-2xl"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Equipo FPV</h3>
@@ -472,7 +477,7 @@
                 <div onclick="openSectionModal('modal-guias')"
                     class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
                     <div
-                        class="w-14 h-14 rounded-full bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4">
+                        class="w-14 h-14 rounded-full bg-yellow-100 bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4">
                         <i class="fas fa-tools text-2xl"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Guías Montaje</h3>
@@ -482,7 +487,7 @@
                 <div onclick="openSectionModal('modal-foros')"
                     class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
                     <div
-                        class="w-14 h-14 rounded-full bg-sky-900/30 flex items-center justify-center text-sky-600 mb-4">
+                        class="w-14 h-14 rounded-full bg-sky-100 bg-sky-900/30 flex items-center justify-center text-sky-600 mb-4">
                         <i class="fab fa-telegram text-3xl pl-1"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Comunidad</h3>
@@ -493,14 +498,15 @@
     </section>
 
     <!-- SECTION: EL DRONE -->
-    <section id="el-drone" class="py-12 bg-dark-bg">
+    <section id="el-drone" class="py-12 bg-white bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
                 <h2 class="text-4xl font-bold text-white font-teko">El Drone</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Tinywhoop -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
+                <div
+                    class="bg-slate-50 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
                     <h3 class="text-2xl font-teko font-bold text-white mb-2">Tinywhoops y Toothpicks
                     </h3>
                     <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
@@ -510,7 +516,8 @@
                     </div>
                 </div>
                 <!-- Cinewhoops -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
+                <div
+                    class="bg-slate-50 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
                     <h3 class="text-2xl font-teko font-bold text-white mb-2">Cinewhoops</h3>
                     <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
                         <iframe class="absolute top-0 left-0 w-full h-full"
@@ -519,12 +526,13 @@
                     </div>
                 </div>
                 <!-- Freestyle/Racing -->
-                <div class="md:col-span-2 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
+                <div
+                    class="md:col-span-2 bg-slate-50 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
                     <div class="flex flex-col md:flex-row gap-6">
                         <div class="flex-1">
                             <h3 class="text-3xl font-teko font-bold text-white mb-2">Freestyle &
                                 Racing</h3>
-                            <p class="text-sm text-slate-300">La modalidad reina. Acrobacias y
+                            <p class="text-sm text-slate-600 text-slate-300">La modalidad reina. Acrobacias y
                                 velocidad.</p>
                         </div>
                         <div
@@ -536,7 +544,8 @@
                     </div>
                 </div>
                 <!-- Long Range -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
+                <div
+                    class="bg-slate-50 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
                     <h3 class="text-2xl font-teko font-bold text-white mb-2">Long Range</h3>
                     <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
                         <iframe class="absolute top-0 left-0 w-full h-full"
@@ -546,20 +555,21 @@
                 </div>
                 <!-- DJI -->
                 <div
-                    class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700 text-center flex flex-col justify-center">
+                    class="bg-slate-50 bg-slate-800/40 rounded-2xl p-4 border border-slate-700 text-center flex flex-col justify-center">
                     <h3 class="text-3xl font-teko font-bold text-white mb-2">DJI</h3>
-                    <p class="text-sm text-slate-300 mb-4">Digital HD, fácil y seguro.</p>
+                    <p class="text-sm text-slate-600 text-slate-300 mb-4">Digital HD, fácil y seguro.</p>
                     <a href="https://www.youtube.com/@FPV-Drones/search?query=dji" target="_blank"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition text-sm">Ver
                         Vídeos</a>
                 </div>
                 <!-- Stabilized -->
-                <div class="md:col-span-2 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
+                <div
+                    class="md:col-span-2 bg-slate-50 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
                     <div class="flex flex-col md:flex-row gap-6">
                         <div class="flex-1">
                             <h3 class="text-3xl font-teko font-bold text-white mb-2">Estabilizados
                             </h3>
-                            <p class="text-sm text-slate-300 mb-4">Fotografía tradicional.</p>
+                            <p class="text-sm text-slate-600 text-slate-300 mb-4">Fotografía tradicional.</p>
                         </div>
                         <div
                             class="w-full md:w-1/2 relative pt-[56.25%] md:pt-[28%] bg-black rounded-lg overflow-hidden">
@@ -580,28 +590,33 @@
                 Vuelo</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Flight Time -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
+                <div
+                    class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
                     <h3 class="text-2xl font-bold text-white font-teko mb-6"><i
                             class="fas fa-stopwatch text-red-600"></i> Tiempo de Vuelo</h3>
                     <div class="space-y-4">
                         <input type="number" id="calc-mah" value="1300"
                             class="w-full rounded-lg border p-2 bg-slate-900 text-white text-base">
                         <button onclick="calculateFlightTime()"
-                            class="bg-slate-900 text-white font-bold py-2 px-6 rounded-lg w-full">Calcular</button>
+                            class="bg-slate-900 bg-white text-white text-slate-900 font-bold py-2 px-6 rounded-lg w-full">Calcular</button>
                         <div class="text-right"><span id="calc-result"
                                 class="text-4xl font-teko font-bold text-red-600">0:00</span> min</div>
                     </div>
                 </div>
                 <!-- Lipo Charge -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
-                    <h3 class="text-2xl font-bold text-white font-teko mb-6"><i class="fas fa-bolt text-blue-500"></i>
-                        Carga LiPo</h3>
+                <div
+                    class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
+                    <h3 class="text-2xl font-bold text-white font-teko mb-6"><i
+                            class="fas fa-bolt text-blue-500"></i> Carga LiPo</h3>
                     <div class="flex gap-2 mb-4">
                         <input type="number" id="lipo-mah" value="1300"
-                            class="w-1/2 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="mAh">
+                            class="w-1/2 rounded-lg border p-2 bg-slate-900 text-white text-base"
+                            placeholder="mAh">
                         <input type="number" id="lipo-count" value="4"
-                            class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="N">
-                        <select id="lipo-c" class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white">
+                            class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white text-base"
+                            placeholder="N">
+                        <select id="lipo-c"
+                            class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white">
                             <option value="1">1C</option>
                             <option value="2">2C</option>
                         </select>
@@ -616,7 +631,7 @@
     </section>
 
     <!-- SECTION: CANAL (Videos) -->
-    <section id="videos-destacados" class="py-12 bg-dark-bg">
+    <section id="videos-destacados" class="py-12 bg-white bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-4xl font-bold text-white font-teko">Canal</h2>
@@ -640,10 +655,11 @@
     </section>
 
     <!-- SECTION: SERVICIOS -->
-    <section id="servicios" class="py-12 bg-dark-card border-t border-slate-800">
+    <section id="servicios"
+        class="py-12 bg-slate-100 bg-dark-card border-t border-slate-200 border-slate-800">
         <div class="max-w-md mx-auto text-center px-4">
             <h2 class="text-3xl font-bold text-white font-teko mb-4">Servicios Profesionales</h2>
-            <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-700">
+            <div class="bg-slate-800 p-6 rounded-xl shadow border border-slate-100 border-slate-700">
                 <i class="fas fa-video text-4xl text-red-600 mb-4"></i>
                 <h3 class="text-xl font-bold text-white">FPV Cinema</h3>
                 <p class="text-xs text-slate-500 mb-4">Grabación profesional 5K para eventos y publicidad.</p>
@@ -723,23 +739,27 @@
         <div
             class="bg-slate-900 w-full max-w-6xl h-[90vh] rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-700">
             <!-- Header -->
-            <div class="p-6 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
+            <div
+                class="p-6 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
                 <h2 class="text-3xl font-bold font-teko text-white">Antes de Volar</h2>
                 <button onclick="closeSectionModal('modal-antes-de-volar')"
                     class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
             </div>
             <!-- Scrollable Content -->
             <div class="overflow-y-auto p-6 md:p-10">
-                <div class="bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-700 min-h-[300px] tab-container">
+                <div
+                    class="bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-700 min-h-[300px] tab-container">
                     <!-- Tabs -->
                     <div class="flex justify-center mb-8">
                         <div class="inline-flex bg-slate-900 p-1 rounded-xl">
                             <button
-                                class="tab-btn active px-6 py-2 rounded-lg font-teko text-xl text-white bg-red-600 shadow-sm"
+                                class="tab-btn active px-6 py-2 rounded-lg font-teko text-xl text-white bg-slate-900 bg-red-600 shadow-sm"
                                 onclick="switchTab('phase1', this)">Importante</button>
-                            <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
+                            <button
+                                class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
                                 onclick="switchTab('phase2', this)">Simulador</button>
-                            <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
+                            <button
+                                class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
                                 onclick="switchTab('phase3', this)">Betaflight</button>
                         </div>
                     </div>
@@ -812,7 +832,8 @@
                                     Tienes una aplicación para IOS o Android de Enaire Drones gratuita.</p>
 
                                 <!-- Añadido bloque de recomendaciones -->
-                                <div class="bg-slate-800 p-4 rounded-lg my-4 border-l-4 border-blue-500">
+                                <div
+                                    class="bg-slate-100 bg-slate-800 p-4 rounded-lg my-4 border-l-4 border-blue-500">
                                     <strong class="block text-white mb-2">Además, te
                                         recomiendo:</strong>
                                     <ul class="list-disc pl-5 space-y-1">
@@ -853,8 +874,10 @@
                                     emisora
                                     de radio:</p>
 
-                                <div class="bg-slate-800 p-6 rounded-lg my-4 border border-slate-700">
-                                    <strong class="block text-lg mb-4 text-white border-b border-slate-600 pb-2">Bandas
+                                <div
+                                    class="bg-slate-100 bg-slate-800 p-6 rounded-lg my-4 border border-slate-700">
+                                    <strong
+                                        class="block text-lg mb-4 text-white border-b border-slate-300 border-slate-600 pb-2">Bandas
                                         Comunes y Potencias (Normativa CE/España):</strong>
 
                                     <div class="space-y-6">
@@ -972,7 +995,8 @@
                                     <!-- Velocidrone -->
                                     <div
                                         class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                                        <div class="h-32 bg-slate-700 flex items-center justify-center">
+                                        <div
+                                            class="h-32 bg-slate-200 bg-slate-700 flex items-center justify-center">
                                             <span class="font-teko text-4xl text-slate-400">VELOCIDRONE</span>
                                         </div>
                                         <div class="p-4">
@@ -984,7 +1008,8 @@
                                     <!-- Liftoff -->
                                     <div
                                         class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                                        <div class="h-32 bg-slate-700 flex items-center justify-center">
+                                        <div
+                                            class="h-32 bg-slate-200 bg-slate-700 flex items-center justify-center">
                                             <span class="font-teko text-4xl text-slate-400">LIFTOFF</span>
                                         </div>
                                         <div class="p-4">
@@ -997,7 +1022,8 @@
                                     <!-- Uncrashed -->
                                     <div
                                         class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                                        <div class="h-32 bg-slate-700 flex items-center justify-center">
+                                        <div
+                                            class="h-32 bg-slate-200 bg-slate-700 flex items-center justify-center">
                                             <span class="font-teko text-4xl text-slate-400">UNCRASHED</span>
                                         </div>
                                         <div class="p-4">
@@ -1036,7 +1062,8 @@
         <div
             class="bg-slate-900 w-full max-w-6xl h-[90vh] rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-700">
             <!-- Header -->
-            <div class="p-6 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
+            <div
+                class="p-6 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
                 <div class="flex flex-col">
                     <h2 class="text-3xl font-bold font-teko text-white leading-none">Equipo FPV & Ofertas</h2>
                     <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest font-bold">Guía de compra y
@@ -1048,10 +1075,11 @@
             </div>
 
             <!-- Sub-Tabs de Navegación del Modal -->
-            <div class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-center">
+            <div
+                class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-center">
                 <div class="inline-flex bg-slate-900 p-1 rounded-xl shadow-inner">
                     <button onclick="switchEquipoSubTab('componentes')" id="tab-equipo-componentes"
-                        class="equipo-nav-tab px-6 py-2 rounded-lg font-teko text-xl text-white bg-red-600 shadow-sm transition-all active">
+                        class="equipo-nav-tab px-6 py-2 rounded-lg font-teko text-xl text-white bg-slate-900 bg-red-600 shadow-sm transition-all active">
                         Componentes
                     </button>
                     <button onclick="switchEquipoSubTab('combos')" id="tab-equipo-combos"
@@ -1107,13 +1135,13 @@
                         </a>
                     </div>
 
-                    <hr class="border-slate-800">
+                    <hr class="border-slate-200 border-slate-800">
 
                     <!-- Guía 1: Drone -->
                     <div id="guide-drone" class="max-w-4xl mx-auto">
                         <div class="flex items-center gap-4 mb-6">
                             <div
-                                class="w-12 h-12 bg-red-900/30 rounded-full flex items-center justify-center text-red-600 text-2xl font-bold">
+                                class="w-12 h-12 bg-red-100 bg-red-900/30 rounded-full flex items-center justify-center text-red-600 text-2xl font-bold">
                                 1</div>
                             <h3 class="text-3xl font-bold font-teko text-white uppercase">El Drone
                                 (Cuadricóptero
@@ -1145,13 +1173,14 @@
                     <div id="guide-radio" class="max-w-4xl mx-auto">
                         <div class="flex items-center gap-4 mb-6">
                             <div
-                                class="w-12 h-12 bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 text-2xl font-bold">
+                                class="w-12 h-12 bg-blue-100 bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 text-2xl font-bold">
                                 2</div>
                             <h3 class="text-3xl font-bold font-teko text-white uppercase">La Emisora (Radio)
                             </h3>
                         </div>
                         <div class="space-y-6 text-slate-400 leading-relaxed">
-                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                            <div
+                                class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
                                 <p class="mb-4">Tienes que darle mucha importancia, ya que va a ser tu forma de
                                     manejar
                                     el drone. Hay dos tipos principales:</p>
@@ -1237,7 +1266,8 @@
                                 </div>
                             </div>
 
-                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                            <div
+                                class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
                                 <h4 class="font-bold text-white mb-4">Recomendaciones de Compra
                                 </h4>
                                 <div class="grid md:grid-cols-3 gap-4">
@@ -1278,8 +1308,10 @@
 
                             <div class="grid md:grid-cols-2 gap-8">
                                 <!-- Analógico -->
-                                <div class="bg-slate-800 p-6 rounded-2xl border-l-4 border-yellow-500 shadow-lg">
-                                    <h4 class="font-bold text-white text-xl mb-4 flex items-center justify-between">
+                                <div
+                                    class="bg-slate-800 p-6 rounded-2xl border-l-4 border-yellow-500 shadow-lg">
+                                    <h4
+                                        class="font-bold text-white text-xl mb-4 flex items-center justify-between">
                                         Analógico <i class="fas fa-wave-square text-yellow-500"></i>
                                     </h4>
                                     <div class="space-y-4 text-sm text-slate-400">
@@ -1289,15 +1321,17 @@
                                         <p><strong class="text-red-600 uppercase">Contras:</strong> Imagen mala,
                                             poco
                                             definida y con "ruido" visual.</p>
-                                        <p class="pt-4 border-t border-slate-700">
+                                        <p class="pt-4 border-t border-slate-100 border-slate-700">
                                             <strong>Claves:</strong> Importante usar un buen receptor (RapidFire) y
                                             antenas de alta calidad.
                                         </p>
                                     </div>
                                 </div>
                                 <!-- Digital -->
-                                <div class="bg-slate-800 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg">
-                                    <h4 class="font-bold text-white text-xl mb-4 flex items-center justify-between">
+                                <div
+                                    class="bg-slate-800 p-6 rounded-2xl border-l-4 border-blue-500 shadow-lg">
+                                    <h4
+                                        class="font-bold text-white text-xl mb-4 flex items-center justify-between">
                                         Digital <i class="fas fa-desktop text-blue-500"></i>
                                     </h4>
                                     <div class="space-y-4 text-sm text-slate-400">
@@ -1306,7 +1340,7 @@
                                         <p><strong class="text-red-600 uppercase">Contras:</strong> Más caro, algo
                                             más
                                             de latencia y sistemas cerrados incompatibles entre marcas.</p>
-                                        <p class="pt-4 border-t border-slate-700">
+                                        <p class="pt-4 border-t border-slate-100 border-slate-700">
                                             <strong>Marcas
                                                 Top:</strong> DJI (Imagen), Walksnail (Opciones), HDZero
                                             (Racing/Baja
@@ -1330,14 +1364,15 @@
                     <div id="guide-battery" class="max-w-4xl mx-auto">
                         <div class="flex items-center gap-4 mb-6">
                             <div
-                                class="w-12 h-12 bg-yellow-900/30 rounded-full flex items-center justify-center text-yellow-600 text-2xl font-bold">
+                                class="w-12 h-12 bg-yellow-100 bg-yellow-900/30 rounded-full flex items-center justify-center text-yellow-600 text-2xl font-bold">
                                 4</div>
                             <h3 class="text-3xl font-bold font-teko text-white uppercase">Baterías y Cargadores
                             </h3>
                         </div>
                         <div class="space-y-6">
                             <div class="grid md:grid-cols-2 gap-6">
-                                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                                <div
+                                    class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
                                     <h4 class="font-bold text-white mb-4">Tipos de Batería</h4>
                                     <ul class="space-y-4 text-sm text-slate-400">
                                         <li><strong>LiPo:</strong> El estándar. Potencia inmediata para acrobacias.
@@ -1350,7 +1385,8 @@
                                         <li><strong>Celdas:</strong> Tendencia actual hacia 6S en drones de 5".</li>
                                     </ul>
                                 </div>
-                                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                                <div
+                                    class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
                                     <h4 class="font-bold text-white mb-4">El Cargador</h4>
                                     <ul class="space-y-4 text-sm text-slate-400">
                                         <li><strong>Balanceado:</strong> OBLIGATORIO para cargar LiPos con
@@ -1369,11 +1405,13 @@
                             </div>
 
                             <!-- Alerta de Seguridad -->
-                            <div class="bg-red-900/30 p-8 rounded-2xl border border-red-900 shadow-xl">
-                                <h4 class="text-red-400 font-bold text-xl mb-4 flex items-center gap-2">
+                            <div
+                                class="bg-red-50 bg-red-900/30 p-8 rounded-2xl border border-red-200 border-red-900 shadow-xl">
+                                <h4
+                                    class="text-red-600 text-red-400 font-bold text-xl mb-4 flex items-center gap-2">
                                     <i class="fas fa-exclamation-triangle"></i> ¡SEGURIDAD CRÍTICA!
                                 </h4>
-                                <div class="grid md:grid-cols-2 gap-8 text-sm text-slate-300">
+                                <div class="grid md:grid-cols-2 gap-8 text-sm text-slate-700 text-slate-300">
                                     <div class="space-y-3">
                                         <p><strong>Peligro Real:</strong> Las LiPo pueden incendiarse o explotar si
                                             se
@@ -1398,14 +1436,16 @@
                 <div id="equipo-section-combos" class="equipo-sub-section hidden space-y-8">
                     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                         <!-- Listas de Gear -->
-                        <div class="bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-800">
+                        <div
+                            class="bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-800">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-3xl font-bold text-white font-teko">Combos del Mes</h2>
-                                <div class="flex bg-slate-900 p-1 rounded-lg shadow-sm border border-slate-700">
+                                <div
+                                    class="flex bg-slate-900 p-1 rounded-lg shadow-sm border border-slate-700">
                                     <button id="btn-gear-pro" onclick="toggleGear('pro')"
-                                        class="px-3 py-1 text-xs font-bold bg-slate-700 text-white rounded transition">Pro</button>
+                                        class="px-3 py-1 text-xs font-bold bg-slate-200 bg-slate-700 text-white rounded transition">Pro</button>
                                     <button id="btn-gear-beginner" onclick="toggleGear('beginner')"
-                                        class="px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition">Inicio</button>
+                                        class="px-3 py-1 text-xs font-bold text-slate-500 hover:text-slate-900 transition">Inicio</button>
                                 </div>
                             </div>
                             <div id="gear-grid" class="grid grid-cols-2 gap-4"></div>
@@ -1475,8 +1515,8 @@
                             </div>
                             <div class="mt-6 md:mt-0 flex gap-3">
                                 <button
-                                    class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-sm font-bold uppercase transition flex items-center gap-2 shadow-[0_0_15px_rgba(220,38,38,0.3)]">
-                                    <i class="fas fa-file-invoice"></i> Lista Piezas
+                                    class="bg-white hover:bg-slate-200 text-slate-900 px-6 py-3 rounded-lg text-sm font-bold uppercase transition flex items-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                                    <i class="fas fa-file-invoice text-red-600"></i> Lista Piezas
                                 </button>
                                 <button
                                     class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 hover:border-slate-500 px-6 py-3 rounded-lg text-sm font-bold uppercase transition flex items-center gap-2">
@@ -1609,95 +1649,88 @@
         </div>
     </div>
 
-    <!-- MODAL 4: FOROS (Diseño Premium) -->
-    <div id="modal-foros" class="fixed inset-0 z-[120] hidden modal-overlay flex items-center justify-center p-4">
+    <!-- MODAL 4: FOROS -->
+    <div id="modal-foros" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
         <div
-            class="bg-[#0f172a] w-full max-w-2xl rounded-2xl relative border border-slate-800 shadow-2xl overflow-hidden font-sans">
+            class="bg-slate-900 w-full max-w-4xl rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-700">
             <!-- Header -->
-            <div class="p-5 border-b border-slate-800/50 flex justify-between items-center bg-[#1e293b]/30">
-                <div class="flex items-center gap-3">
-                    <div
-                        class="w-9 h-9 bg-sky-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
-                        <i class="fab fa-telegram-plane"></i>
-                    </div>
-                    <h2 class="text-2xl font-bold text-white font-teko uppercase tracking-wider">Foros Telegram</h2>
-                </div>
+            <div
+                class="p-6 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
+                <h2 class="text-3xl font-bold font-teko text-white"><i
+                        class="fab fa-telegram text-telegram mr-2"></i> Foros Telegram</h2>
                 <button onclick="closeSectionModal('modal-foros')"
-                    class="text-slate-400 hover:text-white transition-all transform hover:rotate-90">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
+                    class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
             </div>
+            <!-- Content -->
+            <div class="p-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- General -->
+                    <a href="https://t.me/s/grupodronesgeneral" target="_blank"
+                        class="bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 border-slate-700">
+                        <div
+                            class="w-12 h-12 bg-telegram/10 rounded-full flex items-center justify-center text-telegram text-2xl">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">General</h3>
+                            <p class="text-xs text-slate-500">Chat diario</p>
+                        </div>
+                    </a>
 
-            <!-- Grid de Canales -->
-            <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- General -->
-                <a href="https://t.me/s/grupodronesgeneral" target="_blank"
-                    class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
-                    <div
-                        class="w-14 h-14 bg-sky-500/20 rounded-full flex items-center justify-center text-sky-400 shrink-0 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-comments text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-white font-bold font-teko text-xl leading-none uppercase tracking-wide">General
-                        </h3>
-                        <p class="text-slate-400 text-xs mt-1.5 font-medium">Chat diario</p>
-                    </div>
-                </a>
+                    <!-- Compra/Venta -->
+                    <a href="https://t.me/grupodronesgeneral/402722" target="_blank"
+                        class="bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 border-slate-700">
+                        <div
+                            class="w-12 h-12 bg-green-100 bg-green-900/30 rounded-full flex items-center justify-center text-green-600 text-2xl">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">Compra/Venta</h3>
+                            <p class="text-xs text-slate-500">Mercadillo</p>
+                        </div>
+                    </a>
 
-                <!-- Compra/Venta -->
-                <a href="https://t.me/grupodronesgeneral/402722" target="_blank"
-                    class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
-                    <div
-                        class="w-14 h-14 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-shopping-cart text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-white font-bold font-teko text-xl leading-none uppercase tracking-wide">
-                            Compra/Venta</h3>
-                        <p class="text-slate-400 text-xs mt-1.5 font-medium">Mercadillo</p>
-                    </div>
-                </a>
+                    <!-- Alas/Aviones -->
+                    <a href="https://t.me/grupodronesgeneral/416627" target="_blank"
+                        class="bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 border-slate-700">
+                        <div
+                            class="w-12 h-12 bg-sky-100 bg-sky-900/30 rounded-full flex items-center justify-center text-sky-600 text-2xl">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">Alas/Aviones</h3>
+                            <p class="text-xs text-slate-500">Vuelo ala fija</p>
+                        </div>
+                    </a>
 
-                <!-- Alas/Aviones -->
-                <a href="https://t.me/grupodronesgeneral/416627" target="_blank"
-                    class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
-                    <div
-                        class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400 shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-plane text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-white font-bold font-teko text-xl leading-none uppercase tracking-wide">
-                            Alas/Aviones</h3>
-                        <p class="text-slate-400 text-xs mt-1.5 font-medium">Vuelo ala fija</p>
-                    </div>
-                </a>
+                    <!-- Ofertas -->
+                    <a href="https://t.me/droneofertas" target="_blank"
+                        class="bg-dark-card p-6 rounded-xl shadow flex items-center gap-4 hover:scale-105 transition border border-slate-100 border-slate-700">
+                        <div
+                            class="w-12 h-12 bg-red-100 bg-red-900/30 rounded-full flex items-center justify-center text-red-600 text-2xl">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">Canal Ofertas</h3>
+                            <p class="text-xs text-slate-500">Chollos FPV</p>
+                        </div>
+                    </a>
+                </div>
 
-                <!-- Canal Ofertas -->
-                <a href="https://t.me/droneofertas" target="_blank"
-                    class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
-                    <div
-                        class="w-14 h-14 bg-rose-500/20 rounded-full flex items-center justify-center text-rose-500 shrink-0 group-hover:bg-rose-500 group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-tag text-2xl rotate-45"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-white font-bold font-teko text-xl leading-none uppercase tracking-wide">Canal
-                            Ofertas</h3>
-                        <p class="text-slate-400 text-xs mt-1.5 font-medium">Chollos FPV</p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Footer Modal -->
-            <div class="px-6 py-5 bg-black/40 text-center border-t border-white/5">
-                <p class="text-slate-400 text-xs font-medium tracking-wide">Si no tienes la APP de Telegram pulsa
-                    directamente en <span class="text-white font-extrabold uppercase ml-1">"Open in Web"</span></p>
+                <!-- Footer Text (Nuevo) -->
+                <div class="mt-8 text-center">
+                    <p class="text-sm font-bold text-white">Si no tienes la APP de Telegram
+                        pulsa
+                        directamente en "Open in Web"</p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Modals Standard (Contacto) -->
     <div id="contact-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
-        <div class="bg-slate-800 rounded-lg max-w-md w-full p-6 relative border border-slate-700 shadow-2xl">
+        <div
+            class="bg-slate-800 rounded-lg max-w-md w-full p-6 relative border border-slate-700 shadow-2xl">
             <button onclick="document.getElementById('contact-modal').classList.add('hidden')"
                 class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
             <h3 class="text-2xl font-teko text-white mb-2">Contactar</h3>
@@ -1770,53 +1803,15 @@
         </div>
     </div>
 
-    <div id="legal-modal" class="fixed inset-0 z-[120] hidden modal-overlay flex items-center justify-center p-4">
-        <div
-            class="bg-slate-900 w-full max-w-2xl max-h-[80vh] rounded-2xl relative border border-slate-700 shadow-2xl flex flex-col">
-            <!-- Header -->
-            <div class="p-6 border-b border-slate-800 flex justify-between items-center">
-                <h2 id="legal-title" class="text-2xl font-bold text-white font-teko uppercase tracking-wider"></h2>
-                <button onclick="document.getElementById('legal-modal').classList.add('hidden')"
-                    class="text-slate-400 hover:text-white transition">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            <!-- Body -->
-            <div id="legal-content"
-                class="p-8 overflow-y-auto text-slate-300 leading-relaxed space-y-4 text-sm scrollbar-thin">
-            </div>
-            <!-- Footer -->
-            <div class="p-4 border-t border-slate-800 text-center">
-                <button onclick="document.getElementById('legal-modal').classList.add('hidden')"
-                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-8 rounded-lg transition text-xs uppercase cursor-pointer">Entendido</button>
-            </div>
+    <div id="legal-modal" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div class="bg-slate-800 rounded p-8 max-w-lg relative">
+            <button onclick="document.getElementById('legal-modal').classList.add('hidden')"
+                class="absolute top-4 right-4 text-slate-400"><i class="fas fa-times"></i></button>
+            <h2 id="legal-title" class="text-xl font-bold text-white mb-4"></h2>
+            <div id="legal-content" class="text-sm text-slate-300"></div>
         </div>
     </div>
 
-
-
-    <div id="cookie-banner"
-        class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-6 z-[10000] transform translate-y-full transition-transform duration-500 shadow-2xl">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-                <div
-                    class="w-12 h-12 bg-red-600/10 rounded-full flex items-center justify-center text-red-500 shrink-0">
-                    <i class="fas fa-cookie-bite text-2xl"></i>
-                </div>
-                <p class="text-sm text-slate-300">Utilizamos cookies propias y de terceros para mejorar tu
-                    experiencia y
-                    analizar el tráfico. Al continuar navegando, aceptas nuestra <button
-                        onclick="openLegalModal('cookies')" class="text-white font-bold hover:underline">política de
-                        cookies</button>.</p>
-            </div>
-            <div class="flex gap-3 shrink-0">
-                <button onclick="rejectCookies()"
-                    class="bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-6 rounded-lg transition text-sm uppercase">Rechazar</button>
-                <button onclick="acceptCookies()"
-                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition text-sm uppercase">Aceptar</button>
-            </div>
-        </div>
-    </div>
     <footer class="bg-slate-900 text-slate-400 py-16 border-t-4 border-red-600 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
@@ -1836,10 +1831,10 @@
                             class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition text-white">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <button onclick="openSectionModal('modal-foros')"
-                            class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-[#0088cc] transition text-white">
+                        <a href="https://t.me/grupodronesgeneral" target="_blank"
+                            class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-telegram transition text-white">
                             <i class="fab fa-telegram-plane"></i>
-                        </button>
+                        </a>
                         <a href="#"
                             class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 transition text-white">
                             <i class="fab fa-instagram"></i>
@@ -1915,13 +1910,13 @@
                 <p class="text-xs uppercase tracking-widest font-teko text-slate-500">© 2026 FPV DRONES - TODOS
                     LOS DERECHOS RESERVADOS</p>
                 <div class="flex gap-8">
-                    <button onclick="openLegalModal('legal')"
-                        class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition cursor-pointer">Aviso
-                        Legal</button>
-                    <button onclick="openLegalModal('privacy')"
-                        class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition cursor-pointer">Privacidad</button>
-                    <button onclick="openLegalModal('cookies')"
-                        class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition cursor-pointer">Cookies</button>
+                    <a href="#"
+                        class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition">Aviso
+                        Legal</a>
+                    <a href="#"
+                        class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition">Privacidad</a>
+                    <a href="#"
+                        class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition">Cookies</a>
                     <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">BY ALEX FPV</span>
                 </div>
             </div>
@@ -2139,11 +2134,11 @@
             if (target) target.classList.remove('hidden');
 
             btn.parentElement.querySelectorAll('button').forEach(b => {
-                b.classList.remove('text-white', 'bg-red-600');
+                b.classList.remove('bg-slate-900', 'text-white', 'bg-red-600');
                 b.classList.add('text-slate-500');
             });
             btn.classList.remove('text-slate-500');
-            btn.classList.add('text-white', 'bg-red-600');
+            btn.classList.add('bg-slate-900', 'text-white', 'bg-red-600');
         }
 
         const gearData = {
@@ -2169,19 +2164,19 @@
             const btnBeg = document.getElementById('btn-gear-beginner');
 
             if (mode === 'pro') {
-                if (btnPro) btnPro.className = "px-3 py-1 text-xs font-bold bg-red-600 shadow rounded text-white transition";
-                if (btnBeg) btnBeg.className = "px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition";
+                if (btnPro) btnPro.className = "px-3 py-1 text-xs font-bold bg-white shadow rounded text-slate-900 transition";
+                if (btnBeg) btnBeg.className = "px-3 py-1 text-xs font-bold text-slate-500 hover:text-slate-900 transition";
             } else {
-                if (btnBeg) btnBeg.className = "px-3 py-1 text-xs font-bold bg-red-600 shadow rounded text-white transition";
-                if (btnPro) btnPro.className = "px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition";
+                if (btnBeg) btnBeg.className = "px-3 py-1 text-xs font-bold bg-white shadow rounded text-slate-900 transition";
+                if (btnPro) btnPro.className = "px-3 py-1 text-xs font-bold text-slate-500 hover:text-slate-900 transition";
             }
 
             container.innerHTML = '';
             gearData[mode].forEach(item => {
                 const div = document.createElement('div');
-                div.className = "bg-slate-900 p-3 rounded-lg border border-slate-700 flex flex-col items-center text-center";
+                div.className = "bg-slate-900 p-3 rounded-lg border border-slate-100 border-slate-700 flex flex-col items-center text-center";
                 div.innerHTML = `
-                    <i class="fas ${item.icon} text-2xl text-slate-400 mb-2"></i>
+                    <i class="fas ${item.icon} text-2xl text-slate-700 text-slate-400 mb-2"></i>
                     <h4 class="font-bold text-white uppercase font-teko leading-none">${item.name}</h4>
                     <span class="text-[10px] text-slate-500">${item.desc}</span>
                 `;
@@ -2268,51 +2263,17 @@
             setTimeout(() => d.remove(), 3000);
         }
 
-        window.scrollToSection = (id) => {
+        function scrollToSection(id) {
             const el = document.getElementById(id);
             if (el) el.scrollIntoView({ behavior: 'smooth' });
-        };
+        }
 
         function openLegalModal(type) {
             const t = document.getElementById('legal-title');
             const c = document.getElementById('legal-content');
-
-            if (type === 'cookies') {
-                t.innerText = 'Política de Cookies';
-                c.innerHTML = `
-                    <p class="font-bold">1. Información sobre el uso de cookies</p>
-                    <p>En cumplimiento de la Ley 34/2002 y la Directiva 2002/58/CE, este sitio web utiliza cookies para mejorar la experiencia del usuario y analizar el tráfico.</p>
-                    <p class="font-bold mt-4">2. Tipos de cookies utilizadas</p>
-                    <ul class="list-disc ml-5 space-y-2">
-                        <li><strong>Técnicas (Necesarias):</strong> Permiten la navegación y el uso de opciones como el modo oscuro. No pueden desactivarse.</li>
-                        <li><strong>Analíticas (AEPD 2024):</strong> Ayudan a entender cómo interactúan los usuarios con la web. Solo se activan si pulsa "Aceptar".</li>
-                    </ul>
-                    <p class="font-bold mt-4">3. Cómo gestionar las cookies</p>
-                    <p>Puede cambiar su configuración en cualquier momento borrando la caché de su navegador o pulsando el botón de desestimación en el banner informativo.</p>
-                `;
-            } else if (type === 'privacy') {
-                t.innerText = 'Política de Privacidad (RGPD)';
-                c.innerHTML = `
-                    <p><strong>Responsable:</strong> [DATO_PENDIENTE: Nombre/Razon Social]</p>
-                    <p><strong>Finalidad:</strong> Gestionar las comunicaciones, consultas de los usuarios y suscripción al blog.</p>
-                    <p><strong>Legitimación:</strong> Su consentimiento explícito al marcar la casilla de aceptación o al enviarnos un formulario.</p>
-                    <p><strong>Destinatarios:</strong> No se cederán datos a terceros salvo obligación legal o uso de servicios tipo Cloud (Firebase).</p>
-                    <p><strong>Derechos:</strong> Tiene derecho a acceder, rectificar, suprimir sus datos y a la portabilidad de estos, escribiendo un correo a [DATO_PENDIENTE: Email de contacto].</p>
-                    <p>Para más información, consulte la Guía del Ciudadano de la AEPD.</p>
-                `;
-            } else if (type === 'legal') {
-                t.innerText = 'Aviso Legal (LSSI-CE)';
-                c.innerHTML = `
-                    <p>En cumplimiento de la Ley 34/2002 de Servicios de la Sociedad de la Información, se detallan los datos del titular:</p>
-                    <ul class="space-y-2">
-                        <li><strong>Titular:</strong> [DATO_PENDIENTE: Nombre Completo]</li>
-                        <li><strong>NIF/CIF:</strong> [DATO_PENDIENTE: Numero Identificación]</li>
-                        <li><strong>Domicilio:</strong> [DATO_PENDIENTE: Dirección Completa]</li>
-                        <li><strong>Contacto:</strong> A través del email [DATO_PENDIENTE: Email].</li>
-                    </ul>
-                    <p class="mt-4 italic">El acceso a esta web implica la aceptación de las condiciones generales de uso y la política de privacidad detallada en los apartados correspondientes.</p>
-                `;
-            }
+            if (type === 'cookies') { t.innerText = 'Cookies'; c.innerHTML = '<p>Texto legal de cookies...</p>'; }
+            if (type === 'privacy') { t.innerText = 'Privacidad'; c.innerHTML = '<p>Texto legal de privacidad...</p>'; }
+            if (type === 'legal') { t.innerText = 'Aviso Legal'; c.innerHTML = '<p>Texto legal...</p>'; }
             document.getElementById('legal-modal').classList.remove('hidden');
         }
 
@@ -2366,12 +2327,12 @@
             if (tbody) {
                 coupons.forEach(c => {
                     tbody.innerHTML += `
-                        <tr class="hover:bg-slate-700/50">
+                        <tr class="hover:bg-slate-50 hover:bg-slate-700/50">
                             <td class="px-6 py-4 font-bold text-white">${c.store}</td>
                             <td class="px-6 py-4 text-slate-300">${c.prod}</td>
                             <td class="px-6 py-4 text-red-500 font-bold">${c.discount}</td>
                             <td class="px-6 py-4 text-right">
-                                <button onclick="copyToClipboard('${c.code}')" class="bg-slate-800 border border-slate-600 px-3 py-1 rounded text-xs font-mono hover:bg-red-900/20 hover:text-red-500 transition">
+                                <button onclick="copyToClipboard('${c.code}')" class="bg-slate-100 bg-slate-800 border border-slate-300 border-slate-600 px-3 py-1 rounded text-xs font-mono hover:bg-red-50 hover:bg-red-900/20 hover:text-red-500 transition">
                                     ${c.code} <i class="fas fa-copy ml-1"></i>
                                 </button>
                             </td>
@@ -2393,23 +2354,6 @@
                 }
                 document.body.removeChild(textArea);
             };
-
-            // Cookie Banner Logic
-            window.acceptCookies = () => {
-                localStorage.setItem('cookieStatus', 'accepted');
-                document.getElementById('cookie-banner').classList.remove('show');
-            };
-
-            window.rejectCookies = () => {
-                localStorage.setItem('cookieStatus', 'rejected');
-                document.getElementById('cookie-banner').classList.remove('show');
-            };
-
-            if (!localStorage.getItem('cookieStatus')) {
-                setTimeout(() => {
-                    document.getElementById('cookie-banner').classList.add('show');
-                }, 2000);
-            }
         });
 
         window.switchEquipoSubTab = function (tabId) {
@@ -2421,12 +2365,12 @@
 
             // Botones de navegación (Estilo Píldora)
             document.querySelectorAll('.equipo-nav-tab').forEach(tab => {
-                tab.classList.remove('active', 'text-white', 'bg-red-600', 'shadow-sm');
+                tab.classList.remove('active', 'text-white', 'bg-slate-900', 'bg-red-600', 'shadow-sm');
                 tab.classList.add('text-slate-500', 'text-slate-400');
             });
             const activeTab = document.getElementById(`tab-equipo-${tabId}`);
             activeTab.classList.remove('text-slate-500', 'text-slate-400');
-            activeTab.classList.add('active', 'text-white', 'bg-red-600', 'shadow-sm');
+            activeTab.classList.add('active', 'text-white', 'bg-slate-900', 'bg-red-600', 'shadow-sm');
 
             // Reset scroll
             const scrollContainer = document.getElementById('equipo-scroll-container');
