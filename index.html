@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPV DRONES | Web Oficial</title>
-    <link rel="icon" type="image/jpeg"
-        href="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO%20JPG%20SIN%20FONDO.jpg">
+    <link rel="icon" type="image/webp"
+        href="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO JPG SIN FONDO.webp">
     <meta name="description"
         content="Web oficial del canal FPV COMPETICION - DRONES. Tutoriales de montaje, reviews honestas, simuladores y la mejor comunidad de FPV en español.">
     <meta name="keywords"
@@ -22,7 +22,7 @@
     <meta property="og:title" content="FPV DRONES | No vueles el drone, SÉ el drone">
     <meta property="og:description"
         content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
-    <meta property="og:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.png">
+    <meta property="og:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -30,7 +30,7 @@
     <meta property="twitter:title" content="FPV DRONES | Web Oficial">
     <meta property="twitter:description"
         content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
-    <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.png">
+    <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -336,7 +336,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="scrollToSection('hero')">
-                    <img src="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO%20JPG%20SIN%20FONDO.jpg"
+                    <img src="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO JPG SIN FONDO.webp"
                         alt="Logo FPV Competición" class="h-10 w-auto rounded-lg">
                     <span class="font-teko tracking-tighter flex items-center leading-none">
                         <span class="text-3xl font-bold text-white">FPV</span>
@@ -740,7 +740,7 @@
                             <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
                                 onclick="switchTab('phase2', this)">Simulador</button>
                             <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
-                                onclick="switchTab('phase3', this)">Betaflight</button>
+                                onclick="switchTab('phase3', this)">Tutoriales</button>
                         </div>
                     </div>
                     <!-- Content -->
@@ -1013,16 +1013,14 @@
                         <!-- FASE 3: BETAFLIGHT (Video) -->
                         <div id="phase3" class="tab-content hidden fade-in">
                             <div class="max-w-3xl mx-auto text-center">
-                                <h3 class="text-2xl font-bold text-white mb-4 font-teko">Configuración Básica
-                                </h3>
+                                <h3 class="text-2xl font-bold text-white mb-4 font-teko">Tutoriales</h3>
                                 <div
                                     class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-2xl border border-slate-700 mb-4">
                                     <iframe class="absolute top-0 left-0 w-full h-full"
-                                        src="https://www.youtube.com/embed/59GEcl9umBE?si=apxZqxFpGiKGNnZn"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYpSIFI9Sjbu6asiJ-lRL23O"
                                         frameborder="0" allowfullscreen loading="lazy"></iframe>
                                 </div>
-                                <p class="text-slate-500 text-sm">Tutorial completo de configuración inicial para tu
-                                    primer vuelo.</p>
+                                <p class="text-slate-500 text-sm">Lista completa de tutoriales y configuración.</p>
                             </div>
                         </div>
                     </div>
@@ -1101,10 +1099,25 @@
                             </button>
                         </div>
 
-                        <a href="https://www.youtube.com/watch?v=yh5WHB5Ropw" target="_blank"
-                            class="inline-flex items-center gap-2 mt-8 text-red-600 font-bold hover:underline">
-                            <i class="fab fa-youtube"></i> Guía Completa de Compra en Vídeo
-                        </a>
+                        <div class="mt-8 flex justify-center">
+                            <a href="https://www.youtube.com/watch?v=yh5WHB5Ropw" target="_blank"
+                                class="block group relative w-full max-w-sm rounded-xl overflow-hidden shadow-lg border border-slate-700 hover:border-red-500 transition-all">
+                                <img src="https://img.youtube.com/vi/yh5WHB5Ropw/maxresdefault.jpg"
+                                    alt="Portada Guía de Compra"
+                                    class="w-full h-auto group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
+                                <div
+                                    class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                                    <div
+                                        class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white scale-90 group-hover:scale-100 transition-transform shadow-[0_0_20px_rgba(220,38,38,0.5)]">
+                                        <i class="fas fa-play text-2xl ml-1"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                    <h4 class="text-white font-bold text-sm">Guía Completa de Compra en Vídeo</h4>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <hr class="border-slate-800">
@@ -1133,10 +1146,6 @@
                                     class="bg-red-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-red-700 transition flex items-center gap-2">
                                     <i class="fas fa-drone"></i> Ver pestaña específica de Drones
                                 </button>
-                                <a href="https://www.youtube.com/watch?v=yh5WHB5Ropw" target="_blank"
-                                    class="bg-slate-900 bg-slate-700 text-white px-6 py-2 rounded-lg font-bold hover:bg-slate-800 transition flex items-center gap-2">
-                                    <i class="fab fa-youtube"></i> Guía de Compra (Vídeo)
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -1158,9 +1167,11 @@
                                 <ul class="grid md:grid-cols-2 gap-4">
                                     <li
                                         class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
-                                        <img src="imagenes/radio-tradicional.png" alt="Radio Tradicional"
-                                            class="w-full max-w-[150px] md:max-w-[200px] h-auto mb-4 drop-shadow-lg">
-                                        <div>
+                                        <div class="p-3 rounded-xl w-full flex justify-center mb-4">
+                                            <img src="imagenes/radio-tradicional.webp" alt="Radio Tradicional"
+                                                class="max-w-[150px] md:max-w-[200px] h-auto drop-shadow-xl">
+                                        </div>
+                                        <div class="text-center">
                                             <strong class="text-white block mb-1">Tradicional
                                                 (PULGARES/PELLIZCO):</strong> Con dos gimbals (joysticks) y algunos
                                             interruptores. Más exactas y recomendadas para cualquier nivel.
@@ -1168,12 +1179,13 @@
                                     </li>
                                     <li
                                         class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
-                                        <img src="imagenes/radio-movimiento.png" alt="Radio por Movimiento"
-                                            class="w-full max-w-[150px] md:max-w-[200px] h-auto mb-4 drop-shadow-lg">
-                                        <div>
-                                            <strong class="text-white block mb-1">Tipo Mando
-                                                DJI:</strong> Funcionan sobre todo con sensores de movimiento. Más
-                                            intuitivas pero menos precisas.
+                                        <div class="p-3 rounded-xl w-full flex justify-center mb-4">
+                                            <img src="imagenes/radio-movimiento.webp" alt="Radio por Movimiento"
+                                                class="max-w-[150px] md:max-w-[200px] h-auto drop-shadow-xl">
+                                        </div>
+                                        <div class="text-center">
+                                            <strong class="text-white block mb-1">Tipo Mando DJI:</strong> Funcionan
+                                            sobre todo con sensores de movimiento. Más intuitivas pero menos precisas.
                                         </div>
                                     </li>
                                 </ul>
@@ -1220,7 +1232,7 @@
                                             <p
                                                 class="text-[10px] text-blue-400 uppercase tracking-widest mb-2 font-bold text-center">
                                                 Modos de transmisión (Gemini / Doble Banda)</p>
-                                            <img src="imagenes/protocolo-elrs.png" alt="Protocolos ELRS Gemini"
+                                            <img src="imagenes/protocolo-elrs.webp.webp" alt="Protocolos ELRS Gemini"
                                                 class="rounded-xl border border-blue-200 border-blue-800 shadow-lg w-full max-w-[280px] md:max-w-[40%] h-auto">
                                         </div>
                                     </div>
@@ -1258,6 +1270,20 @@
                                     </a>
                                 </div>
                             </div>
+
+                            <!-- Playlist de Youtube: Tutoriales Emisoras -->
+                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Tutoriales y Reviews de Emisoras
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-lg border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYoivEE7-pRVFvY4OMohKiMs"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -1319,10 +1345,24 @@
                             <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700">
                                 <h4 class="text-white font-bold mb-4">Nuevos Jugadores</h4>
                                 <p class="text-sm text-slate-400">Caddx, Betaflight y Antigravity acaban de salir al
-                                    mercado. Prometen buena calidad y precios competitivos cercanos al analógico,
-                                    pero
+                                    mercado. Prometen buena calidad y precios competitivos cercanos al analógico, pero
                                     aún están por ver su evolución.</p>
                             </div>
+
+                            <!-- Playlist de Youtube: Equipos FPV -->
+                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Guías de Sistemas Digitales de
+                                    Vídeo FPV
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-lg border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqzsHNR8r8my__q9ia_MGun"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -1408,7 +1448,21 @@
                                         class="px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition">Inicio</button>
                                 </div>
                             </div>
-                            <div id="gear-grid" class="grid grid-cols-2 gap-4"></div>
+                            <div id="gear-grid" class="grid grid-cols-2 gap-4 mb-8"></div>
+
+                            <!-- Playlist de Combos ya Listos -->
+                            <div class="mt-4 pt-6 border-t border-slate-800">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Combos ya listos
+                                    (Recomendaciones)
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYrn775cwjQ8cjbLdbUI1Wif"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
                         </div>
                         <!-- Ofertas -->
                         <div id="ofertas-modal-content"
@@ -1645,7 +1699,7 @@
                 </a>
 
                 <!-- Compra/Venta -->
-                <a href="https://t.me/grupodronesgeneral/402722" target="_blank"
+                <a href="https://t.me/s/grupodronesgeneral/402722" target="_blank"
                     class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
                     <div
                         class="w-14 h-14 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
@@ -1659,7 +1713,7 @@
                 </a>
 
                 <!-- Alas/Aviones -->
-                <a href="https://t.me/grupodronesgeneral/416627" target="_blank"
+                <a href="https://t.me/s/grupodronesgeneral/416627" target="_blank"
                     class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
                     <div
                         class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400 shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
@@ -1673,7 +1727,7 @@
                 </a>
 
                 <!-- Canal Ofertas -->
-                <a href="https://t.me/droneofertas" target="_blank"
+                <a href="https://t.me/s/droneofertas" target="_blank"
                     class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
                     <div
                         class="w-14 h-14 bg-rose-500/20 rounded-full flex items-center justify-center text-rose-500 shrink-0 group-hover:bg-rose-500 group-hover:text-white transition-all duration-300">
