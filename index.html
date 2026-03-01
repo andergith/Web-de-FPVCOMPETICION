@@ -34,6 +34,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+
     <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
@@ -90,6 +91,16 @@
             background: linear-gradient(90deg, #dc2626, #ef4444);
             z-index: 100;
             transition: width 0.1s ease-out;
+        }
+
+        #physics-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: auto;
         }
 
         /* YouTube Facade */
@@ -152,9 +163,7 @@
         }
 
         .hero-bg-image {
-            background-color: rgba(15, 23, 42, 0.6) !important;
-            background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.08) 1px, transparent 1px) !important;
-            background-size: 20px 20px !important;
+            background-color: #0f172a !important;
         }
 
         .aspect-w-16 {
@@ -345,19 +354,21 @@
 
                 <!-- Desktop Menu (Ordenado) -->
                 <div class="hidden md:flex items-center space-x-2 lg:space-x-4 overflow-x-auto">
-                    <!-- Menú con Acciones de Modal -->
+                    <!-- Menú con Acciones de Modal y Enlaces de Scroll -->
                     <button onclick="openSectionModal('modal-antes-de-volar')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Antes de Volar</button>
+                    <button onclick="scrollToSection('el-drone')"
+                        class="nav-link text-sm font-bold uppercase hover:text-red-600">El Drone</button>
                     <button onclick="openSectionModal('modal-equipo')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Equipo FPV</button>
                     <button onclick="openSectionModal('modal-guias')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Guías Montaje</button>
+                    <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('combos')"
+                        class="nav-link text-sm font-bold uppercase hover:text-red-600">Ofertas</button>
                     <button onclick="openSectionModal('modal-foros')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Foros</button>
 
-                    <!-- Enlaces de Scroll -->
-                    <button onclick="scrollToSection('el-drone')"
-                        class="nav-link text-sm font-bold uppercase hover:text-red-600">El Drone</button>
+
                     <button onclick="scrollToSection('videos-destacados')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Canal</button>
                     <button onclick="scrollToSection('blog')"
@@ -385,6 +396,8 @@
                 <button onclick="openSectionModal('modal-guias')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Guías
                     Montaje</button>
+                <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('combos')"
+                    class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Ofertas</button>
                 <button onclick="openSectionModal('modal-foros')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Foros</button>
                 <a href="#el-drone" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">El Drone</a>
@@ -492,82 +505,150 @@
     </section>
 
     <!-- SECTION: EL DRONE -->
-    <section id="el-drone" class="py-12 bg-dark-bg">
+    <section id="el-drone" class="py-16 bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-bold text-white font-teko">El Drone</h2>
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-5xl font-bold text-white font-teko mb-4">El Drone</h2>
+                <div class="h-1 w-20 bg-red-600 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-400 text-lg leading-relaxed">El dron es el aparato que nos va a permitir volar y
+                    dependiendo del tipo de vuelo que vayas a hacer, dónde vayas a volar o tus habilidades vas a tener
+                    que utilizar un tipo de dron u otro. Los tipos más comunes de drones son los siguientes:</p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Tinywhoop -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <h3 class="text-2xl font-teko font-bold text-white mb-2">Tinywhoops y Toothpicks
-                    </h3>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?si=eck6678Hx6oFtoW-&amp;list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
-                <!-- Cinewhoops -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <h3 class="text-2xl font-teko font-bold text-white mb-2">Cinewhoops</h3>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?si=ykGZUsZSKc7YfzE_&amp;list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
-                <!-- Freestyle/Racing -->
-                <div class="md:col-span-2 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-teko font-bold text-white mb-2">Freestyle &
-                                Racing</h3>
-                            <p class="text-sm text-slate-300">La modalidad reina. Acrobacias y
-                                velocidad.</p>
-                        </div>
-                        <div
-                            class="w-full md:w-1/2 relative pt-[56.25%] md:pt-[28%] bg-black rounded-lg overflow-hidden">
-                            <iframe class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/videoseries?si=LvqFpM8JePF_YMum&amp;list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
-                                frameborder="0" allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>
-                </div>
-                <!-- Long Range -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <h3 class="text-2xl font-teko font-bold text-white mb-2">Long Range</h3>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?si=ox9iv8kcrMbWkHhb&amp;list=PL_AS-7inzwYo1BD9xB0UAS0bzfrErU96q"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
-                <!-- DJI -->
+                <!-- Freestyle -->
                 <div
-                    class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700 text-center flex flex-col justify-center">
-                    <h3 class="text-3xl font-teko font-bold text-white mb-2">DJI</h3>
-                    <p class="text-sm text-slate-300 mb-4">Digital HD, fácil y seguro.</p>
-                    <a href="https://www.youtube.com/@FPV-Drones/search?query=dji" target="_blank"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition text-sm">Ver
-                        Vídeos</a>
-                </div>
-                <!-- Stabilized -->
-                <div class="md:col-span-2 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-teko font-bold text-white mb-2">Estabilizados
-                            </h3>
-                            <p class="text-sm text-slate-300 mb-4">Fotografía tradicional.</p>
-                        </div>
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-red-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
                         <div
-                            class="w-full md:w-1/2 relative pt-[56.25%] md:pt-[28%] bg-black rounded-lg overflow-hidden">
-                            <iframe class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/videoseries?si=le52ATFYDiIny_0k&amp;list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_"
-                                frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-paper-plane text-2xl"></i>
                         </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Freestyle</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Es el más popular, porque también es el que permite
+                        hacer más cosas. La navaja suiza de los drones, con el que puedes hacer piruetas o grabar vídeos
+                        cinemáticos. Los hay desde 2 a 6 pulgadas.<br><br>Son drones para volar en espacios abiertos y a
+                        una velocidad bastante alta (puede rozar hasta los 200Km/h y acelerar de 0 a 100 Km/h en dos
+                        segundos).</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
+
+                <!-- Carreras -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-blue-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-flag-checkered text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Carreras</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son drones rápidos, ligeros y muy ágiles. Quizás no
+                        sean los más adecuados para empezar, pero sí te van a llevar a tu límite como piloto. Si los
+                        freestyle te parecían rápidos… estos lo son más. Eso sí, no pretendas volar más de 4 minutos.
+                    </p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <!-- Playlist compartida con Freestyle según indicación del cliente -->
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Tinywhoops -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-bug text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Tinywhoops</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son como dice su nombre pequeños y con ductos. Son
+                        baratos, resistentes y muy seguros para volar, por lo que son ideales para aprender y hacer
+                        reflejos. Perfectos para volar en casa o si son algo más grandes en el exterior en zonas con
+                        obstáculos.</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Cinewhoop -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-purple-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-video text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Cinewhoop</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son básicamente tinywhoops más grandes, algunos con
+                        hélices mirando para arriba (más agiles) y otros con hélices mirando para abajo (más estables).
+                        ¿Para qué son? Pues para grabar en sitios cerrados o en sitios con obstáculos. Pueden llevar una
+                        cámara externa de acción o incluso una cámara fpv con capacidad de grabación.</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Cinelifters / Cinematográficos -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-emerald-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-film text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Cinelifters</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son drones pensados para montar una cámara de cine
+                        profesional. Tienen que llevar cámaras tipo Sony FX30, Blackmagic, RED KOMODO o Alexa mini de
+                        ARRI pero aun así ser ágiles, por lo que es muy normal que sean octocópteros, hexacópteros, etc.
+                    </p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 flex items-center justify-center text-slate-500">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/lttRUaWZXMg?si=c7AYMtbTcALpn8pv" frameborder="0"
+                            allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Estabilizados -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-orange-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-camera-retro text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Estabilizados</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Drones pensados para grabar tomas estables, con
+                        altos tiempos de vuelo y fáciles de volar. Los hay de muchos tipos, según lo que estés buscando:
+                        grabación profesional, ocio, vigilancia, …</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1470,6 +1551,8 @@
                                 <i class="fas fa-tags text-red-500 text-2xl"></i>
                             </div>
                             <div class="overflow-x-auto">
+                                <iframe src="https://widgets.sociablekit.com/telegram-channel/iframe/25658608"
+                                    frameborder="0" width="100%" height="1000px"></iframe>
                                 <table class="w-full text-xs text-left text-slate-400">
                                     <tbody id="couponTableBody"></tbody>
                                 </table>
@@ -2199,16 +2282,16 @@
 
         const gearData = {
             pro: [
-                { name: "DJI Goggles 2", type: "Gafas", desc: "Digital HD", icon: "fa-vr-cardboard" },
-                { name: "Radiomaster Boxer", type: "Emisora", desc: "ELRS 1W", icon: "fa-gamepad" },
-                { name: "AOS 5 V5", type: "Drone", desc: "Freestyle", icon: "fa-paper-plane" },
-                { name: "Torvol Pitstop", type: "Mochila", desc: "Pro", icon: "fa-suitcase" }
+                { name: "DJI Goggles 2", type: "Gafas", desc: "Digital HD", icon: "fa-vr-cardboard", review: "#", buy: "#" },
+                { name: "Radiomaster TX16S", type: "Emisora", desc: "ELRS 1W", icon: "fa-gamepad", review: "#", buy: "#" },
+                { name: "Nazgul 5 Evo", type: "Drone", desc: "Freestyle", icon: "fa-paper-plane", review: "#", buy: "#" },
+                { name: "Torvol Pitstop", type: "Mochila", desc: "Mochila", icon: "fa-suitcase", review: "#", buy: "#" }
             ],
             beginner: [
-                { name: "Emax Tinyhawk III", type: "Kit RTF", desc: "Todo en uno", icon: "fa-box-open" },
-                { name: "Radiomaster Pocket", type: "Emisora", desc: "Económica", icon: "fa-gamepad" },
-                { name: "Skyzone Cobra X", type: "Gafas", desc: "Analógicas", icon: "fa-vr-cardboard" },
-                { name: "Velocidrone", type: "Simulador", desc: "Software", icon: "fa-desktop" }
+                { name: "Skyzone Cobra X", type: "Gafas", desc: "Analógicas", icon: "fa-vr-cardboard", review: "#", buy: "#" },
+                { name: "Radiomaster Pocket", type: "Emisora", desc: "Económica", icon: "fa-gamepad", review: "#", buy: "#" },
+                { name: "Emax Tinyhawk III", type: "Kit RTF", desc: "Todo en uno", icon: "fa-paper-plane", review: "#", buy: "#" },
+                { name: "Velocidrone", type: "Simulador", desc: "Software", icon: "fa-desktop", review: "#", buy: "#" }
             ]
         };
 
@@ -2230,11 +2313,25 @@
             container.innerHTML = '';
             gearData[mode].forEach(item => {
                 const div = document.createElement('div');
-                div.className = "bg-slate-900 p-3 rounded-lg border border-slate-700 flex flex-col items-center text-center";
+                div.className = "bg-slate-900 p-4 rounded-xl border border-slate-700 flex flex-col items-center text-center group hover:border-red-500 hover:shadow-lg transition-all duration-300";
+
+                let buttonsHtml = '';
+                if (item.review || item.buy) {
+                    buttonsHtml = `
+                    <div class="flex gap-2 w-full mt-4">
+                        <a href="${item.review}" target="_blank" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold py-1.5 rounded uppercase transition border border-slate-600">Review</a>
+                        <a href="${item.buy}" target="_blank" class="flex-1 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold py-1.5 rounded uppercase transition border border-red-600">Compra</a>
+                    </div>
+                    `;
+                }
+
                 div.innerHTML = `
-                    <i class="fas ${item.icon} text-2xl text-slate-400 mb-2"></i>
-                    <h4 class="font-bold text-white uppercase font-teko leading-none">${item.name}</h4>
-                    <span class="text-[10px] text-slate-500">${item.desc}</span>
+                    <div class="h-10 flex items-center justify-center mb-2">
+                        <i class="fas ${item.icon} text-3xl text-slate-400 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h4 class="font-bold text-white uppercase font-teko text-xl leading-none mt-1">${item.name}</h4>
+                    <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">${item.desc}</span>
+                    ${buttonsHtml}
                 `;
                 container.appendChild(div);
             });
@@ -2414,6 +2511,7 @@
                 { store: "BetaFPV", prod: "Meteor", discount: "5%", code: "METEOR5" },
                 { store: "Radiomaster", prod: "Boxer", discount: "12%", code: "RMBOX" }
             ];
+
             if (tbody) {
                 coupons.forEach(c => {
                     tbody.innerHTML += `
@@ -2486,6 +2584,115 @@
 
         window.openSectionModal = (id) => document.getElementById(id).classList.remove('hidden');
         window.closeSectionModal = (id) => document.getElementById(id).classList.add('hidden');
+    </script>
+
+    <script>
+        // Interactive Grid Background - antigravity.google style
+        (function () {
+            // --- Setup Canvas ---
+            const canvas = document.createElement('canvas');
+            const div = document.createElement('div');
+            div.id = 'physics-background';
+            div.appendChild(canvas);
+            // Insertar dentro del hero section, no en el body
+            const heroSection = document.getElementById('hero');
+            heroSection.prepend(div);
+
+            const ctx = canvas.getContext('2d');
+            let W = canvas.width = heroSection.offsetWidth;
+            let H = canvas.height = heroSection.offsetHeight;
+
+            // --- Config ---
+            const SPACING = 28;       // 50% más pequeño que antes (55 → 28)
+            const DOT_RADIUS = 1.25;  // 50% más pequeño que antes (2.5 → 1.25)
+            const MOUSE_RADIUS = 130; // radio de influencia del ratón
+            const ATTRACT_STRENGTH = 0.18;
+            const RETURN_SPEED = 0.014;
+            const DOT_COLOR_REST = 'rgba(255,255,255,0.2)';
+            const DOT_COLOR_ACTIVE = 'rgba(255,255,255,'; // blanco, sin rojo
+
+            // --- State ---
+            let points = [];
+            const mouse = { x: -9999, y: -9999 };
+
+            // --- Build Grid ---
+            function buildGrid() {
+                points = [];
+                const cols = Math.ceil(W / SPACING) + 1;
+                const rows = Math.ceil(H / SPACING) + 1;
+                for (let r = 0; r < rows; r++) {
+                    for (let c = 0; c < cols; c++) {
+                        points.push({
+                            ox: c * SPACING, // posición origen X
+                            oy: r * SPACING, // posición origen Y
+                            x: c * SPACING,  // posición actual X
+                            y: r * SPACING,  // posición actual Y
+                            vx: 0, vy: 0    // velocidad (para elasto suave)
+                        });
+                    }
+                }
+            }
+
+            // --- Render Loop ---
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                for (const p of points) {
+                    const dx = mouse.x - p.ox;
+                    const dy = mouse.y - p.oy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < MOUSE_RADIUS) {
+                        // Dentro del radio: se desplaza hacia el ratón suavemente
+                        const influence = (1 - dist / MOUSE_RADIUS); // 1 cerca, 0 lejos
+                        const targetX = p.ox + dx * ATTRACT_STRENGTH * influence;
+                        const targetY = p.oy + dy * ATTRACT_STRENGTH * influence;
+                        p.x += (targetX - p.x) * 0.03; // 5x más lento
+                        p.y += (targetY - p.y) * 0.03;
+
+                        // Color: blanco con brillo según cercanía
+                        const alpha = 0.25 + influence * 0.55;
+                        ctx.fillStyle = DOT_COLOR_ACTIVE + alpha + ')';
+                        const radius = DOT_RADIUS + influence * 1.5;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        // Fuera del radio: vuelve suavemente al origen
+                        p.x += (p.ox - p.x) * RETURN_SPEED;
+                        p.y += (p.oy - p.y) * RETURN_SPEED;
+
+                        ctx.fillStyle = DOT_COLOR_REST;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, DOT_RADIUS, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            // --- Mouse (coordenadas relativas al hero) ---
+            heroSection.addEventListener('mousemove', e => {
+                const rect = heroSection.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                mouse.x = -9999;
+                mouse.y = -9999;
+            });
+
+            // --- Resize ---
+            window.addEventListener('resize', () => {
+                W = canvas.width = heroSection.offsetWidth;
+                H = canvas.height = heroSection.offsetHeight;
+                buildGrid();
+            });
+
+            buildGrid();
+            draw();
+        })();
     </script>
 </body>
 
