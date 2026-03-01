@@ -38,31 +38,8 @@
         content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
     <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com" fetchpriority="low"></script>
-
-
-    <!-- Configuración Tailwind -->
-    <script>
-        tailwind.config = {
-
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#dc2626',
-                        'dark-bg': '#0f172a',
-                        'dark-card': '#1e293b',
-                        'dark-border': '#334155',
-                        telegram: '#229ED9'
-                    },
-                    fontFamily: {
-                        teko: ['Teko', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- CSS purgado (generado con Tailwind CLI - 37KB vs 3.2MB CDN) -->
+    <link rel="stylesheet" href="styles.css">
 
     <!-- Font Awesome (non-blocking: carga sin bloquear render) -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
