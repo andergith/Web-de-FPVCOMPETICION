@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPV DRONES | Web Oficial</title>
-    <link rel="icon" type="image/jpeg"
-        href="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO%20JPG%20SIN%20FONDO.jpg">
+    <link rel="icon" type="image/webp" href="imagenes/logo-fpv-competicion.webp">
     <meta name="description"
         content="Web oficial del canal FPV COMPETICION - DRONES. Tutoriales de montaje, reviews honestas, simuladores y la mejor comunidad de FPV en español.">
     <meta name="keywords"
         content="FPV COMPETICION, FPV COMPETICIÓN, drones fpv, fpv competicion, tutoriales drones, montar dron fpv, simuladores fpv, comunidad fpv español, alex fpv, Web de fpv, web de drones fpv, web de drones de carreras, web de drones">
     <link rel="canonical" href="https://fpvdrone.es/">
+
+    <!-- Preconnect a CDNs críticas para reducir latencia -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://i.ytimg.com">
+    <meta name="theme-color" content="#0f172a">
 
     <!-- Meta robots para control legal -->
     <meta name="robots" content="index, follow">
@@ -22,7 +28,7 @@
     <meta property="og:title" content="FPV DRONES | No vueles el drone, SÉ el drone">
     <meta property="og:description"
         content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
-    <meta property="og:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.png">
+    <meta property="og:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -30,10 +36,11 @@
     <meta property="twitter:title" content="FPV DRONES | Web Oficial">
     <meta property="twitter:description"
         content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
-    <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.png">
+    <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" fetchpriority="low"></script>
+
 
     <!-- Configuración Tailwind -->
     <script>
@@ -57,16 +64,26 @@
         }
     </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome (non-blocking: carga sin bloquear render) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+    <!-- Google Fonts (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&family=Inter:wght@400;600&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&family=Inter:wght@400;600&display=swap"
+            rel="stylesheet">
+    </noscript>
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             overflow-x: hidden;
             transition-property: color, background-color, border-color;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,7 +95,7 @@
         h3,
         h4,
         .font-teko {
-            font-family: 'Teko', sans-serif;
+            font-family: 'Teko', system-ui, sans-serif;
             text-transform: uppercase;
         }
 
@@ -91,6 +108,16 @@
             background: linear-gradient(90deg, #dc2626, #ef4444);
             z-index: 100;
             transition: width 0.1s ease-out;
+        }
+
+        #physics-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: auto;
         }
 
         /* YouTube Facade */
@@ -153,9 +180,7 @@
         }
 
         .hero-bg-image {
-            background-color: rgba(15, 23, 42, 0.6) !important;
-            background-image: radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.08) 1px, transparent 1px) !important;
-            background-size: 20px 20px !important;
+            background-color: #0f172a !important;
         }
 
         .aspect-w-16 {
@@ -332,33 +357,38 @@
     <div id="reading-progress"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-slate-800 z-50">
+    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-slate-800 z-50"
+        aria-label="Navegación principal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="scrollToSection('hero')">
-                    <img src="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO%20JPG%20SIN%20FONDO.jpg"
-                        alt="Logo FPV Competición" class="h-10 w-auto rounded-lg">
-                    <span class="font-teko tracking-tighter flex items-center leading-none">
+                <button class="flex-shrink-0 flex items-center gap-3" onclick="scrollToSection('hero')"
+                    aria-label="Ir al inicio - FPV Drones">
+                    <img src="imagenes/logo-fpv-competicion.webp" alt="FPV Drones" class="h-10 w-auto rounded-lg"
+                        width="40" height="40" loading="lazy" decoding="async">
+                    <span class="font-teko tracking-tighter flex items-center leading-none" aria-hidden="true">
                         <span class="text-3xl font-bold text-white">FPV</span>
                         <span class="text-3xl font-bold text-red-600 ml-1">DRONES</span>
                     </span>
-                </div>
+                </button>
 
                 <!-- Desktop Menu (Ordenado) -->
-                <div class="hidden md:flex items-center space-x-2 lg:space-x-4 overflow-x-auto">
-                    <!-- Menú con Acciones de Modal -->
+                <div class="hidden md:flex items-center space-x-2 lg:space-x-4 overflow-x-auto" role="menubar"
+                    aria-label="Menú principal">
+                    <!-- Menú con Acciones de Modal y Enlaces de Scroll -->
                     <button onclick="openSectionModal('modal-antes-de-volar')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Antes de Volar</button>
+                    <button onclick="scrollToSection('el-drone')"
+                        class="nav-link text-sm font-bold uppercase hover:text-red-600">El Drone</button>
                     <button onclick="openSectionModal('modal-equipo')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Equipo FPV</button>
                     <button onclick="openSectionModal('modal-guias')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Guías Montaje</button>
+                    <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('combos')"
+                        class="nav-link text-sm font-bold uppercase hover:text-red-600">Ofertas</button>
                     <button onclick="openSectionModal('modal-foros')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Foros</button>
 
-                    <!-- Enlaces de Scroll -->
-                    <button onclick="scrollToSection('el-drone')"
-                        class="nav-link text-sm font-bold uppercase hover:text-red-600">El Drone</button>
+
                     <button onclick="scrollToSection('videos-destacados')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Canal</button>
                     <button onclick="scrollToSection('blog')"
@@ -369,8 +399,10 @@
 
                 <!-- Mobile Toggle -->
                 <div class="flex items-center md:hidden gap-4">
-                    <button id="mobile-menu-btn" class="text-white hover:text-red-600"><i
-                            class="fas fa-bars text-2xl"></i></button>
+                    <button id="mobile-menu-btn" class="text-white hover:text-red-600"
+                        aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fas fa-bars text-2xl" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -386,6 +418,8 @@
                 <button onclick="openSectionModal('modal-guias')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Guías
                     Montaje</button>
+                <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('combos')"
+                    class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Ofertas</button>
                 <button onclick="openSectionModal('modal-foros')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Foros</button>
                 <a href="#el-drone" class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800">El Drone</a>
@@ -423,9 +457,10 @@
                         poder disfrutar de nuestra pasión, los <strong>DRONES FPV</strong>.
                     </p>
                     <div class="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
-                        <a href="https://youtube.com/@FPV-Drones" target="_blank"
+                        <a href="https://youtube.com/@FPV-Drones" target="_blank" rel="noopener noreferrer"
+                            aria-label="Ir al canal de YouTube de FPV Drones (abre en nueva pestaña)"
                             class="flex items-center justify-center px-8 py-4 border border-transparent font-bold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-all shadow-lg">
-                            <i class="fab fa-youtube mr-2"></i> Ir al Canal
+                            <i class="fab fa-youtube mr-2" aria-hidden="true"></i> Ir al Canal
                         </a>
                     </div>
                 </div>
@@ -433,8 +468,10 @@
                     <div
                         class="relative mx-auto w-full max-w-lg aspect-w-16 shadow-2xl rounded-2xl border-4 border-white/50 border-slate-700/50 bg-slate-900">
                         <div id="video-placeholder" class="video-facade" data-video-id="vHc5jnxkuzg"
-                            onclick="loadYoutubeVideo(this)">
-                            <div class="play-button">
+                            onclick="loadYoutubeVideo(this)" role="button" tabindex="0"
+                            aria-label="Reproducir vídeo de presentación de FPV Drones"
+                            onkeydown="if(event.key==='Enter'||event.key===' ')loadYoutubeVideo(this)">
+                            <div class="play-button" aria-hidden="true">
                                 <div class="play-triangle"></div>
                             </div>
                         </div>
@@ -450,30 +487,36 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <!-- Card 1 -->
                 <div onclick="openSectionModal('modal-antes-de-volar')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
-                    <div
-                        class="w-14 h-14 rounded-full bg-red-900/30 flex items-center justify-center text-red-600 mb-4">
-                        <i class="fas fa-book-reader text-2xl"></i>
+                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    role="button" tabindex="0" aria-label="Abrir sección: Antes de Volar"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-antes-de-volar')">
+                    <div class="w-14 h-14 rounded-full bg-red-900/30 flex items-center justify-center text-red-600 mb-4"
+                        aria-hidden="true">
+                        <i class="fas fa-book-reader text-2xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Antes de Volar</h3>
                     <p class="text-xs text-slate-500 mt-2">Legalidad, Simuladores y primeros pasos.</p>
                 </div>
                 <!-- Card 2 -->
                 <div onclick="openSectionModal('modal-equipo')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
-                    <div
-                        class="w-14 h-14 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4">
-                        <i class="fas fa-box-open text-2xl"></i>
+                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    role="button" tabindex="0" aria-label="Abrir sección: Equipo FPV"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-equipo')">
+                    <div class="w-14 h-14 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4"
+                        aria-hidden="true">
+                        <i class="fas fa-box-open text-2xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Equipo FPV</h3>
                     <p class="text-xs text-slate-500 mt-2">Gafas, Emisoras y Ofertas destacadas.</p>
                 </div>
                 <!-- Card 3 -->
                 <div onclick="openSectionModal('modal-guias')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
-                    <div
-                        class="w-14 h-14 rounded-full bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4">
-                        <i class="fas fa-tools text-2xl"></i>
+                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    role="button" tabindex="0" aria-label="Abrir sección: Guías Montaje"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-guias')">
+                    <div class="w-14 h-14 rounded-full bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4"
+                        aria-hidden="true">
+                        <i class="fas fa-tools text-2xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Guías Montaje</h3>
                     <p class="text-xs text-slate-500 mt-2">Esquemas, wiring y configuraciones.</p>
@@ -493,82 +536,150 @@
     </section>
 
     <!-- SECTION: EL DRONE -->
-    <section id="el-drone" class="py-12 bg-dark-bg">
+    <section id="el-drone" class="py-16 bg-dark-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-bold text-white font-teko">El Drone</h2>
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-5xl font-bold text-white font-teko mb-4">El Drone</h2>
+                <div class="h-1 w-20 bg-red-600 mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-400 text-lg leading-relaxed">El dron es el aparato que nos va a permitir volar y
+                    dependiendo del tipo de vuelo que vayas a hacer, dónde vayas a volar o tus habilidades vas a tener
+                    que utilizar un tipo de dron u otro. Los tipos más comunes de drones son los siguientes:</p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Tinywhoop -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <h3 class="text-2xl font-teko font-bold text-white mb-2">Tinywhoops y Toothpicks
-                    </h3>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?si=eck6678Hx6oFtoW-&amp;list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
-                <!-- Cinewhoops -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <h3 class="text-2xl font-teko font-bold text-white mb-2">Cinewhoops</h3>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?si=ykGZUsZSKc7YfzE_&amp;list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
-                <!-- Freestyle/Racing -->
-                <div class="md:col-span-2 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-teko font-bold text-white mb-2">Freestyle &
-                                Racing</h3>
-                            <p class="text-sm text-slate-300">La modalidad reina. Acrobacias y
-                                velocidad.</p>
-                        </div>
-                        <div
-                            class="w-full md:w-1/2 relative pt-[56.25%] md:pt-[28%] bg-black rounded-lg overflow-hidden">
-                            <iframe class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/videoseries?si=LvqFpM8JePF_YMum&amp;list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
-                                frameborder="0" allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>
-                </div>
-                <!-- Long Range -->
-                <div class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <h3 class="text-2xl font-teko font-bold text-white mb-2">Long Range</h3>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-lg bg-black">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?si=ox9iv8kcrMbWkHhb&amp;list=PL_AS-7inzwYo1BD9xB0UAS0bzfrErU96q"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
-                <!-- DJI -->
+                <!-- Freestyle -->
                 <div
-                    class="bg-slate-800/40 rounded-2xl p-4 border border-slate-700 text-center flex flex-col justify-center">
-                    <h3 class="text-3xl font-teko font-bold text-white mb-2">DJI</h3>
-                    <p class="text-sm text-slate-300 mb-4">Digital HD, fácil y seguro.</p>
-                    <a href="https://www.youtube.com/@FPV-Drones/search?query=dji" target="_blank"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition text-sm">Ver
-                        Vídeos</a>
-                </div>
-                <!-- Stabilized -->
-                <div class="md:col-span-2 bg-slate-800/40 rounded-2xl p-4 border border-slate-700">
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <div class="flex-1">
-                            <h3 class="text-3xl font-teko font-bold text-white mb-2">Estabilizados
-                            </h3>
-                            <p class="text-sm text-slate-300 mb-4">Fotografía tradicional.</p>
-                        </div>
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-red-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
                         <div
-                            class="w-full md:w-1/2 relative pt-[56.25%] md:pt-[28%] bg-black rounded-lg overflow-hidden">
-                            <iframe class="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/videoseries?si=le52ATFYDiIny_0k&amp;list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_"
-                                frameborder="0" allowfullscreen loading="lazy"></iframe>
+                            class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-paper-plane text-2xl"></i>
                         </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Freestyle</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Es el más popular, porque también es el que permite
+                        hacer más cosas. La navaja suiza de los drones, con el que puedes hacer piruetas o grabar vídeos
+                        cinemáticos. Los hay desde 2 a 6 pulgadas.<br><br>Son drones para volar en espacios abiertos y a
+                        una velocidad bastante alta (puede rozar hasta los 200Km/h y acelerar de 0 a 100 Km/h en dos
+                        segundos).</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
+
+                <!-- Carreras -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-blue-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-flag-checkered text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Carreras</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son drones rápidos, ligeros y muy ágiles. Quizás no
+                        sean los más adecuados para empezar, pero sí te van a llevar a tu límite como piloto. Si los
+                        freestyle te parecían rápidos… estos lo son más. Eso sí, no pretendas volar más de 4 minutos.
+                    </p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <!-- Playlist compartida con Freestyle según indicación del cliente -->
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Tinywhoops -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-bug text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Tinywhoops</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son como dice su nombre pequeños y con ductos. Son
+                        baratos, resistentes y muy seguros para volar, por lo que son ideales para aprender y hacer
+                        reflejos. Perfectos para volar en casa o si son algo más grandes en el exterior en zonas con
+                        obstáculos.</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Cinewhoop -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-purple-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-video text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Cinewhoop</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son básicamente tinywhoops más grandes, algunos con
+                        hélices mirando para arriba (más agiles) y otros con hélices mirando para abajo (más estables).
+                        ¿Para qué son? Pues para grabar en sitios cerrados o en sitios con obstáculos. Pueden llevar una
+                        cámara externa de acción o incluso una cámara fpv con capacidad de grabación.</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Cinelifters / Cinematográficos -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-emerald-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-film text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Cinelifters</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Son drones pensados para montar una cámara de cine
+                        profesional. Tienen que llevar cámaras tipo Sony FX30, Blackmagic, RED KOMODO o Alexa mini de
+                        ARRI pero aun así ser ágiles, por lo que es muy normal que sean octocópteros, hexacópteros, etc.
+                    </p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 flex items-center justify-center text-slate-500">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/lttRUaWZXMg?si=c7AYMtbTcALpn8pv" frameborder="0"
+                            allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Estabilizados -->
+                <div
+                    class="bg-slate-800/40 rounded-2xl p-6 border border-slate-700 hover:border-orange-500 transition-colors group flex flex-col h-full shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                            <i class="fas fa-camera-retro text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-teko font-bold text-white m-0">Estabilizados</h3>
+                    </div>
+                    <p class="text-sm text-slate-300 mb-6 flex-grow">Drones pensados para grabar tomas estables, con
+                        altos tiempos de vuelo y fáciles de volar. Los hay de muchos tipos, según lo que estés buscando:
+                        grabación profesional, ocio, vigilancia, …</p>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -580,34 +691,45 @@
                 Vuelo</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Flight Time -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
-                    <h3 class="text-2xl font-bold text-white font-teko mb-6"><i
-                            class="fas fa-stopwatch text-red-600"></i> Tiempo de Vuelo</h3>
+                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700" role="region"
+                    aria-labelledby="flight-time-title">
+                    <h3 id="flight-time-title" class="text-2xl font-bold text-white font-teko mb-6">
+                        <i class="fas fa-stopwatch text-red-600" aria-hidden="true"></i> Tiempo de Vuelo
+                    </h3>
                     <div class="space-y-4">
-                        <input type="number" id="calc-mah" value="1300"
+                        <label for="calc-mah" class="sr-only">Capacidad de la batería en mAh</label>
+                        <input type="number" id="calc-mah" value="1300" aria-label="Capacidad de batería en mAh"
                             class="w-full rounded-lg border p-2 bg-slate-900 text-white text-base">
                         <button onclick="calculateFlightTime()"
-                            class="bg-slate-900 text-white font-bold py-2 px-6 rounded-lg w-full">Calcular</button>
-                        <div class="text-right"><span id="calc-result"
+                            class="bg-slate-900 text-white font-bold py-2 px-6 rounded-lg w-full">Calcular tiempo de
+                            vuelo</button>
+                        <div class="text-right" aria-live="polite"><span id="calc-result"
                                 class="text-4xl font-teko font-bold text-red-600">0:00</span> min</div>
                     </div>
                 </div>
                 <!-- Lipo Charge -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
-                    <h3 class="text-2xl font-bold text-white font-teko mb-6"><i class="fas fa-bolt text-blue-500"></i>
-                        Carga LiPo</h3>
+                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700" role="region"
+                    aria-labelledby="lipo-title">
+                    <h3 id="lipo-title" class="text-2xl font-bold text-white font-teko mb-6">
+                        <i class="fas fa-bolt text-blue-500" aria-hidden="true"></i> Carga LiPo
+                    </h3>
                     <div class="flex gap-2 mb-4">
-                        <input type="number" id="lipo-mah" value="1300"
+                        <label for="lipo-mah" class="sr-only">Capacidad en mAh</label>
+                        <input type="number" id="lipo-mah" value="1300" aria-label="Capacidad de batería en mAh"
                             class="w-1/2 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="mAh">
-                        <input type="number" id="lipo-count" value="4"
+                        <label for="lipo-count" class="sr-only">Número de celdas</label>
+                        <input type="number" id="lipo-count" value="4" aria-label="Número de celdas"
                             class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="N">
-                        <select id="lipo-c" class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white">
+                        <label for="lipo-c" class="sr-only">Tasa de carga en C</label>
+                        <select id="lipo-c" aria-label="Tasa de carga"
+                            class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white">
                             <option value="1">1C</option>
                             <option value="2">2C</option>
                         </select>
                     </div>
                     <button onclick="calculateLipoCharge()"
-                        class="w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-lg">Calcular</button>
+                        class="w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-lg">Calcular carga
+                        LiPo</button>
                     <div class="text-right mt-2"><span id="lipo-result"
                             class="text-4xl font-teko font-bold text-blue-500">0.0</span> Amps</div>
                 </div>
@@ -620,8 +742,9 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-4xl font-bold text-white font-teko">Canal</h2>
-                <a href="https://www.youtube.com/@FPV-Drones/videos" target="_blank"
-                    class="text-red-600 font-bold text-sm">Ver Todo -></a>
+                <a href="https://www.youtube.com/@FPV-Drones/videos" target="_blank" rel="noopener noreferrer"
+                    aria-label="Ver todos los vídeos del canal FPV Drones en YouTube (abre en nueva pestaña)"
+                    class="text-red-600 font-bold text-sm">Ver Todo &rarr;</a>
             </div>
             <div id="latest-videos-grid" class="grid md:grid-cols-3 gap-6"></div>
         </div>
@@ -632,8 +755,9 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-3xl font-bold text-white font-teko">Blog Noticias</h2>
-                <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white"><i
-                        class="fas fa-lock"></i></button>
+                <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white"
+                    aria-label="Panel de administración">
+                    <i class="fas fa-lock" aria-hidden="true"></i></button>
             </div>
             <div id="blog-posts-container" class="grid md:grid-cols-3 gap-6"></div>
         </div>
@@ -662,9 +786,10 @@
                 <div class="border border-slate-700 rounded-lg overflow-hidden">
                     <button
                         class="flex items-center justify-between w-full p-4 bg-slate-800 text-left font-bold text-white focus:outline-none"
-                        onclick="toggleFaq(this)">
+                        onclick="toggleFaq(this)" aria-expanded="false">
                         <span>¿Necesito licencia?</span>
-                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"
+                            aria-hidden="true"></i>
                     </button>
                     <div class="hidden p-4 bg-slate-900 text-slate-400 text-sm">Sí,
                         registro en AESA como operador es obligatorio incluso para drones de menos de 250g si tienen
@@ -740,7 +865,7 @@
                             <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
                                 onclick="switchTab('phase2', this)">Simulador</button>
                             <button class="tab-btn px-6 py-2 rounded-lg font-teko text-xl text-slate-400"
-                                onclick="switchTab('phase3', this)">Betaflight</button>
+                                onclick="switchTab('phase3', this)">Tutos</button>
                         </div>
                     </div>
                     <!-- Content -->
@@ -1013,16 +1138,14 @@
                         <!-- FASE 3: BETAFLIGHT (Video) -->
                         <div id="phase3" class="tab-content hidden fade-in">
                             <div class="max-w-3xl mx-auto text-center">
-                                <h3 class="text-2xl font-bold text-white mb-4 font-teko">Configuración Básica
-                                </h3>
+                                <h3 class="text-2xl font-bold text-white mb-4 font-teko">Tutoriales</h3>
                                 <div
                                     class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-2xl border border-slate-700 mb-4">
                                     <iframe class="absolute top-0 left-0 w-full h-full"
-                                        src="https://www.youtube.com/embed/59GEcl9umBE?si=apxZqxFpGiKGNnZn"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYpSIFI9Sjbu6asiJ-lRL23O"
                                         frameborder="0" allowfullscreen loading="lazy"></iframe>
                                 </div>
-                                <p class="text-slate-500 text-sm">Tutorial completo de configuración inicial para tu
-                                    primer vuelo.</p>
+                                <p class="text-slate-500 text-sm">Lista completa de tutoriales y configuración.</p>
                             </div>
                         </div>
                     </div>
@@ -1038,10 +1161,9 @@
             <!-- Header -->
             <div class="p-6 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
                 <div class="flex flex-col">
-                    <h2 class="text-3xl font-bold font-teko text-white leading-none">Equipo FPV & Ofertas</h2>
-                    <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest font-bold">Guía de compra y
-                        material
-                        recomendado</p>
+                    <h2 class="text-3xl font-bold font-teko text-white leading-none">Equipo FPV</h2>
+                    <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest font-bold">INFORMACIÓN NECESARIA
+                        PARA ELEGIR TU MATERIAL DE VUELO</p>
                 </div>
                 <button onclick="closeSectionModal('modal-equipo')"
                     class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
@@ -1101,10 +1223,25 @@
                             </button>
                         </div>
 
-                        <a href="https://www.youtube.com/watch?v=yh5WHB5Ropw" target="_blank"
-                            class="inline-flex items-center gap-2 mt-8 text-red-600 font-bold hover:underline">
-                            <i class="fab fa-youtube"></i> Guía Completa de Compra en Vídeo
-                        </a>
+                        <div class="mt-8 flex justify-center">
+                            <a href="https://www.youtube.com/watch?v=yh5WHB5Ropw" target="_blank"
+                                class="block group relative w-full max-w-sm rounded-xl overflow-hidden shadow-lg border border-slate-700 hover:border-red-500 transition-all">
+                                <img src="https://img.youtube.com/vi/yh5WHB5Ropw/maxresdefault.jpg"
+                                    alt="Portada Guía de Compra"
+                                    class="w-full h-auto group-hover:scale-105 transition duration-500 opacity-80 group-hover:opacity-100">
+                                <div
+                                    class="absolute inset-0 flex flex-col items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                                    <div
+                                        class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white scale-90 group-hover:scale-100 transition-transform shadow-[0_0_20px_rgba(220,38,38,0.5)]">
+                                        <i class="fas fa-play text-2xl ml-1"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                                    <h4 class="text-white font-bold text-sm">Guía Completa de Compra en Vídeo</h4>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <hr class="border-slate-800">
@@ -1133,10 +1270,6 @@
                                     class="bg-red-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-red-700 transition flex items-center gap-2">
                                     <i class="fas fa-drone"></i> Ver pestaña específica de Drones
                                 </button>
-                                <a href="https://www.youtube.com/watch?v=yh5WHB5Ropw" target="_blank"
-                                    class="bg-slate-900 bg-slate-700 text-white px-6 py-2 rounded-lg font-bold hover:bg-slate-800 transition flex items-center gap-2">
-                                    <i class="fab fa-youtube"></i> Guía de Compra (Vídeo)
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -1158,9 +1291,11 @@
                                 <ul class="grid md:grid-cols-2 gap-4">
                                     <li
                                         class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
-                                        <img src="imagenes/radio-tradicional.png" alt="Radio Tradicional"
-                                            class="w-full max-w-[150px] md:max-w-[200px] h-auto mb-4 drop-shadow-lg">
-                                        <div>
+                                        <div class="p-3 rounded-xl w-full flex justify-center mb-4">
+                                            <img src="imagenes/radio-tradicional.webp" alt="Radio Tradicional"
+                                                class="max-w-[150px] md:max-w-[200px] h-auto drop-shadow-xl">
+                                        </div>
+                                        <div class="text-center">
                                             <strong class="text-white block mb-1">Tradicional
                                                 (PULGARES/PELLIZCO):</strong> Con dos gimbals (joysticks) y algunos
                                             interruptores. Más exactas y recomendadas para cualquier nivel.
@@ -1168,12 +1303,13 @@
                                     </li>
                                     <li
                                         class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 flex flex-col items-center">
-                                        <img src="imagenes/radio-movimiento.png" alt="Radio por Movimiento"
-                                            class="w-full max-w-[150px] md:max-w-[200px] h-auto mb-4 drop-shadow-lg">
-                                        <div>
-                                            <strong class="text-white block mb-1">Tipo Mando
-                                                DJI:</strong> Funcionan sobre todo con sensores de movimiento. Más
-                                            intuitivas pero menos precisas.
+                                        <div class="p-3 rounded-xl w-full flex justify-center mb-4">
+                                            <img src="imagenes/radio-movimiento.webp" alt="Radio por Movimiento"
+                                                class="max-w-[150px] md:max-w-[200px] h-auto drop-shadow-xl">
+                                        </div>
+                                        <div class="text-center">
+                                            <strong class="text-white block mb-1">Tipo Mando DJI:</strong> Funcionan
+                                            sobre todo con sensores de movimiento. Más intuitivas pero menos precisas.
                                         </div>
                                     </li>
                                 </ul>
@@ -1220,7 +1356,7 @@
                                             <p
                                                 class="text-[10px] text-blue-400 uppercase tracking-widest mb-2 font-bold text-center">
                                                 Modos de transmisión (Gemini / Doble Banda)</p>
-                                            <img src="imagenes/protocolo-elrs.png" alt="Protocolos ELRS Gemini"
+                                            <img src="imagenes/protocolo-elrs.webp" alt="Protocolos ELRS Gemini"
                                                 class="rounded-xl border border-blue-200 border-blue-800 shadow-lg w-full max-w-[280px] md:max-w-[40%] h-auto">
                                         </div>
                                     </div>
@@ -1258,6 +1394,20 @@
                                     </a>
                                 </div>
                             </div>
+
+                            <!-- Playlist de Youtube: Tutoriales Emisoras -->
+                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Tutoriales y Reviews de Emisoras
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-lg border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYoivEE7-pRVFvY4OMohKiMs"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -1319,10 +1469,24 @@
                             <div class="bg-slate-900 p-6 rounded-2xl border border-slate-700">
                                 <h4 class="text-white font-bold mb-4">Nuevos Jugadores</h4>
                                 <p class="text-sm text-slate-400">Caddx, Betaflight y Antigravity acaban de salir al
-                                    mercado. Prometen buena calidad y precios competitivos cercanos al analógico,
-                                    pero
+                                    mercado. Prometen buena calidad y precios competitivos cercanos al analógico, pero
                                     aún están por ver su evolución.</p>
                             </div>
+
+                            <!-- Playlist de Youtube: Equipos FPV -->
+                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Guías de Sistemas Digitales de
+                                    Vídeo FPV
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-lg border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqzsHNR8r8my__q9ia_MGun"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -1408,7 +1572,21 @@
                                         class="px-3 py-1 text-xs font-bold text-slate-400 hover:text-white transition">Inicio</button>
                                 </div>
                             </div>
-                            <div id="gear-grid" class="grid grid-cols-2 gap-4"></div>
+                            <div id="gear-grid" class="grid grid-cols-2 gap-4 mb-8"></div>
+
+                            <!-- Playlist de Combos ya Listos -->
+                            <div class="mt-4 pt-6 border-t border-slate-800">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Combos ya listos
+                                    (Recomendaciones)
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYrn775cwjQ8cjbLdbUI1Wif"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
                         </div>
                         <!-- Ofertas -->
                         <div id="ofertas-modal-content"
@@ -1418,6 +1596,8 @@
                                 <i class="fas fa-tags text-red-500 text-2xl"></i>
                             </div>
                             <div class="overflow-x-auto">
+                                <iframe src="https://widgets.sociablekit.com/telegram-channel/iframe/25658608"
+                                    frameborder="0" width="100%" height="1000px"></iframe>
                                 <table class="w-full text-xs text-left text-slate-400">
                                     <tbody id="couponTableBody"></tbody>
                                 </table>
@@ -1645,7 +1825,7 @@
                 </a>
 
                 <!-- Compra/Venta -->
-                <a href="https://t.me/grupodronesgeneral/402722" target="_blank"
+                <a href="https://t.me/s/grupodronesgeneral/402722" target="_blank"
                     class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
                     <div
                         class="w-14 h-14 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
@@ -1659,7 +1839,7 @@
                 </a>
 
                 <!-- Alas/Aviones -->
-                <a href="https://t.me/grupodronesgeneral/416627" target="_blank"
+                <a href="https://t.me/s/grupodronesgeneral/416627" target="_blank"
                     class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
                     <div
                         class="w-14 h-14 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400 shrink-0 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
@@ -1673,7 +1853,7 @@
                 </a>
 
                 <!-- Canal Ofertas -->
-                <a href="https://t.me/droneofertas" target="_blank"
+                <a href="https://t.me/s/droneofertas" target="_blank"
                     class="flex items-center gap-5 p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 transition-all group">
                     <div
                         class="w-14 h-14 bg-rose-500/20 rounded-full flex items-center justify-center text-rose-500 shrink-0 group-hover:bg-rose-500 group-hover:text-white transition-all duration-300">
@@ -1823,8 +2003,7 @@
                 <!-- Columna 1: Marca -->
                 <div class="col-span-1 md:col-span-1">
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="imagenes/logo_fpv_competicia3n_con_dron_letras_curvadas-9ODuWOLO8czpVbgO JPG SIN FONDO.jpg"
-                            alt="Logo" class="h-10 w-auto">
+                        <img src="imagenes/logo-fpv-competicion.webp" alt="Logo" class="h-10 w-auto">
                         <span class="text-2xl font-bold font-teko text-white tracking-tighter">FPV
                             COMPETICION</span>
                     </div>
@@ -2148,16 +2327,16 @@
 
         const gearData = {
             pro: [
-                { name: "DJI Goggles 2", type: "Gafas", desc: "Digital HD", icon: "fa-vr-cardboard" },
-                { name: "Radiomaster Boxer", type: "Emisora", desc: "ELRS 1W", icon: "fa-gamepad" },
-                { name: "AOS 5 V5", type: "Drone", desc: "Freestyle", icon: "fa-paper-plane" },
-                { name: "Torvol Pitstop", type: "Mochila", desc: "Pro", icon: "fa-suitcase" }
+                { name: "DJI Goggles 2", type: "Gafas", desc: "Digital HD", icon: "fa-vr-cardboard", review: "#", buy: "#" },
+                { name: "Radiomaster TX16S", type: "Emisora", desc: "ELRS 1W", icon: "fa-gamepad", review: "#", buy: "#" },
+                { name: "Nazgul 5 Evo", type: "Drone", desc: "Freestyle", icon: "fa-paper-plane", review: "#", buy: "#" },
+                { name: "Torvol Pitstop", type: "Mochila", desc: "Mochila", icon: "fa-suitcase", review: "#", buy: "#" }
             ],
             beginner: [
-                { name: "Emax Tinyhawk III", type: "Kit RTF", desc: "Todo en uno", icon: "fa-box-open" },
-                { name: "Radiomaster Pocket", type: "Emisora", desc: "Económica", icon: "fa-gamepad" },
-                { name: "Skyzone Cobra X", type: "Gafas", desc: "Analógicas", icon: "fa-vr-cardboard" },
-                { name: "Velocidrone", type: "Simulador", desc: "Software", icon: "fa-desktop" }
+                { name: "Skyzone Cobra X", type: "Gafas", desc: "Analógicas", icon: "fa-vr-cardboard", review: "#", buy: "#" },
+                { name: "Radiomaster Pocket", type: "Emisora", desc: "Económica", icon: "fa-gamepad", review: "#", buy: "#" },
+                { name: "Emax Tinyhawk III", type: "Kit RTF", desc: "Todo en uno", icon: "fa-paper-plane", review: "#", buy: "#" },
+                { name: "Velocidrone", type: "Simulador", desc: "Software", icon: "fa-desktop", review: "#", buy: "#" }
             ]
         };
 
@@ -2179,11 +2358,25 @@
             container.innerHTML = '';
             gearData[mode].forEach(item => {
                 const div = document.createElement('div');
-                div.className = "bg-slate-900 p-3 rounded-lg border border-slate-700 flex flex-col items-center text-center";
+                div.className = "bg-slate-900 p-4 rounded-xl border border-slate-700 flex flex-col items-center text-center group hover:border-red-500 hover:shadow-lg transition-all duration-300";
+
+                let buttonsHtml = '';
+                if (item.review || item.buy) {
+                    buttonsHtml = `
+                    <div class="flex gap-2 w-full mt-4">
+                        <a href="${item.review}" target="_blank" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold py-1.5 rounded uppercase transition border border-slate-600">Review</a>
+                        <a href="${item.buy}" target="_blank" class="flex-1 bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold py-1.5 rounded uppercase transition border border-red-600">Compra</a>
+                    </div>
+                    `;
+                }
+
                 div.innerHTML = `
-                    <i class="fas ${item.icon} text-2xl text-slate-400 mb-2"></i>
-                    <h4 class="font-bold text-white uppercase font-teko leading-none">${item.name}</h4>
-                    <span class="text-[10px] text-slate-500">${item.desc}</span>
+                    <div class="h-10 flex items-center justify-center mb-2">
+                        <i class="fas ${item.icon} text-3xl text-slate-400 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h4 class="font-bold text-white uppercase font-teko text-xl leading-none mt-1">${item.name}</h4>
+                    <span class="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">${item.desc}</span>
+                    ${buttonsHtml}
                 `;
                 container.appendChild(div);
             });
@@ -2319,8 +2512,9 @@
         window.toggleFaq = function (button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
-            content.classList.toggle('hidden');
+            const isHidden = content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
+            button.setAttribute('aria-expanded', !isHidden);
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -2346,6 +2540,8 @@
                 menuBtn.addEventListener('click', () => {
                     const menu = document.getElementById('mobile-menu');
                     const isHidden = menu.classList.toggle('hidden');
+                    menuBtn.setAttribute('aria-expanded', !isHidden);
+                    menuBtn.setAttribute('aria-label', isHidden ? 'Abrir menú de navegación' : 'Cerrar menú de navegación');
                     const icon = menuBtn.querySelector('i');
                     if (icon) {
                         if (isHidden) {
@@ -2363,6 +2559,7 @@
                 { store: "BetaFPV", prod: "Meteor", discount: "5%", code: "METEOR5" },
                 { store: "Radiomaster", prod: "Boxer", discount: "12%", code: "RMBOX" }
             ];
+
             if (tbody) {
                 coupons.forEach(c => {
                     tbody.innerHTML += `
@@ -2435,6 +2632,118 @@
 
         window.openSectionModal = (id) => document.getElementById(id).classList.remove('hidden');
         window.closeSectionModal = (id) => document.getElementById(id).classList.add('hidden');
+    </script>
+
+    <script>
+        // Interactive Grid Background - antigravity.google style
+        // Solo en escritorio: no ejecutar en móvil para mejorar rendimiento
+        (function () {
+            if (window.innerWidth < 768) return; // Skip en móvil
+
+            // --- Setup Canvas ---
+            const canvas = document.createElement('canvas');
+            const div = document.createElement('div');
+            div.id = 'physics-background';
+            div.appendChild(canvas);
+            // Insertar dentro del hero section, no en el body
+            const heroSection = document.getElementById('hero');
+            heroSection.prepend(div);
+
+            const ctx = canvas.getContext('2d');
+            let W = canvas.width = heroSection.offsetWidth;
+            let H = canvas.height = heroSection.offsetHeight;
+
+            // --- Config ---
+            const SPACING = 28;       // 50% más pequeño que antes (55 → 28)
+            const DOT_RADIUS = 1.25;  // 50% más pequeño que antes (2.5 → 1.25)
+            const MOUSE_RADIUS = 130; // radio de influencia del ratón
+            const ATTRACT_STRENGTH = 0.18;
+            const RETURN_SPEED = 0.014;
+            const DOT_COLOR_REST = 'rgba(255,255,255,0.2)';
+            const DOT_COLOR_ACTIVE = 'rgba(255,255,255,'; // blanco, sin rojo
+
+            // --- State ---
+            let points = [];
+            const mouse = { x: -9999, y: -9999 };
+
+            // --- Build Grid ---
+            function buildGrid() {
+                points = [];
+                const cols = Math.ceil(W / SPACING) + 1;
+                const rows = Math.ceil(H / SPACING) + 1;
+                for (let r = 0; r < rows; r++) {
+                    for (let c = 0; c < cols; c++) {
+                        points.push({
+                            ox: c * SPACING, // posición origen X
+                            oy: r * SPACING, // posición origen Y
+                            x: c * SPACING,  // posición actual X
+                            y: r * SPACING,  // posición actual Y
+                            vx: 0, vy: 0    // velocidad (para elasto suave)
+                        });
+                    }
+                }
+            }
+
+            // --- Render Loop ---
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                for (const p of points) {
+                    const dx = mouse.x - p.ox;
+                    const dy = mouse.y - p.oy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < MOUSE_RADIUS) {
+                        // Dentro del radio: se desplaza hacia el ratón suavemente
+                        const influence = (1 - dist / MOUSE_RADIUS); // 1 cerca, 0 lejos
+                        const targetX = p.ox + dx * ATTRACT_STRENGTH * influence;
+                        const targetY = p.oy + dy * ATTRACT_STRENGTH * influence;
+                        p.x += (targetX - p.x) * 0.03; // 5x más lento
+                        p.y += (targetY - p.y) * 0.03;
+
+                        // Color: blanco con brillo según cercanía
+                        const alpha = 0.25 + influence * 0.55;
+                        ctx.fillStyle = DOT_COLOR_ACTIVE + alpha + ')';
+                        const radius = DOT_RADIUS + influence * 1.5;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        // Fuera del radio: vuelve suavemente al origen
+                        p.x += (p.ox - p.x) * RETURN_SPEED;
+                        p.y += (p.oy - p.y) * RETURN_SPEED;
+
+                        ctx.fillStyle = DOT_COLOR_REST;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, DOT_RADIUS, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            // --- Mouse (coordenadas relativas al hero) ---
+            heroSection.addEventListener('mousemove', e => {
+                const rect = heroSection.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                mouse.x = -9999;
+                mouse.y = -9999;
+            });
+
+            // --- Resize ---
+            window.addEventListener('resize', () => {
+                W = canvas.width = heroSection.offsetWidth;
+                H = canvas.height = heroSection.offsetHeight;
+                buildGrid();
+            });
+
+            buildGrid();
+            draw();
+        })();
     </script>
 </body>
 
