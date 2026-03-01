@@ -12,6 +12,13 @@
         content="FPV COMPETICION, FPV COMPETICIÓN, drones fpv, fpv competicion, tutoriales drones, montar dron fpv, simuladores fpv, comunidad fpv español, alex fpv, Web de fpv, web de drones fpv, web de drones de carreras, web de drones">
     <link rel="canonical" href="https://fpvdrone.es/">
 
+    <!-- Preconnect a CDNs críticas para reducir latencia -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://www.youtube.com">
+    <link rel="dns-prefetch" href="https://i.ytimg.com">
+    <meta name="theme-color" content="#0f172a">
+
     <!-- Meta robots para control legal -->
     <meta name="robots" content="index, follow">
 
@@ -32,7 +39,7 @@
     <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" fetchpriority="low"></script>
 
 
     <!-- Configuración Tailwind -->
@@ -57,16 +64,26 @@
         }
     </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome (non-blocking: carga sin bloquear render) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+    <!-- Google Fonts (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&family=Inter:wght@400;600&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&family=Inter:wght@400;600&display=swap"
+            rel="stylesheet">
+    </noscript>
 
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             overflow-x: hidden;
             transition-property: color, background-color, border-color;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,7 +95,7 @@
         h3,
         h4,
         .font-teko {
-            font-family: 'Teko', sans-serif;
+            font-family: 'Teko', system-ui, sans-serif;
             text-transform: uppercase;
         }
 
@@ -340,20 +357,23 @@
     <div id="reading-progress"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-slate-800 z-50">
+    <nav class="fixed top-0 w-full bg-dark-bg/80 backdrop-blur-lg border-b border-slate-800 z-50"
+        aria-label="Navegación principal">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="scrollToSection('hero')">
-                    <img src="imagenes/logo-fpv-competicion.webp" alt="Logo FPV Competición"
-                        class="h-10 w-auto rounded-lg">
-                    <span class="font-teko tracking-tighter flex items-center leading-none">
+                <button class="flex-shrink-0 flex items-center gap-3" onclick="scrollToSection('hero')"
+                    aria-label="Ir al inicio - FPV Drones">
+                    <img src="imagenes/logo-fpv-competicion.webp" alt="FPV Drones" class="h-10 w-auto rounded-lg"
+                        width="40" height="40" loading="lazy" decoding="async">
+                    <span class="font-teko tracking-tighter flex items-center leading-none" aria-hidden="true">
                         <span class="text-3xl font-bold text-white">FPV</span>
                         <span class="text-3xl font-bold text-red-600 ml-1">DRONES</span>
                     </span>
-                </div>
+                </button>
 
                 <!-- Desktop Menu (Ordenado) -->
-                <div class="hidden md:flex items-center space-x-2 lg:space-x-4 overflow-x-auto">
+                <div class="hidden md:flex items-center space-x-2 lg:space-x-4 overflow-x-auto" role="menubar"
+                    aria-label="Menú principal">
                     <!-- Menú con Acciones de Modal y Enlaces de Scroll -->
                     <button onclick="openSectionModal('modal-antes-de-volar')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Antes de Volar</button>
@@ -379,8 +399,10 @@
 
                 <!-- Mobile Toggle -->
                 <div class="flex items-center md:hidden gap-4">
-                    <button id="mobile-menu-btn" class="text-white hover:text-red-600"><i
-                            class="fas fa-bars text-2xl"></i></button>
+                    <button id="mobile-menu-btn" class="text-white hover:text-red-600"
+                        aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fas fa-bars text-2xl" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -435,9 +457,10 @@
                         poder disfrutar de nuestra pasión, los <strong>DRONES FPV</strong>.
                     </p>
                     <div class="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
-                        <a href="https://youtube.com/@FPV-Drones" target="_blank"
+                        <a href="https://youtube.com/@FPV-Drones" target="_blank" rel="noopener noreferrer"
+                            aria-label="Ir al canal de YouTube de FPV Drones (abre en nueva pestaña)"
                             class="flex items-center justify-center px-8 py-4 border border-transparent font-bold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-all shadow-lg">
-                            <i class="fab fa-youtube mr-2"></i> Ir al Canal
+                            <i class="fab fa-youtube mr-2" aria-hidden="true"></i> Ir al Canal
                         </a>
                     </div>
                 </div>
@@ -445,8 +468,10 @@
                     <div
                         class="relative mx-auto w-full max-w-lg aspect-w-16 shadow-2xl rounded-2xl border-4 border-white/50 border-slate-700/50 bg-slate-900">
                         <div id="video-placeholder" class="video-facade" data-video-id="vHc5jnxkuzg"
-                            onclick="loadYoutubeVideo(this)">
-                            <div class="play-button">
+                            onclick="loadYoutubeVideo(this)" role="button" tabindex="0"
+                            aria-label="Reproducir vídeo de presentación de FPV Drones"
+                            onkeydown="if(event.key==='Enter'||event.key===' ')loadYoutubeVideo(this)">
+                            <div class="play-button" aria-hidden="true">
                                 <div class="play-triangle"></div>
                             </div>
                         </div>
@@ -462,30 +487,36 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <!-- Card 1 -->
                 <div onclick="openSectionModal('modal-antes-de-volar')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
-                    <div
-                        class="w-14 h-14 rounded-full bg-red-900/30 flex items-center justify-center text-red-600 mb-4">
-                        <i class="fas fa-book-reader text-2xl"></i>
+                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    role="button" tabindex="0" aria-label="Abrir sección: Antes de Volar"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-antes-de-volar')">
+                    <div class="w-14 h-14 rounded-full bg-red-900/30 flex items-center justify-center text-red-600 mb-4"
+                        aria-hidden="true">
+                        <i class="fas fa-book-reader text-2xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Antes de Volar</h3>
                     <p class="text-xs text-slate-500 mt-2">Legalidad, Simuladores y primeros pasos.</p>
                 </div>
                 <!-- Card 2 -->
                 <div onclick="openSectionModal('modal-equipo')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
-                    <div
-                        class="w-14 h-14 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4">
-                        <i class="fas fa-box-open text-2xl"></i>
+                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    role="button" tabindex="0" aria-label="Abrir sección: Equipo FPV"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-equipo')">
+                    <div class="w-14 h-14 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4"
+                        aria-hidden="true">
+                        <i class="fas fa-box-open text-2xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Equipo FPV</h3>
                     <p class="text-xs text-slate-500 mt-2">Gafas, Emisoras y Ofertas destacadas.</p>
                 </div>
                 <!-- Card 3 -->
                 <div onclick="openSectionModal('modal-guias')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
-                    <div
-                        class="w-14 h-14 rounded-full bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4">
-                        <i class="fas fa-tools text-2xl"></i>
+                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    role="button" tabindex="0" aria-label="Abrir sección: Guías Montaje"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-guias')">
+                    <div class="w-14 h-14 rounded-full bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4"
+                        aria-hidden="true">
+                        <i class="fas fa-tools text-2xl" aria-hidden="true"></i>
                     </div>
                     <h3 class="font-teko text-2xl font-bold text-white">Guías Montaje</h3>
                     <p class="text-xs text-slate-500 mt-2">Esquemas, wiring y configuraciones.</p>
@@ -660,34 +691,45 @@
                 Vuelo</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Flight Time -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
-                    <h3 class="text-2xl font-bold text-white font-teko mb-6"><i
-                            class="fas fa-stopwatch text-red-600"></i> Tiempo de Vuelo</h3>
+                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700" role="region"
+                    aria-labelledby="flight-time-title">
+                    <h3 id="flight-time-title" class="text-2xl font-bold text-white font-teko mb-6">
+                        <i class="fas fa-stopwatch text-red-600" aria-hidden="true"></i> Tiempo de Vuelo
+                    </h3>
                     <div class="space-y-4">
-                        <input type="number" id="calc-mah" value="1300"
+                        <label for="calc-mah" class="sr-only">Capacidad de la batería en mAh</label>
+                        <input type="number" id="calc-mah" value="1300" aria-label="Capacidad de batería en mAh"
                             class="w-full rounded-lg border p-2 bg-slate-900 text-white text-base">
                         <button onclick="calculateFlightTime()"
-                            class="bg-slate-900 text-white font-bold py-2 px-6 rounded-lg w-full">Calcular</button>
-                        <div class="text-right"><span id="calc-result"
+                            class="bg-slate-900 text-white font-bold py-2 px-6 rounded-lg w-full">Calcular tiempo de
+                            vuelo</button>
+                        <div class="text-right" aria-live="polite"><span id="calc-result"
                                 class="text-4xl font-teko font-bold text-red-600">0:00</span> min</div>
                     </div>
                 </div>
                 <!-- Lipo Charge -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700">
-                    <h3 class="text-2xl font-bold text-white font-teko mb-6"><i class="fas fa-bolt text-blue-500"></i>
-                        Carga LiPo</h3>
+                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700" role="region"
+                    aria-labelledby="lipo-title">
+                    <h3 id="lipo-title" class="text-2xl font-bold text-white font-teko mb-6">
+                        <i class="fas fa-bolt text-blue-500" aria-hidden="true"></i> Carga LiPo
+                    </h3>
                     <div class="flex gap-2 mb-4">
-                        <input type="number" id="lipo-mah" value="1300"
+                        <label for="lipo-mah" class="sr-only">Capacidad en mAh</label>
+                        <input type="number" id="lipo-mah" value="1300" aria-label="Capacidad de batería en mAh"
                             class="w-1/2 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="mAh">
-                        <input type="number" id="lipo-count" value="4"
+                        <label for="lipo-count" class="sr-only">Número de celdas</label>
+                        <input type="number" id="lipo-count" value="4" aria-label="Número de celdas"
                             class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="N">
-                        <select id="lipo-c" class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white">
+                        <label for="lipo-c" class="sr-only">Tasa de carga en C</label>
+                        <select id="lipo-c" aria-label="Tasa de carga"
+                            class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white">
                             <option value="1">1C</option>
                             <option value="2">2C</option>
                         </select>
                     </div>
                     <button onclick="calculateLipoCharge()"
-                        class="w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-lg">Calcular</button>
+                        class="w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-lg">Calcular carga
+                        LiPo</button>
                     <div class="text-right mt-2"><span id="lipo-result"
                             class="text-4xl font-teko font-bold text-blue-500">0.0</span> Amps</div>
                 </div>
@@ -700,8 +742,9 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-4xl font-bold text-white font-teko">Canal</h2>
-                <a href="https://www.youtube.com/@FPV-Drones/videos" target="_blank"
-                    class="text-red-600 font-bold text-sm">Ver Todo -></a>
+                <a href="https://www.youtube.com/@FPV-Drones/videos" target="_blank" rel="noopener noreferrer"
+                    aria-label="Ver todos los vídeos del canal FPV Drones en YouTube (abre en nueva pestaña)"
+                    class="text-red-600 font-bold text-sm">Ver Todo &rarr;</a>
             </div>
             <div id="latest-videos-grid" class="grid md:grid-cols-3 gap-6"></div>
         </div>
@@ -712,8 +755,9 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-3xl font-bold text-white font-teko">Blog Noticias</h2>
-                <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white"><i
-                        class="fas fa-lock"></i></button>
+                <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white"
+                    aria-label="Panel de administración">
+                    <i class="fas fa-lock" aria-hidden="true"></i></button>
             </div>
             <div id="blog-posts-container" class="grid md:grid-cols-3 gap-6"></div>
         </div>
@@ -742,9 +786,10 @@
                 <div class="border border-slate-700 rounded-lg overflow-hidden">
                     <button
                         class="flex items-center justify-between w-full p-4 bg-slate-800 text-left font-bold text-white focus:outline-none"
-                        onclick="toggleFaq(this)">
+                        onclick="toggleFaq(this)" aria-expanded="false">
                         <span>¿Necesito licencia?</span>
-                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"
+                            aria-hidden="true"></i>
                     </button>
                     <div class="hidden p-4 bg-slate-900 text-slate-400 text-sm">Sí,
                         registro en AESA como operador es obligatorio incluso para drones de menos de 250g si tienen
@@ -2467,8 +2512,9 @@
         window.toggleFaq = function (button) {
             const content = button.nextElementSibling;
             const icon = button.querySelector('i');
-            content.classList.toggle('hidden');
+            const isHidden = content.classList.toggle('hidden');
             icon.classList.toggle('rotate-180');
+            button.setAttribute('aria-expanded', !isHidden);
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -2494,6 +2540,8 @@
                 menuBtn.addEventListener('click', () => {
                     const menu = document.getElementById('mobile-menu');
                     const isHidden = menu.classList.toggle('hidden');
+                    menuBtn.setAttribute('aria-expanded', !isHidden);
+                    menuBtn.setAttribute('aria-label', isHidden ? 'Abrir menú de navegación' : 'Cerrar menú de navegación');
                     const icon = menuBtn.querySelector('i');
                     if (icon) {
                         if (isHidden) {
@@ -2588,7 +2636,10 @@
 
     <script>
         // Interactive Grid Background - antigravity.google style
+        // Solo en escritorio: no ejecutar en móvil para mejorar rendimiento
         (function () {
+            if (window.innerWidth < 768) return; // Skip en móvil
+
             // --- Setup Canvas ---
             const canvas = document.createElement('canvas');
             const div = document.createElement('div');
