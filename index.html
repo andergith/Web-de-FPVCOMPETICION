@@ -38,12 +38,8 @@
         content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
     <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
-    <!-- Preload del thumbnail del hero (LCP crítico responsive) -->
-    <link rel="preload" as="image" href="https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg" imagesrcset="https://img.youtube.com/vi/vHc5jnxkuzg/mqdefault.jpg 320w,
-                     https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg 480w,
-                     https://img.youtube.com/vi/vHc5jnxkuzg/sddefault.jpg 640w,
-                     https://img.youtube.com/vi/vHc5jnxkuzg/maxresdefault.jpg 1280w"
-        imagesizes="(max-width: 768px) 100vw, 50vw" fetchpriority="high">
+    <!-- Preload del thumbnail del hero (LCP crítico) -->
+    <link rel="preload" href="https://img.youtube.com/vi/vHc5jnxkuzg/maxresdefault.jpg" as="image" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Font Awesome (non-blocking: carga sin bloquear render) -->
@@ -449,21 +445,13 @@
                 <div class="mt-12 lg:mt-0 lg:col-span-6 fade-in">
                     <div
                         class="relative mx-auto w-full max-w-lg aspect-w-16 shadow-2xl rounded-2xl border-4 border-white/50 border-slate-700/50 bg-slate-900">
-                        <div id="video-placeholder"
-                            class="video-facade relative rounded-xl overflow-hidden cursor-pointer"
-                            data-video-id="vHc5jnxkuzg" onclick="loadYoutubeVideo(this)" role="button" tabindex="0"
+                        <div id="video-placeholder" class="video-facade" data-video-id="vHc5jnxkuzg"
+                            data-default-id="vHc5jnxkuzg"
+                            style="background-image:url('https://img.youtube.com/vi/vHc5jnxkuzg/maxresdefault.jpg');background-size:cover;background-position:center;"
+                            onclick="loadYoutubeVideo(this)" role="button" tabindex="0"
                             aria-label="Reproducir vídeo de presentación de FPV Drones"
                             onkeydown="if(event.key==='Enter'||event.key===' ')loadYoutubeVideo(this)">
-                            <img src="https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg" srcset="https://img.youtube.com/vi/vHc5jnxkuzg/mqdefault.jpg 320w,
-                                         https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg 480w,
-                                         https://img.youtube.com/vi/vHc5jnxkuzg/sddefault.jpg 640w,
-                                         https://img.youtube.com/vi/vHc5jnxkuzg/maxresdefault.jpg 1280w"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                class="absolute inset-0 w-full h-full object-cover z-0" alt="Thumbnail Presentación"
-                                fetchpriority="high">
-                            <div class="absolute inset-0 bg-black/10 z-10 transition-colors hover:bg-transparent"></div>
-                            <div class="play-button z-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                                aria-hidden="true">
+                            <div class="play-button" aria-hidden="true">
                                 <div class="play-triangle"></div>
                             </div>
                         </div>
@@ -554,14 +542,11 @@
                         cinemáticos. Los hay desde 2 a 6 pulgadas.<br><br>Son drones para volar en espacios abiertos y a
                         una velocidad bastante alta (puede rozar hasta los 200Km/h y acelerar de 0 a 100 Km/h en dos
                         segundos).</p>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
-                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN">
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
-                            <i
-                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
-                        </div>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -579,15 +564,12 @@
                         sean los más adecuados para empezar, pero sí te van a llevar a tu límite como piloto. Si los
                         freestyle te parecían rápidos… estos lo son más. Eso sí, no pretendas volar más de 4 minutos.
                     </p>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
-                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN">
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
                         <!-- Playlist compartida con Freestyle según indicación del cliente -->
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
-                            <i
-                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
-                        </div>
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -605,14 +587,11 @@
                         baratos, resistentes y muy seguros para volar, por lo que son ideales para aprender y hacer
                         reflejos. Perfectos para volar en casa o si son algo más grandes en el exterior en zonas con
                         obstáculos.</p>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
-                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx">
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
-                            <i
-                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
-                        </div>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -630,14 +609,11 @@
                         hélices mirando para arriba (más agiles) y otros con hélices mirando para abajo (más estables).
                         ¿Para qué son? Pues para grabar en sitios cerrados o en sitios con obstáculos. Pueden llevar una
                         cámara externa de acción o incluso una cámara fpv con capacidad de grabación.</p>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
-                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW">
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
-                            <i
-                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
-                        </div>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -655,14 +631,11 @@
                         profesional. Tienen que llevar cámaras tipo Sony FX30, Blackmagic, RED KOMODO o Alexa mini de
                         ARRI pero aun así ser ágiles, por lo que es muy normal que sean octocópteros, hexacópteros, etc.
                     </p>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 flex items-center justify-center text-slate-500 yt-lazy-facade cursor-pointer group"
-                        data-embed="https://www.youtube.com/embed/lttRUaWZXMg?si=c7AYMtbTcALpn8pv">
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
-                            <i
-                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
-                        </div>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 flex items-center justify-center text-slate-500">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/lttRUaWZXMg?si=c7AYMtbTcALpn8pv" frameborder="0"
+                            allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -679,14 +652,11 @@
                     <p class="text-sm text-slate-300 mb-6 flex-grow">Drones pensados para grabar tomas estables, con
                         altos tiempos de vuelo y fáciles de volar. Los hay de muchos tipos, según lo que estés buscando:
                         grabación profesional, ocio, vigilancia, …</p>
-                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
-                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_">
-                        <div
-                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
-                            <i
-                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
-                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
-                        </div>
+                    <div
+                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                        <iframe class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_"
+                            frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
 
@@ -1562,20 +1532,6 @@
                                             cargador
                                             es un riesgo de incendio en casa.</p>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- Playlist de Youtube: Tutoriales Baterías y Cargadores -->
-                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
-                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
-                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Tutoriales y Reviews de Baterías
-                                    y Cargadores
-                                </h4>
-                                <div
-                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-lg border border-slate-700">
-                                    <iframe class="absolute top-0 left-0 w-full h-full"
-                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYq-KqAQCKf0yiHo3_Qezc95"
-                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -2459,16 +2415,7 @@
                         div.className = "group block";
                         div.innerHTML = `
                             <div class="relative overflow-hidden rounded-lg shadow-lg mb-2">
-                                <img src="https://img.youtube.com/vi/${vidId}/hqdefault.jpg" 
-                                     srcset="https://img.youtube.com/vi/${vidId}/mqdefault.jpg 320w,
-                                             https://img.youtube.com/vi/${vidId}/hqdefault.jpg 480w,
-                                             https://img.youtube.com/vi/${vidId}/sddefault.jpg 640w,
-                                             https://img.youtube.com/vi/${vidId}/maxresdefault.jpg 1280w"
-                                     sizes="(max-width: 768px) 100vw, 33vw"
-                                     width="640" height="480"
-                                     loading="lazy" decoding="async"
-                                     alt="Thumbnail YouTube"
-                                     class="w-full aspect-video object-cover group-hover:scale-105 transition duration-500">
+                                <img src="https://img.youtube.com/vi/${vidId}/maxresdefault.jpg" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition"><i class="fab fa-youtube text-4xl text-white"></i></div>
                             </div>
                             <h4 class="font-bold text-white line-clamp-2 group-hover:text-red-500 transition">${v.title}</h4>
@@ -2492,11 +2439,11 @@
                     const placeholder = document.getElementById('video-placeholder');
                     if (placeholder && latestVideoId) {
                         placeholder.setAttribute('data-video-id', latestVideoId);
-                        // Desactivado el cambio de backgroundImage para que NO vuelva a saltar LCP en Pagespeed.
-                        // Solo actualizamos el data-video-id para que el click en el hero cargue el video correcto.
-                        // if (latestVideoId !== defaultId) {
-                        //     placeholder.style.backgroundImage = `url('https://img.youtube.com/vi/${latestVideoId}/maxresdefault.jpg')`;
-                        // }
+                        // Solo actualizar el fondo si el video es diferente al default
+                        const defaultId = placeholder.getAttribute('data-default-id');
+                        if (latestVideoId !== defaultId) {
+                            placeholder.style.backgroundImage = `url('https://img.youtube.com/vi/${latestVideoId}/maxresdefault.jpg')`;
+                        }
                     }
                 }
             } catch (error) {
@@ -2581,13 +2528,7 @@
             } else {
                 setTimeout(deferApiCalls, 2000);
             }
-            document.querySelectorAll('.yt-lazy-facade').forEach(el => {
-                el.addEventListener('click', function () {
-                    const embedUrl = this.getAttribute('data-embed');
-                    // Cargar iframe al click con autoplay
-                    this.innerHTML = `<iframe class="absolute top-0 left-0 w-full h-full fade-in" src="${embedUrl}&autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-                }, { once: true });
-            });
+
 
 
 
