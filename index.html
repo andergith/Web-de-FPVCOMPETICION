@@ -14,9 +14,9 @@
 
     <!-- Preconnect a CDNs críticas para reducir latencia -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="dns-prefetch" href="https://www.youtube.com">
     <link rel="dns-prefetch" href="https://i.ytimg.com">
+    <link rel="dns-prefetch" href="https://api.rss2json.com">
     <meta name="theme-color" content="#0f172a">
 
     <!-- Meta robots para control legal -->
@@ -38,7 +38,12 @@
         content="Tutoriales, builds, simuladores y la comunidad más cañera de FPV en español.">
     <meta property="twitter:image" content="https://fpvdrone.es/imagenes/logo-fpv-competicion.webp">
 
-    <!-- CSS purgado (generado con Tailwind CLI - 37KB vs 3.2MB CDN) -->
+    <!-- Preload del thumbnail del hero (LCP crítico responsive) -->
+    <link rel="preload" as="image" href="https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg" imagesrcset="https://img.youtube.com/vi/vHc5jnxkuzg/mqdefault.jpg 320w,
+                     https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg 480w,
+                     https://img.youtube.com/vi/vHc5jnxkuzg/sddefault.jpg 640w,
+                     https://img.youtube.com/vi/vHc5jnxkuzg/maxresdefault.jpg 1280w"
+        imagesizes="(max-width: 768px) 100vw, 50vw" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Font Awesome (non-blocking: carga sin bloquear render) -->
@@ -444,11 +449,21 @@
                 <div class="mt-12 lg:mt-0 lg:col-span-6 fade-in">
                     <div
                         class="relative mx-auto w-full max-w-lg aspect-w-16 shadow-2xl rounded-2xl border-4 border-white/50 border-slate-700/50 bg-slate-900">
-                        <div id="video-placeholder" class="video-facade" data-video-id="vHc5jnxkuzg"
-                            onclick="loadYoutubeVideo(this)" role="button" tabindex="0"
+                        <div id="video-placeholder"
+                            class="video-facade relative rounded-xl overflow-hidden cursor-pointer"
+                            data-video-id="vHc5jnxkuzg" onclick="loadYoutubeVideo(this)" role="button" tabindex="0"
                             aria-label="Reproducir vídeo de presentación de FPV Drones"
                             onkeydown="if(event.key==='Enter'||event.key===' ')loadYoutubeVideo(this)">
-                            <div class="play-button" aria-hidden="true">
+                            <img src="https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg" srcset="https://img.youtube.com/vi/vHc5jnxkuzg/mqdefault.jpg 320w,
+                                         https://img.youtube.com/vi/vHc5jnxkuzg/hqdefault.jpg 480w,
+                                         https://img.youtube.com/vi/vHc5jnxkuzg/sddefault.jpg 640w,
+                                         https://img.youtube.com/vi/vHc5jnxkuzg/maxresdefault.jpg 1280w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                class="absolute inset-0 w-full h-full object-cover z-0" alt="Thumbnail Presentación"
+                                fetchpriority="high">
+                            <div class="absolute inset-0 bg-black/10 z-10 transition-colors hover:bg-transparent"></div>
+                            <div class="play-button z-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                                aria-hidden="true">
                                 <div class="play-triangle"></div>
                             </div>
                         </div>
@@ -539,11 +554,14 @@
                         cinemáticos. Los hay desde 2 a 6 pulgadas.<br><br>Son drones para volar en espacios abiertos y a
                         una velocidad bastante alta (puede rozar hasta los 200Km/h y acelerar de 0 a 100 Km/h en dos
                         segundos).</p>
-                    <div
-                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
+                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN">
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
+                            <i
+                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
+                        </div>
                     </div>
                 </div>
 
@@ -561,12 +579,15 @@
                         sean los más adecuados para empezar, pero sí te van a llevar a tu límite como piloto. Si los
                         freestyle te parecían rápidos… estos lo son más. Eso sí, no pretendas volar más de 4 minutos.
                     </p>
-                    <div
-                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
+                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN">
                         <!-- Playlist compartida con Freestyle según indicación del cliente -->
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
+                            <i
+                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
+                        </div>
                     </div>
                 </div>
 
@@ -584,11 +605,14 @@
                         baratos, resistentes y muy seguros para volar, por lo que son ideales para aprender y hacer
                         reflejos. Perfectos para volar en casa o si son algo más grandes en el exterior en zonas con
                         obstáculos.</p>
-                    <div
-                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
+                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx">
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
+                            <i
+                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
+                        </div>
                     </div>
                 </div>
 
@@ -606,11 +630,14 @@
                         hélices mirando para arriba (más agiles) y otros con hélices mirando para abajo (más estables).
                         ¿Para qué son? Pues para grabar en sitios cerrados o en sitios con obstáculos. Pueden llevar una
                         cámara externa de acción o incluso una cámara fpv con capacidad de grabación.</p>
-                    <div
-                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
+                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW">
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
+                            <i
+                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
+                        </div>
                     </div>
                 </div>
 
@@ -628,11 +655,14 @@
                         profesional. Tienen que llevar cámaras tipo Sony FX30, Blackmagic, RED KOMODO o Alexa mini de
                         ARRI pero aun así ser ágiles, por lo que es muy normal que sean octocópteros, hexacópteros, etc.
                     </p>
-                    <div
-                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 flex items-center justify-center text-slate-500">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/lttRUaWZXMg?si=c7AYMtbTcALpn8pv" frameborder="0"
-                            allowfullscreen loading="lazy"></iframe>
+                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 flex items-center justify-center text-slate-500 yt-lazy-facade cursor-pointer group"
+                        data-embed="https://www.youtube.com/embed/lttRUaWZXMg?si=c7AYMtbTcALpn8pv">
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
+                            <i
+                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
+                        </div>
                     </div>
                 </div>
 
@@ -649,11 +679,14 @@
                     <p class="text-sm text-slate-300 mb-6 flex-grow">Drones pensados para grabar tomas estables, con
                         altos tiempos de vuelo y fáciles de volar. Los hay de muchos tipos, según lo que estés buscando:
                         grabación profesional, ocio, vigilancia, …</p>
-                    <div
-                        class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
-                        <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_"
-                            frameborder="0" allowfullscreen loading="lazy"></iframe>
+                    <div class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 yt-lazy-facade cursor-pointer group"
+                        data-embed="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_">
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center bg-slate-800/80 group-hover:bg-slate-700/80 transition-colors">
+                            <i
+                                class="fab fa-youtube text-5xl text-red-600 mb-2 group-hover:scale-110 transition-transform"></i>
+                            <span class="text-white font-bold uppercase tracking-wider text-sm">Cargar Vídeo</span>
+                        </div>
                     </div>
                 </div>
 
@@ -1119,7 +1152,7 @@
                                 <div
                                     class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-2xl border border-slate-700 mb-4">
                                     <iframe class="absolute top-0 left-0 w-full h-full"
-                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYpSIFI9Sjbu6asiJ-lRL23O"
+                                        data-src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYpSIFI9Sjbu6asiJ-lRL23O"
                                         frameborder="0" allowfullscreen loading="lazy"></iframe>
                                 </div>
                                 <p class="text-slate-500 text-sm">Lista completa de tutoriales y configuración.</p>
@@ -1531,6 +1564,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Playlist de Youtube: Tutoriales Baterías y Cargadores -->
+                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Tutoriales y Reviews de Baterías
+                                    y Cargadores
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-lg border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYq-KqAQCKf0yiHo3_Qezc95"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1560,7 +1607,7 @@
                                 <div
                                     class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-700">
                                     <iframe class="absolute top-0 left-0 w-full h-full"
-                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYrn775cwjQ8cjbLdbUI1Wif"
+                                        data-src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYrn775cwjQ8cjbLdbUI1Wif"
                                         frameborder="0" allowfullscreen loading="lazy"></iframe>
                                 </div>
                             </div>
@@ -1573,7 +1620,7 @@
                                 <i class="fas fa-tags text-red-500 text-2xl"></i>
                             </div>
                             <div class="overflow-x-auto">
-                                <iframe src="https://widgets.sociablekit.com/telegram-channel/iframe/25658608"
+                                <iframe data-src="https://widgets.sociablekit.com/telegram-channel/iframe/25658608"
                                     frameborder="0" width="100%" height="1000px"></iframe>
                                 <table class="w-full text-xs text-left text-slate-400">
                                     <tbody id="couponTableBody"></tbody>
@@ -2084,23 +2131,22 @@
         </div>
     </footer>
 
-    <!-- Logic -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, updateDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- Firebase: carga DIFERIDA — solo cuando el usuario abre el admin panel -->
+    <!-- Los módulos se importan dinámicamente en toggleAdminPanel() -->
+    <script>
+        // Guardamos las funciones de Firebase como promesas que se resuelven al cargar
+        let firebaseReady = false;
+        let _auth, _db, _signIn, _signOut, _onAuthStateChanged,
+            _collection, _addDoc, _getDocs, _query, _orderBy,
+            _deleteDoc, _updateDoc, _doc, _onSnapshot;
 
-        // CONFIG
-        let firebaseConfig;
-        let appId = 'default-app-id';
-        if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
-            if (typeof __firebase_config !== 'undefined') {
-                firebaseConfig = JSON.parse(__firebase_config);
-                appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-            }
-        }
-        if (!firebaseConfig) {
-            firebaseConfig = {
+        async function loadFirebase() {
+            if (firebaseReady) return;
+            const { initializeApp } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js");
+            const { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
+            const { getFirestore, collection, addDoc, getDocs, query, orderBy, deleteDoc, updateDoc, doc, onSnapshot } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+
+            const firebaseConfig = {
                 apiKey: "AIzaSyDnaFkYwdNNInlwDcQT7Kjg2qZ2w08YOMU",
                 authDomain: "web-fpv-competicion.firebaseapp.com",
                 projectId: "web-fpv-competicion",
@@ -2108,45 +2154,59 @@
                 messagingSenderId: "736830142498",
                 appId: "1:736830142498:web:4e967f2e50db6f3771f27b"
             };
-        }
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+            const app = initializeApp(firebaseConfig);
+            _auth = getAuth(app);
+            _db = getFirestore(app);
+            _signIn = signInWithEmailAndPassword;
+            _signOut = signOut;
+            _onAuthStateChanged = onAuthStateChanged;
+            _collection = collection; _addDoc = addDoc; _getDocs = getDocs;
+            _query = query; _orderBy = orderBy; _deleteDoc = deleteDoc;
+            _updateDoc = updateDoc; _doc = doc; _onSnapshot = onSnapshot;
+            firebaseReady = true;
+        }
+    </script>
+    <!-- El bloque del módulo firebase original se elimina y se sustituye por carga dinámica -->
+    <script type="module">
 
         let currentUser = null;
         let postsCache = {};
         let editingPostId = null;
+        let firebaseInitialized = false;
 
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            const loginSec = document.getElementById('login-section');
-            const editSec = document.getElementById('editor-section');
-            const adminControls = document.getElementById('admin-controls');
+        async function initFirebaseListeners() {
+            if (firebaseInitialized) return;
+            firebaseInitialized = true;
+            await loadFirebase();
 
-            if (user) {
-                if (loginSec) loginSec.classList.add('hidden');
-                if (editSec) editSec.classList.remove('hidden');
-                if (adminControls) adminControls.classList.remove('hidden');
-                showToast(`Hola de nuevo`, 'success');
-            } else {
-                if (loginSec) loginSec.classList.remove('hidden');
-                if (editSec) editSec.classList.add('hidden');
-                if (adminControls) adminControls.classList.add('hidden');
-            }
-            renderBlogPosts();
-        });
+            _onAuthStateChanged(_auth, (user) => {
+                currentUser = user;
+                const loginSec = document.getElementById('login-section');
+                const editSec = document.getElementById('editor-section');
+                const adminControls = document.getElementById('admin-controls');
+                if (user) {
+                    if (loginSec) loginSec.classList.add('hidden');
+                    if (editSec) editSec.classList.remove('hidden');
+                    if (adminControls) adminControls.classList.remove('hidden');
+                    showToast('Hola de nuevo', 'success');
+                } else {
+                    if (loginSec) loginSec.classList.remove('hidden');
+                    if (editSec) editSec.classList.add('hidden');
+                    if (adminControls) adminControls.classList.add('hidden');
+                }
+                renderBlogPosts();
+            });
 
-        const collectionPath = (typeof __app_id !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')))
-            ? collection(db, 'artifacts', appId, 'public', 'data', 'blog_posts')
-            : collection(db, 'blog_posts');
+            const collectionPath = _collection(_db, 'blog_posts');
+            const q = _query(collectionPath);
+            _onSnapshot(q, (snapshot) => {
+                postsCache = {};
+                snapshot.forEach(d => { postsCache[d.id] = d.data(); });
+                renderBlogPosts();
+            });
+        }
 
-        const q = query(collectionPath);
-        onSnapshot(q, (snapshot) => {
-            postsCache = {};
-            snapshot.forEach(doc => { postsCache[doc.id] = doc.data(); });
-            renderBlogPosts();
-        });
 
         function renderBlogPosts() {
             const container = document.getElementById('blog-posts-container');
@@ -2189,9 +2249,9 @@
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-password').value;
-            try { await signInWithEmailAndPassword(auth, email, pass); } catch (e) { showToast(e.message, 'error'); }
+            try { await _signIn(_auth, email, pass); } catch (e) { showToast(e.message, 'error'); }
         };
-        window.logout = () => signOut(auth);
+        window.logout = () => _signOut(_auth);
 
         window.createPost = async (e) => {
             e.preventDefault();
@@ -2204,8 +2264,9 @@
                 createdAt: new Date().toISOString()
             };
             try {
-                if (editingPostId) await updateDoc(doc(collectionPath, editingPostId), data);
-                else await addDoc(collectionPath, data);
+                const colPath = _collection(_db, 'blog_posts');
+                if (editingPostId) await _updateDoc(_doc(colPath, editingPostId), data);
+                else await _addDoc(colPath, data);
                 showToast('Guardado', 'success');
                 toggleAdminPanel();
             } catch (e) { showToast(e.message, 'error'); }
@@ -2224,7 +2285,7 @@
         };
 
         window.deletePost = async (id) => {
-            if (confirm('¿Borrar?')) await deleteDoc(doc(collectionPath, id));
+            try { if (confirm('¿Borrar?')) await _deleteDoc(_doc(_collection(_db, 'blog_posts'), id)); } catch (e) { showToast(e.message, 'error'); }
         };
 
         document.getElementById('login-form').addEventListener('submit', window.login);
@@ -2260,10 +2321,14 @@
             });
         }
 
-        window.toggleAdminPanel = () => {
+        window.toggleAdminPanel = async () => {
             const m = document.getElementById('admin-modal');
+            const wasHidden = m.classList.contains('hidden');
             m.classList.toggle('hidden');
-            if (m.classList.contains('hidden')) {
+            if (wasHidden) {
+                // Carga Firebase la primera vez que se abre el panel
+                await initFirebaseListeners();
+            } else {
                 document.getElementById('post-form').reset();
                 editingPostId = null;
                 document.getElementById('image-preview').classList.add('hidden');
@@ -2394,7 +2459,16 @@
                         div.className = "group block";
                         div.innerHTML = `
                             <div class="relative overflow-hidden rounded-lg shadow-lg mb-2">
-                                <img src="https://img.youtube.com/vi/${vidId}/maxresdefault.jpg" class="w-full aspect-video object-cover group-hover:scale-105 transition duration-500">
+                                <img src="https://img.youtube.com/vi/${vidId}/hqdefault.jpg" 
+                                     srcset="https://img.youtube.com/vi/${vidId}/mqdefault.jpg 320w,
+                                             https://img.youtube.com/vi/${vidId}/hqdefault.jpg 480w,
+                                             https://img.youtube.com/vi/${vidId}/sddefault.jpg 640w,
+                                             https://img.youtube.com/vi/${vidId}/maxresdefault.jpg 1280w"
+                                     sizes="(max-width: 768px) 100vw, 33vw"
+                                     width="640" height="480"
+                                     loading="lazy" decoding="async"
+                                     alt="Thumbnail YouTube"
+                                     class="w-full aspect-video object-cover group-hover:scale-105 transition duration-500">
                                 <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition"><i class="fab fa-youtube text-4xl text-white"></i></div>
                             </div>
                             <h4 class="font-bold text-white line-clamp-2 group-hover:text-red-500 transition">${v.title}</h4>
@@ -2407,26 +2481,26 @@
 
         async function updateLatestVideo() {
             const channelId = 'UCMf2ohoBrB1pgErsMa21SKg';
+            // El placeholder ya tiene un thumbnail hardcodeado para que el LCP sea inmediato.
+            // Aquí solo actualizamos al video más reciente en segundo plano, sin bloquear.
             try {
                 const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
                 const data = await response.json();
                 if (data.items && data.items.length > 0) {
                     const item = data.items[0];
                     const latestVideoId = item.guid.split(':')[2];
-                    const thumb = item.thumbnail;
-
                     const placeholder = document.getElementById('video-placeholder');
                     if (placeholder && latestVideoId) {
                         placeholder.setAttribute('data-video-id', latestVideoId);
-                        const maxRes = `https://img.youtube.com/vi/${latestVideoId}/maxresdefault.jpg`;
-                        const img = new Image();
-                        img.onload = () => { placeholder.style.backgroundImage = `url('${maxRes}')`; };
-                        img.onerror = () => { placeholder.style.backgroundImage = `url('${thumb}')`; };
-                        img.src = maxRes;
+                        // Desactivado el cambio de backgroundImage para que NO vuelva a saltar LCP en Pagespeed.
+                        // Solo actualizamos el data-video-id para que el click en el hero cargue el video correcto.
+                        // if (latestVideoId !== defaultId) {
+                        //     placeholder.style.backgroundImage = `url('https://img.youtube.com/vi/${latestVideoId}/maxresdefault.jpg')`;
+                        // }
                     }
                 }
             } catch (error) {
-                console.error('Error actualizando vídeo de portada:', error);
+                console.error('Error actualizando v\u00eddeo de portada:', error);
             }
         }
 
@@ -2496,8 +2570,24 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             toggleGear('pro');
-            updateLatestChannelVideos();
-            updateLatestVideo();
+            // Diferir las llamadas a la API de YouTube para no bloquear el LCP ni el TBT.
+            // Se ejecutan cuando el navegador esté inactivo (o tras 2s como fallback).
+            const deferApiCalls = () => {
+                updateLatestChannelVideos();
+                updateLatestVideo();
+            };
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(deferApiCalls, { timeout: 3000 });
+            } else {
+                setTimeout(deferApiCalls, 2000);
+            }
+            document.querySelectorAll('.yt-lazy-facade').forEach(el => {
+                el.addEventListener('click', function () {
+                    const embedUrl = this.getAttribute('data-embed');
+                    // Cargar iframe al click con autoplay
+                    this.innerHTML = `<iframe class="absolute top-0 left-0 w-full h-full fade-in" src="${embedUrl}&autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+                }, { once: true });
+            });
 
 
 
@@ -2607,7 +2697,15 @@
             if (scrollContainer) scrollContainer.scrollTop = 0;
         };
 
-        window.openSectionModal = (id) => document.getElementById(id).classList.remove('hidden');
+        window.openSectionModal = (id) => {
+            const modal = document.getElementById(id);
+            // Activar iframes lazy (data-src → src) solo la primera vez
+            modal.querySelectorAll('iframe[data-src]').forEach(iframe => {
+                iframe.src = iframe.getAttribute('data-src');
+                iframe.removeAttribute('data-src');
+            });
+            modal.classList.remove('hidden');
+        };
         window.closeSectionModal = (id) => document.getElementById(id).classList.add('hidden');
     </script>
 
