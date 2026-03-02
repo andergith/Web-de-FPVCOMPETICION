@@ -568,7 +568,7 @@
                         class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
                         <!-- Playlist compartida con Freestyle según indicación del cliente -->
                         <iframe class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                            src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqTg5pkJN6_nIB_ObTxz6_8"
                             frameborder="0" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
@@ -1534,6 +1534,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Playlist de Youtube: Tutoriales Baterías y Cargadores -->
+                            <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
+                                <h4 class="font-bold text-white mb-4 flex items-center gap-2">
+                                    <i class="fab fa-youtube text-red-500 text-xl"></i> Tutoriales y Reviews de Baterías
+                                    y Cargadores
+                                </h4>
+                                <div
+                                    class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black shadow-lg border border-slate-700">
+                                    <iframe class="absolute top-0 left-0 w-full h-full"
+                                        src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYq-KqAQCKf0yiHo3_Qezc95"
+                                        frameborder="0" allowfullscreen loading="lazy"></iframe>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1576,11 +1590,8 @@
                                 <i class="fas fa-tags text-red-500 text-2xl"></i>
                             </div>
                             <div class="overflow-x-auto">
-                                <iframe data-src="https://widgets.sociablekit.com/telegram-channel/iframe/25658608"
+                                <iframe src="https://widgets.sociablekit.com/telegram-channel/iframe/25658608"
                                     frameborder="0" width="100%" height="1000px"></iframe>
-                                <table class="w-full text-xs text-left text-slate-400">
-                                    <tbody id="couponTableBody"></tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
@@ -2073,7 +2084,7 @@
             <div class="pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-xs uppercase tracking-widest font-teko text-slate-500">© 2026 FPV DRONES - TODOS
                     LOS DERECHOS RESERVADOS</p>
-                <div class="flex gap-8">
+                <div class="flex gap-8 items-center">
                     <button onclick="openLegalModal('legal')"
                         class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition cursor-pointer">Aviso
                         Legal</button>
@@ -2082,6 +2093,11 @@
                     <button onclick="openLegalModal('cookies')"
                         class="text-[10px] font-bold uppercase tracking-widest hover:text-white transition cursor-pointer">Cookies</button>
                     <span class="text-[10px] font-bold uppercase tracking-widest text-slate-600">BY ALEX FPV</span>
+                    <button onclick="toggleAdminPanel()" title="Iniciar sesión (Admin)"
+                        class="text-slate-700 hover:text-slate-400 transition-colors cursor-pointer"
+                        aria-label="Panel de administración">
+                        <i class="fas fa-lock text-xs" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2301,9 +2317,8 @@
         };
 
         window.closeReadModal = () => document.getElementById('read-modal').classList.add('hidden');
-
-        window.openSectionModal = (id) => document.getElementById(id).classList.remove('hidden');
-        window.closeSectionModal = (id) => document.getElementById(id).classList.add('hidden');
+        // openSectionModal y closeSectionModal se definen en el script normal posterior
+        // para evitar que el módulo (que se ejecuta después) sobreescriba la versión con lógica de data-src→src
     </script>
 
     <script>
@@ -2462,6 +2477,10 @@
         window.scrollToSection = (id) => {
             const el = document.getElementById(id);
             if (el) el.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.openContactModal = (service) => {
+            showToast(`Para solicitar ${service}, contáctanos por YouTube o Telegram 🚁`, 'success');
         };
 
         function openLegalModal(type) {
@@ -2761,6 +2780,10 @@
             draw();
         })();
     </script>
+
+    <!-- Toast notifications container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-2 pointer-events-none"></div>
+
 </body>
 
 </html>
