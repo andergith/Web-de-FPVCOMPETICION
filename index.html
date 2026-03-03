@@ -77,6 +77,10 @@
             text-transform: uppercase;
         }
 
+        .grid-cols-5 {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
         #reading-progress {
             position: fixed;
             top: 0;
@@ -345,7 +349,7 @@
                         width="40" height="40" loading="lazy" decoding="async">
                     <span class="font-teko tracking-tighter flex items-center leading-none" aria-hidden="true">
                         <span class="text-3xl font-bold text-white">FPV</span>
-                        <span class="text-3xl font-bold text-red-600 ml-1">DRONES</span>
+                        <span class="text-3xl font-bold text-red-600 ml-1">DRONE</span>
                     </span>
                 </button>
 
@@ -355,13 +359,13 @@
                     <!-- Menú con Acciones de Modal y Enlaces de Scroll -->
                     <button onclick="openSectionModal('modal-antes-de-volar')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Antes de Volar</button>
-                    <button onclick="scrollToSection('el-drone')"
+                    <button onclick="openSectionModal('modal-el-drone')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">El Drone</button>
                     <button onclick="openSectionModal('modal-equipo')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Equipo FPV</button>
                     <button onclick="openSectionModal('modal-guias')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Guías Montaje</button>
-                    <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('combos')"
+                    <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('cupones')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Ofertas</button>
                     <button onclick="openSectionModal('modal-foros')"
                         class="nav-link text-sm font-bold uppercase hover:text-red-600">Foros</button>
@@ -396,7 +400,7 @@
                 <button onclick="openSectionModal('modal-guias')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Guías
                     Montaje</button>
-                <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('combos')"
+                <button onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('cupones')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Ofertas</button>
                 <button onclick="openSectionModal('modal-foros')"
                     class="mobile-link px-3 py-2 font-bold uppercase hover:bg-slate-800 text-left">Foros</button>
@@ -464,59 +468,77 @@
     <!-- SECTION: DASHBOARD RESUMEN -->
     <section id="dashboard-resumen" class="py-12 bg-slate-900/50 -mt-10 relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div
+                style="display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; gap: 1rem !important; width: 100% !important;">
                 <!-- Card 1 -->
                 <div onclick="openSectionModal('modal-antes-de-volar')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
-                    role="button" tabindex="0" aria-label="Abrir sección: Antes de Volar"
+                    class="dashboard-card bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    style="flex: 1 !important; min-width: 0 !important;" role="button" tabindex="0"
+                    aria-label="Abrir sección: Antes de Volar"
                     onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-antes-de-volar')">
-                    <div class="w-14 h-14 rounded-full bg-red-900/30 flex items-center justify-center text-red-600 mb-4"
+                    <div class="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center text-red-600 mb-3"
                         aria-hidden="true">
-                        <i class="fas fa-book-reader text-2xl" aria-hidden="true"></i>
+                        <i class="fas fa-book-reader text-xl" aria-hidden="true"></i>
                     </div>
-                    <h3 class="font-teko text-2xl font-bold text-white">Antes de Volar</h3>
-                    <p class="text-xs text-slate-500 mt-2">Legalidad, Simuladores y primeros pasos.</p>
+                    <h3 class="font-teko text-xl font-bold text-white leading-tight">Antes de Volar</h3>
+                    <p class="text-[10px] text-slate-500 mt-1">Legalidad y Simuladores.</p>
+                </div>
+                <!-- Card: El Drone -->
+                <div onclick="openSectionModal('modal-el-drone')"
+                    class="dashboard-card bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    style="flex: 1 !important; min-width: 0 !important;" role="button" tabindex="0"
+                    aria-label="Abrir sección: El Drone"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-el-drone')">
+                    <div class="w-12 h-12 rounded-full bg-emerald-900/30 flex items-center justify-center text-emerald-500 mb-3"
+                        aria-hidden="true">
+                        <i class="fas fa-helicopter text-xl" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="font-teko text-xl font-bold text-white leading-tight">El Drone</h3>
+                    <p class="text-[10px] text-slate-500 mt-1">Tipos y usos recomendados.</p>
                 </div>
                 <!-- Card 2 -->
                 <div onclick="openSectionModal('modal-equipo')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
-                    role="button" tabindex="0" aria-label="Abrir sección: Equipo FPV"
+                    class="dashboard-card bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    style="flex: 1 !important; min-width: 0 !important;" role="button" tabindex="0"
+                    aria-label="Abrir sección: Equipo FPV"
                     onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-equipo')">
-                    <div class="w-14 h-14 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-600 mb-4"
+                    <div class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-600 mb-3"
                         aria-hidden="true">
-                        <i class="fas fa-box-open text-2xl" aria-hidden="true"></i>
+                        <i class="fas fa-box-open text-xl" aria-hidden="true"></i>
                     </div>
-                    <h3 class="font-teko text-2xl font-bold text-white">Equipo FPV</h3>
-                    <p class="text-xs text-slate-500 mt-2">Gafas, Emisoras y Ofertas destacadas.</p>
+                    <h3 class="font-teko text-xl font-bold text-white leading-tight">Equipo FPV</h3>
+                    <p class="text-[10px] text-slate-500 mt-1">Gafas, Emisoras y Ofertas.</p>
                 </div>
                 <!-- Card 3 -->
                 <div onclick="openSectionModal('modal-guias')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center"
-                    role="button" tabindex="0" aria-label="Abrir sección: Guías Montaje"
+                    class="dashboard-card bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    style="flex: 1 !important; min-width: 0 !important;" role="button" tabindex="0"
+                    aria-label="Abrir sección: Guías Montaje"
                     onkeydown="if(event.key==='Enter'||event.key===' ')openSectionModal('modal-guias')">
-                    <div class="w-14 h-14 rounded-full bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-4"
+                    <div class="w-12 h-12 rounded-full bg-yellow-900/30 flex items-center justify-center text-yellow-600 mb-3"
                         aria-hidden="true">
-                        <i class="fas fa-tools text-2xl" aria-hidden="true"></i>
+                        <i class="fas fa-tools text-xl" aria-hidden="true"></i>
                     </div>
-                    <h3 class="font-teko text-2xl font-bold text-white">Guías Montaje</h3>
-                    <p class="text-xs text-slate-500 mt-2">Esquemas, wiring y configuraciones.</p>
+                    <h3 class="font-teko text-xl font-bold text-white leading-tight">Guías Montaje</h3>
+                    <p class="text-[10px] text-slate-500 mt-1">Esquemas y wiring.</p>
                 </div>
                 <!-- Card 4 -->
                 <div onclick="openSectionModal('modal-foros')"
-                    class="dashboard-card bg-slate-800 p-6 rounded-xl border border-slate-700 flex flex-col items-center text-center">
+                    class="dashboard-card bg-slate-800 p-4 rounded-xl border border-slate-700 flex flex-col items-center text-center"
+                    style="flex: 1 !important; min-width: 0 !important;">
                     <div
-                        class="w-14 h-14 rounded-full bg-sky-900/30 flex items-center justify-center text-sky-600 mb-4">
-                        <i class="fab fa-telegram text-3xl pl-1"></i>
+                        class="w-12 h-12 rounded-full bg-sky-900/30 flex items-center justify-center text-sky-600 mb-3">
+                        <i class="fab fa-telegram text-2xl pl-1"></i>
                     </div>
-                    <h3 class="font-teko text-2xl font-bold text-white">Comunidad</h3>
-                    <p class="text-xs text-slate-500 mt-2">Grupos de ayuda y compra/venta.</p>
+                    <h3 class="font-teko text-xl font-bold text-white leading-tight">Comunidad</h3>
+                    <p class="text-[10px] text-slate-500 mt-1">Grupos de ayuda y compra.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION: EL DRONE -->
-    <section id="el-drone" class="py-16 bg-dark-bg">
+    <!-- SECTION: EL DRONE (Oculta, ahora en modal) -->
+    <section id="el-drone" class="hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center mb-12">
                 <h2 class="text-5xl font-bold text-white font-teko mb-4">El Drone</h2>
@@ -664,58 +686,6 @@
         </div>
     </section>
 
-    <!-- SECTION: HERRAMIENTAS (After Guides) -->
-    <section id="herramientas" class="py-12 bg-dark-card relative">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-white font-teko text-center mb-10">Herramientas de
-                Vuelo</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Flight Time -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700" role="region"
-                    aria-labelledby="flight-time-title">
-                    <h3 id="flight-time-title" class="text-2xl font-bold text-white font-teko mb-6">
-                        <i class="fas fa-stopwatch text-red-600" aria-hidden="true"></i> Tiempo de Vuelo
-                    </h3>
-                    <div class="space-y-4">
-                        <label for="calc-mah" class="sr-only">Capacidad de la batería en mAh</label>
-                        <input type="number" id="calc-mah" value="1300" aria-label="Capacidad de batería en mAh"
-                            class="w-full rounded-lg border p-2 bg-slate-900 text-white text-base">
-                        <button onclick="calculateFlightTime()"
-                            class="bg-slate-900 text-white font-bold py-2 px-6 rounded-lg w-full">Calcular tiempo de
-                            vuelo</button>
-                        <div class="text-right" aria-live="polite"><span id="calc-result"
-                                class="text-4xl font-teko font-bold text-red-600">0:00</span> min</div>
-                    </div>
-                </div>
-                <!-- Lipo Charge -->
-                <div class="bg-slate-800 rounded-2xl shadow-xl p-8 border border-slate-700" role="region"
-                    aria-labelledby="lipo-title">
-                    <h3 id="lipo-title" class="text-2xl font-bold text-white font-teko mb-6">
-                        <i class="fas fa-bolt text-blue-500" aria-hidden="true"></i> Carga LiPo
-                    </h3>
-                    <div class="flex gap-2 mb-4">
-                        <label for="lipo-mah" class="sr-only">Capacidad en mAh</label>
-                        <input type="number" id="lipo-mah" value="1300" aria-label="Capacidad de batería en mAh"
-                            class="w-1/2 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="mAh">
-                        <label for="lipo-count" class="sr-only">Número de celdas</label>
-                        <input type="number" id="lipo-count" value="4" aria-label="Número de celdas"
-                            class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white text-base" placeholder="N">
-                        <label for="lipo-c" class="sr-only">Tasa de carga en C</label>
-                        <select id="lipo-c" aria-label="Tasa de carga"
-                            class="w-1/4 rounded-lg border p-2 bg-slate-900 text-white">
-                            <option value="1">1C</option>
-                            <option value="2">2C</option>
-                        </select>
-                    </div>
-                    <button onclick="calculateLipoCharge()"
-                        class="w-full bg-blue-600 text-white font-bold py-2 px-6 rounded-lg">Calcular carga
-                        LiPo</button>
-                    <div class="text-right mt-2"><span id="lipo-result"
-                            class="text-4xl font-teko font-bold text-blue-500">0.0</span> Amps</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- SECTION: CANAL (Videos) -->
     <section id="videos-destacados" class="py-12 bg-dark-bg">
@@ -733,13 +703,29 @@
     <!-- SECTION: BLOG -->
     <section id="blog" class="py-12 bg-slate-900">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold text-white font-teko">Blog Noticias</h2>
-                <button onclick="toggleAdminPanel()" class="text-slate-400 hover:text-white"
-                    aria-label="Panel de administración">
-                    <i class="fas fa-lock" aria-hidden="true"></i></button>
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                <div class="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+                    <h2 class="text-4xl font-bold text-white font-teko uppercase tracking-wider">Blog Noticias</h2>
+                    <button onclick="toggleAdminPanel()" class="text-slate-600 hover:text-white transition"
+                        aria-label="Panel de administración">
+                        <i class="fas fa-lock text-sm" aria-hidden="true"></i></button>
+                </div>
+                <div class="relative w-full md:w-64">
+                    <input type="text" id="blog-search" oninput="window.searchBlog(this.value)"
+                        placeholder="Buscar noticias..."
+                        class="w-full bg-slate-800 text-white text-sm px-4 py-2 pl-10 rounded-full border border-slate-700 outline-none focus:border-red-500 transition">
+                    <i
+                        class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-500 text-sm"></i>
+                </div>
             </div>
-            <div id="blog-posts-container" class="grid md:grid-cols-3 gap-6"></div>
+            <div id="blog-posts-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 relative min-h-[50px]"></div>
+
+            <div class="mt-10 text-center">
+                <button id="load-more-posts" onclick="window.loadMoreNews()"
+                    class="hidden border border-red-600 text-red-500 hover:bg-red-600 hover:text-white font-bold py-2 px-8 rounded-full transition uppercase tracking-widest text-sm">
+                    Cargar más noticias
+                </button>
+            </div>
         </div>
     </section>
 
@@ -1134,6 +1120,176 @@
         </div>
     </div>
 
+    <!-- MODAL: EL DRONE -->
+    <div id="modal-el-drone" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
+        <div
+            class="bg-slate-900 w-full max-w-6xl h-[90vh] rounded-2xl relative overflow-hidden flex flex-col shadow-2xl border border-slate-700">
+            <!-- Header -->
+            <div class="p-6 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
+                <h2 class="text-3xl font-bold font-teko text-white">El Drone</h2>
+                <button onclick="closeSectionModal('modal-el-drone')"
+                    class="text-slate-400 hover:text-red-500 transition"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <!-- Scrollable Content -->
+            <div class="overflow-y-auto p-6 md:p-10">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <p class="text-slate-400 text-lg leading-relaxed">El dron es el aparato que nos va a permitir volar
+                        y
+                        dependiendo del tipo de vuelo que vayas a hacer, dónde vayas a volar o tus habilidades vas a
+                        tener
+                        que utilizar un tipo de dron u otro. Los tipos más comunes de drones son los siguientes:</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Freestyle -->
+                    <div
+                        class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-red-500 transition-colors group flex flex-col h-full shadow-lg">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-colors">
+                                <i class="fas fa-paper-plane text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-teko font-bold text-white m-0">Freestyle</h3>
+                        </div>
+                        <p class="text-sm text-slate-300 mb-6 flex-grow">Es el más popular, porque también es el que
+                            permite
+                            hacer más cosas. La navaja suiza de los drones, con el que puedes hacer piruetas o grabar
+                            vídeos
+                            cinemáticos. Los hay desde 2 a 6 pulgadas.<br><br>Son drones para volar en espacios abiertos
+                            y a
+                            una velocidad bastante alta (puede rozar hasta los 200Km/h y acelerar de 0 a 100 Km/h en dos
+                            segundos).</p>
+                        <div
+                            class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                            <iframe class="absolute top-0 left-0 w-full h-full"
+                                data-src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqjw7I4ZkN5MCZoVfoBAkfN"
+                                frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Carreras -->
+                    <div
+                        class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-blue-500 transition-colors group flex flex-col h-full shadow-lg">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                                <i class="fas fa-flag-checkered text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-teko font-bold text-white m-0">Carreras</h3>
+                        </div>
+                        <p class="text-sm text-slate-300 mb-6 flex-grow">Son drones rápidos, ligeros y muy ágiles.
+                            Quizás no
+                            sean los más adecuados para empezar, pero sí te van a llevar a tu límite como piloto. Si los
+                            freestyle te parecían rápidos… estos lo son más. Eso sí, no pretendas volar más de 4
+                            minutos.
+                        </p>
+                        <div
+                            class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                            <iframe class="absolute top-0 left-0 w-full h-full"
+                                data-src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqTg5pkJN6_nIB_ObTxz6_8"
+                                frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Tinywhoops -->
+                    <div
+                        class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500 transition-colors group flex flex-col h-full shadow-lg">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                                <i class="fas fa-bug text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-teko font-bold text-white m-0">Tinywhoops</h3>
+                        </div>
+                        <p class="text-sm text-slate-300 mb-6 flex-grow">Son como dice su nombre pequeños y con ductos.
+                            Son
+                            baratos, resistentes y muy seguros para volar, por lo que son ideales para aprender y hacer
+                            reflejos. Perfectos para volar en casa o si son algo más grandes en el exterior en zonas con
+                            obstáculos.</p>
+                        <div
+                            class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                            <iframe class="absolute top-0 left-0 w-full h-full"
+                                data-src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYqVA3-vnpi8UPkczyvjwLMx"
+                                frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Cinewhoop -->
+                    <div
+                        class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-purple-500 transition-colors group flex flex-col h-full shadow-lg">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                                <i class="fas fa-video text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-teko font-bold text-white m-0">Cinewhoop</h3>
+                        </div>
+                        <p class="text-sm text-slate-300 mb-6 flex-grow">Son básicamente tinywhoops más grandes, algunos
+                            con
+                            hélices mirando para arriba (más agiles) y otros con hélices mirando para abajo (más
+                            estables).
+                            ¿Para qué son? Pues para grabar en sitios cerrados o en sitios con obstáculos. Pueden llevar
+                            una
+                            cámara externa de acción o incluso una cámara fpv con capacidad de grabación.</p>
+                        <div
+                            class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                            <iframe class="absolute top-0 left-0 w-full h-full"
+                                data-src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr0TXJtNEP2nM_a-FnluZvW"
+                                frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Cinelifters / Cinematográficos -->
+                    <div
+                        class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-emerald-500 transition-colors group flex flex-col h-full shadow-lg">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                                <i class="fas fa-film text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-teko font-bold text-white m-0">Cinelifters</h3>
+                        </div>
+                        <p class="text-sm text-slate-300 mb-6 flex-grow">Son drones pensados para montar una cámara de
+                            cine
+                            profesional. Tienen que llevar cámaras tipo Sony FX30, Blackmagic, RED KOMODO o Alexa mini
+                            de
+                            ARRI pero aun así ser ágiles, por lo que es muy normal que sean octocópteros, hexacópteros,
+                            etc.
+                        </p>
+                        <div
+                            class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800 flex items-center justify-center text-slate-500">
+                            <iframe class="absolute top-0 left-0 w-full h-full"
+                                data-src="https://www.youtube.com/embed/lttRUaWZXMg?si=c7AYMtbTcALpn8pv" frameborder="0"
+                                allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Estabilizados -->
+                    <div
+                        class="bg-slate-800 rounded-2xl p-6 border border-slate-700 hover:border-orange-500 transition-colors group flex flex-col h-full shadow-lg">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                                <i class="fas fa-camera-retro text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-teko font-bold text-white m-0">Estabilizados</h3>
+                        </div>
+                        <p class="text-sm text-slate-300 mb-6 flex-grow">Drones pensados para grabar tomas estables, con
+                            altos tiempos de vuelo y fáciles de volar. Los hay de muchos tipos, según lo que estés
+                            buscando:
+                            grabación profesional, ocio, vigilancia, …</p>
+                        <div
+                            class="w-full relative pt-[56.25%] overflow-hidden rounded-xl bg-black border border-slate-800">
+                            <iframe class="absolute top-0 left-0 w-full h-full"
+                                data-src="https://www.youtube.com/embed/videoseries?list=PL_AS-7inzwYr6pEu2eY-I35oUhlUSkXT_"
+                                frameborder="0" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL 2: EQUIPO FPV -->
     <div id="modal-equipo" class="fixed inset-0 z-[100] hidden modal-overlay flex items-center justify-center p-4">
         <div
@@ -1157,8 +1313,12 @@
                         Componentes
                     </button>
                     <button onclick="switchEquipoSubTab('combos')" id="tab-equipo-combos"
-                        class="equipo-nav-tab px-6 py-2 rounded-lg font-teko text-xl text-slate-400 hover:text-slate-700 hover:text-slate-200 transition-all">
+                        class="equipo-nav-tab px-6 py-2 rounded-lg font-teko text-xl text-slate-400 hover:text-slate-200 transition-all">
                         Combos ya listos
+                    </button>
+                    <button onclick="switchEquipoSubTab('cupones')" id="tab-equipo-cupones"
+                        class="equipo-nav-tab px-6 py-2 rounded-lg font-teko text-xl text-slate-400 hover:text-slate-200 transition-all">
+                        Cupones y ofertas
                     </button>
                 </div>
             </div>
@@ -1535,6 +1695,53 @@
                                 </div>
                             </div>
 
+                            <!-- Herramientas de Vuelo Integradas -->
+                            <div class="grid md:grid-cols-2 gap-6 mt-8">
+                                <!-- Flight Time -->
+                                <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 shadow-sm"
+                                    role="region" aria-labelledby="flight-time-title">
+                                    <h3 id="flight-time-title" class="text-xl font-bold text-white font-teko mb-4">
+                                        <i class="fas fa-stopwatch text-red-600" aria-hidden="true"></i> Tiempo de Vuelo
+                                    </h3>
+                                    <div class="space-y-4">
+                                        <input type="number" id="calc-mah" value="1300"
+                                            aria-label="Capacidad de batería en mAh"
+                                            class="w-full rounded-lg border border-slate-700 p-2 bg-slate-800 text-white text-sm">
+                                        <button onclick="calculateFlightTime()"
+                                            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg w-full text-sm transition-colors">Calcular
+                                            tiempo</button>
+                                        <div class="text-right text-slate-300 font-bold"><span id="calc-result"
+                                                class="text-3xl font-teko text-red-600">0:00</span> min</div>
+                                    </div>
+                                </div>
+                                <!-- Lipo Charge -->
+                                <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 shadow-sm"
+                                    role="region" aria-labelledby="lipo-title">
+                                    <h3 id="lipo-title" class="text-xl font-bold text-white font-teko mb-4">
+                                        <i class="fas fa-bolt text-blue-500" aria-hidden="true"></i> Carga LiPo
+                                    </h3>
+                                    <div class="flex gap-2 mb-4">
+                                        <input type="number" id="lipo-mah" value="1300"
+                                            aria-label="Capacidad de batería en mAh"
+                                            class="w-1/2 rounded-lg border border-slate-700 p-2 bg-slate-800 text-white text-sm"
+                                            placeholder="mAh">
+                                        <input type="number" id="lipo-count" value="4" aria-label="Número de celdas"
+                                            class="w-1/4 rounded-lg border border-slate-700 p-2 bg-slate-800 text-white text-sm"
+                                            placeholder="S">
+                                        <select id="lipo-c" aria-label="Tasa de carga"
+                                            class="w-1/4 rounded-lg border border-slate-700 p-2 bg-slate-800 text-white text-sm">
+                                            <option value="1">1C</option>
+                                            <option value="2">2C</option>
+                                        </select>
+                                    </div>
+                                    <button onclick="calculateLipoCharge()"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-colors">Calcular
+                                        carga</button>
+                                    <div class="text-right text-slate-300 font-bold mt-2"><span id="lipo-result"
+                                            class="text-3xl font-teko text-blue-500">0.0</span> Amps</div>
+                                </div>
+                            </div>
+
                             <!-- Playlist de Youtube: Tutoriales Baterías y Cargadores -->
                             <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 mt-8 shadow-lg">
                                 <h4 class="font-bold text-white mb-4 flex items-center gap-2">
@@ -1554,7 +1761,7 @@
 
                 <!-- SECCIÓN 2: COMBOS (Recomendaciones de Producto) -->
                 <div id="equipo-section-combos" class="equipo-sub-section hidden space-y-8">
-                    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="max-w-4xl mx-auto">
                         <!-- Listas de Gear -->
                         <div class="bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-800">
                             <div class="flex justify-between items-center mb-6">
@@ -1582,7 +1789,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Ofertas -->
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 3: CUPONES Y OFERTAS -->
+                <div id="equipo-section-cupones" class="equipo-sub-section hidden space-y-8">
+                    <div class="max-w-4xl mx-auto">
                         <div id="ofertas-modal-content"
                             class="bg-dark-card p-6 rounded-2xl shadow-lg border border-slate-800">
                             <div class="flex justify-between items-center mb-6">
@@ -1926,16 +2138,35 @@
 
     <div id="read-modal" class="fixed inset-0 z-[60] hidden modal-overlay overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-slate-900 w-full max-w-3xl rounded-xl relative">
+            <div class="bg-slate-900 w-full max-w-3xl rounded-xl relative shadow-2xl border border-slate-700">
                 <button onclick="closeReadModal()"
-                    class="absolute top-4 right-4 bg-black/50 text-white w-8 h-8 rounded-full z-10"><i
+                    class="absolute top-4 right-4 bg-black/50 hover:bg-black/90 text-white w-8 h-8 rounded-full z-10 transition"><i
                         class="fas fa-times"></i></button>
-                <img id="read-post-image" class="w-full h-64 object-cover rounded-t-xl">
+                <img id="read-post-image" class="w-full h-64 md:h-80 object-cover rounded-t-xl">
                 <div class="p-8">
-                    <h2 id="read-post-title" class="text-3xl font-bold text-white font-teko mb-2"></h2>
-                    <p class="text-sm text-slate-500 mb-6">Por <span id="read-post-author"></span> • <span
-                            id="read-post-date"></span></p>
-                    <div id="read-post-content" class="prose prose-invert"></div>
+                    <h2 id="read-post-title"
+                        class="text-3xl md:text-5xl font-bold text-white font-teko mb-4 leading-tight"></h2>
+                    <div
+                        class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-800 pb-6 w-full">
+                        <p class="text-sm text-slate-500 font-teko text-xl tracking-wide uppercase">Por <span
+                                id="read-post-author" class="text-red-500"></span> <span
+                                class="mx-2 text-slate-600">•</span> <span id="read-post-date"
+                                class="text-slate-400"></span></p>
+                        <div class="flex gap-2">
+                            <a id="share-whatsapp" href="#" target="_blank"
+                                class="w-8 h-8 rounded-full bg-slate-800 hover:bg-green-600 flex items-center justify-center text-white transition tooltip"
+                                aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a id="share-twitter" href="#" target="_blank"
+                                class="w-8 h-8 rounded-full bg-slate-800 hover:bg-blue-400 flex items-center justify-center text-white transition tooltip"
+                                aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <button id="share-copy"
+                                class="w-8 h-8 rounded-full bg-slate-800 hover:bg-red-600 flex items-center justify-center text-white transition tooltip"
+                                aria-label="Copiar Enlace"><i class="fas fa-link"></i></button>
+                        </div>
+                    </div>
+                    <div id="read-post-content"
+                        class="prose prose-invert max-w-none text-slate-300 leading-relaxed text-sm md:text-base space-y-4">
+                    </div>
                 </div>
             </div>
         </div>
@@ -2057,7 +2288,8 @@
                                 class="hover:text-blue-500 transition text-sm flex items-center gap-2"><i
                                     class="fas fa-balance-scale text-[10px] text-blue-500"></i> Normativa AESA</a>
                         </li>
-                        <li><button onclick="scrollToSection('herramientas')"
+                        <li><button
+                                onclick="openSectionModal('modal-equipo'); switchEquipoSubTab('componentes'); setTimeout(() => document.getElementById('guide-battery').scrollIntoView({behavior:'smooth'}), 100)"
                                 class="hover:text-blue-500 transition text-sm flex items-center gap-2"><i
                                     class="fas fa-tools text-[10px] text-blue-500"></i>
                                 Herramientas/Calculadoras</button></li>
@@ -2179,42 +2411,114 @@
             });
         }
 
+        // Observador para garantizar que las noticias se carguen para todos los visitantes al acercarse a la sección
+        const blogObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                initFirebaseListeners();
+                blogObserver.disconnect();
+            }
+        }, { rootMargin: '800px' });
+        const blogSection = document.getElementById('blog');
+        if (blogSection) blogObserver.observe(blogSection);
+
+
+        let visiblePostsLimit = 6;
+        let currentSearchQuery = '';
+
+        window.searchBlog = (query) => {
+            currentSearchQuery = query;
+            visiblePostsLimit = 6; // reset pagination on search
+            renderBlogPosts();
+        };
+
+        window.loadMoreNews = () => {
+            visiblePostsLimit += 6;
+            renderBlogPosts();
+        };
 
         function renderBlogPosts() {
             const container = document.getElementById('blog-posts-container');
+            const loadMoreBtn = document.getElementById('load-more-posts');
             if (!container) return;
             container.innerHTML = '';
 
-            const posts = Object.entries(postsCache).map(([id, data]) => ({ id, ...data }));
+            let posts = Object.entries(postsCache).map(([id, data]) => ({ id, ...data }));
 
             if (posts.length === 0) {
                 container.innerHTML = '<p class="text-center col-span-3 text-slate-500">No hay noticias.</p>';
+                if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
                 return;
+            }
+
+            if (currentSearchQuery) {
+                const q = currentSearchQuery.toLowerCase();
+                posts = posts.filter(p => p.title.toLowerCase().includes(q) || p.content.toLowerCase().includes(q));
             }
 
             posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-            posts.forEach(post => {
+            const totalFiltered = posts.length;
+            posts = posts.slice(0, visiblePostsLimit);
+
+            let hasHero = false;
+            posts.forEach((post, index) => {
+                const isHero = index === 0 && !currentSearchQuery;
+                if (isHero) hasHero = true;
+
+                const readingTime = Math.max(1, Math.ceil((post.content || '').split(/\s+/).length / 200));
+
                 const div = document.createElement('div');
-                div.className = "bg-slate-800 rounded-lg shadow overflow-hidden hover:shadow-lg transition cursor-pointer flex flex-col";
+                div.className = isHero
+                    ? "md:col-span-3 bg-slate-800 rounded-2xl border border-slate-700 shadow-xl overflow-hidden hover:shadow-2xl transition cursor-pointer flex flex-col group"
+                    : "bg-slate-800 rounded-xl border border-slate-700 shadow-lg overflow-hidden hover:-translate-y-1 hover:shadow-2xl transition cursor-pointer flex flex-col group";
+
                 div.onclick = (e) => {
                     if (e.target.closest('button')) return;
                     openReadModal(post);
                 };
+
+                const cleanExcerpt = (post.content || '').replace(/<[^>]*>?/gm, '').substring(0, 300) + '...';
+
                 div.innerHTML = `
-                    <img src="${post.image || 'https://via.placeholder.com/400'}" class="h-32 w-full object-cover">
-                    <div class="p-4 flex-grow">
-                        <span class="text-[10px] font-bold text-red-600 uppercase tracking-widest">${post.category || 'Blog'}</span>
-                        <h3 class="font-bold text-md text-white leading-tight mt-1 line-clamp-2">${post.title}</h3>
+                    <div class="w-full shrink-0 relative overflow-hidden bg-slate-900 border-b border-slate-800" style="aspect-ratio: 16 / 9;">
+                        <img src="${post.image || 'https://via.placeholder.com/1200x675/0f172a/ffffff?text=FPV+DRONES'}" onerror="this.onerror=null;this.src='https://via.placeholder.com/1200x675/0f172a/ffffff?text=FPV+DRONES';" class="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        <div class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider shadow-lg">${post.category || 'Blog'}</div>
                     </div>
-                    ${currentUser ? `
-                    <div class="p-4 pt-0 flex gap-2">
-                        <button onclick="window.editPost('${post.id}')" class="text-blue-500 text-xs">Editar</button>
-                        <button onclick="window.deletePost('${post.id}')" class="text-red-500 text-xs">Borrar</button>
-                    </div>` : ''}
+                    <div class="flex flex-col flex-grow justify-between ${isHero ? 'p-8 md:p-10' : 'p-5'}">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2 text-[10px] text-slate-400 font-teko text-lg tracking-wider">
+                                <span><i class="far fa-calendar-alt mr-1"></i> ${new Date(post.createdAt).toLocaleDateString()}</span>
+                                <span>•</span>
+                                <span><i class="far fa-clock mr-1"></i> ${readingTime} MIN</span>
+                            </div>
+                            <h3 class="font-bold ${isHero ? 'text-3xl md:text-5xl' : 'text-xl'} text-white leading-tight mb-3 group-hover:text-red-500 transition font-teko tracking-wide line-clamp-2" style="min-height: ${isHero ? '4rem' : '3.5rem'}; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${post.title}</h3>
+                            ${isHero ? `<p class="text-slate-400 text-sm leading-relaxed font-light mb-4 line-clamp-3" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${cleanExcerpt}</p>` : ''}
+                        </div>
+                        
+                        ${currentUser ? `
+                        <div class="pt-4 flex gap-3 border-t border-slate-700/50 mt-auto">
+                            <button onclick="event.stopPropagation(); window.editPost('${post.id}')" class="text-blue-500 text-xs uppercase font-bold tracking-widest hover:text-blue-400 z-10 relative"><i class="fas fa-edit mb-1"></i> EDITAR</button>
+                            <button onclick="event.stopPropagation(); window.deletePost('${post.id}')" class="text-red-500 text-xs uppercase font-bold tracking-widest hover:text-red-400 z-10 relative"><i class="fas fa-trash mb-1"></i> BORRAR</button>
+                        </div>` : ''}
+                    </div>
                 `;
                 container.appendChild(div);
             });
+
+            if (loadMoreBtn) {
+                if (totalFiltered > visiblePostsLimit) loadMoreBtn.classList.remove('hidden');
+                else loadMoreBtn.classList.add('hidden');
+            }
+
+            // Abre el modal inicial basado en id de ?post=
+            if (!window.initialPostChecked && window.location.search.includes('post=')) {
+                window.initialPostChecked = true;
+                const postId = new URLSearchParams(window.location.search).get('post');
+                if (postsCache[postId]) {
+                    setTimeout(() => openReadModal({ id: postId, ...postsCache[postId] }), 100);
+                }
+            }
         }
 
         window.login = async (e) => {
@@ -2237,7 +2541,7 @@
             };
             try {
                 const colPath = _collection(_db, 'blog_posts');
-                if (editingPostId) await _updateDoc(_doc(colPath, editingPostId), data);
+                if (editingPostId) await _updateDoc(_doc(_db, 'blog_posts', editingPostId), data);
                 else await _addDoc(colPath, data);
                 showToast('Guardado', 'success');
                 toggleAdminPanel();
@@ -2247,8 +2551,10 @@
         window.editPost = (id) => {
             const p = postsCache[id];
             if (!p) return;
-            document.getElementById('post-title').value = p.title;
-            document.getElementById('post-content').value = p.content;
+            document.getElementById('post-title').value = p.title || '';
+            document.getElementById('post-author').value = p.author || 'FPV Drones';
+            document.getElementById('post-category').value = p.category || 'Noticias';
+            document.getElementById('post-content').value = p.content || '';
             document.getElementById('post-image-base64').value = p.image;
             document.getElementById('image-preview').src = p.image;
             document.getElementById('image-preview').classList.remove('hidden');
@@ -2257,18 +2563,56 @@
         };
 
         window.deletePost = async (id) => {
-            try { if (confirm('¿Borrar?')) await _deleteDoc(_doc(_collection(_db, 'blog_posts'), id)); } catch (e) { showToast(e.message, 'error'); }
+            try { if (confirm('¿Borrar?')) await _deleteDoc(_doc(_db, 'blog_posts', id)); } catch (e) { showToast(e.message, 'error'); }
         };
 
         document.getElementById('login-form').addEventListener('submit', window.login);
         document.getElementById('post-form').addEventListener('submit', window.createPost);
 
         const handleFile = (file) => {
+            if (!file || !file.type.match('image.*')) return;
             const reader = new FileReader();
             reader.onload = (e) => {
-                document.getElementById('post-image-base64').value = e.target.result;
-                document.getElementById('image-preview').src = e.target.result;
-                document.getElementById('image-preview').classList.remove('hidden');
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const targetWidth = 1200;
+                    const targetHeight = 675; // Ratio 16:9 estándar para el blog
+                    canvas.width = targetWidth;
+                    canvas.height = targetHeight;
+                    const ctx = canvas.getContext('2d');
+
+                    // Calcular proporciones (simulando object-fit: cover)
+                    const imgRatio = img.width / img.height;
+                    const targetRatio = targetWidth / targetHeight;
+                    let drawWidth = img.width;
+                    let drawHeight = img.height;
+                    let offsetX = 0;
+                    let offsetY = 0;
+
+                    if (imgRatio > targetRatio) {
+                        drawWidth = img.height * targetRatio;
+                        offsetX = (img.width - drawWidth) / 2;
+                    } else {
+                        drawHeight = img.width / targetRatio;
+                        offsetY = (img.height - drawHeight) / 2;
+                    }
+
+                    // Fondo de seguridad
+                    ctx.fillStyle = '#0f172a'; // fondo oscuro de la web
+                    ctx.fillRect(0, 0, targetWidth, targetHeight);
+
+                    // Dibujar imagen centrada y recortada al tamaño ideal
+                    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight, 0, 0, targetWidth, targetHeight);
+
+                    // Estandarizar exportación a JPEG comprimido
+                    const standardBase64 = canvas.toDataURL('image/jpeg', 0.85);
+
+                    document.getElementById('post-image-base64').value = standardBase64;
+                    document.getElementById('image-preview').src = standardBase64;
+                    document.getElementById('image-preview').classList.remove('hidden');
+                };
+                img.src = e.target.result;
             };
             reader.readAsDataURL(file);
         };
@@ -2308,15 +2652,43 @@
         };
 
         window.openReadModal = (post) => {
+            // Enlaces unicos
+            const url = new URL(window.location);
+            url.searchParams.set('post', post.id);
+            window.history.pushState({}, '', url);
+
             document.getElementById('read-post-title').innerText = post.title;
-            document.getElementById('read-post-image').src = post.image;
+            document.getElementById('read-post-image').src = post.image || 'https://via.placeholder.com/800x400';
             document.getElementById('read-post-author').innerText = post.author || 'Admin';
             document.getElementById('read-post-date').innerText = new Date(post.createdAt).toLocaleDateString();
-            document.getElementById('read-post-content').innerHTML = post.content.replace(/\n/g, '<br>');
+
+            // Texto enriquecido simple: Saltos, bold, enlaces
+            let safeContent = post.content.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            safeContent = safeContent.replace(/\n/g, '<br>');
+            safeContent = safeContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            safeContent = safeContent.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            safeContent = safeContent.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 underline">$1</a>');
+            document.getElementById('read-post-content').innerHTML = safeContent;
+
+            // Share buttons
+            const shareUrl = encodeURIComponent(window.location.href);
+            const shareTitle = encodeURIComponent(post.title);
+            document.getElementById('share-whatsapp').href = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareUrl}`;
+            document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?text=${shareTitle}&url=${shareUrl}`;
+            document.getElementById('share-copy').onclick = () => {
+                navigator.clipboard.writeText(window.location.href);
+                showToast('Enlace copiado', 'success');
+            };
+
             document.getElementById('read-modal').classList.remove('hidden');
         };
 
-        window.closeReadModal = () => document.getElementById('read-modal').classList.add('hidden');
+        window.closeReadModal = () => {
+            document.getElementById('read-modal').classList.add('hidden');
+            const url = new URL(window.location);
+            url.searchParams.delete('post');
+            window.history.pushState({}, '', url);
+        };
         // openSectionModal y closeSectionModal se definen en el script normal posterior
         // para evitar que el módulo (que se ejecuta después) sobreescriba la versión con lógica de data-src→src
     </script>
@@ -2403,9 +2775,8 @@
 
         function calculateLipoCharge() {
             const mah = document.getElementById('lipo-mah').value;
-            const count = document.getElementById('lipo-count').value;
             const c = document.getElementById('lipo-c').value;
-            const amps = (mah * count / 1000) * c;
+            const amps = (mah / 1000) * c;
             document.getElementById('lipo-result').innerText = amps.toFixed(1) + " A";
         }
 
